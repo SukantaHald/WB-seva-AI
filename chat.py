@@ -1,17 +1,9 @@
-<<<<<<< HEAD
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Optional, List
 import json
-import re
-from typing import List, Optional
-import sqlite3
-from datetime import datetime
-import os
-import sys
-
-# Add parent directory to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import uvicorn  # <-- This was missing
 
 app = FastAPI()
 
@@ -23,222 +15,90 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ============ DATABASE SETUP ============
-def get_db():
-    # Use /tmp for Vercel (writable)
-    db_path = '/tmp/wbseva.db'
-    conn = sqlite3.connect(db_path)
-    return conn
+# ============ SCHEMES DATABASE ============
+SCHEMES = [
+    {
+        "name": "Kanyashree Prakalpa",
+        "category": "Women, Education",
+        "description": "Cash transfer scheme for girl students in West Bengal",
+        "eligibility": "Girls aged 13-18, studying in Class VIII-XII, family income < ₹1.2L",
+        "benefits": "₹1000/year (13-18), ₹25,000 one-time at 18",
+        "portal_url": "wbkanyashree.gov.in"
+    },
+    {
+        "name": "SVMCM Scholarship",
+        "category": "Students, Education",
+        "description": "Merit-cum-means scholarship for higher education",
+        "eligibility": "Students with 60%+ marks, family income < ₹2.5L",
+        "benefits": "Tuition fees + maintenance allowance",
+        "portal_url": "wbhed.gov.in"
+    },
+    {
+        "name": "Student Credit Card",
+        "category": "Students, Education",
+        "description": "Interest-free education loan up to ₹10 Lakhs",
+        "eligibility": "Permanent WB resident, age 18-45, pursuing higher education",
+        "benefits": "Up to ₹10 Lakhs interest-free loan",
+        "portal_url": "wbscc.wb.gov.in"
+    },
+    {
+        "name": "Pradhan Mantri Awas Yojana",
+        "category": "Housing, Urban Development",
+        "description": "Affordable housing for urban poor",
+        "eligibility": "EWS/LIG/MIG categories, no own house",
+        "benefits": "Interest subsidy up to ₹2.67L",
+        "portal_url": "pmaymis.gov.in"
+    },
+    {
+        "name": "Bangla Awas Yojana",
+        "category": "Housing, Rural Development",
+        "description": "Housing scheme for rural West Bengal",
+        "eligibility": "BPL families in rural areas",
+        "benefits": "Financial assistance for house construction",
+        "portal_url": "banglaawas.wb.gov.in"
+    },
+    {
+        "name": "Oasis Scholarship",
+        "category": "Students, Education",
+        "description": "Scholarship for SC/ST/OBC students",
+        "eligibility": "SC/ST/OBC students, 50%+ marks, family income < ₹2.5L",
+        "benefits": "₹3,000-₹20,000 per year",
+        "portal_url": "oasis.gov.in"
+    },
+    {
+        "name": "Yuvashree Scheme",
+        "category": "Employment, Youth",
+        "description": "Employment support for educated unemployed youth",
+        "eligibility": "Age 18-45, educational qualification, family income < ₹1.5L",
+        "benefits": "Monthly allowance + job placement assistance",
+        "portal_url": "wbyuvashree.wb.gov.in"
+    }
+]
 
-def init_db():
-    conn = get_db()
-    c = conn.cursor()
-    
-    c.execute('''CREATE TABLE IF NOT EXISTS schemes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        category TEXT,
-        description TEXT,
-        eligibility TEXT,
-        benefits TEXT,
-        documents TEXT,
-        application_process TEXT,
-        portal_url TEXT,
-        department TEXT
-    )''')
-    
-    conn.commit()
-    conn.close()
+# ============ API MODELS ============
+class QueryRequest(BaseModel):
+    question: str
+    user_id: Optional[str] = "anonymous"
 
-def seed_schemes():
-    schemes = [
-        {
-            "name": "Kanyashree Prakalpa",
-            "category": "Women, Education",
-            "description": "Cash transfer scheme for girl students in West Bengal",
-            "eligibility": "Girls aged 13-18, studying in Class VIII-XII, family income < ₹1.2L",
-            "benefits": "₹1000/year (13-18), ₹25,000 one-time at 18",
-            "documents": "Birth Certificate, Bank Account, Income Certificate, School ID",
-            "application_process": "Apply through school or wbkanyashree.gov.in",
-            "portal_url": "wbkanyashree.gov.in",
-            "department": "Women & Child Development"
-        },
-        {
-            "name": "SVMCM Scholarship",
-            "category": "Students, Education",
-            "description": "Merit-cum-means scholarship for higher education",
-            "eligibility": "Students with 60%+ marks, family income < ₹2.5L",
-            "benefits": "Tuition fees + maintenance allowance",
-            "documents": "Marksheet, Income Certificate, Aadhaar, Bank Account",
-            "application_process": "Apply at wbhed.gov.in",
-            "portal_url": "wbhed.gov.in",
-            "department": "Higher Education"
-        },
-        {
-            "name": "Student Credit Card",
-            "category": "Students, Education",
-            "description": "Interest-free education loan up to ₹10 Lakhs",
-            "eligibility": "Permanent WB resident, age 18-45, pursuing higher education",
-            "benefits": "Up to ₹10 Lakhs interest-free loan",
-            "documents": "Aadhaar, Income Certificate, Admission Letter, Bank Account",
-            "application_process": "Apply at wbscc.wb.gov.in",
-            "portal_url": "wbscc.wb.gov.in",
-            "department": "Higher Education"
-        },
-        {
-            "name": "Pradhan Mantri Awas Yojana",
-            "category": "Housing, Urban Development",
-            "description": "Affordable housing for urban poor",
-            "eligibility": "EWS/LIG/MIG categories, no own house",
-            "benefits": "Interest subsidy up to ₹2.67L",
-            "documents": "Aadhaar, Income Proof, Land Documents",
-            "application_process": "Apply at pmaymis.gov.in",
-            "portal_url": "pmaymis.gov.in",
-            "department": "Housing & Urban Development"
-        },
-        {
-            "name": "Bangla Awas Yojana",
-            "category": "Housing, Rural Development",
-            "description": "Housing scheme for rural West Bengal",
-            "eligibility": "BPL families in rural areas",
-            "benefits": "Financial assistance for house construction",
-            "documents": "BPL Card, Aadhaar, Land Records",
-            "application_process": "Apply at banglaawas.wb.gov.in",
-            "portal_url": "banglaawas.wb.gov.in",
-            "department": "Panchayat & Rural Development"
-        },
-        {
-            "name": "Oasis Scholarship",
-            "category": "Students, Education",
-            "description": "Scholarship for SC/ST/OBC students",
-            "eligibility": "SC/ST/OBC students, 50%+ marks, family income < ₹2.5L",
-            "benefits": "₹3,000-₹20,000 per year",
-            "documents": "Caste Certificate, Marksheet, Income Certificate",
-            "application_process": "Apply at oasis.gov.in",
-            "portal_url": "oasis.gov.in",
-            "department": "Minority Affairs"
-        },
-        {
-            "name": "Yuvashree Scheme",
-            "category": "Employment, Youth",
-            "description": "Employment support for educated unemployed youth",
-            "eligibility": "Age 18-45, educational qualification, family income < ₹1.5L",
-            "benefits": "Monthly allowance + job placement assistance",
-            "documents": "Educational Certificates, Aadhaar, Income Proof",
-            "application_process": "Apply at wbyuvashree.wb.gov.in",
-            "portal_url": "wbyuvashree.wb.gov.in",
-            "department": "Youth Affairs"
-        }
-    ]
+# ============ RESPONSE GENERATOR ============
+def generate_response(query: str) -> dict:
+    query_lower = query.lower()
     
-    conn = get_db()
-    c = conn.cursor()
+    # Search for matching schemes
+    matching_schemes = []
+    for scheme in SCHEMES:
+        if any(word in query_lower for word in scheme['name'].lower().split()) or \
+           any(word in query_lower for word in scheme['category'].lower().split()) or \
+           any(word in query_lower for word in scheme['description'].lower().split()):
+            matching_schemes.append(scheme)
     
-    for scheme in schemes:
-        c.execute('''INSERT OR IGNORE INTO schemes 
-            (name, category, description, eligibility, benefits, documents, application_process, portal_url, department)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-            (scheme['name'], scheme['category'], scheme['description'], 
-             scheme['eligibility'], scheme['benefits'], scheme['documents'],
-             scheme['application_process'], scheme['portal_url'], scheme['department']))
+    # Limit to top 3
+    matching_schemes = matching_schemes[:3]
     
-    conn.commit()
-    conn.close()
-
-# ============ RAG SYSTEM ============
-class RAGSystem:
-    def __init__(self):
-        init_db()
-        seed_schemes()
-        self.conn = get_db()
-        self.c = self.conn.cursor()
-        
-    def search_schemes(self, query: str) -> List[dict]:
-        keywords = query.lower().split()
-        search_pattern = '%' + '%'.join(keywords[:3]) + '%'
-        
-        self.c.execute('''SELECT * FROM schemes WHERE 
-                         LOWER(name) LIKE ? OR 
-                         LOWER(category) LIKE ? OR 
-                         LOWER(description) LIKE ? OR 
-                         LOWER(eligibility) LIKE ?''',
-                      (search_pattern, search_pattern, search_pattern, search_pattern))
-        results = self.c.fetchall()
-        
-        schemes = []
-        for row in results:
-            schemes.append({
-                'id': row[0],
-                'name': row[1],
-                'category': row[2],
-                'description': row[3],
-                'eligibility': row[4],
-                'benefits': row[5],
-                'documents': row[6],
-                'application_process': row[7],
-                'portal_url': row[8],
-                'department': row[9]
-            })
-        return schemes[:5]
-
-# ============ AI RESPONSE ENGINE ============
-class WBSevaAI:
-    def __init__(self):
-        self.rag = RAGSystem()
-        
-    def generate_response(self, user_query: str) -> dict:
-        relevant_schemes = self.rag.search_schemes(user_query)
-        query_lower = user_query.lower()
-        
-        # Certificate query
-        if any(word in query_lower for word in ['certificate', 'income certificate', 'caste certificate']):
-            return {
-                'response': self.handle_certificate(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Job query
-        if any(word in query_lower for word in ['job', 'wbpsc', 'government job', 'employment']):
-            return {
-                'response': self.handle_job(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Lost document
-        if any(word in query_lower for word in ['lost', 'ration card', 'lost card']):
-            return {
-                'response': self.handle_lost_document(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Student schemes
-        if any(word in query_lower for word in ['student', 'study', 'b.tech', 'engineering']):
-            return {
-                'response': self.handle_student(relevant_schemes),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Housing
-        if any(word in query_lower for word in ['house', 'build', 'home', 'housing']):
-            return {
-                'response': self.handle_housing(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # General response
+    # Certificate query
+    if any(word in query_lower for word in ['certificate', 'income certificate', 'caste certificate']):
         return {
-            'response': self.handle_general(user_query, relevant_schemes),
-            'schemes': relevant_schemes,
-            'verified': False
-        }
-    
-    def handle_certificate(self):
-        return """📄 **HOW TO GET YOUR CERTIFICATE**
+            'response': """📄 **HOW TO GET YOUR CERTIFICATE**
 
 **Where to Apply:**
 • Urban: SDO Office (Sub-Divisional Officer)
@@ -247,7 +107,7 @@ class WBSevaAI:
 
 **Documents Required:**
 1. Aadhaar Card
-2. Voter ID / Ration Card (address proof)
+2. Voter ID / Ration Card
 3. Passport size photos (2-3 copies)
 4. Application form
 5. Previous certificate (for renewal)
@@ -255,16 +115,20 @@ class WBSevaAI:
 **Fees:**
 • Income Certificate: ₹10-₹20
 • Caste Certificate: ₹10-₹20
-• Domicile Certificate: ₹20-₹50
 
 **Processing Time:** 7-15 working days
 
 **Online:** edistrict.wb.gov.in
 
-⚠️ Always verify requirements at your local office."""
+⚠️ Always verify requirements at your local office.""",
+            'schemes': matching_schemes,
+            'verified': True
+        }
     
-    def handle_job(self):
-        return """💼 **WEST BENGAL GOVERNMENT JOBS**
+    # Job query
+    if any(word in query_lower for word in ['job', 'wbpsc', 'government job', 'employment']):
+        return {
+            'response': """💼 **WEST BENGAL GOVERNMENT JOBS**
 
 **WBPSC** (wbpsc.gov.in)
 • Posts: Executive, Judicial, Allied Services
@@ -275,7 +139,6 @@ class WBSevaAI:
 **West Bengal Police** (wbpolice.gov.in)
 • Posts: Constable, Sub-Inspector
 • Eligibility: 10+2 (Constable), Graduate (SI)
-• Physical Test required
 
 **ICDS (Anganwadi)**
 • Posts: Anganwadi Worker, Helper
@@ -284,12 +147,18 @@ class WBSevaAI:
 **Health Department** (wbhealth.gov.in)
 • Posts: Staff Nurse, Lab Technician, Doctor
 
-📌 **Apply at respective department websites"""
+📌 **Apply at respective department websites**""",
+            'schemes': matching_schemes,
+            'verified': True
+        }
     
-    def handle_lost_document(self):
-        return """🆔 **LOST DOCUMENT? HERE'S WHAT TO DO**
+    # Lost document
+    if any(word in query_lower for word in ['lost', 'ration card', 'lost card']):
+        return {
+            'response': """🆔 **LOST DOCUMENT? HERE'S WHAT TO DO**
 
 **Step 1:** File FIR at police station
+
 **Step 2:** Gather documents:
 • FIR Copy (mandatory)
 • Aadhaar Card
@@ -300,7 +169,6 @@ class WBSevaAI:
 • Ration Card: Food & Supplies Office
 • Voter ID: Election Commission Office
 • Aadhaar: UIDAI Center
-• Birth Certificate: Municipality
 
 **Step 4:** Fill "Duplicate" form, pay fee (₹50-₹200)
 
@@ -308,491 +176,87 @@ class WBSevaAI:
 
 📌 **Links:**
 • Ration Card: wbfood.wb.gov.in
-• Aadhaar: uidai.gov.in"""
+• Aadhaar: uidai.gov.in""",
+            'schemes': matching_schemes,
+            'verified': True
+        }
     
-    def handle_student(self, schemes):
+    # Student schemes
+    if any(word in query_lower for word in ['student', 'study', 'b.tech', 'engineering', 'scholarship']):
+        student_schemes = [s for s in SCHEMES if 'student' in s['category'].lower() or 'education' in s['category'].lower()]
         response = "🎓 **SCHEMES FOR STUDENTS**\n\n"
-        for scheme in schemes[:3]:
+        for scheme in student_schemes[:3]:
             response += f"✅ **{scheme['name']}**\n"
-            response += f"• {scheme['description'][:100]}...\n"
+            response += f"• {scheme['description'][:80]}...\n"
             response += f"• Portal: {scheme['portal_url']}\n\n"
         response += "📌 Apply on official portals only."
-        return response
+        return {
+            'response': response,
+            'schemes': student_schemes[:3],
+            'verified': True
+        }
     
-    def handle_housing(self):
-        return """🏠 **HOUSING SCHEMES**
-
-**Pradhan Mantri Awas Yojana**
-• For EWS/LIG/MIG categories
-• Interest subsidy up to ₹2.67L
-• Apply: pmaymis.gov.in
-
-**Bangla Awas Yojana**
-• For BPL families in rural areas
-• Financial assistance for house construction
-• Apply: banglaawas.wb.gov.in
-
-**Documents Needed:**
-• Aadhaar Card
-• Income Proof
-• Land documents
-
-📌 Visit official portals for detailed eligibility."""
+    # Housing
+    if any(word in query_lower for word in ['house', 'build', 'home', 'housing', 'awas']):
+        housing_schemes = [s for s in SCHEMES if 'housing' in s['category'].lower()]
+        response = "🏠 **HOUSING SCHEMES**\n\n"
+        for scheme in housing_schemes[:2]:
+            response += f"✅ **{scheme['name']}**\n"
+            response += f"• {scheme['description'][:80]}...\n"
+            response += f"• Portal: {scheme['portal_url']}\n\n"
+        response += "📌 Visit official portals for detailed eligibility."
+        return {
+            'response': response,
+            'schemes': housing_schemes[:2],
+            'verified': True
+        }
     
-    def handle_general(self, query, schemes):
-        response = f"🔍 **Information about: {query}**\n\n"
-        
-        if schemes:
-            response += "📌 **Related Schemes:**\n"
-            for scheme in schemes[:3]:
-                response += f"• {scheme['name']}: {scheme['description'][:80]}...\n"
-                response += f"  ➜ {scheme['portal_url']}\n\n"
-        
-        response += """💡 **Try asking about:**
-• Student schemes (Kanyashree, SVMCM)
-• Certificate application
-• Government jobs
-• Lost documents
-• Housing assistance
-
-⚠️ Always verify on official portals before applying."""
-        
-        return response
+    # General response
+    response = f"🔍 **Information about: {query}**\n\n"
+    
+    if matching_schemes:
+        response += "📌 **Related Schemes:**\n"
+        for scheme in matching_schemes[:3]:
+            response += f"• **{scheme['name']}**: {scheme['description'][:80]}...\n"
+            response += f"  ➜ {scheme['portal_url']}\n\n"
+    else:
+        response += "I couldn't find specific schemes for your query. Please try asking about:\n"
+        response += "• Student schemes (Kanyashree, SVMCM)\n"
+        response += "• Certificate application\n"
+        response += "• Government jobs\n"
+        response += "• Lost documents\n"
+        response += "• Housing assistance\n\n"
+    
+    response += "⚠️ Always verify on official portals before applying."
+    
+    return {
+        'response': response,
+        'schemes': matching_schemes,
+        'verified': bool(matching_schemes)
+    }
 
 # ============ API ENDPOINTS ============
-class QueryRequest(BaseModel):
-    question: str
-    user_id: Optional[str] = "anonymous"
-
-ai_system = WBSevaAI()
-
 @app.post("/api/chat")
 async def chat(request: QueryRequest):
     try:
-        result = ai_system.generate_response(request.question)
+        result = generate_response(request.question)
         return result
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/api/schemes")
-async def get_schemes():
-    conn = get_db()
-    c = conn.cursor()
-    c.execute('SELECT * FROM schemes LIMIT 20')
-    results = c.fetchall()
-    conn.close()
-    
-    schemes = []
-    for row in results:
-        schemes.append({
-            'id': row[0],
-            'name': row[1],
-            'category': row[2],
-            'description': row[3],
-            'portal_url': row[8],
-            'department': row[9]
-        })
-    return {"schemes": schemes}
-
-# Vercel handler
-def handler(request, context):
-=======
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-import json
-import re
-from typing import List, Optional
-import sqlite3
-from datetime import datetime
-import os
-import sys
-
-# Add parent directory to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# ============ DATABASE SETUP ============
-def get_db():
-    # Use /tmp for Vercel (writable)
-    db_path = '/tmp/wbseva.db'
-    conn = sqlite3.connect(db_path)
-    return conn
-
-def init_db():
-    conn = get_db()
-    c = conn.cursor()
-    
-    c.execute('''CREATE TABLE IF NOT EXISTS schemes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        category TEXT,
-        description TEXT,
-        eligibility TEXT,
-        benefits TEXT,
-        documents TEXT,
-        application_process TEXT,
-        portal_url TEXT,
-        department TEXT
-    )''')
-    
-    conn.commit()
-    conn.close()
-
-def seed_schemes():
-    schemes = [
-        {
-            "name": "Kanyashree Prakalpa",
-            "category": "Women, Education",
-            "description": "Cash transfer scheme for girl students in West Bengal",
-            "eligibility": "Girls aged 13-18, studying in Class VIII-XII, family income < ₹1.2L",
-            "benefits": "₹1000/year (13-18), ₹25,000 one-time at 18",
-            "documents": "Birth Certificate, Bank Account, Income Certificate, School ID",
-            "application_process": "Apply through school or wbkanyashree.gov.in",
-            "portal_url": "wbkanyashree.gov.in",
-            "department": "Women & Child Development"
-        },
-        {
-            "name": "SVMCM Scholarship",
-            "category": "Students, Education",
-            "description": "Merit-cum-means scholarship for higher education",
-            "eligibility": "Students with 60%+ marks, family income < ₹2.5L",
-            "benefits": "Tuition fees + maintenance allowance",
-            "documents": "Marksheet, Income Certificate, Aadhaar, Bank Account",
-            "application_process": "Apply at wbhed.gov.in",
-            "portal_url": "wbhed.gov.in",
-            "department": "Higher Education"
-        },
-        {
-            "name": "Student Credit Card",
-            "category": "Students, Education",
-            "description": "Interest-free education loan up to ₹10 Lakhs",
-            "eligibility": "Permanent WB resident, age 18-45, pursuing higher education",
-            "benefits": "Up to ₹10 Lakhs interest-free loan",
-            "documents": "Aadhaar, Income Certificate, Admission Letter, Bank Account",
-            "application_process": "Apply at wbscc.wb.gov.in",
-            "portal_url": "wbscc.wb.gov.in",
-            "department": "Higher Education"
-        },
-        {
-            "name": "Pradhan Mantri Awas Yojana",
-            "category": "Housing, Urban Development",
-            "description": "Affordable housing for urban poor",
-            "eligibility": "EWS/LIG/MIG categories, no own house",
-            "benefits": "Interest subsidy up to ₹2.67L",
-            "documents": "Aadhaar, Income Proof, Land Documents",
-            "application_process": "Apply at pmaymis.gov.in",
-            "portal_url": "pmaymis.gov.in",
-            "department": "Housing & Urban Development"
-        },
-        {
-            "name": "Bangla Awas Yojana",
-            "category": "Housing, Rural Development",
-            "description": "Housing scheme for rural West Bengal",
-            "eligibility": "BPL families in rural areas",
-            "benefits": "Financial assistance for house construction",
-            "documents": "BPL Card, Aadhaar, Land Records",
-            "application_process": "Apply at banglaawas.wb.gov.in",
-            "portal_url": "banglaawas.wb.gov.in",
-            "department": "Panchayat & Rural Development"
-        },
-        {
-            "name": "Oasis Scholarship",
-            "category": "Students, Education",
-            "description": "Scholarship for SC/ST/OBC students",
-            "eligibility": "SC/ST/OBC students, 50%+ marks, family income < ₹2.5L",
-            "benefits": "₹3,000-₹20,000 per year",
-            "documents": "Caste Certificate, Marksheet, Income Certificate",
-            "application_process": "Apply at oasis.gov.in",
-            "portal_url": "oasis.gov.in",
-            "department": "Minority Affairs"
-        },
-        {
-            "name": "Yuvashree Scheme",
-            "category": "Employment, Youth",
-            "description": "Employment support for educated unemployed youth",
-            "eligibility": "Age 18-45, educational qualification, family income < ₹1.5L",
-            "benefits": "Monthly allowance + job placement assistance",
-            "documents": "Educational Certificates, Aadhaar, Income Proof",
-            "application_process": "Apply at wbyuvashree.wb.gov.in",
-            "portal_url": "wbyuvashree.wb.gov.in",
-            "department": "Youth Affairs"
-        }
-    ]
-    
-    conn = get_db()
-    c = conn.cursor()
-    
-    for scheme in schemes:
-        c.execute('''INSERT OR IGNORE INTO schemes 
-            (name, category, description, eligibility, benefits, documents, application_process, portal_url, department)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-            (scheme['name'], scheme['category'], scheme['description'], 
-             scheme['eligibility'], scheme['benefits'], scheme['documents'],
-             scheme['application_process'], scheme['portal_url'], scheme['department']))
-    
-    conn.commit()
-    conn.close()
-
-# ============ RAG SYSTEM ============
-class RAGSystem:
-    def __init__(self):
-        init_db()
-        seed_schemes()
-        self.conn = get_db()
-        self.c = self.conn.cursor()
-        
-    def search_schemes(self, query: str) -> List[dict]:
-        keywords = query.lower().split()
-        search_pattern = '%' + '%'.join(keywords[:3]) + '%'
-        
-        self.c.execute('''SELECT * FROM schemes WHERE 
-                         LOWER(name) LIKE ? OR 
-                         LOWER(category) LIKE ? OR 
-                         LOWER(description) LIKE ? OR 
-                         LOWER(eligibility) LIKE ?''',
-                      (search_pattern, search_pattern, search_pattern, search_pattern))
-        results = self.c.fetchall()
-        
-        schemes = []
-        for row in results:
-            schemes.append({
-                'id': row[0],
-                'name': row[1],
-                'category': row[2],
-                'description': row[3],
-                'eligibility': row[4],
-                'benefits': row[5],
-                'documents': row[6],
-                'application_process': row[7],
-                'portal_url': row[8],
-                'department': row[9]
-            })
-        return schemes[:5]
-
-# ============ AI RESPONSE ENGINE ============
-class WBSevaAI:
-    def __init__(self):
-        self.rag = RAGSystem()
-        
-    def generate_response(self, user_query: str) -> dict:
-        relevant_schemes = self.rag.search_schemes(user_query)
-        query_lower = user_query.lower()
-        
-        # Certificate query
-        if any(word in query_lower for word in ['certificate', 'income certificate', 'caste certificate']):
-            return {
-                'response': self.handle_certificate(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Job query
-        if any(word in query_lower for word in ['job', 'wbpsc', 'government job', 'employment']):
-            return {
-                'response': self.handle_job(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Lost document
-        if any(word in query_lower for word in ['lost', 'ration card', 'lost card']):
-            return {
-                'response': self.handle_lost_document(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Student schemes
-        if any(word in query_lower for word in ['student', 'study', 'b.tech', 'engineering']):
-            return {
-                'response': self.handle_student(relevant_schemes),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # Housing
-        if any(word in query_lower for word in ['house', 'build', 'home', 'housing']):
-            return {
-                'response': self.handle_housing(),
-                'schemes': relevant_schemes,
-                'verified': True
-            }
-        
-        # General response
         return {
-            'response': self.handle_general(user_query, relevant_schemes),
-            'schemes': relevant_schemes,
+            'response': f"⚠️ Error: {str(e)}",
+            'schemes': [],
             'verified': False
         }
-    
-    def handle_certificate(self):
-        return """📄 **HOW TO GET YOUR CERTIFICATE**
-
-**Where to Apply:**
-• Urban: SDO Office (Sub-Divisional Officer)
-• Rural: BDO Office (Block Development Officer)
-• Also at: WBSeva Kendras
-
-**Documents Required:**
-1. Aadhaar Card
-2. Voter ID / Ration Card (address proof)
-3. Passport size photos (2-3 copies)
-4. Application form
-5. Previous certificate (for renewal)
-
-**Fees:**
-• Income Certificate: ₹10-₹20
-• Caste Certificate: ₹10-₹20
-• Domicile Certificate: ₹20-₹50
-
-**Processing Time:** 7-15 working days
-
-**Online:** edistrict.wb.gov.in
-
-⚠️ Always verify requirements at your local office."""
-    
-    def handle_job(self):
-        return """💼 **WEST BENGAL GOVERNMENT JOBS**
-
-**WBPSC** (wbpsc.gov.in)
-• Posts: Executive, Judicial, Allied Services
-• Eligibility: Graduate
-• Age: 21-36 years
-• Pattern: Prelims + Mains + Interview
-
-**West Bengal Police** (wbpolice.gov.in)
-• Posts: Constable, Sub-Inspector
-• Eligibility: 10+2 (Constable), Graduate (SI)
-• Physical Test required
-
-**ICDS (Anganwadi)**
-• Posts: Anganwadi Worker, Helper
-• Eligibility: 10th pass, local resident
-
-**Health Department** (wbhealth.gov.in)
-• Posts: Staff Nurse, Lab Technician, Doctor
-
-📌 **Apply at respective department websites"""
-    
-    def handle_lost_document(self):
-        return """🆔 **LOST DOCUMENT? HERE'S WHAT TO DO**
-
-**Step 1:** File FIR at police station
-**Step 2:** Gather documents:
-• FIR Copy (mandatory)
-• Aadhaar Card
-• Address Proof
-• Passport size photos
-
-**Step 3:** Visit issuing office:
-• Ration Card: Food & Supplies Office
-• Voter ID: Election Commission Office
-• Aadhaar: UIDAI Center
-• Birth Certificate: Municipality
-
-**Step 4:** Fill "Duplicate" form, pay fee (₹50-₹200)
-
-**Processing:** 7-15 working days
-
-📌 **Links:**
-• Ration Card: wbfood.wb.gov.in
-• Aadhaar: uidai.gov.in"""
-    
-    def handle_student(self, schemes):
-        response = "🎓 **SCHEMES FOR STUDENTS**\n\n"
-        for scheme in schemes[:3]:
-            response += f"✅ **{scheme['name']}**\n"
-            response += f"• {scheme['description'][:100]}...\n"
-            response += f"• Portal: {scheme['portal_url']}\n\n"
-        response += "📌 Apply on official portals only."
-        return response
-    
-    def handle_housing(self):
-        return """🏠 **HOUSING SCHEMES**
-
-**Pradhan Mantri Awas Yojana**
-• For EWS/LIG/MIG categories
-• Interest subsidy up to ₹2.67L
-• Apply: pmaymis.gov.in
-
-**Bangla Awas Yojana**
-• For BPL families in rural areas
-• Financial assistance for house construction
-• Apply: banglaawas.wb.gov.in
-
-**Documents Needed:**
-• Aadhaar Card
-• Income Proof
-• Land documents
-
-📌 Visit official portals for detailed eligibility."""
-    
-    def handle_general(self, query, schemes):
-        response = f"🔍 **Information about: {query}**\n\n"
-        
-        if schemes:
-            response += "📌 **Related Schemes:**\n"
-            for scheme in schemes[:3]:
-                response += f"• {scheme['name']}: {scheme['description'][:80]}...\n"
-                response += f"  ➜ {scheme['portal_url']}\n\n"
-        
-        response += """💡 **Try asking about:**
-• Student schemes (Kanyashree, SVMCM)
-• Certificate application
-• Government jobs
-• Lost documents
-• Housing assistance
-
-⚠️ Always verify on official portals before applying."""
-        
-        return response
-
-# ============ API ENDPOINTS ============
-class QueryRequest(BaseModel):
-    question: str
-    user_id: Optional[str] = "anonymous"
-
-ai_system = WBSevaAI()
-
-@app.post("/api/chat")
-async def chat(request: QueryRequest):
-    try:
-        result = ai_system.generate_response(request.question)
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/schemes")
 async def get_schemes():
-    conn = get_db()
-    c = conn.cursor()
-    c.execute('SELECT * FROM schemes LIMIT 20')
-    results = c.fetchall()
-    conn.close()
-    
-    schemes = []
-    for row in results:
-        schemes.append({
-            'id': row[0],
-            'name': row[1],
-            'category': row[2],
-            'description': row[3],
-            'portal_url': row[8],
-            'department': row[9]
-        })
-    return {"schemes": schemes}
+    return {"schemes": SCHEMES}
 
-# Vercel handler
-def handler(request, context):
->>>>>>> 747917ece89d0d3c400e5f25a4a101a9038c4d69
-    return app(request, context)
+@app.get("/")
+async def root():
+    return {"message": "WBseva AI API is running!"}
+
+# ============ FOR LOCAL TESTING ============
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
