@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -633,4 +634,147 @@
     </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WBSeva AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+        .chat-user { background: linear-gradient(135deg, #7c3aed, #8b5cf6); color: white; }
+        .chat-ai { background: white; border: 1px solid #e5e7eb; }
+        .typing span { display: inline-block; width: 8px; height: 8px; background: #7c3aed; border-radius: 50%; margin: 0 2px; animation: typing 1.4s infinite both; }
+        .typing span:nth-child(2) { animation-delay: 0.2s; }
+        .typing span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing { 0%,60%,100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-10px); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <header class="gradient-bg shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-2xl">🤖</div>
+                <div>
+                    <h1 class="text-xl font-bold text-white">WBSeva AI</h1>
+                    <p class="text-xs text-white/80">Your Smart Assistant for West Bengal</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div id="chatMessages" class="h-96 overflow-y-auto p-6 space-y-4 bg-gray-50">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white text-sm">AI</div>
+                    <div class="chat-ai rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%] shadow-sm">
+                        <p class="text-sm text-gray-800">👋 <b>Namaskar!</b> I'm WBSeva AI, your assistant for West Bengal government services.</p>
+                        <p class="text-xs text-gray-500 mt-1">🔒 Verified • 100% Free</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4 py-2 border-t border-gray-100 bg-gray-50/50">
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="ask('I am a student. Which schemes can I apply for?')" class="bg-white px-3 py-1.5 rounded-full text-xs border border-purple-200 hover:bg-purple-50">🎓 Student</button>
+                    <button onclick="ask('How to get Income Certificate?')" class="bg-white px-3 py-1.5 rounded-full text-xs border border-purple-200 hover:bg-purple-50">📄 Certificate</button>
+                    <button onclick="ask('My ration card is lost. What to do?')" class="bg-white px-3 py-1.5 rounded-full text-xs border border-purple-200 hover:bg-purple-50">🆔 Lost Ration Card</button>
+                    <button onclick="ask('What government jobs are available?')" class="bg-white px-3 py-1.5 rounded-full text-xs border border-purple-200 hover:bg-purple-50">💼 Jobs</button>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 p-4 bg-white">
+                <div class="flex space-x-2">
+                    <input id="userInput" type="text" placeholder="Ask about WB government services..." class="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm">
+                    <button onclick="sendMessage()" class="gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition text-sm">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api/chat';
+        
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const query = input.value.trim();
+            if (!query) return;
+            
+            addMessage('user', query);
+            input.value = '';
+            input.disabled = true;
+            showTyping();
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: query })
+                });
+                
+                if (!response.ok) throw new Error('API error');
+                const data = await response.json();
+                hideTyping();
+                addMessage('ai', data.response, data.verified, data.schemes);
+            } catch (error) {
+                hideTyping();
+                addMessage('ai', '⚠️ Service temporarily unavailable. Please try again.');
+            }
+            
+            input.disabled = false;
+            input.focus();
+        }
+        
+        function addMessage(type, content, verified = null, schemes = null) {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            
+            if (type === 'user') {
+                div.className = 'flex items-start space-x-3 justify-end';
+                div.innerHTML = `<div class="chat-user rounded-2xl rounded-tr-none px-4 py-3 max-w-[85%] shadow-sm"><p class="text-sm whitespace-pre-wrap">${escapeHtml(content)}</p></div><div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-sm">👤</div>`;
+            } else {
+                const badge = verified ? '<span class="text-xs text-green-600 font-semibold">✅ Verified</span>' : '<span class="text-xs text-yellow-600 font-semibold">⚠️ Unverified</span>';
+                div.className = 'flex items-start space-x-3';
+                div.innerHTML = `<div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white text-sm">AI</div><div class="chat-ai rounded-2xl rounded-tl-none px-4 py-3 max-w-[85%] shadow-sm"><div class="text-sm text-gray-800 whitespace-pre-wrap">${escapeHtml(content)}</div><div class="mt-2">${badge}</div></div>`;
+            }
+            
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function showTyping() {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.id = 'typingIndicator';
+            div.className = 'flex items-start space-x-3';
+            div.innerHTML = `<div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white text-sm">AI</div><div class="chat-ai rounded-2xl rounded-tl-none px-4 py-3"><div class="typing flex space-x-1"><span></span><span></span><span></span></div></div>`;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function ask(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+        
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+>>>>>>> 747917ece89d0d3c400e5f25a4a101a9038c4d69
 </html>
