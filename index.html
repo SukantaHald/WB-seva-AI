@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WBseva AI - Smart Government Assistant</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Favicon - Your Logo -->
+    <link rel="icon" type="image/png" href="wbmap.png" />
+</head>
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="wbmap.png" alt="WBseva AI" class="nav-logo" />
+                <div class="nav-brand-text">
+                    <span class="nav-brand-title">WBseva AI</span>
+                    <span class="nav-brand-sub">Your Smart Assistant</span>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="#" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="nav-link"><i class="fas fa-list"></i> Schemes</a>
+                <a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Certificates</a>
+                <a href="#" class="nav-link"><i class="fas fa-briefcase"></i> Jobs</a>
+                <button class="nav-btn"><i class="fas fa-user"></i> Login</button>
+            </div>
+
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="hero">
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Powered by AI • 100% Free
+                </div>
+                <h1 class="hero-title">
+                    Your Smart Assistant for
+                    <span class="hero-highlight">West Bengal</span>
+                    Government Services
+                </h1>
+                <p class="hero-desc">
+                    Find schemes, check eligibility, get certificates, and more — 
+                    all powered by AI, right at your fingertips.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">15+</span>
+                        <span class="hero-stat-label">Government Schemes</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">100%</span>
+                        <span class="hero-stat-label">Verified Info</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">4.9</span>
+                        <span class="hero-stat-label">User Rating</span>
+                    </div>
+                </div>
+
+                <div class="hero-search">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="heroInput" placeholder="Ask anything about WB government services..." class="hero-input" />
+                        <button class="hero-search-btn" onclick="sendHeroMessage()">
+                            <i class="fas fa-paper-plane"></i> Ask AI
+                        </button>
+                    </div>
+                    <div class="hero-suggestions">
+                        <button onclick="ask('I am a student. Which schemes can I apply for?')" class="hero-chip">
+                            <i class="fas fa-graduation-cap"></i> Student
+                        </button>
+                        <button onclick="ask('How to get Income Certificate?')" class="hero-chip">
+                            <i class="fas fa-file-certificate"></i> Certificate
+                        </button>
+                        <button onclick="ask('My ration card is lost. What to do?')" class="hero-chip">
+                            <i class="fas fa-id-card"></i> Lost Card
+                        </button>
+                        <button onclick="ask('What government jobs are available?')" class="hero-chip">
+                            <i class="fas fa-briefcase"></i> Jobs
+                        </button>
+                        <button onclick="ask('How to apply for Kanyashree?')" class="hero-chip">
+                            <i class="fas fa-female"></i> Kanyashree
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-illustration">
+                <div class="hero-ai-avatar">
+                    <div class="hero-ai-pulse"></div>
+                    <div class="hero-ai-ring"></div>
+                    <div class="hero-ai-ring ring-2"></div>
+                    <div class="hero-ai-ring ring-3"></div>
+                    <div class="hero-ai-face">
+                        <img src="wbmap.png" alt="WBseva AI" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                    </div>
+                </div>
+                <div class="hero-feature-cards">
+                    <div class="hero-feature-card floating-1">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Verified</span>
+                    </div>
+                    <div class="hero-feature-card floating-2">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast</span>
+                    </div>
+                    <div class="hero-feature-card floating-3">
+                        <i class="fas fa-lock"></i>
+                        <span>Secure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CHAT SECTION ===================== -->
+    <section class="chat-section" id="chatSection">
+        <div class="container">
+            <div class="chat-container">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <div class="chat-header-left">
+                        <div class="chat-avatar">
+                            <img src="wbmap.png" alt="WBseva AI" />
+                            <div class="chat-status-dot"></div>
+                        </div>
+                        <div class="chat-header-info">
+                            <h3>WBseva AI Assistant</h3>
+                            <p><span class="chat-status-text">● Online</span> • Ready to help</p>
+                        </div>
+                    </div>
+                    <div class="chat-header-actions">
+                        <button class="chat-action-btn" onclick="clearChat()" title="Clear chat">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <button class="chat-action-btn" onclick="toggleVerifyMode()" title="Toggle verification">
+                            <i class="fas fa-shield-alt" id="verifyIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message-ai">
+                        <div class="message-avatar">
+                            <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                        </div>
+                        <div class="message-bubble bubble-ai">
+                            <div class="message-text">
+                                <strong>👋 Namaskar!</strong> I'm <strong>WBseva AI</strong>, your smart assistant for West Bengal government services.
+                            </div>
+                            <div class="message-footer">
+                                <span class="badge-verified">✅ Verified</span>
+                                <span class="message-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-area">
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="userInput" placeholder="Type your question here..." class="chat-input" />
+                        <button class="chat-send-btn" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send</span>
+                        </button>
+                    </div>
+                    <div class="chat-footer-text">
+                        <span><i class="fas fa-shield-alt"></i> All data is private & secure</span>
+                        <span id="statusBadge" class="chat-status-online"><i class="fas fa-circle"></i> Online</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Features</span>
+                <h2>Everything You Need in One Place</h2>
+                <p>From finding schemes to getting certificates — WBseva AI has you covered</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" onclick="ask('Show me all student schemes')">
+                    <div class="feature-icon-wrapper" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Scheme Finder</h3>
+                    <p>Discover 15+ government schemes tailored to you</p>
+                    <span class="feature-tag">Popular</span>
+                </div>
+
+                <div class="feature-card" onclick="ask('Check my eligibility for schemes')">
+                    <div class="feature-icon-wrapper" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Eligibility Checker</h3>
+                    <p>Instantly know which schemes you qualify for</p>
+                    <span class="feature-tag">Smart</span>
+                </div>
+
+                <div class="feature-card" onclick="ask('How to get a certificate?')">
+                    <div class="feature-icon-wrapper" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Certificate Assistant</h3>
+                    <p>Step-by-step guide for all government certificates</p>
+                    <span class="feature-tag">Guide</span>
+                </div>
+
+                <div class="feature-card" onclick="ask('What government jobs are available?')">
+                    <div class="feature-icon-wrapper" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Job Assistant</h3>
+                    <p>Stay updated on WBPSC, police, and govt jobs</p>
+                    <span class="feature-tag">Career</span>
+                </div>
+
+                <div class="feature-card" onclick="ask('My document is lost. What to do?')">
+                    <div class="feature-icon-wrapper" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Lost Document Help</h3>
+                    <p>Replacement process for lost ration card, etc.</p>
+                    <span class="feature-tag">Support</span>
+                </div>
+
+                <div class="feature-card" onclick="ask('Life event help for marriage')">
+                    <div class="feature-icon-wrapper" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                        <i class="fas fa-star-of-life"></i>
+                    </div>
+                    <h3>Life Event AI</h3>
+                    <p>Guidance for marriage, baby, house, and more</p>
+                    <span class="feature-tag">Beta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">How It Works</span>
+                <h2>Get Answers in 3 Simple Steps</h2>
+                <p>No forms, no confusion — just ask and get guidance</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-comment"></i></div>
+                    <h3>Ask a Question</h3>
+                    <p>Type anything about schemes, certificates, jobs, or services</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Analyzes</h3>
+                    <p>Our AI searches through verified government data</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Get Answers</h3>
+                    <p>Receive clear, actionable guidance with official links</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== LIFE EVENTS ===================== -->
+    <section class="life-events">
+        <div class="container">
+            <div class="life-events-wrapper">
+                <div class="life-events-content">
+                    <span class="section-tag">Life Event AI</span>
+                    <h2>Life Changes? We've Got You Covered</h2>
+                    <p>Tell us about your life event and get a complete checklist of everything you need to do.</p>
+
+                    <div class="life-events-grid">
+                        <button onclick="ask('I just got married. What documents should I update?')" class="life-event-btn">
+                            <i class="fas fa-ring"></i> 💍 Marriage
+                        </button>
+                        <button onclick="ask('I just had a baby. What should I do?')" class="life-event-btn">
+                            <i class="fas fa-baby"></i> 👶 New Baby
+                        </button>
+                        <button onclick="ask('I want to buy a house. What schemes can help?')" class="life-event-btn">
+                            <i class="fas fa-home"></i> 🏠 Buying House
+                        </button>
+                        <button onclick="ask('I lost my job. What support is available?')" class="life-event-btn">
+                            <i class="fas fa-hand-holding-heart"></i> 💼 Job Loss
+                        </button>
+                        <button onclick="ask('I am a senior citizen. What benefits can I get?')" class="life-event-btn">
+                            <i class="fas fa-user-astronaut"></i> 👴 Senior Citizen
+                        </button>
+                        <button onclick="ask('I want to start a business. Any government schemes?')" class="life-event-btn">
+                            <i class="fas fa-store"></i> 🏪 Start Business
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="wbmap.png" alt="WBseva AI" />
+                        <span>WBseva AI</span>
+                    </div>
+                    <p>Your Smart Assistant for West Bengal Government Services. 100% free, AI-powered, and always private.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Schemes</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Certificates</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Jobs</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Scholarships</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Help Center</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Terms of Use</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Official Resources</h4>
+                    <a href="https://wb.gov.in" target="_blank"><i class="fas fa-external-link-alt"></i> WB Government</a>
+                    <a href="https://edistrict.wb.gov.in" target="_blank"><i class="fas fa-external-link-alt"></i> e-District</a>
+                    <a href="https://wbpsc.gov.in" target="_blank"><i class="fas fa-external-link-alt"></i> WBPSC</a>
+                    <a href="https://wbkanyashree.gov.in" target="_blank"><i class="fas fa-external-link-alt"></i> Kanyashree</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 WBseva AI. Made with ❤️ for West Bengal.</p>
+                <p class="footer-disclaimer">
+                    ⚠️ Always verify information on official government websites before applying.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== JAVASCRIPT ===================== -->
+    <script>
+        // ========================================
+        // CONFIGURATION
+        // ========================================
+        const API_URL = '/api/chat';
+        let verifyMode = true;
+
+        // ========================================
+        // SEND MESSAGE
+        // ========================================
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            addMessage('user', query);
+            input.value = '';
+            input.disabled = true;
+            showTyping();
+            scrollToChat();
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: query })
+                });
+
+                if (!response.ok) throw new Error('API error');
+                const data = await response.json();
+                hideTyping();
+                addMessage('ai', data.response, data.verified, data.schemes);
+                scrollToChat();
+            } catch (error) {
+                hideTyping();
+                addMessage('ai', '⚠️ Service temporarily unavailable. Please try again later.');
+                scrollToChat();
+            }
+
+            input.disabled = false;
+            input.focus();
+        }
+
+        // ========================================
+        // HERO SEARCH
+        // ========================================
+        function sendHeroMessage() {
+            const input = document.getElementById('heroInput');
+            const query = input.value.trim();
+            if (!query) return;
+            document.getElementById('userInput').value = query;
+            document.getElementById('chatSection').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(sendMessage, 500);
+        }
+
+        // ========================================
+        // ADD MESSAGE
+        // ========================================
+        function addMessage(type, content, verified = null, schemes = null) {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+
+            if (type === 'user') {
+                div.className = 'message-user';
+                div.innerHTML = `
+                        <div class="message-bubble bubble-user">
+                            <div class="message-text">${escapeHtml(content)}</div>
+                            <div class="message-footer">
+                                <span class="message-time">You • Just now</span>
+                            </div>
+                        </div>
+                        <div class="message-avatar user-avatar">👤</div>
+                    `;
+            } else {
+                const verifiedBadge = verified === true ?
+                    '<span class="badge-verified">✅ Verified</span>' :
+                    verified === false ?
+                    '<span class="badge-unverified">⚠️ Unverified</span>' :
+                    '';
+
+                let schemesHTML = '';
+                if (schemes && schemes.length > 0) {
+                    schemesHTML = `
+                            <div class="message-schemes">
+                                <span class="schemes-title"><i class="fas fa-list"></i> Related Schemes</span>
+                                ${schemes.slice(0, 3).map(s => `
+                                    <div class="scheme-chip">
+                                        <span class="scheme-chip-name">${s.name}</span>
+                                        ${s.portal ? `<a href="http://${s.portal}" target="_blank" class="scheme-chip-link"><i class="fas fa-external-link-alt"></i></a>` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                }
+
+                div.className = 'message-ai';
+                div.innerHTML = `
+                        <div class="message-avatar">
+                            <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                        </div>
+                        <div class="message-bubble bubble-ai">
+                            <div class="message-text">${escapeHtml(content)}</div>
+                            ${schemesHTML}
+                            <div class="message-footer">
+                                ${verifiedBadge}
+                                <span class="message-time">AI • Just now</span>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // ========================================
+        // TYPING INDICATOR
+        // ========================================
+        function showTyping() {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.id = 'typingIndicator';
+            div.className = 'message-ai';
+            div.innerHTML = `
+                    <div class="message-avatar">
+                        <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                    </div>
+                    <div class="message-bubble bubble-ai">
+                        <div class="typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                `;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        // ========================================
+        // HELPERS
+        // ========================================
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function ask(text) {
+            document.getElementById('userInput').value = text;
+            document.getElementById('chatSection').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(sendMessage, 500);
+        }
+
+        function scrollToChat() {
+            const container = document.getElementById('chatMessages');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function clearChat() {
+            if (confirm('Clear all messages?')) {
+                const container = document.getElementById('chatMessages');
+                container.innerHTML = `
+                        <div class="message-ai">
+                            <div class="message-avatar">
+                                <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                            </div>
+                            <div class="message-bubble bubble-ai">
+                                <div class="message-text">
+                                    <strong>👋 Namaskar!</strong> I'm <strong>WBseva AI</strong>, your smart assistant for West Bengal government services.
+                                </div>
+                                <div class="message-footer">
+                                    <span class="badge-verified">✅ Verified</span>
+                                    <span class="message-time">Just now</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            }
+        }
+
+        function toggleVerifyMode() {
+            verifyMode = !verifyMode;
+            const icon = document.getElementById('verifyIcon');
+            const badge = document.getElementById('statusBadge');
+            if (verifyMode) {
+                icon.style.color = '#10b981';
+                badge.innerHTML = '<i class="fas fa-circle"></i> Verify ON';
+                badge.className = 'chat-status-online';
+            } else {
+                icon.style.color = '#f59e0b';
+                badge.innerHTML = '<i class="fas fa-circle"></i> Verify OFF';
+                badge.className = 'chat-status-warning';
+            }
+        }
+
+        // ========================================
+        // NAV TOGGLE (Mobile)
+        // ========================================
+        document.getElementById('navToggle').addEventListener('click', function() {
+            const links = document.querySelector('.nav-links');
+            links.classList.toggle('active');
+        });
+
+        // ========================================
+        // PARTICLES
+        // ========================================
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ========================================
+        // ENTER KEY
+        // ========================================
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !this.disabled) sendMessage();
+        });
+
+        document.getElementById('heroInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendHeroMessage();
+        });
+
+        // ========================================
+        // AUTO FOCUS
+        // ========================================
+        setTimeout(() => {
+            document.getElementById('userInput').focus();
+        }, 1000);
+
+        console.log('🤖 WBseva AI Loaded Successfully!');
+        console.log('📡 API Endpoint:', API_URL);
+        console.log('🔒 Verification Mode:', verifyMode);
+        console.log('📊 Using local AI - No external APIs');
+    </script>
+
+</body>
+</html>
