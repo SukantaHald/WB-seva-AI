@@ -20,33 +20,29 @@
 <body>
 
     <!-- ===================== NAVBAR ===================== -->
-    <!-- ===================== NAVBAR ===================== -->
-<nav class="navbar">
-    <div class="nav-container">
-        <!-- Brand / Logo -->
-        <div class="nav-brand">
-            <img src="wbmap.png" alt="WBseva AI" class="nav-logo" />
-            <div class="nav-brand-text">
-                <span class="nav-brand-title">WBseva AI</span>
-                <span class="nav-brand-sub">Your Smart Assistant</span>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="wbmap.png" alt="WBseva AI" class="nav-logo" />
+                <div class="nav-brand-text">
+                    <span class="nav-brand-title">WBseva AI</span>
+                    <span class="nav-brand-sub">Your Smart Assistant</span>
+                </div>
             </div>
-        </div>
 
-        <!-- Navigation Links -->
-        <div class="nav-links" id="navLinks">
-            <a href="#" class="nav-link active"><i class="fas fa-home"></i> Home</a>
-            <a href="#" class="nav-link"><i class="fas fa-list"></i> Schemes</a>
-            <a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Certificates</a>
-            <a href="#" class="nav-link"><i class="fas fa-briefcase"></i> Jobs</a>
-            <button class="nav-btn"><i class="fas fa-user"></i> Login</button>
-        </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="nav-link"><i class="fas fa-list"></i> Schemes</a>
+                <a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Certificates</a>
+                <a href="#" class="nav-link"><i class="fas fa-briefcase"></i> Jobs</a>
+                <button class="nav-btn"><i class="fas fa-user"></i> Login</button>
+            </div>
 
-        <!-- Mobile Toggle Button -->
-        <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-</nav>
+            <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
     <!-- ===================== HERO SECTION ===================== -->
     <section class="hero">
@@ -389,35 +385,6 @@
         </div>
     </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- ===================== JAVASCRIPT ===================== -->
     <script>
         // ========================================
@@ -623,9 +590,28 @@
         // ========================================
         // NAV TOGGLE (Mobile)
         // ========================================
-        document.getElementById('navToggle').addEventListener('click', function() {
-            const links = document.querySelector('.nav-links');
-            links.classList.toggle('active');
+        function toggleNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.navbar');
+            const toggle = document.getElementById('navToggle');
+            
+            if (!nav.contains(event.target)) {
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close nav when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
+            });
         });
 
         // ========================================
@@ -669,32 +655,6 @@
         console.log('📡 API Endpoint:', API_URL);
         console.log('🔒 Verification Mode:', verifyMode);
         console.log('📊 Using local AI - No external APIs');
-        // ========================================
-// NAV TOGGLE (Mobile)
-// ========================================
-function toggleNav() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
-}
-
-// Close nav when clicking outside
-document.addEventListener('click', function(event) {
-    const nav = document.querySelector('.navbar');
-    const toggle = document.getElementById('navToggle');
-    
-    if (!nav.contains(event.target)) {
-        const navLinks = document.getElementById('navLinks');
-        navLinks.classList.remove('active');
-    }
-});
-
-// Close nav when a link is clicked
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-        const navLinks = document.getElementById('navLinks');
-        navLinks.classList.remove('active');
-    });
-});
     </script>
 
 </body>
