@@ -14,7 +14,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
 
-    <link rel="icon" type="image/png" href="wbmap.png.jpg" />
+    <!-- Favicon - Your Logo -->
+    <link rel="icon" type="image/png" href="wbmap.png" />
 </head>
 <body>
 
@@ -22,10 +23,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <div class="nav-logo-wrapper">
-                    <img src="wbmap.png.jpg" alt="WBseva AI" class="nav-logo" />
-                    <div class="nav-logo-glow"></div>
-                </div>
+                <img src="wbmap.png" alt="WBseva AI" class="nav-logo" />
                 <div class="nav-brand-text">
                     <span class="nav-brand-title">WBseva AI</span>
                     <span class="nav-brand-sub">Your Smart Assistant</span>
@@ -67,7 +65,7 @@
 
                 <div class="hero-stats">
                     <div class="hero-stat">
-                        <span class="hero-stat-number">50+</span>
+                        <span class="hero-stat-number">15+</span>
                         <span class="hero-stat-label">Government Schemes</span>
                     </div>
                     <div class="hero-stat-divider"></div>
@@ -117,7 +115,7 @@
                     <div class="hero-ai-ring ring-2"></div>
                     <div class="hero-ai-ring ring-3"></div>
                     <div class="hero-ai-face">
-                        <span class="hero-ai-icon">🤖</span>
+                        <img src="wbmap.png" alt="WBseva AI" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
                     </div>
                 </div>
                 <div class="hero-feature-cards">
@@ -146,7 +144,7 @@
                 <div class="chat-header">
                     <div class="chat-header-left">
                         <div class="chat-avatar">
-                            <img src="wbmap.png.jpg" alt="WBseva AI" />
+                            <img src="wbmap.png" alt="WBseva AI" />
                             <div class="chat-status-dot"></div>
                         </div>
                         <div class="chat-header-info">
@@ -167,7 +165,9 @@
                 <!-- Chat Messages -->
                 <div class="chat-messages" id="chatMessages">
                     <div class="message-ai">
-                        <div class="message-avatar">🤖</div>
+                        <div class="message-avatar">
+                            <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                        </div>
                         <div class="message-bubble bubble-ai">
                             <div class="message-text">
                                 <strong>👋 Namaskar!</strong> I'm <strong>WBseva AI</strong>, your smart assistant for West Bengal government services.
@@ -183,7 +183,6 @@
                 <!-- Chat Input -->
                 <div class="chat-input-area">
                     <div class="chat-input-wrapper">
-                        <button class="chat-emoji-btn"><i class="fas fa-smile"></i></button>
                         <input type="text" id="userInput" placeholder="Type your question here..." class="chat-input" />
                         <button class="chat-send-btn" onclick="sendMessage()">
                             <i class="fas fa-paper-plane"></i>
@@ -214,7 +213,7 @@
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3>Scheme Finder</h3>
-                    <p>Discover 50+ government schemes tailored to you</p>
+                    <p>Discover 15+ government schemes tailored to you</p>
                     <span class="feature-tag">Popular</span>
                 </div>
 
@@ -340,7 +339,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="wbmap.png.jpg" alt="WBseva AI" />
+                        <img src="wbmap.png" alt="WBseva AI" />
                         <span>WBseva AI</span>
                     </div>
                     <p>Your Smart Assistant for West Bengal Government Services. 100% free, AI-powered, and always private.</p>
@@ -389,7 +388,7 @@
     <!-- ===================== JAVASCRIPT ===================== -->
     <script>
         // ========================================
-        // CONFIGURATION - ONLY ONE DECLARATION
+        // CONFIGURATION
         // ========================================
         const API_URL = '/api/chat';
         let verifyMode = true;
@@ -475,7 +474,7 @@
                                 ${schemes.slice(0, 3).map(s => `
                                     <div class="scheme-chip">
                                         <span class="scheme-chip-name">${s.name}</span>
-                                        ${s.portal_url ? `<a href="http://${s.portal_url}" target="_blank" class="scheme-chip-link"><i class="fas fa-external-link-alt"></i></a>` : ''}
+                                        ${s.portal ? `<a href="http://${s.portal}" target="_blank" class="scheme-chip-link"><i class="fas fa-external-link-alt"></i></a>` : ''}
                                     </div>
                                 `).join('')}
                             </div>
@@ -484,7 +483,9 @@
 
                 div.className = 'message-ai';
                 div.innerHTML = `
-                        <div class="message-avatar">🤖</div>
+                        <div class="message-avatar">
+                            <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                        </div>
                         <div class="message-bubble bubble-ai">
                             <div class="message-text">${escapeHtml(content)}</div>
                             ${schemesHTML}
@@ -509,7 +510,9 @@
             div.id = 'typingIndicator';
             div.className = 'message-ai';
             div.innerHTML = `
-                    <div class="message-avatar">🤖</div>
+                    <div class="message-avatar">
+                        <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                    </div>
                     <div class="message-bubble bubble-ai">
                         <div class="typing-indicator">
                             <span></span>
@@ -552,7 +555,9 @@
                 const container = document.getElementById('chatMessages');
                 container.innerHTML = `
                         <div class="message-ai">
-                            <div class="message-avatar">🤖</div>
+                            <div class="message-avatar">
+                                <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
+                            </div>
                             <div class="message-bubble bubble-ai">
                                 <div class="message-text">
                                     <strong>👋 Namaskar!</strong> I'm <strong>WBseva AI</strong>, your smart assistant for West Bengal government services.
@@ -630,6 +635,7 @@
         console.log('🤖 WBseva AI Loaded Successfully!');
         console.log('📡 API Endpoint:', API_URL);
         console.log('🔒 Verification Mode:', verifyMode);
+        console.log('📊 Using local AI - No external APIs');
     </script>
 
 </body>
