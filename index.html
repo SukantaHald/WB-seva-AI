@@ -10,71 +10,61 @@
 <body>
 
     <!-- ==================== NAVBAR ==================== -->
-    <!-- ==================== NAVBAR ==================== -->
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="nav-brand">
-            <img src="wbmap.png" alt="WBseva" class="nav-logo" />
-            <span>WBseva<span class="brand-highlight">AI</span></span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#schemes">Schemes</a></li>
-            <li><a href="#how-to-apply">How to Apply</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <!-- THEME BUTTON - IMPROVED -->
-            <!-- ==================== STANDALONE THEME BUTTON ==================== -->
-            <div class="standalone-theme-wrapper">
-                <button class="standalone-theme-btn" id="standaloneThemeBtn">
-                    <span>🎨</span> <span>Themes</span> <span>▼</span>
-                </button>
-                <div class="standalone-theme-dropdown" id="standaloneThemeDropdown">
-                    <div class="theme-option-item" data-theme="default">
-                        <span class="theme-color-swatch default"></span> Default
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                    <div class="theme-option-item" data-theme="blue">
-                        <span class="theme-color-swatch blue"></span> Blue
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                    <div class="theme-option-item" data-theme="green">
-                        <span class="theme-color-swatch green"></span> Green
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                    <div class="theme-option-item" data-theme="purple">
-                        <span class="theme-color-swatch purple"></span> Purple
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                    <div class="theme-option-item" data-theme="orange">
-                        <span class="theme-color-swatch orange"></span> Orange
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                    <div class="theme-option-item" data-theme="pink">
-                        <span class="theme-color-swatch pink"></span> Pink
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                    <div class="theme-option-item" data-theme="red">
-                        <span class="theme-color-swatch red"></span> Red
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                    <div class="theme-option-item" data-theme="teal">
-                        <span class="theme-color-swatch teal"></span> Teal
-                        <span class="theme-check-mark">✓</span>
-                    </div>
-                </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="wbmap.png" alt="WBseva" class="nav-logo" />
+                <span>WBseva<span class="brand-highlight">AI</span></span>
             </div>
-                
-            </li>
-        </ul>
-        <div class="nav-actions">
-            <button class="btn-login"><i class="fas fa-user"></i> <span>Login</span></button>
-            <button class="nav-toggle" id="navToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#schemes">Schemes</a></li>
+                <li><a href="#how-to-apply">How to Apply</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <!-- THEME BUTTON IN NAVBAR -->
+                <li class="theme-nav-item">
+                    <button class="theme-btn" id="themeToggleBtn">
+                        <i class="fas fa-palette"></i>
+                        <span>Themes</span>
+                        <i class="fas fa-chevron-down theme-arrow-icon"></i>
+                    </button>
+                    <ul class="theme-dropdown" id="themeDropdown">
+                        <li data-theme="default" class="active">
+                            <span class="theme-color default"></span> Default
+                        </li>
+                        <li data-theme="blue">
+                            <span class="theme-color blue"></span> Blue
+                        </li>
+                        <li data-theme="green">
+                            <span class="theme-color green"></span> Green
+                        </li>
+                        <li data-theme="purple">
+                            <span class="theme-color purple"></span> Purple
+                        </li>
+                        <li data-theme="orange">
+                            <span class="theme-color orange"></span> Orange
+                        </li>
+                        <li data-theme="pink">
+                            <span class="theme-color pink"></span> Pink
+                        </li>
+                        <li data-theme="red">
+                            <span class="theme-color red"></span> Red
+                        </li>
+                        <li data-theme="teal">
+                            <span class="theme-color teal"></span> Teal
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-login"><i class="fas fa-user"></i> <span>Login</span></button>
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- ==================== HERO SECTION ==================== -->
     <section class="hero" id="home">
@@ -178,7 +168,7 @@
         </div>
     </section>
 
-    <!-- ==================== STATISTICS SECTION - NEW ==================== -->
+    <!-- ==================== STATISTICS SECTION ==================== -->
     <section class="stats-section" id="stats">
         <div class="container">
             <div class="stats-grid">
@@ -190,7 +180,7 @@
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-building-columns"></i></div>
                     <div class="stat-number-large" data-count="12">0</div>
-                    <div class="stat-label">Total States Schemes</div>
+                    <div class="stat-label">Total Central Schemes</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-city"></i></div>
@@ -220,7 +210,23 @@
             </div>
         </div>
     </section>
-    <!-- ==================== HOW TO APPLY SECTION - NEW ==================== -->
+
+    <!-- ==================== MORE CATEGORIES ==================== -->
+    <section class="categories more-categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">More Categories</span>
+                <h2>Additional <span class="gradient-text">Government Initiatives</span></h2>
+                <p>Explore more schemes and programs</p>
+            </div>
+
+            <div class="categories-grid" id="moreCategoriesGrid">
+                <!-- More categories will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW TO APPLY SECTION ==================== -->
     <section class="how-to-apply" id="how-to-apply">
         <div class="container">
             <div class="section-header">
@@ -296,7 +302,7 @@
         </div>
     </section>
 
-    <!-- ==================== FAQ SECTION - NEW ==================== -->
+    <!-- ==================== FAQ SECTION ==================== -->
     <section class="faq-section" id="faq">
         <div class="container">
             <div class="section-header">
@@ -448,8 +454,6 @@
         </div>
     </footer>
 
-    <script src="schemes-data.js"></script>
     <script src="script.js"></script>
-    <script src="chatbot.js"></script>
 </body>
 </html>
