@@ -248,7 +248,7 @@ const educationSchemes = [
         amount: '₹1,000 - ₹8,000/month',
         eligibility: 'Permanent WB resident, 60% marks, income ≤ ₹2.5 Lakh/year',
         description: 'Flagship scholarship for meritorious students from economically weaker families. Covers HS, Diploma, UG, PG, M.Phil., Ph.D.',
-        applyLink: 'https://svmcm.wbhed.gov.in',
+        applyLink: 'https://svmcm.wb.gov.in/',
         icon: 'fa-graduation-cap',
         color: '#6C3CE1',
         level: 'State',
