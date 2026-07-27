@@ -11,6 +11,18 @@
       "dest": "/api/chat.py"
     },
     {
+      "src": "/script.js",
+      "dest": "/script.js"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/wbmap.png",
+      "dest": "/wbmap.png"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
