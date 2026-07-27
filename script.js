@@ -468,7 +468,7 @@ if (footerYear) {
 
 console.log('✅ WBseva AI loaded successfully!');
 // ============================================
-// THEME SWITCHER WITH BACKGROUND CHANGE
+// THEME SWITCHER - COMPLETE FIX
 // ============================================
 
 const themeToggle = document.getElementById('themeToggle');
@@ -490,31 +490,18 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Apply theme with background change
+// Apply theme - FIXED VERSION
 const applyTheme = (theme) => {
     const root = document.documentElement;
     
-    // Remove all theme classes
-    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
+    // Remove ALL theme classes including default
+    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal', 'theme-default');
     
-    // Apply new theme (if not default)
+    // If theme is not 'default', add the theme class
     if (theme !== 'default') {
         root.classList.add(`theme-${theme}`);
     }
-    
-    // Update orb colors dynamically
-    const orbs = document.querySelectorAll('.orb');
-    const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
-    const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
-    const primaryLight = getComputedStyle(root).getPropertyValue('--primary-light').trim();
-    const primaryDark = getComputedStyle(root).getPropertyValue('--primary-dark').trim();
-    
-    if (orbs.length >= 4) {
-        orbs[0].style.background = primaryColor || '#6C3CE1';
-        orbs[1].style.background = secondaryColor || '#06D6A0';
-        orbs[2].style.background = primaryLight || '#8B5CF6';
-        orbs[3].style.background = primaryDark || '#5A2FC4';
-    }
+    // For 'default', we just remove all theme classes (no class needed)
     
     // Update active state in dropdown
     themeOptions.forEach(opt => {
@@ -524,11 +511,31 @@ const applyTheme = (theme) => {
         }
     });
     
+    // Update orb colors
+    updateOrbColors();
+    
     // Save to localStorage
     localStorage.setItem('wbseva-theme', theme);
     
     console.log(`🎨 Theme changed to: ${theme}`);
-    console.log(`🎨 Background changed to: ${getComputedStyle(root).getPropertyValue('--bg-dark').trim()}`);
+};
+
+// Function to update orb colors
+const updateOrbColors = () => {
+    const root = document.documentElement;
+    const orbs = document.querySelectorAll('.orb');
+    
+    if (orbs.length >= 4) {
+        const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim() || '#6C3CE1';
+        const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim() || '#06D6A0';
+        const primaryLight = getComputedStyle(root).getPropertyValue('--primary-light').trim() || '#8B5CF6';
+        const primaryDark = getComputedStyle(root).getPropertyValue('--primary-dark').trim() || '#5A2FC4';
+        
+        orbs[0].style.background = primaryColor;
+        orbs[1].style.background = secondaryColor;
+        orbs[2].style.background = primaryLight;
+        orbs[3].style.background = primaryDark;
+    }
 };
 
 // Load saved theme on page load
@@ -537,17 +544,19 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(savedTheme);
 });
 
-// Theme option click
+// Theme option click - FIXED
 themeOptions.forEach(option => {
-    option.addEventListener('click', (e) => {
+    option.addEventListener('click', function(e) {
         e.stopPropagation();
-        const theme = option.dataset.theme;
+        const theme = this.dataset.theme;
         applyTheme(theme);
         themeDropdown.classList.remove('active');
     });
 });
 
-// Also apply theme when clicking on the color swatch
+// ============================================
+// ADDITIONAL: Click on color swatch also works
+// ============================================
 document.querySelectorAll('.theme-dropdown li').forEach(item => {
     item.addEventListener('click', function() {
         const theme = this.dataset.theme;
@@ -556,24 +565,4 @@ document.querySelectorAll('.theme-dropdown li').forEach(item => {
     });
 });
 
-// Update orbs on theme change (for dynamic updates)
-const observer = new MutationObserver(() => {
-    const root = document.documentElement;
-    const orbs = document.querySelectorAll('.orb');
-    if (orbs.length >= 4) {
-        const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
-        const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
-        const primaryLight = getComputedStyle(root).getPropertyValue('--primary-light').trim();
-        const primaryDark = getComputedStyle(root).getPropertyValue('--primary-dark').trim();
-        
-        orbs[0].style.background = primaryColor || '#6C3CE1';
-        orbs[1].style.background = secondaryColor || '#06D6A0';
-        orbs[2].style.background = primaryLight || '#8B5CF6';
-        orbs[3].style.background = primaryDark || '#5A2FC4';
-    }
-});
-
-observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['class']
-});
+console.log('✅ Theme switcher loaded successfully!');
