@@ -410,6 +410,17 @@ body {
 }
 
 /* ---------- HERO ILLUSTRATION ---------- */
+.hero-section {
+    position: relative;
+    padding-right: 140px; /* Adjust based on avatar size */
+}
+
+.hero-illustration {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
 .hero-illustration {
     display: flex;
     justify-content: center;
