@@ -414,89 +414,114 @@ if (footerYear) {
 }
 
 // ============================================
-// THEME SWITCHER - FIXED
+// THEME SWITCHER - COMPLETE FIX
 // ============================================
 
-const themeToggle = document.getElementById('themeToggle');
-const themeDropdown = document.getElementById('themeDropdown');
-const themeOptions = document.querySelectorAll('.theme-dropdown li');
-
-// Toggle dropdown on button click
-if (themeToggle && themeDropdown) {
-    // Remove any existing event listeners by cloning
-    const newThemeToggle = themeToggle.cloneNode(true);
-    themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
     
-    // Use the new reference
-    const updatedThemeToggle = document.getElementById('themeToggle');
+    // Get elements
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const themePanel = document.getElementById('themeDropdownPanel');
+    const themeOptions = document.querySelectorAll('.theme-option');
     
-    updatedThemeToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        themeDropdown.classList.toggle('active');
-        this.classList.toggle('active');
-        console.log('Theme button clicked! Dropdown toggled:', themeDropdown.classList.contains('active'));
-    });
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function(e) {
-    const isClickInside = themeDropdown?.contains(e.target) || themeToggle?.contains(e.target);
-    if (!isClickInside && themeDropdown) {
-        themeDropdown.classList.remove('active');
-        if (themeToggle) {
-            themeToggle.classList.remove('active');
-        }
-    }
-});
-
-// Apply theme function
-const applyTheme = (theme) => {
-    const root = document.documentElement;
-    
-    // Remove all theme classes
-    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
-    
-    // Apply new theme (if not default)
-    if (theme !== 'default') {
-        root.classList.add(`theme-${theme}`);
-    }
-    
-    // Update active state in dropdown
-    themeOptions.forEach(opt => {
-        opt.classList.remove('active');
-        if (opt.dataset.theme === theme) {
-            opt.classList.add('active');
-        }
+    console.log('🔍 Theme elements found:', {
+        btn: themeBtn,
+        panel: themePanel,
+        options: themeOptions.length
     });
     
-    // Save to localStorage
-    localStorage.setItem('wbseva-theme', theme);
+    // Toggle dropdown on button click
+    if (themeBtn && themePanel) {
+        themeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            // Toggle active class
+            this.classList.toggle('active');
+            themePanel.classList.toggle('active');
+            
+            console.log('🎨 Theme dropdown toggled:', themePanel.classList.contains('active'));
+        });
+    } else {
+        console.error('❌ Theme elements not found!');
+    }
     
-    console.log(`🎨 Theme changed to: ${theme}`);
-};
-
-// Load saved theme
-document.addEventListener('DOMContentLoaded', () => {
+    // Apply theme function
+    function applyTheme(theme) {
+        const root = document.documentElement;
+        
+        // Remove all theme classes
+        root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
+        
+        // Apply new theme (if not default)
+        if (theme !== 'default') {
+            root.classList.add(`theme-${theme}`);
+        }
+        
+        // Update active state in dropdown
+        themeOptions.forEach(opt => {
+            opt.classList.remove('active');
+            if (opt.dataset.theme === theme) {
+                opt.classList.add('active');
+            }
+        });
+        
+        // Save to localStorage
+        localStorage.setItem('wbseva-theme', theme);
+        
+        console.log(`✅ Theme changed to: ${theme}`);
+    }
+    
+    // Load saved theme
     const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
     applyTheme(savedTheme);
-});
-
-// Theme option click - using event delegation for dynamic elements
-document.addEventListener('click', function(e) {
-    const listItem = e.target.closest('.theme-dropdown li');
-    if (listItem) {
-        const theme = listItem.dataset.theme;
-        if (theme) {
-            applyTheme(theme);
-            if (themeDropdown) {
-                themeDropdown.classList.remove('active');
+    
+    // Theme option click
+    themeOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const theme = this.dataset.theme;
+            if (theme) {
+                applyTheme(theme);
+                
+                // Close dropdown
+                if (themePanel) {
+                    themePanel.classList.remove('active');
+                }
+                if (themeBtn) {
+                    themeBtn.classList.remove('active');
+                }
             }
-            if (themeToggle) {
-                themeToggle.classList.remove('active');
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        const isClickInside = themePanel?.contains(e.target) || themeBtn?.contains(e.target);
+        if (!isClickInside) {
+            if (themePanel) {
+                themePanel.classList.remove('active');
+            }
+            if (themeBtn) {
+                themeBtn.classList.remove('active');
             }
         }
-    }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (themePanel) {
+                themePanel.classList.remove('active');
+            }
+            if (themeBtn) {
+                themeBtn.classList.remove('active');
+            }
+        }
+    });
+    
+    console.log('🎨 Theme switcher initialized successfully!');
 });
 // ============================================
 // 13. KEYBOARD SHORTCUTS

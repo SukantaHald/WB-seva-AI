@@ -12,19 +12,17 @@
     --primary-dark: #5A2FC4;
     --primary-light: #8B5CF6;
     --secondary: #06D6A0;
-    --accent: #FF6B6B;
-    --bg-dark: #0A0A1A;
-    --bg-card: rgba(255, 255, 255, 0.05);
-    --bg-section: rgba(108, 60, 225, 0.03);
     --text-white: #FFFFFF;
     --text-gray: #A0A0B8;
     --text-light: #D4D4E8;
     --border-color: rgba(255, 255, 255, 0.08);
-    --shadow: 0 20px 60px rgba(108, 60, 225, 0.3);
-    --radius: 16px;
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --bg-dark: #0A0A1A;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-section: rgba(108, 60, 225, 0.03);
     --primary-gradient: linear-gradient(135deg, #6C3CE1, #06D6A0);
     --primary-gradient-hover: linear-gradient(135deg, #8B5CF6, #06D6A0);
+    --radius: 16px;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 html {
@@ -262,7 +260,266 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
 }
+/* ============================================
+   THEME BUTTON - COMPLETE FIX
+   ============================================ */
 
+/* Theme Nav Item */
+.theme-nav-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.theme-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: var(--text-white) !important;
+    padding: 8px 16px !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    font-family: inherit !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    position: relative !important;
+    z-index: 100 !important;
+    user-select: none !important;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95) !important;
+}
+
+.theme-icon {
+    color: #FBBF24 !important;
+    font-size: 1rem !important;
+}
+
+.theme-text {
+    font-size: 0.85rem !important;
+}
+
+.theme-arrow {
+    font-size: 0.6rem !important;
+    transition: transform 0.3s ease !important;
+    color: var(--text-gray) !important;
+}
+
+.theme-toggle-btn.active .theme-arrow {
+    transform: rotate(180deg) !important;
+}
+
+/* Theme Dropdown Panel - White Background */
+.theme-dropdown-panel {
+    position: absolute !important;
+    top: calc(100% + 12px) !important;
+    right: 0 !important;
+    background: #FFFFFF !important;
+    border-radius: 16px !important;
+    padding: 16px !important;
+    min-width: 240px !important;
+    max-width: 280px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    display: none !important;
+    z-index: 9999 !important;
+    animation: themeSlideDown 0.3s ease !important;
+}
+
+.theme-dropdown-panel.active {
+    display: block !important;
+}
+
+@keyframes themeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Dropdown Arrow */
+.theme-dropdown-panel::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -8px !important;
+    right: 20px !important;
+    border-left: 8px solid transparent !important;
+    border-right: 8px solid transparent !important;
+    border-bottom: 8px solid #FFFFFF !important;
+}
+
+/* Dropdown Header */
+.theme-dropdown-header {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: #6B7280 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #F3F4F6 !important;
+    margin-bottom: 10px !important;
+    text-align: center !important;
+}
+
+/* Theme Options Grid */
+.theme-options-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+}
+
+/* Theme Option */
+.theme-option {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    background: #FAFAFA !important;
+    border: 1px solid transparent !important;
+    position: relative !important;
+}
+
+.theme-option:hover {
+    background: #F3F4F6 !important;
+    transform: translateX(2px) !important;
+}
+
+.theme-option.active {
+    background: #EEF2FF !important;
+    border-color: #6C3CE1 !important;
+}
+
+.theme-option.active .theme-check {
+    display: block !important;
+    color: #6C3CE1 !important;
+}
+
+.theme-option .theme-check {
+    display: none !important;
+    font-size: 0.7rem !important;
+    margin-left: auto !important;
+}
+
+/* Theme Color Swatches */
+.theme-swatch {
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    border: 2px solid #E5E7EB !important;
+    flex-shrink: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.theme-option:hover .theme-swatch {
+    transform: scale(1.1) !important;
+}
+
+.theme-option.active .theme-swatch {
+    border-color: #6C3CE1 !important;
+    box-shadow: 0 0 0 2px rgba(108, 60, 225, 0.3) !important;
+}
+
+/* Theme Color Variants */
+.theme-swatch.default {
+    background: linear-gradient(135deg, #6C3CE1, #06D6A0) !important;
+}
+.theme-swatch.blue {
+    background: linear-gradient(135deg, #3B82F6, #06D6A0) !important;
+}
+.theme-swatch.green {
+    background: linear-gradient(135deg, #10B981, #34D399) !important;
+}
+.theme-swatch.purple {
+    background: linear-gradient(135deg, #8B5CF6, #6C3CE1) !important;
+}
+.theme-swatch.orange {
+    background: linear-gradient(135deg, #F59E0B, #F97316) !important;
+}
+.theme-swatch.pink {
+    background: linear-gradient(135deg, #EC4899, #F472B6) !important;
+}
+.theme-swatch.red {
+    background: linear-gradient(135deg, #EF4444, #F87171) !important;
+}
+.theme-swatch.teal {
+    background: linear-gradient(135deg, #14B8A6, #06D6A0) !important;
+}
+
+.theme-name {
+    font-size: 0.8rem !important;
+    color: #1A1A2E !important;
+    font-weight: 500 !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .theme-wrapper {
+        width: 100% !important;
+    }
+    
+    .theme-toggle-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 10px !important;
+    }
+    
+    .theme-dropdown-panel {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90% !important;
+        max-width: 320px !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+        border-radius: 20px !important;
+    }
+    
+    .theme-dropdown-panel::before {
+        display: none !important;
+    }
+    
+    .theme-options-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 4px !important;
+    }
+    
+    .theme-option {
+        padding: 6px 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-options-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
 /* ============================================
    THEME SWITCHER - IMPROVED
    ============================================ */
