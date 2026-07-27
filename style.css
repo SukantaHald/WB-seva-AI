@@ -34,6 +34,80 @@ body {
     color: var(--text-white);
     overflow-x: hidden;
     line-height: 1.6;
+    transition: background 0.5s ease;
+}
+
+/* Features section background */
+.features {
+    padding: 80px 0;
+    background: var(--bg-section);
+    transition: background 0.5s ease;
+}
+
+/* Category cards */
+.category-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 30px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hero background */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 100px 0 60px;
+    overflow: hidden;
+    background: var(--bg-dark);
+    transition: background 0.5s ease;
+}
+
+/* Orbs should also change with theme */
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: -10%;
+    right: -5%;
+    animation-delay: 0s;
+    opacity: 0.15;
+}
+
+.orb-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--secondary);
+    bottom: -10%;
+    left: -5%;
+    animation-delay: 2s;
+    opacity: 0.15;
+}
+
+.orb-3 {
+    width: 200px;
+    height: 200px;
+    background: var(--primary-light);
+    top: 50%;
+    left: 30%;
+    animation-delay: 4s;
+    opacity: 0.1;
+}
+
+.orb-4 {
+    width: 250px;
+    height: 250px;
+    background: var(--primary-dark);
+    bottom: 20%;
+    right: 20%;
+    animation-delay: 6s;
+    opacity: 0.1;
 }
 
 .container {
@@ -1514,7 +1588,7 @@ body {
 }
 
 /* ============================================
-   THEME COLOR VARIABLES
+   THEME COLOR VARIABLES WITH BACKGROUNDS
    ============================================ */
 
 /* Default Theme */
@@ -1525,6 +1599,11 @@ body {
     --secondary: #06D6A0;
     --primary-gradient: linear-gradient(135deg, #6C3CE1, #06D6A0);
     --primary-gradient-hover: linear-gradient(135deg, #8B5CF6, #06D6A0);
+    
+    /* Background colors */
+    --bg-dark: #0A0A1A;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-section: rgba(108, 60, 225, 0.03);
 }
 
 /* Blue Theme */
@@ -1535,6 +1614,9 @@ body {
     --secondary: #06D6A0 !important;
     --primary-gradient: linear-gradient(135deg, #3B82F6, #06D6A0) !important;
     --primary-gradient-hover: linear-gradient(135deg, #60A5FA, #06D6A0) !important;
+    --bg-dark: #0A1628 !important;
+    --bg-card: rgba(59, 130, 246, 0.08) !important;
+    --bg-section: rgba(59, 130, 246, 0.05) !important;
 }
 
 /* Green Theme */
@@ -1545,6 +1627,9 @@ body {
     --secondary: #06D6A0 !important;
     --primary-gradient: linear-gradient(135deg, #10B981, #34D399) !important;
     --primary-gradient-hover: linear-gradient(135deg, #34D399, #06D6A0) !important;
+    --bg-dark: #0A1A15 !important;
+    --bg-card: rgba(16, 185, 129, 0.08) !important;
+    --bg-section: rgba(16, 185, 129, 0.05) !important;
 }
 
 /* Purple Theme */
@@ -1555,6 +1640,9 @@ body {
     --secondary: #6C3CE1 !important;
     --primary-gradient: linear-gradient(135deg, #8B5CF6, #6C3CE1) !important;
     --primary-gradient-hover: linear-gradient(135deg, #A78BFA, #8B5CF6) !important;
+    --bg-dark: #1A0A2E !important;
+    --bg-card: rgba(139, 92, 246, 0.08) !important;
+    --bg-section: rgba(139, 92, 246, 0.05) !important;
 }
 
 /* Orange Theme */
@@ -1565,6 +1653,9 @@ body {
     --secondary: #F97316 !important;
     --primary-gradient: linear-gradient(135deg, #F59E0B, #F97316) !important;
     --primary-gradient-hover: linear-gradient(135deg, #FBBF24, #F59E0B) !important;
+    --bg-dark: #1A120A !important;
+    --bg-card: rgba(245, 158, 11, 0.08) !important;
+    --bg-section: rgba(245, 158, 11, 0.05) !important;
 }
 
 /* Pink Theme */
@@ -1575,6 +1666,9 @@ body {
     --secondary: #8B5CF6 !important;
     --primary-gradient: linear-gradient(135deg, #EC4899, #8B5CF6) !important;
     --primary-gradient-hover: linear-gradient(135deg, #F472B6, #EC4899) !important;
+    --bg-dark: #2A0A1A !important;
+    --bg-card: rgba(236, 72, 153, 0.08) !important;
+    --bg-section: rgba(236, 72, 153, 0.05) !important;
 }
 
 /* Red Theme */
@@ -1585,6 +1679,9 @@ body {
     --secondary: #F59E0B !important;
     --primary-gradient: linear-gradient(135deg, #EF4444, #F59E0B) !important;
     --primary-gradient-hover: linear-gradient(135deg, #F87171, #EF4444) !important;
+    --bg-dark: #2A0A0A !important;
+    --bg-card: rgba(239, 68, 68, 0.08) !important;
+    --bg-section: rgba(239, 68, 68, 0.05) !important;
 }
 
 /* Teal Theme */
@@ -1595,4 +1692,7 @@ body {
     --secondary: #06D6A0 !important;
     --primary-gradient: linear-gradient(135deg, #14B8A6, #06D6A0) !important;
     --primary-gradient-hover: linear-gradient(135deg, #2DD4BF, #14B8A6) !important;
+    --bg-dark: #0A1A18 !important;
+    --bg-card: rgba(20, 184, 166, 0.08) !important;
+    --bg-section: rgba(20, 184, 166, 0.05) !important;
 }

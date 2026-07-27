@@ -468,7 +468,7 @@ if (footerYear) {
 
 console.log('✅ WBseva AI loaded successfully!');
 // ============================================
-// THEME SWITCHER - COMPLETE FIX
+// THEME SWITCHER WITH BACKGROUND CHANGE
 // ============================================
 
 const themeToggle = document.getElementById('themeToggle');
@@ -490,7 +490,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Apply theme - FIXED VERSION
+// Apply theme with background change
 const applyTheme = (theme) => {
     const root = document.documentElement;
     
@@ -500,6 +500,20 @@ const applyTheme = (theme) => {
     // Apply new theme (if not default)
     if (theme !== 'default') {
         root.classList.add(`theme-${theme}`);
+    }
+    
+    // Update orb colors dynamically
+    const orbs = document.querySelectorAll('.orb');
+    const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
+    const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
+    const primaryLight = getComputedStyle(root).getPropertyValue('--primary-light').trim();
+    const primaryDark = getComputedStyle(root).getPropertyValue('--primary-dark').trim();
+    
+    if (orbs.length >= 4) {
+        orbs[0].style.background = primaryColor || '#6C3CE1';
+        orbs[1].style.background = secondaryColor || '#06D6A0';
+        orbs[2].style.background = primaryLight || '#8B5CF6';
+        orbs[3].style.background = primaryDark || '#5A2FC4';
     }
     
     // Update active state in dropdown
@@ -514,6 +528,7 @@ const applyTheme = (theme) => {
     localStorage.setItem('wbseva-theme', theme);
     
     console.log(`🎨 Theme changed to: ${theme}`);
+    console.log(`🎨 Background changed to: ${getComputedStyle(root).getPropertyValue('--bg-dark').trim()}`);
 };
 
 // Load saved theme on page load
@@ -539,4 +554,26 @@ document.querySelectorAll('.theme-dropdown li').forEach(item => {
         applyTheme(theme);
         themeDropdown.classList.remove('active');
     });
+});
+
+// Update orbs on theme change (for dynamic updates)
+const observer = new MutationObserver(() => {
+    const root = document.documentElement;
+    const orbs = document.querySelectorAll('.orb');
+    if (orbs.length >= 4) {
+        const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
+        const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
+        const primaryLight = getComputedStyle(root).getPropertyValue('--primary-light').trim();
+        const primaryDark = getComputedStyle(root).getPropertyValue('--primary-dark').trim();
+        
+        orbs[0].style.background = primaryColor || '#6C3CE1';
+        orbs[1].style.background = secondaryColor || '#06D6A0';
+        orbs[2].style.background = primaryLight || '#8B5CF6';
+        orbs[3].style.background = primaryDark || '#5A2FC4';
+    }
+});
+
+observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class']
 });
