@@ -1,28 +1,52 @@
 // ============================================
-// SCHEME DETAILS JAVASCRIPT
+// SCHEME DETAILS JAVASCRIPT - FIXED
 // ============================================
 
-// Get scheme ID from URL
+// Get parameters from URL
 const urlParams = new URLSearchParams(window.location.search);
 const schemeId = urlParams.get('id');
+const category = urlParams.get('category');
 
-// Load scheme details
+// ============================================
+// LOAD SCHEME DETAILS
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🔍 Page loaded with params:', { schemeId, category });
+    
     if (schemeId) {
+        // Load single scheme by ID
         loadSchemeDetails(schemeId);
+    } else if (category) {
+        // Load schemes by category
+        loadSchemesByCategory(category);
     } else {
-        // Redirect to home if no ID
-        window.location.href = 'index.html';
+        // No params - show all schemes or stay on page
+        showAllSchemes();
     }
 });
 
+// ============================================
+// LOAD SINGLE SCHEME
+// ============================================
 function loadSchemeDetails(id) {
+    console.log('📋 Loading scheme with ID:', id);
+    
+    // Check if schemesData is available
+    if (typeof schemesData === 'undefined') {
+        console.error('❌ schemesData not loaded!');
+        showError('Scheme data not available. Please try again.');
+        return;
+    }
+    
     const scheme = getSchemeById(id);
     
     if (!scheme) {
-        document.getElementById('schemeOverview').textContent = 'Scheme not found. Please go back and try again.';
+        console.error('❌ Scheme not found:', id);
+        showError('Scheme not found. Please go back and try again.');
         return;
     }
+    
+    console.log('✅ Scheme found:', scheme.title);
     
     // Update page title
     document.title = `${scheme.title} - WBseva AI`;
@@ -40,38 +64,202 @@ function loadSchemeDetails(id) {
     
     // Update tags
     const tagsContainer = document.getElementById('schemeTags');
-    tagsContainer.innerHTML = scheme.tags.map(tag => `<span>${tag}</span>`).join('');
+    if (tagsContainer) {
+        tagsContainer.innerHTML = scheme.tags.map(tag => `<span>${tag}</span>`).join('');
+    }
     
     // Update overview
-    document.getElementById('schemeOverview').textContent = scheme.overview;
+    const overviewEl = document.getElementById('schemeOverview');
+    if (overviewEl) {
+        overviewEl.textContent = scheme.overview;
+    }
     
     // Update eligibility
     const eligibilityList = document.getElementById('schemeEligibility');
-    eligibilityList.innerHTML = scheme.eligibility.map(item => `<li>${item}</li>`).join('');
+    if (eligibilityList) {
+        eligibilityList.innerHTML = scheme.eligibility.map(item => `<li>${item}</li>`).join('');
+    }
     
     // Update benefits
     const benefitsList = document.getElementById('schemeBenefits');
-    benefitsList.innerHTML = scheme.benefits.map(item => `<li>${item}</li>`).join('');
+    if (benefitsList) {
+        benefitsList.innerHTML = scheme.benefits.map(item => `<li>${item}</li>`).join('');
+    }
     
     // Update subsidy
-    document.getElementById('schemeSubsidy').textContent = scheme.subsidy;
+    const subsidyEl = document.getElementById('schemeSubsidy');
+    if (subsidyEl) {
+        subsidyEl.textContent = scheme.subsidy;
+    }
     
     // Update documents
     const docsList = document.getElementById('schemeDocuments');
-    docsList.innerHTML = scheme.documents.map(doc => `<li>${doc}</li>`).join('');
+    if (docsList) {
+        docsList.innerHTML = scheme.documents.map(doc => `<li>${doc}</li>`).join('');
+    }
     
     // Update apply link
-    document.getElementById('schemeApplyLink').href = scheme.applyLink;
+    const applyLink = document.getElementById('schemeApplyLink');
+    if (applyLink) {
+        applyLink.href = scheme.applyLink;
+    }
     
     // Load related schemes
     loadRelatedSchemes(scheme.category, scheme.id);
 }
 
+// ============================================
+// LOAD SCHEMES BY CATEGORY
+// ============================================
+function loadSchemesByCategory(cat) {
+    console.log('📂 Loading schemes for category:', cat);
+    
+    // Check if schemesData is available
+    if (typeof schemesData === 'undefined') {
+        console.error('❌ schemesData not loaded!');
+        showError('Scheme data not available. Please try again.');
+        return;
+    }
+    
+    const schemes = getSchemesByCategory(cat.toLowerCase());
+    
+    if (!schemes || schemes.length === 0) {
+        console.warn('⚠️ No schemes found for category:', cat);
+        showError(`No schemes found for "${cat}". Please try another category.`);
+        return;
+    }
+    
+    console.log(`✅ Found ${schemes.length} schemes in ${cat}`);
+    
+    // Update page title
+    document.title = `${cat.charAt(0).toUpperCase() + cat.slice(1)} Schemes - WBseva AI`;
+    
+    // Update breadcrumb
+    document.getElementById('schemeCategory').textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+    document.getElementById('schemeTitle').textContent = 'Schemes';
+    
+    // Update header
+    document.getElementById('schemeBadge').innerHTML = `
+        <span class="badge-state">${schemes[0]?.state || 'Various'}</span>
+        <span class="badge-level">${schemes[0]?.level || 'Various'}</span>
+    `;
+    document.getElementById('schemeName').textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} Schemes`;
+    
+    // Hide tabs and show scheme list
+    document.querySelector('.scheme-tabs').style.display = 'none';
+    document.querySelector('.scheme-tab-content').style.display = 'none';
+    document.querySelector('.scheme-actions').style.display = 'none';
+    
+    // Show scheme grid
+    const overviewEl = document.getElementById('schemeOverview');
+    if (overviewEl) {
+        overviewEl.innerHTML = `
+            <div class="schemes-grid">
+                ${schemes.map(scheme => `
+                    <div class="scheme-card" onclick="window.location.href='scheme-details.html?id=${scheme.id}'">
+                        <div class="scheme-card-header">
+                            <h3>${scheme.title}</h3>
+                            <span class="scheme-card-badge">${scheme.state}</span>
+                        </div>
+                        <p>${scheme.overview.substring(0, 120)}...</p>
+                        <div class="scheme-card-tags">
+                            ${scheme.tags.slice(0, 3).map(tag => `<span>#${tag}</span>`).join('')}
+                        </div>
+                        <div class="scheme-card-footer">
+                            <span class="scheme-subsidy">💰 ${scheme.subsidy}</span>
+                            <button class="view-details-btn" onclick="event.stopPropagation(); window.location.href='scheme-details.html?id=${scheme.id}'">
+                                View Details →
+                            </button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+}
+
+// ============================================
+// SHOW ALL SCHEMES
+// ============================================
+function showAllSchemes() {
+    console.log('📋 Showing all schemes');
+    
+    // Check if schemesData is available
+    if (typeof schemesData === 'undefined') {
+        console.error('❌ schemesData not loaded!');
+        showError('Scheme data not available. Please try again.');
+        return;
+    }
+    
+    // Get all schemes from all categories
+    let allSchemes = [];
+    for (let category in schemesData) {
+        allSchemes = allSchemes.concat(schemesData[category]);
+    }
+    
+    if (allSchemes.length === 0) {
+        showError('No schemes available. Please try again later.');
+        return;
+    }
+    
+    console.log(`✅ Found ${allSchemes.length} total schemes`);
+    
+    // Update page title
+    document.title = 'All Schemes - WBseva AI';
+    
+    // Update breadcrumb
+    document.getElementById('schemeCategory').textContent = 'All';
+    document.getElementById('schemeTitle').textContent = 'Schemes';
+    
+    // Update header
+    document.getElementById('schemeBadge').innerHTML = `
+        <span class="badge-state">West Bengal</span>
+        <span class="badge-level">All</span>
+    `;
+    document.getElementById('schemeName').textContent = 'All Government Schemes';
+    
+    // Hide tabs and show scheme list
+    document.querySelector('.scheme-tabs').style.display = 'none';
+    document.querySelector('.scheme-tab-content').style.display = 'none';
+    document.querySelector('.scheme-actions').style.display = 'none';
+    
+    // Show scheme grid
+    const overviewEl = document.getElementById('schemeOverview');
+    if (overviewEl) {
+        overviewEl.innerHTML = `
+            <div class="schemes-grid">
+                ${allSchemes.map(scheme => `
+                    <div class="scheme-card" onclick="window.location.href='scheme-details.html?id=${scheme.id}'">
+                        <div class="scheme-card-header">
+                            <h3>${scheme.title}</h3>
+                            <span class="scheme-card-badge">${scheme.category}</span>
+                        </div>
+                        <p>${scheme.overview.substring(0, 120)}...</p>
+                        <div class="scheme-card-tags">
+                            ${scheme.tags.slice(0, 3).map(tag => `<span>#${tag}</span>`).join('')}
+                        </div>
+                        <div class="scheme-card-footer">
+                            <span class="scheme-subsidy">💰 ${scheme.subsidy}</span>
+                            <button class="view-details-btn" onclick="event.stopPropagation(); window.location.href='scheme-details.html?id=${scheme.id}'">
+                                View Details →
+                            </button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+}
+
+// ============================================
+// LOAD RELATED SCHEMES
+// ============================================
 function loadRelatedSchemes(category, excludeId) {
     const schemes = getSchemesByCategory(category.toLowerCase());
     const related = schemes.filter(s => s.id !== excludeId).slice(0, 3);
     
     const container = document.getElementById('relatedSchemes');
+    if (!container) return;
     
     if (related.length === 0) {
         container.innerHTML = '<p style="color: var(--text-gray);">No related schemes found.</p>';
@@ -86,21 +274,47 @@ function loadRelatedSchemes(category, excludeId) {
     `).join('');
 }
 
-// Tab switching
+// ============================================
+// SHOW ERROR
+// ============================================
+function showError(message) {
+    console.error('❌ Error:', message);
+    
+    const overviewEl = document.getElementById('schemeOverview');
+    if (overviewEl) {
+        overviewEl.innerHTML = `
+            <div class="error-container">
+                <i class="fas fa-exclamation-circle" style="font-size:3rem;color:#FF6B6B;display:block;margin-bottom:16px;"></i>
+                <h3>${message}</h3>
+                <p style="color: var(--text-gray);margin-top:10px;">Please go back and try again.</p>
+                <button onclick="window.location.href='index.html'" style="margin-top:20px;padding:12px 30px;background:var(--primary-gradient);border:none;border-radius:50px;color:white;font-weight:600;cursor:pointer;">
+                    Go to Home
+                </button>
+            </div>
+        `;
+    }
+}
+
+// ============================================
+// TAB SWITCHING
+// ============================================
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        // Remove active class from all tabs
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
         
-        // Add active class to clicked tab
         btn.classList.add('active');
         const tabId = `tab-${btn.dataset.tab}`;
-        document.getElementById(tabId).classList.add('active');
+        const tabPane = document.getElementById(tabId);
+        if (tabPane) {
+            tabPane.classList.add('active');
+        }
     });
 });
 
-// FAQ toggle
+// ============================================
+// FAQ TOGGLE
+// ============================================
 document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
         const item = q.parentElement;
@@ -108,9 +322,11 @@ document.querySelectorAll('.faq-question').forEach(q => {
     });
 });
 
-// Save scheme
+// ============================================
+// SAVE SCHEME
+// ============================================
 function saveScheme() {
-    const title = document.getElementById('schemeName').textContent;
+    const title = document.getElementById('schemeName')?.textContent || 'Scheme';
     const saved = JSON.parse(localStorage.getItem('savedSchemes') || '[]');
     
     if (!saved.includes(title)) {
@@ -122,16 +338,20 @@ function saveScheme() {
     }
 }
 
-// Download PDF (simulated)
+// ============================================
+// DOWNLOAD PDF (Simulated)
+// ============================================
 function downloadPDF() {
-    const title = document.getElementById('schemeName').textContent;
+    const title = document.getElementById('schemeName')?.textContent || 'Scheme';
     alert(`📄 Downloading "${title}" as PDF...\n\nThis feature will be available soon.`);
 }
 
-// Share scheme
+// ============================================
+// SHARE SCHEME
+// ============================================
 function shareScheme() {
     const url = window.location.href;
-    const title = document.getElementById('schemeName').textContent;
+    const title = document.getElementById('schemeName')?.textContent || 'Scheme';
     
     if (navigator.share) {
         navigator.share({
@@ -140,7 +360,6 @@ function shareScheme() {
             url: url
         }).catch(() => {});
     } else {
-        // Fallback
         const shareText = `Check out this scheme: ${title}\n${url}`;
         navigator.clipboard.writeText(shareText).then(() => {
             alert('✅ Link copied to clipboard! Share it with others.');
@@ -160,43 +379,46 @@ const themeOptions = document.querySelectorAll('.theme-dropdown li');
 if (themeToggle) {
     themeToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        themeDropdown.classList.toggle('active');
+        if (themeDropdown) {
+            themeDropdown.classList.toggle('active');
+        }
     });
 }
 
-// In scheme-details.js
-document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const schemeId = urlParams.get('id');
-    const category = urlParams.get('category');
-    
-    if (schemeId) {
-        loadSchemeDetails(schemeId);
-    } else if (category) {
-        loadSchemesByCategory(category);
-    } else {
-        // Show all schemes or redirect
-        window.location.href = 'index.html';
+document.addEventListener('click', (e) => {
+    if (themeDropdown && !themeDropdown.contains(e.target) && e.target !== themeToggle) {
+        themeDropdown.classList.remove('active');
     }
 });
 
-function loadSchemesByCategory(category) {
-    const schemes = getSchemesByCategory(category);
-    const container = document.querySelector('.scheme-details-container');
-    
-    if (container) {
-        container.innerHTML = `
-            <h1 style="margin-bottom:20px;">${category.charAt(0).toUpperCase() + category.slice(1)} Schemes</h1>
-            <div class="schemes-grid">
-                ${schemes.map(scheme => `
-                    <div class="scheme-card" onclick="window.location.href='scheme-details.html?id=${scheme.id}'">
-                        <h3>${scheme.title}</h3>
-                        <p>${scheme.overview.substring(0, 100)}...</p>
-                        <span class="scheme-subsidy">💰 ${scheme.subsidy}</span>
-                        <button class="view-details-btn">View Details →</button>
-                    </div>
-                `).join('')}
-            </div>
-        `;
+const applyTheme = (theme) => {
+    const root = document.documentElement;
+    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
+    if (theme !== 'default') {
+        root.classList.add(`theme-${theme}`);
     }
-}
+    themeOptions.forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.theme === theme) {
+            opt.classList.add('active');
+        }
+    });
+    localStorage.setItem('wbseva-theme', theme);
+};
+
+const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
+applyTheme(savedTheme);
+
+themeOptions.forEach(option => {
+    option.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const theme = this.dataset.theme;
+        applyTheme(theme);
+        if (themeDropdown) {
+            themeDropdown.classList.remove('active');
+        }
+    });
+});
+
+console.log('✅ Scheme details page loaded successfully!');
+console.log('📋 Current params:', { schemeId, category });
