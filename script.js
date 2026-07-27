@@ -1,6 +1,3 @@
-// ============================================
-// COMPLETE SCRIPT.JS - WBseva AI with Chatbot
-// ============================================
 
 // ============================================
 // 1. NAVBAR SCROLL EFFECT
@@ -242,7 +239,7 @@ const sendMessage = (message) => {
     typingDiv.id = 'typingIndicator';
     typingDiv.innerHTML = `
         <div class="message-avatar">
-            <img src="wbseva.png" alt="WBseva" />
+            <img src="wbmap.png" alt="WBseva" />
         </div>
         <div class="message-content">
             <p style="color: var(--text-gray);">Typing<span class="typing-dots">...</span></p>
@@ -263,7 +260,7 @@ const sendMessage = (message) => {
         botMsgDiv.className = 'chat-message bot';
         botMsgDiv.innerHTML = `
             <div class="message-avatar">
-                <img src="wbseva.png" alt="WBseva" />
+                <img src="wbmap.png" alt="WBseva" />
             </div>
             <div class="message-content">
                 <p>${response.replace(/\n/g, '<br>')}</p>
