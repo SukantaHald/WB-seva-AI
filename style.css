@@ -257,7 +257,7 @@ body {
 
 .hero-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;  /* Changed this line */
     gap: 4rem;
     align-items: center;
     position: relative;
