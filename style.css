@@ -265,7 +265,7 @@ body {
 }
 
 .hero-content {
-    max-width: 600px;
+    flex: 1;
 }
 
 .hero-badge {
@@ -412,8 +412,8 @@ body {
 /* ---------- HERO ILLUSTRATION ---------- */
 
 .hero-illustration {
-    float: right;
-    
+    flex: 0 0 auto;
+    margin-left: 40px;
 }
 
 .hero-ai-avatar {
