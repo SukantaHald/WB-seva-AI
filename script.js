@@ -1,441 +1,488 @@
 // ============================================
-// WBseva AI - Main JavaScript File
+// COMPLETE SCRIPT.JS - WBseva AI
 // ============================================
 
 // ============================================
-// CONFIGURATION
+// 1. NAVBAR SCROLL EFFECT
 // ============================================
-const API_URL = '/api/chat';
-let verifyMode = true;
-let currentCategory = null;
+const navbar = document.querySelector('.navbar');
 
-// ============================================
-// SCHEME CATEGORIES DATA
-// ============================================
-const categories = [
-    { 
-        id: 'education', 
-        name: 'Education', 
-        icon: 'fa-graduation-cap', 
-        count: '15+', 
-        color: '#667eea',
-        schemes: ['Kanyashree', 'SVMCM', 'Student Credit Card', 'Oasis']
-    },
-    { 
-        id: 'healthcare', 
-        name: 'Healthcare', 
-        icon: 'fa-heartbeat', 
-        count: '8+', 
-        color: '#f5576c',
-        schemes: ['Health Insurance', 'Free Treatment', 'Medical Assistance']
-    },
-    { 
-        id: 'women', 
-        name: 'Women Empowerment', 
-        icon: 'fa-female', 
-        count: '10+', 
-        color: '#f093fb',
-        schemes: ['Kanyashree', 'Rupashree', 'Women Entrepreneurship']
-    },
-    { 
-        id: 'employment', 
-        name: 'Employment', 
-        icon: 'fa-briefcase', 
-        count: '12+', 
-        color: '#43e97b',
-        schemes: ['Yuvashree', 'WBPSC', 'Police Recruitment', 'Skill Development']
-    },
-    { 
-        id: 'housing', 
-        name: 'Housing', 
-        icon: 'fa-home', 
-        count: '6+', 
-        color: '#f59e0b',
-        schemes: ['PMAY', 'Bangla Awas', 'Housing Loan Subsidy']
-    },
-    { 
-        id: 'agriculture', 
-        name: 'Agriculture', 
-        icon: 'fa-seedling', 
-        count: '8+', 
-        color: '#34d399',
-        schemes: ['PM-KISAN', 'Farm Subsidies', 'Crop Insurance']
-    },
-    { 
-        id: 'skill', 
-        name: 'Skill Development', 
-        icon: 'fa-tools', 
-        count: '7+', 
-        color: '#a78bfa',
-        schemes: ['Skill Training', 'Youth Employment', 'Digital Skills']
-    },
-    { 
-        id: 'rural', 
-        name: 'Rural Development', 
-        icon: 'fa-tree', 
-        count: '9+', 
-        color: '#34d399',
-        schemes: ['MGNREGA', 'Rural Housing', 'Village Development']
-    },
-    { 
-        id: 'digital', 
-        name: 'Digital India', 
-        icon: 'fa-laptop', 
-        count: '8+', 
-        color: '#4facfe',
-        schemes: ['Digital Literacy', 'E-Governance', 'Online Services']
-    },
-    { 
-        id: 'energy', 
-        name: 'Energy', 
-        icon: 'fa-bolt', 
-        count: '6+', 
-        color: '#fbbf24',
-        schemes: ['Solar Subsidy', 'Energy Efficiency', 'Rural Electrification']
-    },
-    { 
-        id: 'transport', 
-        name: 'Transportation', 
-        icon: 'fa-bus', 
-        count: '5+', 
-        color: '#f472b6',
-        schemes: ['Bus Subsidy', 'Road Development', 'Vehicle Scheme']
-    },
-    { 
-        id: 'senior', 
-        name: 'Senior Citizens', 
-        icon: 'fa-user-astronaut', 
-        count: '7+', 
-        color: '#a78bfa',
-        schemes: ['Pension Scheme', 'Health Benefits', 'Elderly Care']
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
     }
-];
-
-// ============================================
-// INITIALIZATION
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    renderCategories();
-    setupEventListeners();
-    createParticles();
-    console.log('🤖 WBseva AI Loaded Successfully!');
-    console.log('📡 API Endpoint:', API_URL);
-    console.log('📊 Categories Loaded:', categories.length);
 });
 
 // ============================================
-// RENDER CATEGORIES
+// 2. MOBILE NAV TOGGLE
 // ============================================
-function renderCategories() {
-    const grid = document.getElementById('categoriesGrid');
-    if (!grid) return;
-    
-    grid.innerHTML = '';
-    
-    categories.forEach(cat => {
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Toggle icon
+        const icon = navToggle.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+    });
+}
+
+// Close nav on link click (mobile)
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navLinks) {
+            navLinks.classList.remove('active');
+        }
+        // Reset toggle icon
+        if (navToggle) {
+            const icon = navToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+});
+
+// ============================================
+// 3. COUNTER ANIMATION
+// ============================================
+const counters = document.querySelectorAll('.stat-number');
+
+const animateCounter = (counter) => {
+    const target = parseFloat(counter.dataset.count);
+    const isDecimal = target % 1 !== 0;
+    const duration = 2000;
+    const steps = 60;
+    const stepTime = duration / steps;
+    let current = 0;
+
+    const updateCounter = () => {
+        current += target / steps;
+        if (current >= target) {
+            counter.textContent = isDecimal ? target.toFixed(1) : Math.floor(target) + '+';
+            return;
+        }
+        counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current) + '+';
+        setTimeout(updateCounter, stepTime);
+    };
+
+    updateCounter();
+};
+
+// Intersection Observer for counters
+const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+counters.forEach(counter => observer.observe(counter));
+
+// ============================================
+// 4. CATEGORIES DATA & RENDER
+// ============================================
+const categories = [
+    { icon: 'fa-graduation-cap', name: 'Education', count: '12 Schemes', color: '#6C3CE1' },
+    { icon: 'fa-heart-pulse', name: 'Health', count: '8 Schemes', color: '#FF6B6B' },
+    { icon: 'fa-building', name: 'Housing', count: '6 Schemes', color: '#F59E0B' },
+    { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '15 Schemes', color: '#06D6A0' },
+    { icon: 'fa-briefcase', name: 'Employment', count: '10 Schemes', color: '#3B82F6' },
+    { icon: 'fa-tractor', name: 'Agriculture', count: '9 Schemes', color: '#10B981' },
+    { icon: 'fa-scale-balanced', name: 'Legal', count: '7 Schemes', color: '#8B5CF6' },
+    { icon: 'fa-utensils', name: 'Food & Nutrition', count: '5 Schemes', color: '#F472B6' },
+];
+
+const categoriesGrid = document.getElementById('categoriesGrid');
+
+if (categoriesGrid) {
+    categories.forEach((cat, index) => {
         const card = document.createElement('div');
         card.className = 'category-card';
+        card.style.animationDelay = `${index * 0.1}s`;
         card.style.setProperty('--cat-color', cat.color);
-        card.onclick = () => handleCategoryClick(cat);
-        
         card.innerHTML = `
-            <div class="category-icon" style="background: ${cat.color}20; color: ${cat.color};">
+            <div class="category-icon" style="background: ${cat.color}20; color: ${cat.color}">
                 <i class="fas ${cat.icon}"></i>
             </div>
-            <h3 class="category-name">${cat.name}</h3>
-            <p class="category-count">${cat.count} schemes available</p>
-            <div class="category-tags">
-                ${cat.schemes.slice(0, 2).map(s => `<span class="category-tag">${s}</span>`).join('')}
-                ${cat.schemes.length > 2 ? `<span class="category-tag">+${cat.schemes.length - 2} more</span>` : ''}
-            </div>
+            <h3>${cat.name}</h3>
+            <p>${cat.count}</p>
+            <div class="category-hover-line" style="background: ${cat.color}"></div>
         `;
-        grid.appendChild(card);
+        
+        // Add click event
+        card.addEventListener('click', () => {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = '';
+            }, 200);
+            console.log(`Category clicked: ${cat.name}`);
+        });
+        
+        categoriesGrid.appendChild(card);
     });
 }
 
 // ============================================
-// CATEGORY CLICK HANDLER
+// 5. SEARCH FUNCTIONALITY
 // ============================================
-function handleCategoryClick(category) {
-    currentCategory = category;
-    const question = `Show me all ${category.name} schemes in West Bengal`;
-    ask(question);
-}
+const searchInput = document.querySelector('.search-input');
+const searchBtn = document.querySelector('.search-btn');
 
-// ============================================
-// SEND MESSAGE
-// ============================================
-async function sendMessage() {
-    const input = document.getElementById('userInput');
-    const query = input.value.trim();
-    if (!query) return;
-
-    addMessage('user', query);
-    input.value = '';
-    input.disabled = true;
-    showTyping();
-    scrollToChat();
-
-    try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ question: query })
-        });
-
-        if (!response.ok) throw new Error('API error');
-        const data = await response.json();
-        hideTyping();
-        addMessage('ai', data.response, data.verified, data.schemes);
-        scrollToChat();
-    } catch (error) {
-        hideTyping();
-        addMessage('ai', '⚠️ Service temporarily unavailable. Please try again later.');
-        scrollToChat();
-    }
-
-    input.disabled = false;
-    input.focus();
-}
-
-// ============================================
-// HERO SEARCH
-// ============================================
-function sendHeroMessage() {
-    const input = document.getElementById('heroInput');
-    const query = input.value.trim();
-    if (!query) return;
-    document.getElementById('userInput').value = query;
-    document.getElementById('chatSection').scrollIntoView({ behavior: 'smooth' });
-    setTimeout(sendMessage, 500);
-}
-
-// ============================================
-// ADD MESSAGE
-// ============================================
-function addMessage(type, content, verified = null, schemes = null) {
-    const container = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-
-    if (type === 'user') {
-        div.className = 'message-user';
-        div.innerHTML = `
-            <div class="message-bubble bubble-user">
-                <div class="message-text">${escapeHtml(content)}</div>
-                <div class="message-footer">
-                    <span class="message-time">You • Just now</span>
-                </div>
-            </div>
-            <div class="message-avatar user-avatar">👤</div>
-        `;
-    } else {
-        const verifiedBadge = verified === true ?
-            '<span class="badge-verified">✅ Verified</span>' :
-            verified === false ?
-            '<span class="badge-unverified">⚠️ Unverified</span>' :
-            '';
-
-        let schemesHTML = '';
-        if (schemes && schemes.length > 0) {
-            schemesHTML = `
-                <div class="message-schemes">
-                    <span class="schemes-title"><i class="fas fa-list"></i> Related Schemes</span>
-                    ${schemes.slice(0, 3).map(s => `
-                        <div class="scheme-chip">
-                            <span class="scheme-chip-name">${s.name}</span>
-                            ${s.portal ? `<a href="http://${s.portal}" target="_blank" class="scheme-chip-link"><i class="fas fa-external-link-alt"></i></a>` : ''}
-                        </div>
-                    `).join('')}
-                </div>
-            `;
+if (searchBtn && searchInput) {
+    const performSearch = () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            console.log(`Searching for: ${query}`);
+            searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            // Simulate search
+            setTimeout(() => {
+                searchBtn.innerHTML = '<i class="fas fa-arrow-right"></i>';
+                alert(`Searching for "${query}"...\nThis feature will show matching schemes.`);
+            }, 1000);
+        } else {
+            searchInput.style.borderColor = '#FF6B6B';
+            searchInput.placeholder = 'Please enter a search term!';
+            setTimeout(() => {
+                searchInput.style.borderColor = '';
+                searchInput.placeholder = 'Search for schemes...';
+            }, 2000);
         }
+    };
 
-        div.className = 'message-ai';
-        div.innerHTML = `
-            <div class="message-avatar">
-                <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
-            </div>
-            <div class="message-bubble bubble-ai">
-                <div class="message-text">${escapeHtml(content)}</div>
-                ${schemesHTML}
-                <div class="message-footer">
-                    ${verifiedBadge}
-                    <span class="message-time">AI • Just now</span>
-                </div>
-            </div>
-        `;
-    }
-
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
-}
-
-// ============================================
-// TYPING INDICATOR
-// ============================================
-function showTyping() {
-    const container = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.id = 'typingIndicator';
-    div.className = 'message-ai';
-    div.innerHTML = `
-        <div class="message-avatar">
-            <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
-        </div>
-        <div class="message-bubble bubble-ai">
-            <div class="typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    `;
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
-}
-
-function hideTyping() {
-    const typing = document.getElementById('typingIndicator');
-    if (typing) typing.remove();
-}
-
-// ============================================
-// HELPERS
-// ============================================
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
-
-function ask(text) {
-    document.getElementById('userInput').value = text;
-    document.getElementById('chatSection').scrollIntoView({ behavior: 'smooth' });
-    setTimeout(sendMessage, 500);
-}
-
-function scrollToChat() {
-    const container = document.getElementById('chatMessages');
-    container.scrollTop = container.scrollHeight;
-}
-
-function clearChat() {
-    if (confirm('Clear all messages?')) {
-        const container = document.getElementById('chatMessages');
-        container.innerHTML = `
-            <div class="message-ai">
-                <div class="message-avatar">
-                    <img src="wbmap.png" alt="WBseva AI" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />
-                </div>
-                <div class="message-bubble bubble-ai">
-                    <div class="message-text">
-                        <strong>👋 Namaskar!</strong> I'm <strong>WBseva AI</strong>, your smart assistant for West Bengal government services.
-                    </div>
-                    <div class="message-footer">
-                        <span class="badge-verified">✅ Verified</span>
-                        <span class="message-time">Just now</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-}
-
-function toggleVerifyMode() {
-    verifyMode = !verifyMode;
-    const icon = document.getElementById('verifyIcon');
-    const badge = document.getElementById('statusBadge');
-    if (verifyMode) {
-        icon.style.color = '#10b981';
-        badge.innerHTML = '<i class="fas fa-circle"></i> Verify ON';
-        badge.className = 'chat-status-online';
-    } else {
-        icon.style.color = '#f59e0b';
-        badge.innerHTML = '<i class="fas fa-circle"></i> Verify OFF';
-        badge.className = 'chat-status-warning';
-    }
-}
-
-// ============================================
-// NAV TOGGLE (Mobile)
-// ============================================
-function toggleNav() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
-}
-
-// ============================================
-// EVENT LISTENERS
-// ============================================
-function setupEventListeners() {
-    // Close nav when clicking outside
-    document.addEventListener('click', function(event) {
-        const nav = document.querySelector('.navbar');
-        const toggle = document.getElementById('navToggle');
-        if (nav && !nav.contains(event.target)) {
-            const navLinks = document.getElementById('navLinks');
-            if (navLinks) navLinks.classList.remove('active');
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
         }
     });
-
-    // Close nav when a link is clicked
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            const navLinks = document.getElementById('navLinks');
-            if (navLinks) navLinks.classList.remove('active');
-        });
-    });
-
-    // Enter key for user input
-    const userInput = document.getElementById('userInput');
-    if (userInput) {
-        userInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !this.disabled) sendMessage();
-        });
-    }
-
-    // Enter key for hero input
-    const heroInput = document.getElementById('heroInput');
-    if (heroInput) {
-        heroInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') sendHeroMessage();
-        });
-    }
-
-    // Auto focus
-    setTimeout(() => {
-        const input = document.getElementById('userInput');
-        if (input) input.focus();
-    }, 1000);
 }
 
 // ============================================
-// PARTICLES
+// 6. PARALLAX EFFECT ON ORBS
 // ============================================
-function createParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
+document.addEventListener('mousemove', (e) => {
+    const orbs = document.querySelectorAll('.orb');
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
     
-    for (let i = 0; i < 50; i++) {
+    orbs.forEach((orb, i) => {
+        const speed = 1 + i * 0.3;
+        orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+    });
+});
+
+// ============================================
+// 7. RANDOM PARTICLE GENERATOR
+// ============================================
+const heroParticles = document.querySelector('.hero-bg-animation');
+
+if (heroParticles) {
+    for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 3 + 's';
-        particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        particle.style.width = (Math.random() * 4 + 2) + 'px';
-        particle.style.height = particle.style.width;
-        container.appendChild(particle);
+        const size = Math.random() * 6 + 2;
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(108, 60, 225, ${Math.random() * 0.3 + 0.1});
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: floatParticle ${Math.random() * 5 + 3}s ease-in-out infinite;
+            animation-delay: ${Math.random() * 2}s;
+            pointer-events: none;
+        `;
+        heroParticles.appendChild(particle);
     }
 }
 
 // ============================================
-// EXPOSE FUNCTIONS TO GLOBAL SCOPE
+// 8. SMOOTH SCROLL FOR ANCHOR LINKS
 // ============================================
-window.sendMessage = sendMessage;
-window.sendHeroMessage = sendHeroMessage;
-window.ask = ask;
-window.clearChat = clearChat;
-window.toggleVerifyMode = toggleVerifyMode;
-window.toggleNav = toggleNav;
-window.handleCategoryClick = handleCategoryClick;
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const navHeight = navbar ? navbar.offsetHeight : 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// ============================================
+// 9. AVATAR INTERACTIVE EFFECTS
+// ============================================
+const avatarWrapper = document.querySelector('.avatar-wrapper');
+const avatarImg = document.querySelector('.avatar-img');
+
+if (avatarWrapper) {
+    // Hover effect
+    avatarWrapper.addEventListener('mouseenter', () => {
+        const rings = document.querySelectorAll('.glow-ring');
+        rings.forEach(ring => {
+            ring.style.animationDuration = '5s';
+        });
+    });
+
+    avatarWrapper.addEventListener('mouseleave', () => {
+        const rings = document.querySelectorAll('.glow-ring');
+        rings.forEach(ring => {
+            ring.style.animationDuration = '';
+        });
+    });
+
+    // Click effect
+    avatarWrapper.addEventListener('click', () => {
+        avatarWrapper.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            avatarWrapper.style.transform = '';
+        }, 300);
+        console.log('👋 Hello from WBseva AI!');
+    });
+}
+
+// ============================================
+// 10. STATS HOVER ANIMATION
+// ============================================
+const statItems = document.querySelectorAll('.stat-item');
+
+statItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        item.style.transform = 'translateY(-5px)';
+        item.style.transition = 'transform 0.3s ease';
+    });
+    item.addEventListener('mouseleave', () => {
+        item.style.transform = 'translateY(0)';
+    });
+});
+
+// ============================================
+// 11. AUTO TYPING EFFECT FOR SEARCH (Optional)
+// ============================================
+const searchPlaceholders = [
+    'Search for schemes...',
+    'Try: Education schemes...',
+    'Try: Health benefits...',
+    'Try: Housing schemes...',
+    'Search for schemes...'
+];
+
+let placeholderIndex = 0;
+if (searchInput) {
+    setInterval(() => {
+        placeholderIndex = (placeholderIndex + 1) % searchPlaceholders.length;
+        searchInput.placeholder = searchPlaceholders[placeholderIndex];
+    }, 3000);
+}
+
+// ============================================
+// 12. DYNAMIC YEAR IN FOOTER
+// ============================================
+const footer = document.querySelector('.footer p');
+if (footer) {
+    const year = new Date().getFullYear();
+    footer.innerHTML = footer.innerHTML.replace('2026', year);
+}
+
+// ============================================
+// 13. KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', (e) => {
+    // Ctrl + K to focus search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        if (searchInput) {
+            searchInput.focus();
+            searchInput.select();
+        }
+    }
+    // Escape to blur search
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+        searchInput.blur();
+    }
+});
+
+// ============================================
+// 14. CONSOLE WELCOME MESSAGE
+// ============================================
+console.log('%c🚀 WBseva AI - Your Smart Assistant', 'font-size: 24px; font-weight: bold; color: #6C3CE1;');
+console.log('%c💡 Tip: Press Ctrl+K to search!', 'font-size: 14px; color: #06D6A0;');
+console.log('%c📋 Version: 2.0 | Made with ❤️', 'font-size: 14px; color: #A0A0B8;');
+
+// ============================================
+// 15. RESPONSIVE CATEGORIES GRID ADJUSTMENT
+// ============================================
+function adjustCategoriesGrid() {
+    const grid = document.querySelector('.categories-grid');
+    if (grid) {
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 480) {
+            grid.style.gridTemplateColumns = '1fr 1fr';
+        } else if (screenWidth < 768) {
+            grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        } else {
+            grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
+        }
+    }
+}
+
+window.addEventListener('resize', adjustCategoriesGrid);
+adjustCategoriesGrid();
+
+// ============================================
+// 16. CATEGORY CARD ANIMATION ON SCROLL
+// ============================================
+const categoryCards = document.querySelectorAll('.category-card');
+
+const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100);
+            cardObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+categoryCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    cardObserver.observe(card);
+});
+
+// ============================================
+// 17. NAVBAR ACTIVE LINK HIGHLIGHT
+// ============================================
+const sections = document.querySelectorAll('section[id]');
+const navLinkItems = document.querySelectorAll('.nav-links a');
+
+if (sections.length > 0 && navLinkItems.length > 0) {
+    const highlightNav = () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinkItems.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', highlightNav);
+}
+
+// ============================================
+// 18. PREVENT DEFAULT CONTEXT MENU (Optional)
+// ============================================
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        console.log('🛡️ Image right-click disabled');
+    }
+});
+
+// ============================================
+// 19. CUSTOM CURSOR EFFECT (Optional)
+// ============================================
+// Uncomment to add custom cursor
+/*
+const cursor = document.createElement('div');
+cursor.className = 'custom-cursor';
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+// Add this CSS for custom cursor:
+// .custom-cursor { position: fixed; width: 20px; height: 20px; border: 2px solid #6C3CE1; border-radius: 50%; pointer-events: none; z-index: 9999; transition: all 0.1s ease; }
+*/
+
+// ============================================
+// 20. SCROLL TO TOP BUTTON
+// ============================================
+const scrollTopBtn = document.createElement('button');
+scrollTopBtn.className = 'scroll-top-btn';
+scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+scrollTopBtn.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #6C3CE1, #06D6A0);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 8px 30px rgba(108, 60, 225, 0.4);
+`;
+
+document.body.appendChild(scrollTopBtn);
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollTopBtn.style.opacity = '1';
+        scrollTopBtn.style.transform = 'translateY(0)';
+    } else {
+        scrollTopBtn.style.opacity = '0';
+        scrollTopBtn.style.transform = 'translateY(20px)';
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Hover effect
+scrollTopBtn.addEventListener('mouseenter', () => {
+    scrollTopBtn.style.transform = 'scale(1.1)';
+});
+
+scrollTopBtn.addEventListener('mouseleave', () => {
+    scrollTopBtn.style.transform = 'scale(1)';
+});
+
+console.log('✅ WBseva AI script loaded successfully!');
