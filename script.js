@@ -94,9 +94,6 @@ const categories = [
     { icon: 'fa-tractor', name: 'Agriculture', count: '9 Schemes', color: '#10B981', category: 'agriculture' },
     { icon: 'fa-scale-balanced', name: 'Legal', count: '7 Schemes', color: '#8B5CF6', category: 'legal' },
     { icon: 'fa-utensils', name: 'Food & Nutrition', count: '5 Schemes', color: '#F472B6', category: 'food' },
-];
-
-const moreCategories = [
     { icon: 'fa-people-arrows', name: 'Skill Development', count: '14 Schemes', color: '#6366F1', category: 'skill' },
     { icon: 'fa-truck', name: 'Transportation', count: '8 Schemes', color: '#14B8A6', category: 'transport' },
     { icon: 'fa-bolt', name: 'Energy', count: '10 Schemes', color: '#F59E0B', category: 'energy' },
