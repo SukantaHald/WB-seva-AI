@@ -48,7 +48,69 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+:root {
+    /* Default Theme (Purple-Green) */
+    --primary: #6C3CE1;
+    --primary-dark: #5A2FC4;
+    --primary-light: #8B5CF6;
+    --secondary: #06D6A0;
+}
 
+/* Blue Theme */
+.theme-blue {
+    --primary: #3B82F6;
+    --primary-dark: #2563EB;
+    --primary-light: #60A5FA;
+    --secondary: #06D6A0;
+}
+
+/* Green Theme */
+.theme-green {
+    --primary: #10B981;
+    --primary-dark: #059669;
+    --primary-light: #34D399;
+    --secondary: #06D6A0;
+}
+
+/* Purple Theme */
+.theme-purple {
+    --primary: #8B5CF6;
+    --primary-dark: #7C3AED;
+    --primary-light: #A78BFA;
+    --secondary: #6C3CE1;
+}
+
+/* Orange Theme */
+.theme-orange {
+    --primary: #F59E0B;
+    --primary-dark: #D97706;
+    --primary-light: #FBBF24;
+    --secondary: #F97316;
+}
+
+/* Pink Theme */
+.theme-pink {
+    --primary: #EC4899;
+    --primary-dark: #DB2777;
+    --primary-light: #F472B6;
+    --secondary: #8B5CF6;
+}
+
+/* Red Theme */
+.theme-red {
+    --primary: #EF4444;
+    --primary-dark: #DC2626;
+    --primary-light: #F87171;
+    --secondary: #F59E0B;
+}
+
+/* Teal Theme */
+.theme-teal {
+    --primary: #14B8A6;
+    --primary-dark: #0D9488;
+    --primary-light: #2DD4BF;
+    --secondary: #06D6A0;
+}
 /* ============================================
    NAVBAR
    ============================================ */
@@ -1331,4 +1393,116 @@ body {
     .btn-login span {
         display: none;
     }
+}
+/* ============================================
+   THEME SWITCHER
+   ============================================ */
+.nav-theme-toggle {
+    position: relative;
+    list-style: none;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.theme-btn:hover {
+    color: var(--text-white);
+}
+
+.theme-btn i {
+    font-size: 1rem;
+}
+
+.theme-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(20, 20, 40, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 8px;
+    min-width: 160px;
+    display: none;
+    z-index: 100;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.theme-dropdown.active {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(10px); }
+}
+
+.theme-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    transition: var(--transition);
+    list-style: none;
+}
+
+.theme-dropdown li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-white);
+}
+
+.theme-dropdown li.active {
+    background: rgba(108, 60, 225, 0.15);
+    color: var(--text-white);
+}
+
+.theme-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.theme-color.default {
+    background: linear-gradient(135deg, #6C3CE1, #06D6A0);
+}
+.theme-color.blue {
+    background: linear-gradient(135deg, #3B82F6, #06D6A0);
+}
+.theme-color.green {
+    background: linear-gradient(135deg, #10B981, #34D399);
+}
+.theme-color.purple {
+    background: linear-gradient(135deg, #8B5CF6, #6C3CE1);
+}
+.theme-color.orange {
+    background: linear-gradient(135deg, #F59E0B, #F97316);
+}
+.theme-color.pink {
+    background: linear-gradient(135deg, #EC4899, #F472B6);
+}
+.theme-color.red {
+    background: linear-gradient(135deg, #EF4444, #F87171);
+}
+.theme-color.teal {
+    background: linear-gradient(135deg, #14B8A6, #06D6A0);
 }

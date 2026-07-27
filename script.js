@@ -467,3 +467,60 @@ if (footerYear) {
 }
 
 console.log('✅ WBseva AI loaded successfully!');
+// ============================================
+// THEME SWITCHER
+// ============================================
+const themeToggle = document.getElementById('themeToggle');
+const themeDropdown = document.getElementById('themeDropdown');
+const themeOptions = document.querySelectorAll('.theme-dropdown li');
+
+// Toggle dropdown
+if (themeToggle) {
+    themeToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        themeDropdown.classList.toggle('active');
+    });
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', () => {
+    if (themeDropdown) {
+        themeDropdown.classList.remove('active');
+    }
+});
+
+// Apply theme
+const applyTheme = (theme) => {
+    const root = document.documentElement;
+    
+    // Remove all theme classes
+    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
+    
+    if (theme !== 'default') {
+        root.classList.add(`theme-${theme}`);
+    }
+    
+    // Update active state
+    themeOptions.forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.theme === theme) {
+            opt.classList.add('active');
+        }
+    });
+    
+    // Save to localStorage
+    localStorage.setItem('wbseva-theme', theme);
+};
+
+// Load saved theme
+const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
+applyTheme(savedTheme);
+
+// Theme option click
+themeOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        const theme = option.dataset.theme;
+        applyTheme(theme);
+        themeDropdown.classList.remove('active');
+    });
+});
