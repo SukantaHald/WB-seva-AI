@@ -31,7 +31,6 @@ const defaultResponse = "🤔 That's interesting! Tell me more about it.\n\n💡
 const getBotResponse = (message) => {
     const msg = message.toLowerCase().trim();
     
-    // Check for matching keywords
     for (let item of funResponses) {
         for (let keyword of item.keywords) {
             if (msg.includes(keyword)) {
@@ -40,7 +39,6 @@ const getBotResponse = (message) => {
         }
     }
     
-    // If message is short
     if (msg.length < 3) {
         return "😊 I love short conversations! What else would you like to talk about?";
     }
@@ -50,7 +48,6 @@ const getBotResponse = (message) => {
 
 // Send message
 const sendMessage = (message) => {
-    // Add user message
     const userMsgDiv = document.createElement('div');
     userMsgDiv.className = 'chat-message user';
     userMsgDiv.innerHTML = `
@@ -62,7 +59,6 @@ const sendMessage = (message) => {
     chatMessages.appendChild(userMsgDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Show typing indicator
     const typingDiv = document.createElement('div');
     typingDiv.className = 'chat-message bot';
     typingDiv.id = 'typingIndicator';
@@ -77,7 +73,6 @@ const sendMessage = (message) => {
     chatMessages.appendChild(typingDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Get response
     setTimeout(() => {
         const typingIndicator = document.getElementById('typingIndicator');
         if (typingIndicator) {

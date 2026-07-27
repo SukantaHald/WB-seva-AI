@@ -46,13 +46,12 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 // ============================================
-// 3. COUNTER ANIMATION
+// 3. STATISTICS COUNTER ANIMATION
 // ============================================
-const counters = document.querySelectorAll('.stat-number');
+const statsCounters = document.querySelectorAll('.stat-number-large');
 
-const animateCounter = (counter) => {
+const animateStatsCounter = (counter) => {
     const target = parseFloat(counter.dataset.count);
-    const isDecimal = target % 1 !== 0;
     const duration = 2000;
     const steps = 60;
     const stepTime = duration / steps;
@@ -61,38 +60,34 @@ const animateCounter = (counter) => {
     const updateCounter = () => {
         current += target / steps;
         if (current >= target) {
-            counter.textContent = isDecimal ? target.toFixed(1) : Math.floor(target) + '+';
+            counter.textContent = Math.floor(target) + '+';
             return;
         }
-        counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current) + '+';
+        counter.textContent = Math.floor(current) + '+';
         setTimeout(updateCounter, stepTime);
     };
 
     updateCounter();
 };
 
-const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
+const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            observer.unobserve(entry.target);
+            animateStatsCounter(entry.target);
+            statsObserver.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, { threshold: 0.5 });
 
-counters.forEach(counter => observer.observe(counter));
+statsCounters.forEach(counter => statsObserver.observe(counter));
 
 // ============================================
-// 4. CATEGORIES DATA
+// 4. CATEGORIES DATA - UPDATED WITH MORE CATEGORIES
 // ============================================
 const categories = [
     { icon: 'fa-graduation-cap', name: 'Education', count: '12 Schemes', color: '#6C3CE1', category: 'education' },
-    { icon: 'fa-heart-pulse', name: 'Health', count: '8 Schemes', color: '#FF6B6B', category: 'health' },
+    { icon: 'fa-heart-pulse', name: 'Healthcare', count: '8 Schemes', color: '#FF6B6B', category: 'health' },
+    { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '6 Schemes', color: '#EC4899', category: 'women' },
     { icon: 'fa-building', name: 'Housing', count: '6 Schemes', color: '#F59E0B', category: 'housing' },
     { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '15 Schemes', color: '#06D6A0', category: 'financial' },
     { icon: 'fa-briefcase', name: 'Employment', count: '10 Schemes', color: '#3B82F6', category: 'employment' },
@@ -103,10 +98,17 @@ const categories = [
 
 const moreCategories = [
     { icon: 'fa-people-arrows', name: 'Skill Development', count: '14 Schemes', color: '#6366F1', category: 'skill' },
-    { icon: 'fa-tree', name: 'Rural Development', count: '18 Schemes', color: '#14B8A6', category: 'rural' },
-    { icon: 'fa-wifi', name: 'Digital India', count: '11 Schemes', color: '#8B5CF6', category: 'digital' },
-    { icon: 'fa-bolt', name: 'Energy', count: '8 Schemes', color: '#F59E0B', category: 'energy' },
+    { icon: 'fa-truck', name: 'Transportation', count: '8 Schemes', color: '#14B8A6', category: 'transport' },
+    { icon: 'fa-bolt', name: 'Energy', count: '10 Schemes', color: '#F59E0B', category: 'energy' },
+    { icon: 'fa-wifi', name: 'Digital India', count: '12 Schemes', color: '#8B5CF6', category: 'digital' },
+    { icon: 'fa-tree', name: 'Rural Development', count: '15 Schemes', color: '#10B981', category: 'rural' },
 ];
+
+// Future categories to add
+// { icon: 'fa-water', name: 'Water Resources', count: '7 Schemes', color: '#0EA5E9', category: 'water' },
+// { icon: 'fa-industry', name: 'Industrial Development', count: '9 Schemes', color: '#F97316', category: 'industry' },
+// { icon: 'fa-child', name: 'Child Welfare', count: '6 Schemes', color: '#06D6A0', category: 'child' },
+// { icon: 'fa-wheelchair', name: 'Disability Welfare', count: '4 Schemes', color: '#6366F1', category: 'disability' },
 
 // Render Categories
 const categoriesGrid = document.getElementById('categoriesGrid');
@@ -129,7 +131,6 @@ const renderCategories = (data, container) => {
             <div class="category-hover-line" style="background: ${cat.color}"></div>
         `;
         
-        // FIX: Open scheme details page - NOT chatbot
         card.addEventListener('click', () => {
             window.open(`scheme-details.html?category=${cat.category}`, '_blank');
         });
@@ -142,7 +143,7 @@ renderCategories(categories, categoriesGrid);
 renderCategories(moreCategories, moreCategoriesGrid);
 
 // ============================================
-// 5. SEARCH FUNCTIONALITY - FIXED
+// 5. SEARCH FUNCTIONALITY
 // ============================================
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
@@ -206,9 +207,7 @@ const schemeDatabase = [
     { title: 'Solar Rooftop Scheme', category: 'Energy', link: 'https://www.wb.gov.in/solar', badge: 'Energy' },
 ];
 
-// Check if elements exist before adding events
 if (searchInput && searchBtn) {
-    
     const performSearch = () => {
         const query = searchInput.value.trim().toLowerCase();
         
@@ -302,7 +301,31 @@ document.querySelectorAll('.search-suggestions span').forEach(suggestion => {
 });
 
 // ============================================
-// 6. PARALLAX EFFECT
+// 6. FAQ TOGGLE - NEW
+// ============================================
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(other => {
+            if (other !== item) {
+                other.classList.remove('active');
+            }
+        });
+        
+        // Toggle current
+        if (isActive) {
+            item.classList.remove('active');
+        } else {
+            item.classList.add('active');
+        }
+    });
+});
+
+// ============================================
+// 7. PARALLAX EFFECT
 // ============================================
 document.addEventListener('mousemove', (e) => {
     const orbs = document.querySelectorAll('.orb');
@@ -316,7 +339,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // ============================================
-// 7. SCROLL TOP BUTTON
+// 8. SCROLL TOP BUTTON
 // ============================================
 const scrollTopBtn = document.createElement('button');
 scrollTopBtn.className = 'scroll-top-btn';
@@ -336,7 +359,7 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 // ============================================
-// 8. CATEGORY CARD SCROLL ANIMATION
+// 9. CATEGORY CARD SCROLL ANIMATION
 // ============================================
 const categoryCards = document.querySelectorAll('.category-card');
 
@@ -360,7 +383,7 @@ categoryCards.forEach(card => {
 });
 
 // ============================================
-// 9. ACTIVE NAV LINK
+// 10. ACTIVE NAV LINK
 // ============================================
 const sections = document.querySelectorAll('section[id]');
 const navLinkItems = document.querySelectorAll('.nav-links a');
@@ -385,7 +408,7 @@ if (sections.length > 0 && navLinkItems.length > 0) {
 }
 
 // ============================================
-// 10. DYNAMIC YEAR IN FOOTER
+// 11. DYNAMIC YEAR IN FOOTER
 // ============================================
 const footerYear = document.querySelector('.footer-bottom p');
 if (footerYear) {
@@ -394,7 +417,7 @@ if (footerYear) {
 }
 
 // ============================================
-// 11. THEME SWITCHER
+// 12. THEME SWITCHER
 // ============================================
 const themeToggle = document.getElementById('themeToggle');
 const themeDropdown = document.getElementById('themeDropdown');
@@ -444,7 +467,7 @@ themeOptions.forEach(option => {
 });
 
 // ============================================
-// 12. KEYBOARD SHORTCUTS
+// 13. KEYBOARD SHORTCUTS
 // ============================================
 document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -465,3 +488,5 @@ document.addEventListener('keydown', (e) => {
 });
 
 console.log('✅ WBseva AI loaded successfully!');
+console.log('💡 Press Ctrl+K to search');
+console.log('📋 All sections loaded: Hero, Stats, Categories, How to Apply, About, FAQ');
