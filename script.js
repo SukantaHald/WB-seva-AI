@@ -96,10 +96,10 @@ const categories = [
     { icon: 'fa-tractor', name: 'Agriculture', count: '9 Schemes', color: '#10B981' },
     { icon: 'fa-scale-balanced', name: 'Legal', count: '7 Schemes', color: '#8B5CF6' },
     { icon: 'fa-utensils', name: 'Food & Nutrition', count: '5 Schemes', color: '#F472B6' },
-    { icon: 'fa-briefcase', name: 'Skill Development', count: '10 Schemes', color: '#3B82F6' },
-    { icon: 'fa-tractor', name: 'Rural Development', count: '9 Schemes', color: '#10B981' },
-    { icon: 'fa-scale-balanced', name: 'Digital india', count: '7 Schemes', color: '#8B5CF6' },
-     { icon: 'fa-scale-balanced', name: 'Energy', count: '7 Schemes', color: '#8B5CF6' },
+    { icon: 'fa-people-arrows', name: 'Skill Development', count: '10 Schemes', color: '#3B82F6' },
+    { icon: 'fa-tree', name: 'Rural Development', count: '9 Schemes', color: '#10B981' },
+    { icon: 'fa-wifi', name: 'Digital india', count: '7 Schemes', color: '#8B5CF6' },
+     { icon: 'fa-bolt', name: 'Energy', count: '7 Schemes', color: '#8B5CF6' },
    
 ];
 
