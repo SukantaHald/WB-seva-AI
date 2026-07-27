@@ -547,3 +547,99 @@ document.addEventListener('keydown', (e) => {
 console.log('✅ WBseva AI loaded successfully!');
 console.log('💡 Press Ctrl+K to search');
 console.log('📋 All sections loaded: Hero, Stats, Categories, How to Apply, About, FAQ');
+// ============================================
+// STANDALONE THEME BUTTON - 100% WORKING
+// ============================================
+
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🔄 Theme button script loaded...');
+    
+    // Get elements
+    const themeBtn = document.getElementById('standaloneThemeBtn');
+    const themeDropdown = document.getElementById('standaloneThemeDropdown');
+    const themeOptions = document.querySelectorAll('.theme-option-item');
+    
+    // Check if elements exist
+    if (!themeBtn) {
+        console.error('❌ Theme button not found!');
+        return;
+    }
+    
+    console.log('✅ Theme button found!');
+    
+    // Toggle dropdown
+    themeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        this.classList.toggle('active');
+        themeDropdown.classList.toggle('active');
+        
+        console.log('📂 Dropdown toggled:', themeDropdown.classList.contains('active'));
+    });
+    
+    // Apply theme function
+    function applyTheme(theme) {
+        const root = document.documentElement;
+        
+        // Remove all theme classes
+        root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
+        
+        // Apply new theme
+        if (theme !== 'default') {
+            root.classList.add(`theme-${theme}`);
+        }
+        
+        // Update active state
+        themeOptions.forEach(opt => {
+            opt.classList.remove('active');
+            if (opt.dataset.theme === theme) {
+                opt.classList.add('active');
+            }
+        });
+        
+        // Save to localStorage
+        localStorage.setItem('wbseva-theme', theme);
+        
+        console.log(`🎨 Theme changed to: ${theme}`);
+    }
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
+    applyTheme(savedTheme);
+    
+    // Theme option clicks
+    themeOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const theme = this.dataset.theme;
+            if (theme) {
+                applyTheme(theme);
+                
+                // Close dropdown
+                themeDropdown.classList.remove('active');
+                themeBtn.classList.remove('active');
+            }
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        const isClickInside = themeDropdown?.contains(e.target) || themeBtn?.contains(e.target);
+        if (!isClickInside) {
+            themeDropdown?.classList.remove('active');
+            themeBtn?.classList.remove('active');
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            themeDropdown?.classList.remove('active');
+            themeBtn?.classList.remove('active');
+        }
+    });
+    
+    console.log('🎨 Theme button ready!');
+});
