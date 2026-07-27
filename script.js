@@ -468,8 +468,9 @@ if (footerYear) {
 
 console.log('✅ WBseva AI loaded successfully!');
 // ============================================
-// THEME SWITCHER
+// THEME SWITCHER - COMPLETE FIX
 // ============================================
+
 const themeToggle = document.getElementById('themeToggle');
 const themeDropdown = document.getElementById('themeDropdown');
 const themeOptions = document.querySelectorAll('.theme-dropdown li');
@@ -483,24 +484,25 @@ if (themeToggle) {
 }
 
 // Close dropdown on outside click
-document.addEventListener('click', () => {
-    if (themeDropdown) {
+document.addEventListener('click', (e) => {
+    if (themeDropdown && !themeDropdown.contains(e.target) && e.target !== themeToggle) {
         themeDropdown.classList.remove('active');
     }
 });
 
-// Apply theme
+// Apply theme - FIXED VERSION
 const applyTheme = (theme) => {
     const root = document.documentElement;
     
     // Remove all theme classes
     root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
     
+    // Apply new theme (if not default)
     if (theme !== 'default') {
         root.classList.add(`theme-${theme}`);
     }
     
-    // Update active state
+    // Update active state in dropdown
     themeOptions.forEach(opt => {
         opt.classList.remove('active');
         if (opt.dataset.theme === theme) {
@@ -510,16 +512,30 @@ const applyTheme = (theme) => {
     
     // Save to localStorage
     localStorage.setItem('wbseva-theme', theme);
+    
+    console.log(`🎨 Theme changed to: ${theme}`);
 };
 
-// Load saved theme
-const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
-applyTheme(savedTheme);
+// Load saved theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
+    applyTheme(savedTheme);
+});
 
 // Theme option click
 themeOptions.forEach(option => {
-    option.addEventListener('click', () => {
+    option.addEventListener('click', (e) => {
+        e.stopPropagation();
         const theme = option.dataset.theme;
+        applyTheme(theme);
+        themeDropdown.classList.remove('active');
+    });
+});
+
+// Also apply theme when clicking on the color swatch
+document.querySelectorAll('.theme-dropdown li').forEach(item => {
+    item.addEventListener('click', function() {
+        const theme = this.dataset.theme;
         applyTheme(theme);
         themeDropdown.classList.remove('active');
     });

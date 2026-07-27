@@ -43,10 +43,11 @@ body {
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, #6C3CE1, #06D6A0);
+    background: var(--primary-gradient);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 :root {
     /* Default Theme (Purple-Green) */
@@ -204,6 +205,7 @@ body {
 }
 
 .btn-login {
+    background: var(--primary-gradient);
     background: linear-gradient(135deg, #6C3CE1, #06D6A0);
     color: white;
     border: none;
@@ -416,6 +418,7 @@ body {
 }
 
 .search-btn {
+    background: var(--primary-gradient);
     background: linear-gradient(135deg, #6C3CE1, #06D6A0);
     color: white;
     border: none;
@@ -868,6 +871,7 @@ body {
    CHATBOT
    ============================================ */
 .chatbot-toggle {
+     background: var(--primary-gradient) ;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -1395,8 +1399,10 @@ body {
     }
 }
 /* ============================================
-   THEME SWITCHER
+   THEME SWITCHER - COMPLETE
    ============================================ */
+
+/* Theme Dropdown */
 .nav-theme-toggle {
     position: relative;
     list-style: none;
@@ -1435,9 +1441,9 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 8px;
-    min-width: 160px;
+    min-width: 180px;
     display: none;
-    z-index: 100;
+    z-index: 1000;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
@@ -1465,12 +1471,12 @@ body {
 }
 
 .theme-dropdown li:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
     color: var(--text-white);
 }
 
 .theme-dropdown li.active {
-    background: rgba(108, 60, 225, 0.15);
+    background: rgba(108, 60, 225, 0.2);
     color: var(--text-white);
 }
 
@@ -1505,4 +1511,88 @@ body {
 }
 .theme-color.teal {
     background: linear-gradient(135deg, #14B8A6, #06D6A0);
+}
+
+/* ============================================
+   THEME COLOR VARIABLES
+   ============================================ */
+
+/* Default Theme */
+:root {
+    --primary: #6C3CE1;
+    --primary-dark: #5A2FC4;
+    --primary-light: #8B5CF6;
+    --secondary: #06D6A0;
+    --primary-gradient: linear-gradient(135deg, #6C3CE1, #06D6A0);
+    --primary-gradient-hover: linear-gradient(135deg, #8B5CF6, #06D6A0);
+}
+
+/* Blue Theme */
+.theme-blue {
+    --primary: #3B82F6 !important;
+    --primary-dark: #2563EB !important;
+    --primary-light: #60A5FA !important;
+    --secondary: #06D6A0 !important;
+    --primary-gradient: linear-gradient(135deg, #3B82F6, #06D6A0) !important;
+    --primary-gradient-hover: linear-gradient(135deg, #60A5FA, #06D6A0) !important;
+}
+
+/* Green Theme */
+.theme-green {
+    --primary: #10B981 !important;
+    --primary-dark: #059669 !important;
+    --primary-light: #34D399 !important;
+    --secondary: #06D6A0 !important;
+    --primary-gradient: linear-gradient(135deg, #10B981, #34D399) !important;
+    --primary-gradient-hover: linear-gradient(135deg, #34D399, #06D6A0) !important;
+}
+
+/* Purple Theme */
+.theme-purple {
+    --primary: #8B5CF6 !important;
+    --primary-dark: #7C3AED !important;
+    --primary-light: #A78BFA !important;
+    --secondary: #6C3CE1 !important;
+    --primary-gradient: linear-gradient(135deg, #8B5CF6, #6C3CE1) !important;
+    --primary-gradient-hover: linear-gradient(135deg, #A78BFA, #8B5CF6) !important;
+}
+
+/* Orange Theme */
+.theme-orange {
+    --primary: #F59E0B !important;
+    --primary-dark: #D97706 !important;
+    --primary-light: #FBBF24 !important;
+    --secondary: #F97316 !important;
+    --primary-gradient: linear-gradient(135deg, #F59E0B, #F97316) !important;
+    --primary-gradient-hover: linear-gradient(135deg, #FBBF24, #F59E0B) !important;
+}
+
+/* Pink Theme */
+.theme-pink {
+    --primary: #EC4899 !important;
+    --primary-dark: #DB2777 !important;
+    --primary-light: #F472B6 !important;
+    --secondary: #8B5CF6 !important;
+    --primary-gradient: linear-gradient(135deg, #EC4899, #8B5CF6) !important;
+    --primary-gradient-hover: linear-gradient(135deg, #F472B6, #EC4899) !important;
+}
+
+/* Red Theme */
+.theme-red {
+    --primary: #EF4444 !important;
+    --primary-dark: #DC2626 !important;
+    --primary-light: #F87171 !important;
+    --secondary: #F59E0B !important;
+    --primary-gradient: linear-gradient(135deg, #EF4444, #F59E0B) !important;
+    --primary-gradient-hover: linear-gradient(135deg, #F87171, #EF4444) !important;
+}
+
+/* Teal Theme */
+.theme-teal {
+    --primary: #14B8A6 !important;
+    --primary-dark: #0D9488 !important;
+    --primary-light: #2DD4BF !important;
+    --secondary: #06D6A0 !important;
+    --primary-gradient: linear-gradient(135deg, #14B8A6, #06D6A0) !important;
+    --primary-gradient-hover: linear-gradient(135deg, #2DD4BF, #14B8A6) !important;
 }
