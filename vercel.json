@@ -1,14 +1,8 @@
 {
-  "functions": {
-    "api/chat.py": {
-      "runtime": "python3.9",
-      "maxDuration": 10
-    }
-  },
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/chat.py"
+      "src": "/chat.py",
+      "dest": "/chat.py"
     },
     {
       "src": "/script.js",
@@ -23,14 +17,8 @@
       "dest": "/wbmap.png"
     },
     {
-      "src": "/(.*)",
+      "src": "/index.html",
       "dest": "/index.html"
-    }
-  ],
-  "builds": [
-    {
-      "src": "api/chat.py",
-      "use": "@vercel/python"
     }
   ]
 }
