@@ -1,24 +1,33 @@
 {
+  "name": "wbseva-ai",
+  "version": 2,
+  "public": true,
+  "builds": [
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.js",
+      "use": "@vercel/static"
+    }
+  ],
   "routes": [
     {
-      "src": "/chat.py",
-      "dest": "/chat.py"
-    },
-    {
-      "src": "/script.js",
-      "dest": "/script.js"
-    },
-    {
-      "src": "/style.css",
-      "dest": "/style.css"
-    },
-    {
-      "src": "/wbmap.png",
-      "dest": "/wbmap.png"
-    },
-    {
-      "src": "/index.html",
+      "src": "/",
       "dest": "/index.html"
+    },
+    {
+      "src": "/scheme-details.html",
+      "dest": "/scheme-details.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
