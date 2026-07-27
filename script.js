@@ -237,38 +237,417 @@ const searchResults = document.getElementById('searchResults');
 const searchResultsList = document.getElementById('searchResultsList');
 const searchResultsClose = document.getElementById('searchResultsClose');
 
-// Scheme Database for Search
-const schemeDatabase = [
-    { title: 'West Bengal Student Scholarship', category: 'Education', link: 'https://www.wb.gov.in/scholarship', badge: 'Education' },
-    { title: 'Kanyashree Scheme', category: 'Education', link: 'https://www.wb.gov.in/kanyashree', badge: 'Education' },
-    { title: 'Sikshashree Scheme', category: 'Education', link: 'https://www.wb.gov.in/sikshashree', badge: 'Education' },
-    { title: 'Swasthya Sathi Scheme', category: 'Health', link: 'https://www.wb.gov.in/swasthya-sathi', badge: 'Health' },
-    { title: 'National Health Mission', category: 'Health', link: 'https://www.nhm.gov.in', badge: 'Health' },
-    { title: 'Arogya Sanjeevani', category: 'Health', link: 'https://www.wb.gov.in/arogya', badge: 'Health' },
-    { title: 'Jai Jawahar Awas Yojana', category: 'Housing', link: 'https://www.wb.gov.in/housing', badge: 'Housing' },
-    { title: 'Pradhan Mantri Awas Yojana', category: 'Housing', link: 'https://pmaymis.gov.in', badge: 'Housing' },
-    { title: 'State Housing Scheme', category: 'Housing', link: 'https://www.wb.gov.in/state-housing', badge: 'Housing' },
-    { title: 'Credit Link Capital Subsidy', category: 'Financial', link: 'https://www.wb.gov.in/clcss', badge: 'Financial' },
-    { title: 'Mudra Yojana', category: 'Financial', link: 'https://www.mudra.org.in', badge: 'Financial' },
-    { title: 'Stand-Up India Scheme', category: 'Financial', link: 'https://www.standupmitra.in', badge: 'Financial' },
-    { title: 'Employment Exchange', category: 'Employment', link: 'https://www.wb.gov.in/employment', badge: 'Employment' },
-    { title: 'Skill India Mission', category: 'Employment', link: 'https://www.skillindia.gov.in', badge: 'Employment' },
-    { title: 'PM Kisan Samman Nidhi', category: 'Agriculture', link: 'https://pmkisan.gov.in', badge: 'Agriculture' },
-    { title: 'Soil Health Card Scheme', category: 'Agriculture', link: 'https://soilhealth.dac.gov.in', badge: 'Agriculture' },
-    { title: 'Crop Insurance Scheme', category: 'Agriculture', link: 'https://pmfby.gov.in', badge: 'Agriculture' },
-    { title: 'Legal Aid Scheme', category: 'Legal', link: 'https://www.wb.gov.in/legal-aid', badge: 'Legal' },
-    { title: 'Consumer Protection', category: 'Legal', link: 'https://consumeraffairs.nic.in', badge: 'Legal' },
-    { title: 'Mid-Day Meal Scheme', category: 'Food & Nutrition', link: 'https://mdm.gov.in', badge: 'Food' },
-    { title: 'Public Distribution System', category: 'Food & Nutrition', link: 'https://www.wb.gov.in/pds', badge: 'Food' },
-    { title: 'Pradhan Mantri Kaushal Vikas Yojana', category: 'Skill Development', link: 'https://pmkvyofficial.org', badge: 'Skill' },
-    { title: 'Skill Development Mission', category: 'Skill Development', link: 'https://www.wb.gov.in/skill', badge: 'Skill' },
-    { title: 'Mahatma Gandhi NREGA', category: 'Rural Development', link: 'https://nrega.nic.in', badge: 'Rural' },
-    { title: 'Pradhan Mantri Gram Sadak Yojana', category: 'Rural Development', link: 'https://pmgsy.nic.in', badge: 'Rural' },
-    { title: 'Digital India Program', category: 'Digital India', link: 'https://digitalindia.gov.in', badge: 'Digital' },
-    { title: 'Common Service Centres', category: 'Digital India', link: 'https://www.csc.gov.in', badge: 'Digital' },
-    { title: 'Ujjwala Yojana', category: 'Energy', link: 'https://www.pmujjwala.gov.in', badge: 'Energy' },
-    { title: 'Solar Rooftop Scheme', category: 'Energy', link: 'https://www.wb.gov.in/solar', badge: 'Energy' },
+// ============================================
+// EDUCATION SCHEMES DATA - WEST BENGAL
+// ============================================
+const educationSchemes = [
+    {
+        id: 'edu-1',
+        title: 'Swami Vivekananda Merit-cum-Means (SVMCM) Scholarship',
+        category: 'Merit-cum-Means',
+        amount: '₹1,000 - ₹8,000/month',
+        eligibility: 'Permanent WB resident, 60% marks, income ≤ ₹2.5 Lakh/year',
+        description: 'Flagship scholarship for meritorious students from economically weaker families. Covers HS, Diploma, UG, PG, M.Phil., Ph.D.',
+        applyLink: 'https://svmcm.wbhed.gov.in',
+        icon: 'fa-graduation-cap',
+        color: '#6C3CE1',
+        level: 'State',
+        benefits: [
+            'Monthly stipend up to ₹8,000',
+            'Covers all levels of education',
+            'Renewable based on performance'
+        ]
+    },
+    {
+        id: 'edu-2',
+        title: 'Kanyashree Prakalpa Scheme (K1 & K2)',
+        category: 'Girl Child Empowerment',
+        amount: '₹1,000/year + ₹25,000 one-time',
+        eligibility: 'Unmarried girls, Class 8-12, income ≤ ₹1.2 Lakh/year',
+        description: 'Flagship social welfare initiative to empower girl students and prevent child marriage. K1 provides annual scholarship, K2 gives one-time grant.',
+        applyLink: 'https://wbkanyashree.gov.in',
+        icon: 'fa-venus',
+        color: '#EC4899',
+        level: 'State',
+        benefits: [
+            '₹1,000 annual scholarship (K1)',
+            '₹25,000 one-time grant (K2)',
+            'Prevents child marriage'
+        ]
+    },
+    {
+        id: 'edu-3',
+        title: 'Student Credit Card Scheme',
+        category: 'Education Loan',
+        amount: 'Up to ₹10 Lakh',
+        eligibility: 'Higher secondary to professional courses',
+        description: 'Education loans up to ₹10 lakh at 4% simple interest with entire interest subsidy borne by the state government.',
+        applyLink: 'https://www.wb.gov.in',
+        icon: 'fa-credit-card',
+        color: '#F59E0B',
+        level: 'State',
+        benefits: [
+            '4% simple interest rate',
+            'Full interest subsidy by state',
+            'Repayment up to 15 years'
+        ]
+    },
+    {
+        id: 'edu-4',
+        title: 'Aikyashree Scholarship (WBMDFC)',
+        category: 'Minority Students',
+        amount: 'Up to ₹60,000/year',
+        eligibility: 'Minority students, 50% marks, income ≤ ₹2 Lakh/year',
+        description: 'Pre-matric, post-matric, and merit-cum-means scholarships for minority students in West Bengal.',
+        applyLink: 'https://www.wbmdfcscholarship.gov.in',
+        icon: 'fa-hand-holding-heart',
+        color: '#10B981',
+        level: 'State',
+        benefits: [
+            'Pre-matric up to ₹11,000/year',
+            'Post-matric up to ₹16,500/year',
+            'Merit-cum-Means up to ₹33,000/year'
+        ]
+    },
+    {
+        id: 'edu-5',
+        title: 'Nabanna Scholarship (CM Relief Fund)',
+        category: 'Financial Aid',
+        amount: '₹10,000',
+        eligibility: 'Students in need of financial assistance',
+        description: 'One-time financial assistance of ₹10,000 from Chief Minister\'s Relief Fund for students.',
+        applyLink: 'https://cmrf.wb.gov.in',
+        icon: 'fa-hand-holding-usd',
+        color: '#F472B6',
+        level: 'State',
+        benefits: [
+            '₹10,000 one-time assistance',
+            'Direct bank transfer'
+        ]
+    },
+    {
+        id: 'edu-6',
+        title: 'PM-SHRI Scheme',
+        category: 'Infrastructure',
+        amount: 'Infrastructure Upgrades',
+        eligibility: 'Government schools in West Bengal',
+        description: 'Upgrades school infrastructure, provides gas-based mid-day meals, solar panels, sanitary napkin vending machines in girls\' schools.',
+        applyLink: 'https://www.pmshri.gov.in',
+        icon: 'fa-school',
+        color: '#3B82F6',
+        level: 'Central',
+        benefits: [
+            'Infrastructure upgrades',
+            'Gas-based mid-day meals',
+            'Solar panels installation'
+        ]
+    },
+    {
+        id: 'edu-7',
+        title: 'Annapurna Scheme - Female Student Support',
+        category: 'Women Empowerment',
+        amount: '₹50,000',
+        eligibility: 'Unmarried female students in higher education',
+        description: 'One-time financial assistance of ₹50,000 to unmarried female students to reduce dropout rates in higher education.',
+        applyLink: 'https://www.wb.gov.in',
+        icon: 'fa-female',
+        color: '#EC4899',
+        level: 'State',
+        benefits: [
+            '₹50,000 one-time assistance',
+            'Reduces dropout rates'
+        ]
+    },
+    {
+        id: 'edu-8',
+        title: 'JBNSTS Senior Scholarship Program',
+        category: 'Science & Technology',
+        amount: 'Tuition Support',
+        eligibility: 'UG students in Basic Sciences, Engineering, Medicine',
+        description: 'Since 1960, supports undergraduate students in Basic Sciences, Engineering, and Medicine from West Bengal.',
+        applyLink: 'https://www.jbnsts.ac.in',
+        icon: 'fa-flask',
+        color: '#8B5CF6',
+        level: 'State',
+        benefits: [
+            'Tuition support',
+            'Multi-phased test selection'
+        ]
+    },
+    {
+        id: 'edu-9',
+        title: 'JBNSTS Junior Scholarship (Bigyani Kanya Medha Britti)',
+        category: 'Science & Technology',
+        amount: 'Tuition Support',
+        eligibility: 'Higher secondary science students',
+        description: 'New initiative to identify and nurture science talent at the higher secondary level in West Bengal.',
+        applyLink: 'https://www.jbnsts.ac.in',
+        icon: 'fa-microscope',
+        color: '#8B5CF6',
+        level: 'State',
+        benefits: [
+            'Identify science talent',
+            'Nurture at HS level'
+        ]
+    },
+    {
+        id: 'edu-10',
+        title: 'Post-Matric Stipend (Talent Support Programme)',
+        category: 'Stipend',
+        amount: '₹2,550 - ₹4,900/year',
+        eligibility: 'Students with <50% marks, income ≤ ₹2 Lakh/year',
+        description: 'For students with less than 50% marks but from economically weaker backgrounds.',
+        applyLink: 'https://www.wb.gov.in',
+        icon: 'fa-trophy',
+        color: '#06D6A0',
+        level: 'State',
+        benefits: [
+            '₹2,550 - ₹4,900/year',
+            'Supports weaker sections'
+        ]
+    },
+    {
+        id: 'edu-11',
+        title: 'PM POSHAN (Mid-Day Meal) Enhancement',
+        category: 'Nutrition',
+        amount: '₹10/student/day',
+        eligibility: 'Primary school students',
+        description: 'Primary-level cooking cost increased from ₹6.78 to ₹10 per student per day effective August 1, 2026.',
+        applyLink: 'https://www.poshan.gov.in',
+        icon: 'fa-utensils',
+        color: '#F59E0B',
+        level: 'Central',
+        benefits: [
+            '₹10/student/day cooking cost',
+            'Enhanced nutritional support'
+        ]
+    },
+    {
+        id: 'edu-12',
+        title: 'Infrastructure & Facility Upgrades',
+        category: 'Infrastructure',
+        amount: 'Facility Upgrades',
+        eligibility: 'All government schools',
+        description: 'Comprehensive school infrastructure improvements including ceiling fans, clean toilets, arsenic-free drinking water, solar panels.',
+        applyLink: 'https://www.wb.gov.in',
+        icon: 'fa-building',
+        color: '#14B8A6',
+        level: 'State',
+        benefits: [
+            'Ceiling fans installation',
+            'Clean toilets & arsenic-free water',
+            'Solar panels & water purifiers'
+        ]
+    }
 ];
+
+// ============================================
+// EDUCATION SCHEMES DISPLAY FUNCTIONS
+// ============================================
+
+// Show education schemes section
+function showEducationSchemes() {
+    const mainCategories = document.querySelector('.categories');
+    const moreCategories = document.querySelector('.more-categories');
+    const schemesDisplay = document.getElementById('educationSchemes');
+    const schemesGrid = document.getElementById('educationSchemesGrid');
+    const detailView = document.getElementById('schemeDetailView');
+    
+    // Hide categories
+    if (mainCategories) mainCategories.style.display = 'none';
+    if (moreCategories) moreCategories.style.display = 'none';
+    
+    // Show schemes
+    if (schemesDisplay) {
+        schemesDisplay.style.display = 'block';
+        schemesDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // Hide detail view if visible
+    if (detailView) detailView.style.display = 'none';
+    
+    // Render schemes
+    renderEducationSchemes();
+}
+
+// Render education schemes grid
+function renderEducationSchemes() {
+    const grid = document.getElementById('educationSchemesGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = educationSchemes.map((scheme, index) => `
+        <div class="scheme-card-item" onclick="showSchemeDetail('${scheme.id}')" style="animation-delay: ${index * 0.1}s">
+            <div class="scheme-card-icon" style="background: ${scheme.color}20; color: ${scheme.color}">
+                <i class="fas ${scheme.icon}"></i>
+            </div>
+            <div class="scheme-card-content">
+                <h3>${scheme.title}</h3>
+                <div class="scheme-card-meta">
+                    <span class="scheme-category">${scheme.category}</span>
+                    <span class="scheme-amount">${scheme.amount}</span>
+                </div>
+                <p>${scheme.description.substring(0, 100)}${scheme.description.length > 100 ? '...' : ''}</p>
+                <div class="scheme-card-footer">
+                    <span class="scheme-eligibility">👤 ${scheme.eligibility}</span>
+                    <button class="view-detail-btn" onclick="event.stopPropagation(); showSchemeDetail('${scheme.id}')">
+                        View Details →
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Show scheme detail
+function showSchemeDetail(schemeId) {
+    const scheme = educationSchemes.find(s => s.id === schemeId);
+    if (!scheme) return;
+    
+    const grid = document.getElementById('educationSchemesGrid');
+    const detailView = document.getElementById('schemeDetailView');
+    
+    if (grid) grid.style.display = 'none';
+    if (detailView) {
+        detailView.style.display = 'block';
+        detailView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        detailView.innerHTML = `
+            <div class="scheme-detail-card">
+                <button class="close-detail-btn" onclick="closeSchemeDetail()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="scheme-detail-header">
+                    <div class="scheme-detail-icon" style="background: ${scheme.color}20; color: ${scheme.color}">
+                        <i class="fas ${scheme.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="scheme-detail-badge" style="background: ${scheme.color}20; color: ${scheme.color}">
+                            ${scheme.level}
+                        </span>
+                        <h2>${scheme.title}</h2>
+                        <div class="scheme-detail-meta">
+                            <span>📂 ${scheme.category}</span>
+                            <span>💰 ${scheme.amount}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scheme-detail-body">
+                    <div class="scheme-detail-section">
+                        <h4>📋 Description</h4>
+                        <p>${scheme.description}</p>
+                    </div>
+                    
+                    <div class="scheme-detail-section">
+                        <h4>✅ Eligibility</h4>
+                        <p>${scheme.eligibility}</p>
+                    </div>
+                    
+                    <div class="scheme-detail-section">
+                        <h4>🎯 Benefits</h4>
+                        <ul>
+                            ${scheme.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="scheme-detail-actions">
+                        <a href="${scheme.applyLink}" target="_blank" class="apply-now-btn">
+                            <i class="fas fa-external-link-alt"></i> Apply Now
+                        </a>
+                        <button class="save-scheme-btn" onclick="saveScheme('${scheme.id}')">
+                            <i class="fas fa-bookmark"></i> Save
+                        </button>
+                        <button class="share-scheme-btn" onclick="shareScheme('${scheme.id}')">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Close scheme detail
+function closeSchemeDetail() {
+    const grid = document.getElementById('educationSchemesGrid');
+    const detailView = document.getElementById('schemeDetailView');
+    
+    if (grid) grid.style.display = 'grid';
+    if (detailView) detailView.style.display = 'none';
+}
+
+// Show categories (back button)
+function showCategories() {
+    const mainCategories = document.querySelector('.categories');
+    const moreCategories = document.querySelector('.more-categories');
+    const schemesDisplay = document.getElementById('educationSchemes');
+    const detailView = document.getElementById('schemeDetailView');
+    
+    if (mainCategories) mainCategories.style.display = 'block';
+    if (moreCategories) moreCategories.style.display = 'block';
+    if (schemesDisplay) schemesDisplay.style.display = 'none';
+    if (detailView) detailView.style.display = 'none';
+}
+
+// Save scheme to localStorage
+function saveScheme(schemeId) {
+    const scheme = educationSchemes.find(s => s.id === schemeId);
+    if (!scheme) return;
+    
+    const saved = JSON.parse(localStorage.getItem('savedEducationSchemes') || '[]');
+    if (!saved.includes(schemeId)) {
+        saved.push(schemeId);
+        localStorage.setItem('savedEducationSchemes', JSON.stringify(saved));
+        alert(`✅ "${scheme.title}" saved successfully!`);
+    } else {
+        alert(`⚠️ "${scheme.title}" is already saved.`);
+    }
+}
+
+// Share scheme
+function shareScheme(schemeId) {
+    const scheme = educationSchemes.find(s => s.id === schemeId);
+    if (!scheme) return;
+    
+    const shareText = `📚 ${scheme.title}\n💰 ${scheme.amount}\n✅ ${scheme.eligibility}\n🔗 ${scheme.applyLink}`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: scheme.title,
+            text: shareText,
+            url: scheme.applyLink
+        }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(shareText).then(() => {
+            alert('✅ Scheme details copied to clipboard!');
+        }).catch(() => {
+            prompt('Copy this:', shareText);
+        });
+    }
+}
+
+// ============================================
+// UPDATE CATEGORY CLICK HANDLER
+// ============================================
+
+// Modify the category card click to show education schemes
+// Find this in your existing code and update the education card click
+document.addEventListener('DOMContentLoaded', function() {
+    // Update education category click
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const categoryName = this.querySelector('h3')?.textContent || '';
+            if (categoryName === 'Education') {
+                showEducationSchemes();
+            } else {
+                // For other categories, open in new window
+                const cat = this.getAttribute('data-category') || categoryName.toLowerCase();
+                window.open(`scheme-details.html?category=${cat}`, '_blank');
+            }
+        });
+    });
+});
 
 if (searchInput && searchBtn) {
     const performSearch = () => {
