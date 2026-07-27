@@ -164,37 +164,39 @@ if (themeToggle) {
     });
 }
 
-document.addEventListener('click', (e) => {
-    if (themeDropdown && !themeDropdown.contains(e.target) && e.target !== themeToggle) {
-        themeDropdown.classList.remove('active');
+// In scheme-details.js
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const schemeId = urlParams.get('id');
+    const category = urlParams.get('category');
+    
+    if (schemeId) {
+        loadSchemeDetails(schemeId);
+    } else if (category) {
+        loadSchemesByCategory(category);
+    } else {
+        // Show all schemes or redirect
+        window.location.href = 'index.html';
     }
 });
 
-const applyTheme = (theme) => {
-    const root = document.documentElement;
-    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
-    if (theme !== 'default') {
-        root.classList.add(`theme-${theme}`);
+function loadSchemesByCategory(category) {
+    const schemes = getSchemesByCategory(category);
+    const container = document.querySelector('.scheme-details-container');
+    
+    if (container) {
+        container.innerHTML = `
+            <h1 style="margin-bottom:20px;">${category.charAt(0).toUpperCase() + category.slice(1)} Schemes</h1>
+            <div class="schemes-grid">
+                ${schemes.map(scheme => `
+                    <div class="scheme-card" onclick="window.location.href='scheme-details.html?id=${scheme.id}'">
+                        <h3>${scheme.title}</h3>
+                        <p>${scheme.overview.substring(0, 100)}...</p>
+                        <span class="scheme-subsidy">💰 ${scheme.subsidy}</span>
+                        <button class="view-details-btn">View Details →</button>
+                    </div>
+                `).join('')}
+            </div>
+        `;
     }
-    themeOptions.forEach(opt => {
-        opt.classList.remove('active');
-        if (opt.dataset.theme === theme) {
-            opt.classList.add('active');
-        }
-    });
-    localStorage.setItem('wbseva-theme', theme);
-};
-
-const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
-applyTheme(savedTheme);
-
-themeOptions.forEach(option => {
-    option.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const theme = this.dataset.theme;
-        applyTheme(theme);
-        themeDropdown.classList.remove('active');
-    });
-});
-
-console.log('✅ Scheme details page loaded successfully!');
+}
