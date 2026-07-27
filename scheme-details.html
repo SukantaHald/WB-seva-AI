@@ -6,7 +6,416 @@
     <title>Scheme Details - WBseva AI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="scheme-details.css" />
+    <style>
+        /* Additional styles for scheme details */
+        .scheme-details-section {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+
+        .scheme-details-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .scheme-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .scheme-breadcrumb a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .scheme-breadcrumb a:hover {
+            color: var(--text-white);
+        }
+
+        .scheme-details-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .scheme-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .scheme-badge {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .badge-state {
+            background: rgba(108, 60, 225, 0.15);
+            color: var(--primary-light);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-level {
+            background: rgba(6, 214, 160, 0.15);
+            color: #06D6A0;
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .scheme-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .scheme-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .scheme-tags span {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            border: 1px solid var(--border-color);
+        }
+
+        .scheme-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            font-family: inherit;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-white);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-light);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .tab-pane h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: var(--text-white);
+        }
+
+        .tab-pane p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tab-pane ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tab-pane ul li {
+            padding: 10px 0;
+            color: var(--text-gray);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tab-pane ul li::before {
+            content: '✓';
+            color: #06D6A0;
+            font-weight: 700;
+        }
+
+        .subsidy-box {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(6, 214, 160, 0.1);
+            border: 1px solid rgba(6, 214, 160, 0.2);
+            border-radius: 12px;
+            color: var(--text-white);
+        }
+
+        .subsidy-box strong {
+            color: #06D6A0;
+        }
+
+        .apply-section {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(108, 60, 225, 0.4);
+        }
+
+        .scheme-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+        }
+
+        .action-btn.save-btn:hover {
+            border-color: #6C3CE1;
+            color: #6C3CE1;
+        }
+
+        .action-btn.pdf-btn:hover {
+            border-color: #EF4444;
+            color: #EF4444;
+        }
+
+        .action-btn.share-btn:hover {
+            border-color: #3B82F6;
+            color: #3B82F6;
+        }
+
+        .related-schemes {
+            margin-top: 40px;
+        }
+
+        .related-schemes h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .related-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .related-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .related-card p {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .error-container i {
+            font-size: 3rem;
+            color: #FF6B6B;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .error-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .error-container p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .error-container .go-home-btn {
+            padding: 12px 30px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .error-container .go-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.4);
+        }
+
+        /* Scheme Grid */
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            padding: 20px 0;
+        }
+
+        .scheme-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(108, 60, 225, 0.15);
+        }
+
+        .scheme-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 8px;
+        }
+
+        .scheme-card p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .scheme-card .scheme-subsidy {
+            display: inline-block;
+            background: rgba(6, 214, 160, 0.15);
+            color: #06D6A0;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .view-details-btn {
+            background: linear-gradient(135deg, #06D6A0, #10B981);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        .view-details-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(6, 214, 160, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .scheme-details-card {
+                padding: 20px;
+            }
+            .scheme-header h1 {
+                font-size: 1.5rem;
+            }
+            .tab-btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+            .scheme-actions {
+                justify-content: center;
+            }
+            .schemes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -20,9 +429,9 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#schemes">Schemes</a></li>
-                <li><a href="index.html#certificates">Certificates</a></li>
-                <li><a href="index.html#jobs">Jobs</a></li>
+                <li><a href="index.html#how-to-apply">How to Apply</a></li>
                 <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="btn-login"><i class="fas fa-user"></i> <span>Login</span></button>
@@ -33,118 +442,16 @@
         </div>
     </nav>
 
-    <!-- SCHEME DETAILS -->
+    <!-- SCHEME DETAILS SECTION -->
     <section class="scheme-details-section" id="schemeDetails">
         <div class="container">
-            <div class="scheme-details-container">
-                <!-- In scheme-details.html -->
-                <div class="scheme-breadcrumb">
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <span><i class="fas fa-chevron-right"></i></span>
-                <a href="index.html#schemes">Schemes</a>
-                <span><i class="fas fa-chevron-right"></i></span>
-                <span id="schemeCategory">Category</span>
-                <span><i class="fas fa-chevron-right"></i></span>
-                <span id="schemeTitle">Scheme Name</span>
-                </div>
-
-                <div class="scheme-details-card">
-                    <div class="scheme-header">
-                        <div class="scheme-badge" id="schemeBadge">
-                            <span class="badge-state" id="schemeState">West Bengal</span>
-                            <span class="badge-level" id="schemeLevel">State</span>
-                        </div>
-                        <h1 id="schemeName">Scheme Name</h1>
-                        <div class="scheme-tags" id="schemeTags">
-                            <!-- Tags will be added here -->
-                        </div>
-                    </div>
-
-                    <div class="scheme-content">
-                        <div class="scheme-tabs">
-                            <button class="tab-btn active" data-tab="overview">Overview</button>
-                            <button class="tab-btn" data-tab="eligibility">Eligibility</button>
-                            <button class="tab-btn" data-tab="benefits">Benefits</button>
-                            <button class="tab-btn" data-tab="documents">Documents</button>
-                            <button class="tab-btn" data-tab="apply">Apply</button>
-                            <button class="tab-btn" data-tab="faq">FAQ</button>
-                        </div>
-
-                        <div class="scheme-tab-content">
-                            <div class="tab-pane active" id="tab-overview">
-                                <h3>Overview</h3>
-                                <p id="schemeOverview">Loading scheme details...</p>
-                            </div>
-                            <div class="tab-pane" id="tab-eligibility">
-                                <h3>Eligibility Criteria</h3>
-                                <ul id="schemeEligibility"></ul>
-                            </div>
-                            <div class="tab-pane" id="tab-benefits">
-                                <h3>Benefits & Subsidies</h3>
-                                <ul id="schemeBenefits"></ul>
-                                <div class="subsidy-box">
-                                    <span>💰 Subsidy: </span>
-                                    <strong id="schemeSubsidy">-</strong>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab-documents">
-                                <h3>Required Documents</h3>
-                                <ul id="schemeDocuments"></ul>
-                            </div>
-                            <div class="tab-pane" id="tab-apply">
-                                <h3>How to Apply</h3>
-                                <div class="apply-section">
-                                    <p>Click the button below to apply for this scheme through the official portal.</p>
-                                    <a href="#" id="schemeApplyLink" target="_blank" class="apply-btn">
-                                        <i class="fas fa-external-link-alt"></i> Apply Now
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab-faq">
-                                <h3>Frequently Asked Questions</h3>
-                                <div class="faq-list">
-                                    <div class="faq-item">
-                                        <div class="faq-question">How long does it take to get the subsidy?</div>
-                                        <div class="faq-answer">Usually 30-45 days after application submission and verification.</div>
-                                    </div>
-                                    <div class="faq-item">
-                                        <div class="faq-question">Can I apply online?</div>
-                                        <div class="faq-answer">Yes, all schemes can be applied online through the official portal.</div>
-                                    </div>
-                                    <div class="faq-item">
-                                        <div class="faq-question">What documents are required for verification?</div>
-                                        <div class="faq-answer">All documents mentioned in the documents section are required for verification.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="scheme-actions">
-                        <button class="action-btn save-btn" onclick="saveScheme()">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
-                        <button class="action-btn pdf-btn" onclick="downloadPDF()">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </button>
-                        <button class="action-btn share-btn" onclick="shareScheme()">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Related Schemes -->
-                <div class="related-schemes">
-                    <h3>Related Schemes</h3>
-                    <div class="related-grid" id="relatedSchemes">
-                        <!-- Related schemes will be loaded here -->
-                    </div>
-                </div>
+            <div class="scheme-details-container" id="schemeDetailsContainer">
+                <!-- Content will be loaded here -->
             </div>
         </div>
     </section>
 
-    <!-- CHATBOT (Entertainment only) -->
+    <!-- CHATBOT -->
     <div class="chatbot-toggle" id="chatbotToggle">
         <i class="fas fa-robot"></i>
         <span class="chat-notification">💬</span>
@@ -201,22 +508,24 @@
                 <div class="footer-links">
                     <div>
                         <h4>Quick Links</h4>
-                        <a href="#">About Us</a>
-                        <a href="#">Contact</a>
-                        <a href="#">Privacy Policy</a>
+                        <a href="index.html">Home</a>
+                        <a href="index.html#schemes">Schemes</a>
+                        <a href="index.html#how-to-apply">How to Apply</a>
+                        <a href="index.html#about">About</a>
                     </div>
                     <div>
                         <h4>Schemes</h4>
-                        <a href="#">Education</a>
-                        <a href="#">Health</a>
-                        <a href="#">Housing</a>
-                        <a href="#">Financial</a>
+                        <a href="index.html#schemes">Education</a>
+                        <a href="index.html#schemes">Health</a>
+                        <a href="index.html#schemes">Housing</a>
+                        <a href="index.html#schemes">Financial</a>
                     </div>
                     <div>
                         <h4>Connect</h4>
                         <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
                         <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
                         <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
                     </div>
                 </div>
             </div>
@@ -226,8 +535,732 @@
         </div>
     </footer>
 
-    <script src="schemes-data.js"></script>
-    <script src="scheme-details.js"></script>
-    <script src="chatbot.js"></script>
+    <script>
+    // ============================================
+    // COMPLETE SCHEME DETAILS JAVASCRIPT
+    // ============================================
+
+    // ============================================
+    // 1. EDUCATION SCHEMES DATA
+    // ============================================
+    const educationSchemes = [
+        {
+            id: 'edu-1',
+            title: 'Swami Vivekananda Merit-cum-Means (SVMCM) Scholarship',
+            category: 'Education',
+            amount: '₹1,000 - ₹8,000/month',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Permanent WB resident, 60% marks, income ≤ ₹2.5 Lakh/year',
+            description: 'Flagship scholarship for meritorious students from economically weaker families. Covers HS, Diploma, UG, PG, M.Phil., Ph.D.',
+            applyLink: 'https://svmcm.wbhed.gov.in',
+            tags: ['Scholarship', 'Merit', 'Financial Aid'],
+            benefits: [
+                'Monthly stipend up to ₹8,000',
+                'Covers all levels of education',
+                'Renewable based on performance'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Income Certificate',
+                'Previous Year Marksheet',
+                'Bank Account Details',
+                'Residence Certificate'
+            ],
+            color: '#6C3CE1'
+        },
+        {
+            id: 'edu-2',
+            title: 'Kanyashree Prakalpa Scheme (K1 & K2)',
+            category: 'Education',
+            amount: '₹1,000/year + ₹25,000 one-time',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Unmarried girls, Class 8-12, income ≤ ₹1.2 Lakh/year',
+            description: 'Flagship social welfare initiative to empower girl students and prevent child marriage. K1 provides annual scholarship, K2 gives one-time grant.',
+            applyLink: 'https://wbkanyashree.gov.in',
+            tags: ['Girl Child', 'Empowerment', 'Scholarship'],
+            benefits: [
+                '₹1,000 annual scholarship (K1)',
+                '₹25,000 one-time grant (K2)',
+                'Prevents child marriage'
+            ],
+            documents: [
+                'Birth Certificate',
+                'Aadhaar Card',
+                'School/College ID',
+                'Bank Account Details',
+                'Income Certificate'
+            ],
+            color: '#EC4899'
+        },
+        {
+            id: 'edu-3',
+            title: 'Student Credit Card Scheme',
+            category: 'Education',
+            amount: 'Up to ₹10 Lakh',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Higher secondary to professional courses',
+            description: 'Education loans up to ₹10 lakh at 4% simple interest with entire interest subsidy borne by the state government.',
+            applyLink: 'https://www.wb.gov.in',
+            tags: ['Loan', 'Education', 'Financial'],
+            benefits: [
+                '4% simple interest rate',
+                'Full interest subsidy by state',
+                'Repayment up to 15 years'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Admission Letter',
+                'Fee Structure',
+                'Bank Account Details',
+                'Income Certificate'
+            ],
+            color: '#F59E0B'
+        },
+        {
+            id: 'edu-4',
+            title: 'Aikyashree Scholarship (WBMDFC)',
+            category: 'Education',
+            amount: 'Up to ₹60,000/year',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Minority students, 50% marks, income ≤ ₹2 Lakh/year',
+            description: 'Pre-matric, post-matric, and merit-cum-means scholarships for minority students in West Bengal.',
+            applyLink: 'https://www.wbmdfcscholarship.gov.in',
+            tags: ['Minority', 'Scholarship', 'Financial Aid'],
+            benefits: [
+                'Pre-matric up to ₹11,000/year',
+                'Post-matric up to ₹16,500/year',
+                'Merit-cum-Means up to ₹33,000/year'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Minority Certificate',
+                'Income Certificate',
+                'Bank Account Details',
+                'Previous Marksheet'
+            ],
+            color: '#10B981'
+        },
+        {
+            id: 'edu-5',
+            title: 'Nabanna Scholarship (CM Relief Fund)',
+            category: 'Education',
+            amount: '₹10,000',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Students in need of financial assistance',
+            description: 'One-time financial assistance of ₹10,000 from Chief Minister\'s Relief Fund for students.',
+            applyLink: 'https://cmrf.wb.gov.in',
+            tags: ['Financial Aid', 'Emergency', 'Support'],
+            benefits: [
+                '₹10,000 one-time assistance',
+                'Direct bank transfer'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Income Certificate',
+                'Bank Account Details',
+                'Application Form'
+            ],
+            color: '#F472B6'
+        },
+        {
+            id: 'edu-6',
+            title: 'PM-SHRI Scheme',
+            category: 'Education',
+            amount: 'Infrastructure Upgrades',
+            state: 'West Bengal',
+            level: 'Central',
+            eligibility: 'Government schools in West Bengal',
+            description: 'Upgrades school infrastructure, provides gas-based mid-day meals, solar panels, sanitary napkin vending machines in girls\' schools.',
+            applyLink: 'https://www.pmshri.gov.in',
+            tags: ['Infrastructure', 'School', 'Development'],
+            benefits: [
+                'Infrastructure upgrades',
+                'Gas-based mid-day meals',
+                'Solar panels installation'
+            ],
+            documents: [
+                'School Registration',
+                'Aadhaar Card',
+                'School ID'
+            ],
+            color: '#3B82F6'
+        },
+        {
+            id: 'edu-7',
+            title: 'Annapurna Scheme - Female Student Support',
+            category: 'Education',
+            amount: '₹50,000',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Unmarried female students in higher education',
+            description: 'One-time financial assistance of ₹50,000 to unmarried female students to reduce dropout rates in higher education.',
+            applyLink: 'https://www.wb.gov.in',
+            tags: ['Women', 'Empowerment', 'Financial Aid'],
+            benefits: [
+                '₹50,000 one-time assistance',
+                'Reduces dropout rates'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Income Certificate',
+                'Bank Account Details',
+                'College ID'
+            ],
+            color: '#EC4899'
+        },
+        {
+            id: 'edu-8',
+            title: 'JBNSTS Senior Scholarship Program',
+            category: 'Education',
+            amount: 'Tuition Support',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'UG students in Basic Sciences, Engineering, Medicine',
+            description: 'Since 1960, supports undergraduate students in Basic Sciences, Engineering, and Medicine from West Bengal.',
+            applyLink: 'https://www.jbnsts.ac.in',
+            tags: ['Science', 'Technology', 'Scholarship'],
+            benefits: [
+                'Tuition support',
+                'Multi-phased test selection'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Previous Marksheet',
+                'College ID',
+                'Bank Account Details'
+            ],
+            color: '#8B5CF6'
+        },
+        {
+            id: 'edu-9',
+            title: 'JBNSTS Junior Scholarship (Bigyani Kanya Medha Britti)',
+            category: 'Education',
+            amount: 'Tuition Support',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Higher secondary science students',
+            description: 'New initiative to identify and nurture science talent at the higher secondary level in West Bengal.',
+            applyLink: 'https://www.jbnsts.ac.in',
+            tags: ['Science', 'Talent', 'Scholarship'],
+            benefits: [
+                'Identify science talent',
+                'Nurture at HS level'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Previous Marksheet',
+                'School ID',
+                'Bank Account Details'
+            ],
+            color: '#8B5CF6'
+        },
+        {
+            id: 'edu-10',
+            title: 'Post-Matric Stipend (Talent Support Programme)',
+            category: 'Education',
+            amount: '₹2,550 - ₹4,900/year',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'Students with <50% marks, income ≤ ₹2 Lakh/year',
+            description: 'For students with less than 50% marks but from economically weaker backgrounds.',
+            applyLink: 'https://www.wb.gov.in',
+            tags: ['Stipend', 'Support', 'Financial Aid'],
+            benefits: [
+                '₹2,550 - ₹4,900/year',
+                'Supports weaker sections'
+            ],
+            documents: [
+                'Aadhaar Card',
+                'Income Certificate',
+                'Previous Marksheet',
+                'Bank Account Details'
+            ],
+            color: '#06D6A0'
+        },
+        {
+            id: 'edu-11',
+            title: 'PM POSHAN (Mid-Day Meal) Enhancement',
+            category: 'Education',
+            amount: '₹10/student/day',
+            state: 'West Bengal',
+            level: 'Central',
+            eligibility: 'Primary school students',
+            description: 'Primary-level cooking cost increased from ₹6.78 to ₹10 per student per day effective August 1, 2026.',
+            applyLink: 'https://www.poshan.gov.in',
+            tags: ['Nutrition', 'School', 'Health'],
+            benefits: [
+                '₹10/student/day cooking cost',
+                'Enhanced nutritional support'
+            ],
+            documents: [
+                'School Registration',
+                'Student List'
+            ],
+            color: '#F59E0B'
+        },
+        {
+            id: 'edu-12',
+            title: 'Infrastructure & Facility Upgrades',
+            category: 'Education',
+            amount: 'Facility Upgrades',
+            state: 'West Bengal',
+            level: 'State',
+            eligibility: 'All government schools',
+            description: 'Comprehensive school infrastructure improvements including ceiling fans, clean toilets, arsenic-free drinking water, solar panels.',
+            applyLink: 'https://www.wb.gov.in',
+            tags: ['Infrastructure', 'Development', 'School'],
+            benefits: [
+                'Ceiling fans installation',
+                'Clean toilets & arsenic-free water',
+                'Solar panels & water purifiers'
+            ],
+            documents: [
+                'School Registration',
+                'Aadhaar Card'
+            ],
+            color: '#14B8A6'
+        }
+    ];
+
+    // ============================================
+    // 2. HELPER FUNCTIONS
+    // ============================================
+
+    function getSchemeById(id) {
+        return educationSchemes.find(scheme => scheme.id === id);
+    }
+
+    function getSchemesByCategory(category) {
+        return educationSchemes.filter(scheme => scheme.category.toLowerCase() === category.toLowerCase());
+    }
+
+    // ============================================
+    // 3. RENDER SCHEME DETAILS
+    // ============================================
+
+    function renderSchemeDetail(scheme) {
+        const container = document.getElementById('schemeDetailsContainer');
+        
+        container.innerHTML = `
+            <div class="scheme-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html#schemes">Schemes</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <span>${scheme.category}</span>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <span>${scheme.title}</span>
+            </div>
+
+            <div class="scheme-details-card">
+                <div class="scheme-header">
+                    <div class="scheme-badge">
+                        <span class="badge-state">${scheme.state}</span>
+                        <span class="badge-level">${scheme.level}</span>
+                    </div>
+                    <h1>${scheme.title}</h1>
+                    <div class="scheme-tags">
+                        ${scheme.tags.map(tag => `<span>${tag}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="scheme-content">
+                    <div class="scheme-tabs">
+                        <button class="tab-btn active" data-tab="overview">Overview</button>
+                        <button class="tab-btn" data-tab="eligibility">Eligibility</button>
+                        <button class="tab-btn" data-tab="benefits">Benefits</button>
+                        <button class="tab-btn" data-tab="documents">Documents</button>
+                        <button class="tab-btn" data-tab="apply">Apply</button>
+                        <button class="tab-btn" data-tab="faq">FAQ</button>
+                    </div>
+
+                    <div class="scheme-tab-content">
+                        <div class="tab-pane active" id="tab-overview">
+                            <h3>Overview</h3>
+                            <p>${scheme.description}</p>
+                            <div class="subsidy-box">
+                                <span>💰 Subsidy: </span>
+                                <strong>${scheme.amount}</strong>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-eligibility">
+                            <h3>Eligibility Criteria</h3>
+                            <ul>
+                                ${scheme.eligibility.split(',').map(item => `<li>${item.trim()}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="tab-benefits">
+                            <h3>Benefits & Subsidies</h3>
+                            <ul>
+                                ${scheme.benefits.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                            <div class="subsidy-box">
+                                <span>💰 Subsidy: </span>
+                                <strong>${scheme.amount}</strong>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-documents">
+                            <h3>Required Documents</h3>
+                            <ul>
+                                ${scheme.documents.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="tab-apply">
+                            <h3>How to Apply</h3>
+                            <div class="apply-section">
+                                <p>Click the button below to apply for this scheme through the official portal.</p>
+                                <a href="${scheme.applyLink}" target="_blank" class="apply-btn">
+                                    <i class="fas fa-external-link-alt"></i> Apply Now
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-faq">
+                            <h3>Frequently Asked Questions</h3>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question">How long does it take to get the subsidy?</div>
+                                    <div class="faq-answer">Usually 30-45 days after application submission and verification.</div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question">Can I apply online?</div>
+                                    <div class="faq-answer">Yes, all schemes can be applied online through the official portal.</div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question">What documents are required for verification?</div>
+                                    <div class="faq-answer">All documents mentioned in the documents section are required for verification.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scheme-actions">
+                    <button class="action-btn save-btn" onclick="saveScheme('${scheme.id}')">
+                        <i class="fas fa-bookmark"></i> Save
+                    </button>
+                    <button class="action-btn pdf-btn" onclick="downloadPDF('${scheme.id}')">
+                        <i class="fas fa-file-pdf"></i> Download PDF
+                    </button>
+                    <button class="action-btn share-btn" onclick="shareScheme('${scheme.id}')">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
+            </div>
+
+            <div class="related-schemes">
+                <h3>Related Schemes</h3>
+                <div class="related-grid" id="relatedSchemes">
+                    ${getRelatedSchemes(scheme.id, scheme.category).map(rel => `
+                        <div class="related-card" onclick="window.location.href='scheme-details.html?id=${rel.id}'">
+                            <h4>${rel.title}</h4>
+                            <p>${rel.category} • ${rel.state}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                const tabId = `tab-${this.dataset.tab}`;
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    }
+
+    // ============================================
+    // 4. RENDER CATEGORY SCHEMES
+    // ============================================
+
+    function renderCategorySchemes(category) {
+        const container = document.getElementById('schemeDetailsContainer');
+        const schemes = getSchemesByCategory(category);
+        
+        if (schemes.length === 0) {
+            showError(`No schemes found for "${category}".`);
+            return;
+        }
+
+        container.innerHTML = `
+            <div class="scheme-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html#schemes">Schemes</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <span>${category.charAt(0).toUpperCase() + category.slice(1)} Schemes</span>
+            </div>
+
+            <div class="scheme-details-card">
+                <div class="scheme-header">
+                    <h1>${category.charAt(0).toUpperCase() + category.slice(1)} Schemes</h1>
+                    <p style="color: var(--text-gray);">${schemes.length} schemes available in this category</p>
+                </div>
+
+                <div class="schemes-grid">
+                    ${schemes.map(scheme => `
+                        <div class="scheme-card" onclick="window.location.href='scheme-details.html?id=${scheme.id}'">
+                            <h3>${scheme.title}</h3>
+                            <p>${scheme.description.substring(0, 100)}${scheme.description.length > 100 ? '...' : ''}</p>
+                            <span class="scheme-subsidy">💰 ${scheme.amount}</span>
+                            <br>
+                            <button class="view-details-btn" onclick="event.stopPropagation(); window.location.href='scheme-details.html?id=${scheme.id}'">
+                                View Details →
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // ============================================
+    // 5. GET RELATED SCHEMES
+    // ============================================
+
+    function getRelatedSchemes(schemeId, category) {
+        return educationSchemes
+            .filter(s => s.id !== schemeId && s.category === category)
+            .slice(0, 3);
+    }
+
+    // ============================================
+    // 6. SHOW ERROR
+    // ============================================
+
+    function showError(message) {
+        const container = document.getElementById('schemeDetailsContainer');
+        container.innerHTML = `
+            <div class="error-container">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>${message}</h3>
+                <p>Please go back and try again.</p>
+                <button class="go-home-btn" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i> Go to Home
+                </button>
+            </div>
+        `;
+    }
+
+    // ============================================
+    // 7. ACTION FUNCTIONS
+    // ============================================
+
+    function saveScheme(schemeId) {
+        const scheme = getSchemeById(schemeId);
+        if (!scheme) return;
+        
+        const saved = JSON.parse(localStorage.getItem('savedSchemes') || '[]');
+        if (!saved.includes(schemeId)) {
+            saved.push(schemeId);
+            localStorage.setItem('savedSchemes', JSON.stringify(saved));
+            alert(`✅ "${scheme.title}" saved successfully!`);
+        } else {
+            alert(`⚠️ "${scheme.title}" is already saved.`);
+        }
+    }
+
+    function downloadPDF(schemeId) {
+        const scheme = getSchemeById(schemeId);
+        if (!scheme) return;
+        alert(`📄 Downloading "${scheme.title}" as PDF...\n\nThis feature will be available soon.`);
+    }
+
+    function shareScheme(schemeId) {
+        const scheme = getSchemeById(schemeId);
+        if (!scheme) return;
+        
+        const shareText = `📚 ${scheme.title}\n💰 ${scheme.amount}\n✅ ${scheme.eligibility}\n🔗 ${scheme.applyLink}`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: scheme.title,
+                text: shareText,
+                url: scheme.applyLink
+            }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert('✅ Scheme details copied to clipboard!');
+            }).catch(() => {
+                prompt('Copy this:', shareText);
+            });
+        }
+    }
+
+    // ============================================
+    // 8. INITIALIZE
+    // ============================================
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const schemeId = urlParams.get('id');
+        const category = urlParams.get('category');
+        
+        console.log('🔍 URL Params:', { schemeId, category });
+        
+        if (schemeId) {
+            const scheme = getSchemeById(schemeId);
+            if (scheme) {
+                renderSchemeDetail(scheme);
+            } else {
+                showError('Scheme not found. Please go back and try again.');
+            }
+        } else if (category) {
+            renderCategorySchemes(category);
+        } else {
+            // Show all education schemes
+            renderCategorySchemes('education');
+        }
+
+        // Theme switcher
+        const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
+        applyTheme(savedTheme);
+    });
+
+    // ============================================
+    // 9. THEME SWITCHER
+    // ============================================
+
+    function applyTheme(theme) {
+        const root = document.documentElement;
+        root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
+        if (theme !== 'default') {
+            root.classList.add(`theme-${theme}`);
+        }
+        localStorage.setItem('wbseva-theme', theme);
+    }
+
+    // ============================================
+    // 10. CHATBOT FUNCTIONALITY
+    // ============================================
+
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+    const chatMessages = document.getElementById('chatbotMessages');
+
+    const funResponses = [
+        { keywords: ['joke', 'funny', 'laugh'], response: "😂 Why don't scientists trust atoms?\nBecause they make up everything!" },
+        { keywords: ['hello', 'hi', 'hey', 'namaste'], response: "👋 Hello there! How are you doing today?" },
+        { keywords: ['how are you', 'how are you doing'], response: "🤖 I'm doing fantastic! Thanks for asking!" },
+        { keywords: ['what can you do', 'help', 'what do you do'], response: "🤖 I'm your friendly AI chat companion! I can:\n💬 Have fun conversations\n😂 Tell you jokes\n😊 Keep you company" },
+        { keywords: ['west bengal', 'wb', 'kolkata'], response: "🏛️ West Bengal is wonderful! Rich in culture, delicious food, and beautiful places!" },
+        { keywords: ['thanks', 'thank you'], response: "🙏 You're most welcome! Have a wonderful day! ✨" },
+        { keywords: ['bye', 'goodbye', 'see you', 'tata'], response: "👋 Goodbye, my friend! Come back anytime for a fun chat! 😊" }
+    ];
+
+    const defaultResponse = "🤔 That's interesting! Tell me more about it.\n\n💡 You can also ask me:\n- Tell me a joke\n- How are you\n- Tell me about West Bengal\n- What can you do";
+
+    function getBotResponse(message) {
+        const msg = message.toLowerCase().trim();
+        for (let item of funResponses) {
+            for (let keyword of item.keywords) {
+                if (msg.includes(keyword)) {
+                    return item.response;
+                }
+            }
+        }
+        if (msg.length < 3) {
+            return "😊 I love short conversations! What else would you like to talk about?";
+        }
+        return defaultResponse;
+    }
+
+    function sendMessage(message) {
+        const userMsgDiv = document.createElement('div');
+        userMsgDiv.className = 'chat-message user';
+        userMsgDiv.innerHTML = `
+            <div class="message-content">
+                <p>${message}</p>
+                <span class="message-time">Just now</span>
+            </div>
+        `;
+        chatMessages.appendChild(userMsgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        setTimeout(() => {
+            const response = getBotResponse(message);
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.className = 'chat-message bot';
+            botMsgDiv.innerHTML = `
+                <div class="message-avatar">
+                    <img src="wbmap.png" alt="WBseva" />
+                </div>
+                <div class="message-content">
+                    <p>${response.replace(/\n/g, '<br>')}</p>
+                    <span class="message-time">Just now</span>
+                </div>
+            `;
+            chatMessages.appendChild(botMsgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 500);
+    }
+
+    if (chatbotToggle) {
+        chatbotToggle.addEventListener('click', () => {
+            chatbotContainer.classList.add('active');
+            chatbotToggle.style.display = 'none';
+        });
+    }
+
+    if (chatbotClose) {
+        chatbotClose.addEventListener('click', () => {
+            chatbotContainer.classList.remove('active');
+            chatbotToggle.style.display = 'flex';
+        });
+    }
+
+    if (chatSendBtn) {
+        chatSendBtn.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                sendMessage(message);
+                chatInput.value = '';
+            }
+        });
+    }
+
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = chatInput.value.trim();
+                if (message) {
+                    sendMessage(message);
+                    chatInput.value = '';
+                }
+            }
+        });
+    }
+
+    document.querySelectorAll('.suggestion-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const message = btn.dataset.msg;
+            if (message) {
+                sendMessage(message);
+            }
+        });
+    });
+
+    console.log('✅ Scheme details page loaded successfully!');
+    console.log('📚 Education schemes available:', educationSchemes.length);
+    </script>
 </body>
 </html>
