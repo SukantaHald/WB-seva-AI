@@ -1,3 +1,6 @@
+// ============================================
+// COMPLETE SCRIPT.JS - UPDATED
+// ============================================
 
 // ============================================
 // 1. NAVBAR SCROLL EFFECT
@@ -85,27 +88,37 @@ const observer = new IntersectionObserver((entries) => {
 counters.forEach(counter => observer.observe(counter));
 
 // ============================================
-// 4. CATEGORIES DATA & RENDER
+// 4. CATEGORIES DATA - UPDATED WITH MORE CATEGORIES
 // ============================================
 const categories = [
-    { icon: 'fa-graduation-cap', name: 'Education', count: '12 Schemes', color: '#6C3CE1' },
-    { icon: 'fa-heart-pulse', name: 'Health', count: '8 Schemes', color: '#FF6B6B' },
-    { icon: 'fa-building', name: 'Housing', count: '6 Schemes', color: '#F59E0B' },
-    { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '15 Schemes', color: '#06D6A0' },
-    { icon: 'fa-briefcase', name: 'Employment', count: '10 Schemes', color: '#3B82F6' },
-    { icon: 'fa-tractor', name: 'Agriculture', count: '9 Schemes', color: '#10B981' },
-    { icon: 'fa-scale-balanced', name: 'Legal', count: '7 Schemes', color: '#8B5CF6' },
-    { icon: 'fa-utensils', name: 'Food & Nutrition', count: '5 Schemes', color: '#F472B6' },
+    { icon: 'fa-graduation-cap', name: 'Education', count: '12 Schemes', color: '#6C3CE1', link: 'schemes-education.html' },
+    { icon: 'fa-heart-pulse', name: 'Health', count: '8 Schemes', color: '#FF6B6B', link: 'schemes-health.html' },
+    { icon: 'fa-building', name: 'Housing', count: '6 Schemes', color: '#F59E0B', link: 'schemes-housing.html' },
+    { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '15 Schemes', color: '#06D6A0', link: 'schemes-financial.html' },
+    { icon: 'fa-briefcase', name: 'Employment', count: '10 Schemes', color: '#3B82F6', link: 'schemes-employment.html' },
+    { icon: 'fa-tractor', name: 'Agriculture', count: '9 Schemes', color: '#10B981', link: 'schemes-agriculture.html' },
+    { icon: 'fa-scale-balanced', name: 'Legal', count: '7 Schemes', color: '#8B5CF6', link: 'schemes-legal.html' },
+    { icon: 'fa-utensils', name: 'Food & Nutrition', count: '5 Schemes', color: '#F472B6', link: 'schemes-food.html' },
 ];
 
-const categoriesGrid = document.getElementById('categoriesGrid');
+const moreCategories = [
+    { icon: 'fa-users-gear', name: 'Skill Development', count: '14 Schemes', color: '#6366F1', link: 'schemes-skill.html' },
+    { icon: 'fa-people-group', name: 'Rural Development', count: '18 Schemes', color: '#14B8A6', link: 'schemes-rural.html' },
+    { icon: 'fa-laptop-code', name: 'Digital India', count: '11 Schemes', color: '#8B5CF6', link: 'schemes-digital.html' },
+    { icon: 'fa-bolt', name: 'Energy', count: '8 Schemes', color: '#F59E0B', link: 'schemes-energy.html' },
+];
 
-if (categoriesGrid) {
-    categories.forEach((cat, index) => {
+// Render Categories
+const categoriesGrid = document.getElementById('categoriesGrid');
+const moreCategoriesGrid = document.getElementById('moreCategoriesGrid');
+
+const renderCategories = (data, container) => {
+    if (!container) return;
+    data.forEach((cat, index) => {
         const card = document.createElement('div');
         card.className = 'category-card';
         card.style.animationDelay = `${index * 0.1}s`;
-        card.style.setProperty('--cat-color', cat.color);
+        card.setAttribute('data-category', cat.name);
         card.innerHTML = `
             <div class="category-icon" style="background: ${cat.color}20; color: ${cat.color}">
                 <i class="fas ${cat.icon}"></i>
@@ -115,211 +128,170 @@ if (categoriesGrid) {
             <div class="category-hover-line" style="background: ${cat.color}"></div>
         `;
         card.addEventListener('click', () => {
-            card.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                card.style.transform = '';
-            }, 200);
-            // Open chatbot with category query
-            openChatbot();
-            setTimeout(() => {
-                sendMessage(`Show me ${cat.name} schemes`);
-            }, 500);
+            // Open new window with category page
+            window.open(cat.link, '_blank');
         });
-        categoriesGrid.appendChild(card);
+        container.appendChild(card);
     });
-}
+};
+
+renderCategories(categories, categoriesGrid);
+renderCategories(moreCategories, moreCategoriesGrid);
 
 // ============================================
-// 5. SEARCH FUNCTIONALITY
+// 5. SEARCH FUNCTIONALITY - DIRECT RESULTS
 // ============================================
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
+const searchResults = document.getElementById('searchResults');
+const searchResultsList = document.getElementById('searchResultsList');
+const searchResultsClose = document.getElementById('searchResultsClose');
 
-if (searchBtn && searchInput) {
-    const performSearch = () => {
-        const query = searchInput.value.trim();
-        if (query) {
-            searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            setTimeout(() => {
-                searchBtn.innerHTML = '<i class="fas fa-arrow-right"></i>';
-                openChatbot();
-                setTimeout(() => {
-                    sendMessage(`Searching for "${query}"`);
-                }, 500);
-            }, 800);
-        } else {
-            searchInput.style.borderColor = '#FF6B6B';
-            searchInput.placeholder = 'Please enter a search term!';
-            setTimeout(() => {
-                searchInput.style.borderColor = '';
-                searchInput.placeholder = 'Search for schemes...';
-            }, 2000);
-        }
-    };
+// Scheme Database for Search
+const schemeDatabase = [
+    // Education Schemes
+    { title: 'West Bengal Student Scholarship', category: 'Education', link: 'https://www.wb.gov.in/scholarship', badge: 'Education' },
+    { title: 'Kanyashree Scheme', category: 'Education', link: 'https://www.wb.gov.in/kanyashree', badge: 'Education' },
+    { title: 'Sikshashree Scheme', category: 'Education', link: 'https://www.wb.gov.in/sikshashree', badge: 'Education' },
+    
+    // Health Schemes
+    { title: 'Swasthya Sathi Scheme', category: 'Health', link: 'https://www.wb.gov.in/swasthya-sathi', badge: 'Health' },
+    { title: 'National Health Mission', category: 'Health', link: 'https://www.nhm.gov.in', badge: 'Health' },
+    { title: 'Arogya Sanjeevani', category: 'Health', link: 'https://www.wb.gov.in/arogya', badge: 'Health' },
+    
+    // Housing Schemes
+    { title: 'Jai Jawahar Awas Yojana', category: 'Housing', link: 'https://www.wb.gov.in/housing', badge: 'Housing' },
+    { title: 'Pradhan Mantri Awas Yojana', category: 'Housing', link: 'https://pmaymis.gov.in', badge: 'Housing' },
+    { title: 'State Housing Scheme', category: 'Housing', link: 'https://www.wb.gov.in/state-housing', badge: 'Housing' },
+    
+    // Financial Schemes
+    { title: 'Credit Link Capital Subsidy', category: 'Financial', link: 'https://www.wb.gov.in/clcss', badge: 'Financial' },
+    { title: 'Mudra Yojana', category: 'Financial', link: 'https://www.mudra.org.in', badge: 'Financial' },
+    { title: 'Stand-Up India Scheme', category: 'Financial', link: 'https://www.standupmitra.in', badge: 'Financial' },
+    
+    // Employment Schemes
+    { title: 'Employment Exchange', category: 'Employment', link: 'https://www.wb.gov.in/employment', badge: 'Employment' },
+    { title: 'Skill India Mission', category: 'Employment', link: 'https://www.skillindia.gov.in', badge: 'Employment' },
+    
+    // Agriculture Schemes
+    { title: 'PM Kisan Samman Nidhi', category: 'Agriculture', link: 'https://pmkisan.gov.in', badge: 'Agriculture' },
+    { title: 'Soil Health Card Scheme', category: 'Agriculture', link: 'https://soilhealth.dac.gov.in', badge: 'Agriculture' },
+    { title: 'Crop Insurance Scheme', category: 'Agriculture', link: 'https://pmfby.gov.in', badge: 'Agriculture' },
+    
+    // Legal Schemes
+    { title: 'Legal Aid Scheme', category: 'Legal', link: 'https://www.wb.gov.in/legal-aid', badge: 'Legal' },
+    { title: 'Consumer Protection', category: 'Legal', link: 'https://consumeraffairs.nic.in', badge: 'Legal' },
+    
+    // Food & Nutrition
+    { title: 'Mid-Day Meal Scheme', category: 'Food & Nutrition', link: 'https://mdm.gov.in', badge: 'Food' },
+    { title: 'Public Distribution System', category: 'Food & Nutrition', link: 'https://www.wb.gov.in/pds', badge: 'Food' },
+    
+    // Skill Development
+    { title: 'Pradhan Mantri Kaushal Vikas Yojana', category: 'Skill Development', link: 'https://pmkvyofficial.org', badge: 'Skill' },
+    { title: 'Skill Development Mission', category: 'Skill Development', link: 'https://www.wb.gov.in/skill', badge: 'Skill' },
+    
+    // Rural Development
+    { title: 'Mahatma Gandhi NREGA', category: 'Rural Development', link: 'https://nrega.nic.in', badge: 'Rural' },
+    { title: 'Pradhan Mantri Gram Sadak Yojana', category: 'Rural Development', link: 'https://pmgsy.nic.in', badge: 'Rural' },
+    
+    // Digital India
+    { title: 'Digital India Program', category: 'Digital India', link: 'https://digitalindia.gov.in', badge: 'Digital' },
+    { title: 'Common Service Centres', category: 'Digital India', link: 'https://www.csc.gov.in', badge: 'Digital' },
+    
+    // Energy
+    { title: 'Ujjwala Yojana', category: 'Energy', link: 'https://www.pmujjwala.gov.in', badge: 'Energy' },
+    { title: 'Solar Rooftop Scheme', category: 'Energy', link: 'https://www.wb.gov.in/solar', badge: 'Energy' },
+];
 
+const performSearch = () => {
+    const query = searchInput.value.trim().toLowerCase();
+    
+    if (!query) {
+        searchResults.style.display = 'none';
+        return;
+    }
+    
+    // Search in database
+    const results = schemeDatabase.filter(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.category.toLowerCase().includes(query) ||
+        item.badge.toLowerCase().includes(query)
+    );
+    
+    // Display results
+    searchResults.style.display = 'block';
+    searchResultsList.innerHTML = '';
+    
+    if (results.length === 0) {
+        searchResultsList.innerHTML = `
+            <div class="search-no-results">
+                <i class="fas fa-search" style="font-size:1.5rem;display:block;margin-bottom:8px;"></i>
+                No schemes found for "${searchInput.value}"
+            </div>
+        `;
+    } else {
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.innerHTML = `
+                <span class="result-title">${item.title}</span>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span class="result-badge">${item.badge}</span>
+                    <a href="${item.link}" target="_blank" class="result-link">
+                        View <i class="fas fa-external-link-alt" style="font-size:0.6rem;"></i>
+                    </a>
+                </div>
+            `;
+            searchResultsList.appendChild(resultItem);
+        });
+    }
+};
+
+// Search on button click
+if (searchBtn) {
     searchBtn.addEventListener('click', performSearch);
+}
+
+// Search on Enter key
+if (searchInput) {
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             performSearch();
         }
     });
+    
+    // Close results on escape
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            searchResults.style.display = 'none';
+        }
+    });
 }
+
+// Close search results
+if (searchResultsClose) {
+    searchResultsClose.addEventListener('click', () => {
+        searchResults.style.display = 'none';
+    });
+}
+
+// Click outside to close
+document.addEventListener('click', (e) => {
+    if (searchResults && !searchResults.contains(e.target) && e.target !== searchInput && e.target !== searchBtn) {
+        searchResults.style.display = 'none';
+    }
+});
 
 // Search suggestions
 document.querySelectorAll('.search-suggestions span').forEach(suggestion => {
     suggestion.addEventListener('click', () => {
-        searchInput.value = suggestion.textContent;
-        searchBtn.click();
+        searchInput.value = suggestion.dataset.search;
+        performSearch();
     });
 });
 
 // ============================================
-// 6. CHATBOT FUNCTIONALITY
-// ============================================
-const chatbotToggle = document.getElementById('chatbotToggle');
-const chatbotContainer = document.getElementById('chatbotContainer');
-const chatbotClose = document.getElementById('chatbotClose');
-const chatInput = document.getElementById('chatInput');
-const chatSendBtn = document.getElementById('chatSendBtn');
-const chatMessages = document.getElementById('chatbotMessages');
-
-// Chatbot responses
-const botResponses = {
-    'hello': 'Hello! 👋 How can I help you with government schemes today?',
-    'hi': 'Hi there! 😊 I\'m here to help you find the right government schemes.',
-    'education': '🎓 I can help you find education schemes! Here are some:\n1. West Bengal Student Scholarship\n2. Kanyashree Scheme\n3. Sikshashree Scheme\n\nWould you like details on any specific scheme?',
-    'health': '🏥 Here are some health schemes in West Bengal:\n1. Swasthya Sathi Scheme\n2. National Health Mission\n3. Arogya Sanjeevani\n\nWhich one interests you?',
-    'housing': '🏠 Housing schemes available:\n1. Jai Jawahar Awas Yojana\n2. Pradhan Mantri Awas Yojana\n3. State Housing Scheme\n\nTell me which one you want to know about!',
-    'financial': '💰 Financial assistance schemes:\n1. Credit Link Capital Subsidy\n2. Mudra Yojana\n3. Stand-Up India Scheme\n\nWould you like more details?',
-    'farmer': '🌾 For farmers, we have:\n1. PM Kisan Samman Nidhi\n2. Soil Health Card Scheme\n3. Crop Insurance Scheme\n\nWhich one would you like to explore?',
-    'help': '🤖 I\'m your WBseva AI Assistant! I can help you:\n- Find government schemes\n- Check eligibility\n- Apply for schemes\n- Get real-time updates\n\nJust tell me what you need!',
-    'default': 'I understand you\'re looking for help! 🤔 Could you please tell me more specifically what you need? You can ask about:\n- Education schemes\n- Health benefits\n- Housing schemes\n- Financial assistance\n- Farmer schemes\n\nOr just type "help" for more options!'
-};
-
-// Predefined responses for better UX
-const getBotResponse = (message) => {
-    const msg = message.toLowerCase().trim();
-    
-    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
-        return botResponses.hello;
-    } else if (msg.includes('education') || msg.includes('school') || msg.includes('student')) {
-        return botResponses.education;
-    } else if (msg.includes('health') || msg.includes('medical') || msg.includes('hospital')) {
-        return botResponses.health;
-    } else if (msg.includes('housing') || msg.includes('house') || msg.includes('home')) {
-        return botResponses.housing;
-    } else if (msg.includes('financial') || msg.includes('money') || msg.includes('loan')) {
-        return botResponses.financial;
-    } else if (msg.includes('farmer') || msg.includes('agriculture') || msg.includes('crop')) {
-        return botResponses.farmer;
-    } else if (msg.includes('help') || msg.includes('support')) {
-        return botResponses.help;
-    } else {
-        return botResponses.default;
-    }
-};
-
-// Send message function
-const sendMessage = (message) => {
-    // Add user message
-    const userMsgDiv = document.createElement('div');
-    userMsgDiv.className = 'chat-message user';
-    userMsgDiv.innerHTML = `
-        <div class="message-content">
-            <p>${message}</p>
-            <span class="message-time">Just now</span>
-        </div>
-    `;
-    chatMessages.appendChild(userMsgDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    // Show typing indicator
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'chat-message bot';
-    typingDiv.id = 'typingIndicator';
-    typingDiv.innerHTML = `
-        <div class="message-avatar">
-            <img src="wbmap.png" alt="WBseva" />
-        </div>
-        <div class="message-content">
-            <p style="color: var(--text-gray);">Typing<span class="typing-dots">...</span></p>
-        </div>
-    `;
-    chatMessages.appendChild(typingDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    // Get bot response
-    setTimeout(() => {
-        const typingIndicator = document.getElementById('typingIndicator');
-        if (typingIndicator) {
-            typingIndicator.remove();
-        }
-
-        const response = getBotResponse(message);
-        const botMsgDiv = document.createElement('div');
-        botMsgDiv.className = 'chat-message bot';
-        botMsgDiv.innerHTML = `
-            <div class="message-avatar">
-                <img src="wbmap.png" alt="WBseva" />
-            </div>
-            <div class="message-content">
-                <p>${response.replace(/\n/g, '<br>')}</p>
-                <span class="message-time">Just now</span>
-            </div>
-        `;
-        chatMessages.appendChild(botMsgDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 1000);
-};
-
-// Open chatbot
-const openChatbot = () => {
-    chatbotContainer.classList.add('active');
-    chatbotToggle.style.display = 'none';
-};
-
-// Close chatbot
-const closeChatbot = () => {
-    chatbotContainer.classList.remove('active');
-    chatbotToggle.style.display = 'flex';
-};
-
-// Toggle chatbot
-chatbotToggle.addEventListener('click', openChatbot);
-chatbotClose.addEventListener('click', closeChatbot);
-
-// Send message on button click
-chatSendBtn.addEventListener('click', () => {
-    const message = chatInput.value.trim();
-    if (message) {
-        sendMessage(message);
-        chatInput.value = '';
-    }
-});
-
-// Send message on Enter key
-chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const message = chatInput.value.trim();
-        if (message) {
-            sendMessage(message);
-            chatInput.value = '';
-        }
-    }
-});
-
-// Suggestion buttons
-document.querySelectorAll('.suggestion-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const message = btn.dataset.msg;
-        if (message) {
-            sendMessage(message);
-        }
-    });
-});
-
-// ============================================
-// 7. PARALLAX EFFECT
+// 6. PARALLAX EFFECT
 // ============================================
 document.addEventListener('mousemove', (e) => {
     const orbs = document.querySelectorAll('.orb');
@@ -333,7 +305,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // ============================================
-// 8. SCROLL TOP BUTTON
+// 7. SCROLL TOP BUTTON
 // ============================================
 const scrollTopBtn = document.createElement('button');
 scrollTopBtn.className = 'scroll-top-btn';
@@ -353,60 +325,7 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 // ============================================
-// 9. AVATAR INTERACTIVE EFFECTS
-// ============================================
-const avatarImg = document.getElementById('avatarImg');
-
-if (avatarImg) {
-    avatarImg.addEventListener('mouseenter', () => {
-        document.querySelectorAll('.glow-ring').forEach(ring => {
-            ring.style.animationDuration = '5s';
-        });
-    });
-
-    avatarImg.addEventListener('mouseleave', () => {
-        document.querySelectorAll('.glow-ring').forEach(ring => {
-            ring.style.animationDuration = '';
-        });
-    });
-
-    avatarImg.addEventListener('click', () => {
-        openChatbot();
-        setTimeout(() => {
-            sendMessage('Hello! I need help with government schemes.');
-        }, 500);
-    });
-}
-
-// ============================================
-// 10. KEYBOARD SHORTCUTS
-// ============================================
-document.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        searchInput.focus();
-        searchInput.select();
-    }
-    if (e.key === 'Escape' && document.activeElement === searchInput) {
-        searchInput.blur();
-    }
-    if (e.key === 'Escape' && chatbotContainer.classList.contains('active')) {
-        closeChatbot();
-    }
-});
-
-// ============================================
-// 11. CONSOLE WELCOME
-// ============================================
-console.log('%c🚀 WBseva AI - Your Smart Assistant', 'font-size: 24px; font-weight: bold; color: #6C3CE1;');
-console.log('%c💡 Tips:', 'font-size: 16px; color: #06D6A0;');
-console.log('%c   • Click the avatar to chat with AI', 'font-size: 14px; color: #A0A0B8;');
-console.log('%c   • Press Ctrl+K to search', 'font-size: 14px; color: #A0A0B8;');
-console.log('%c   • Click category cards for AI recommendations', 'font-size: 14px; color: #A0A0B8;');
-console.log('%c📋 Version: 3.0 | Made with ❤️ for West Bengal', 'font-size: 14px; color: #A0A0B8;');
-
-// ============================================
-// 12. CATEGORY CARD SCROLL ANIMATION
+// 8. CATEGORY CARD SCROLL ANIMATION
 // ============================================
 const categoryCards = document.querySelectorAll('.category-card');
 
@@ -430,7 +349,7 @@ categoryCards.forEach(card => {
 });
 
 // ============================================
-// 13. ACTIVE NAV LINK
+// 9. ACTIVE NAV LINK
 // ============================================
 const sections = document.querySelectorAll('section[id]');
 const navLinkItems = document.querySelectorAll('.nav-links a');
@@ -455,7 +374,7 @@ if (sections.length > 0 && navLinkItems.length > 0) {
 }
 
 // ============================================
-// 14. DYNAMIC YEAR IN FOOTER
+// 10. DYNAMIC YEAR IN FOOTER
 // ============================================
 const footerYear = document.querySelector('.footer-bottom p');
 if (footerYear) {
@@ -463,16 +382,13 @@ if (footerYear) {
     footerYear.innerHTML = footerYear.innerHTML.replace('2026', year);
 }
 
-console.log('✅ WBseva AI loaded successfully!');
 // ============================================
-// THEME SWITCHER - COMPLETE FIX
+// 11. THEME SWITCHER
 // ============================================
-
 const themeToggle = document.getElementById('themeToggle');
 const themeDropdown = document.getElementById('themeDropdown');
 const themeOptions = document.querySelectorAll('.theme-dropdown li');
 
-// Toggle dropdown
 if (themeToggle) {
     themeToggle.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -480,27 +396,20 @@ if (themeToggle) {
     });
 }
 
-// Close dropdown on outside click
 document.addEventListener('click', (e) => {
     if (themeDropdown && !themeDropdown.contains(e.target) && e.target !== themeToggle) {
         themeDropdown.classList.remove('active');
     }
 });
 
-// Apply theme - FIXED VERSION
 const applyTheme = (theme) => {
     const root = document.documentElement;
+    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
     
-    // Remove ALL theme classes including default
-    root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal', 'theme-default');
-    
-    // If theme is not 'default', add the theme class
     if (theme !== 'default') {
         root.classList.add(`theme-${theme}`);
     }
-    // For 'default', we just remove all theme classes (no class needed)
     
-    // Update active state in dropdown
     themeOptions.forEach(opt => {
         opt.classList.remove('active');
         if (opt.dataset.theme === theme) {
@@ -508,40 +417,12 @@ const applyTheme = (theme) => {
         }
     });
     
-    // Update orb colors
-    updateOrbColors();
-    
-    // Save to localStorage
     localStorage.setItem('wbseva-theme', theme);
-    
-    console.log(`🎨 Theme changed to: ${theme}`);
 };
 
-// Function to update orb colors
-const updateOrbColors = () => {
-    const root = document.documentElement;
-    const orbs = document.querySelectorAll('.orb');
-    
-    if (orbs.length >= 4) {
-        const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim() || '#6C3CE1';
-        const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim() || '#06D6A0';
-        const primaryLight = getComputedStyle(root).getPropertyValue('--primary-light').trim() || '#8B5CF6';
-        const primaryDark = getComputedStyle(root).getPropertyValue('--primary-dark').trim() || '#5A2FC4';
-        
-        orbs[0].style.background = primaryColor;
-        orbs[1].style.background = secondaryColor;
-        orbs[2].style.background = primaryLight;
-        orbs[3].style.background = primaryDark;
-    }
-};
+const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
+applyTheme(savedTheme);
 
-// Load saved theme on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('wbseva-theme') || 'default';
-    applyTheme(savedTheme);
-});
-
-// Theme option click - FIXED
 themeOptions.forEach(option => {
     option.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -552,14 +433,26 @@ themeOptions.forEach(option => {
 });
 
 // ============================================
-// ADDITIONAL: Click on color swatch also works
+// 12. KEYBOARD SHORTCUTS
 // ============================================
-document.querySelectorAll('.theme-dropdown li').forEach(item => {
-    item.addEventListener('click', function() {
-        const theme = this.dataset.theme;
-        applyTheme(theme);
-        themeDropdown.classList.remove('active');
-    });
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        if (searchInput) {
+            searchInput.focus();
+            searchInput.select();
+        }
+    }
+    if (e.key === 'Escape') {
+        if (searchResults) {
+            searchResults.style.display = 'none';
+        }
+        if (searchInput && document.activeElement === searchInput) {
+            searchInput.blur();
+        }
+    }
 });
 
-console.log('✅ Theme switcher loaded successfully!');
+console.log('✅ WBseva AI loaded successfully!');
+console.log('💡 Search for schemes and click "View" to open official websites');
+console.log('💡 Click any category to open schemes in new window');

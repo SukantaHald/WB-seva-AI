@@ -94,22 +94,33 @@
                     Browse schemes by category, check eligibility, and get step-by-step guidance — all in one place.
                 </p>
 
-                <!-- Search Bar -->
-                <div class="hero-search">
-                    <div class="search-box">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" placeholder="Search for schemes..." class="search-input" id="searchInput" />
-                        <button class="search-btn" id="searchBtn">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    <div class="search-suggestions" id="searchSuggestions">
-                        <span>Education</span>
-                        <span>Health</span>
-                        <span>Housing</span>
-                        <span>Financial</span>
-                    </div>
+                <!-- SEARCH - Direct Results -->
+            <div class="hero-search">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search for schemes..." class="search-input" id="searchInput" />
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
+                <div class="search-suggestions" id="searchSuggestions">
+                    <span data-search="education">Education</span>
+                    <span data-search="health">Health</span>
+                    <span data-search="housing">Housing</span>
+                    <span data-search="financial">Financial</span>
+                    <span data-search="agriculture">Agriculture</span>
+                </div>
+            </div>
+                    <!-- Search Results -->
+            <div class="search-results" id="searchResults" style="display:none;">
+                <div class="search-results-header">
+                    <h4>Search Results</h4>
+                    <button class="search-results-close" id="searchResultsClose">&times;</button>
+                </div>
+                <div class="search-results-list" id="searchResultsList">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
 
                 <!-- Stats -->
                 <div class="hero-stats">
