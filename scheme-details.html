@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scheme Details - WBseva AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="scheme-details.css" />
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="wbseva.png" alt="WBseva" class="nav-logo" />
+                <span>WBseva<span class="brand-highlight">AI</span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#schemes">Schemes</a></li>
+                <li><a href="index.html#certificates">Certificates</a></li>
+                <li><a href="index.html#jobs">Jobs</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-login"><i class="fas fa-user"></i> <span>Login</span></button>
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SCHEME DETAILS -->
+    <section class="scheme-details-section" id="schemeDetails">
+        <div class="container">
+            <div class="scheme-details-container">
+                <div class="scheme-breadcrumb">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <span><i class="fas fa-chevron-right"></i></span>
+                    <a href="index.html#schemes">Schemes</a>
+                    <span><i class="fas fa-chevron-right"></i></span>
+                    <span id="schemeCategory">Category</span>
+                    <span><i class="fas fa-chevron-right"></i></span>
+                    <span id="schemeTitle">Scheme Name</span>
+                </div>
+
+                <div class="scheme-details-card">
+                    <div class="scheme-header">
+                        <div class="scheme-badge" id="schemeBadge">
+                            <span class="badge-state" id="schemeState">West Bengal</span>
+                            <span class="badge-level" id="schemeLevel">State</span>
+                        </div>
+                        <h1 id="schemeName">Scheme Name</h1>
+                        <div class="scheme-tags" id="schemeTags">
+                            <!-- Tags will be added here -->
+                        </div>
+                    </div>
+
+                    <div class="scheme-content">
+                        <div class="scheme-tabs">
+                            <button class="tab-btn active" data-tab="overview">Overview</button>
+                            <button class="tab-btn" data-tab="eligibility">Eligibility</button>
+                            <button class="tab-btn" data-tab="benefits">Benefits</button>
+                            <button class="tab-btn" data-tab="documents">Documents</button>
+                            <button class="tab-btn" data-tab="apply">Apply</button>
+                            <button class="tab-btn" data-tab="faq">FAQ</button>
+                        </div>
+
+                        <div class="scheme-tab-content">
+                            <div class="tab-pane active" id="tab-overview">
+                                <h3>Overview</h3>
+                                <p id="schemeOverview">Loading scheme details...</p>
+                            </div>
+                            <div class="tab-pane" id="tab-eligibility">
+                                <h3>Eligibility Criteria</h3>
+                                <ul id="schemeEligibility"></ul>
+                            </div>
+                            <div class="tab-pane" id="tab-benefits">
+                                <h3>Benefits & Subsidies</h3>
+                                <ul id="schemeBenefits"></ul>
+                                <div class="subsidy-box">
+                                    <span>💰 Subsidy: </span>
+                                    <strong id="schemeSubsidy">-</strong>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab-documents">
+                                <h3>Required Documents</h3>
+                                <ul id="schemeDocuments"></ul>
+                            </div>
+                            <div class="tab-pane" id="tab-apply">
+                                <h3>How to Apply</h3>
+                                <div class="apply-section">
+                                    <p>Click the button below to apply for this scheme through the official portal.</p>
+                                    <a href="#" id="schemeApplyLink" target="_blank" class="apply-btn">
+                                        <i class="fas fa-external-link-alt"></i> Apply Now
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab-faq">
+                                <h3>Frequently Asked Questions</h3>
+                                <div class="faq-list">
+                                    <div class="faq-item">
+                                        <div class="faq-question">How long does it take to get the subsidy?</div>
+                                        <div class="faq-answer">Usually 30-45 days after application submission and verification.</div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">Can I apply online?</div>
+                                        <div class="faq-answer">Yes, all schemes can be applied online through the official portal.</div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">What documents are required for verification?</div>
+                                        <div class="faq-answer">All documents mentioned in the documents section are required for verification.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scheme-actions">
+                        <button class="action-btn save-btn" onclick="saveScheme()">
+                            <i class="fas fa-bookmark"></i> Save
+                        </button>
+                        <button class="action-btn pdf-btn" onclick="downloadPDF()">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </button>
+                        <button class="action-btn share-btn" onclick="shareScheme()">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Related Schemes -->
+                <div class="related-schemes">
+                    <h3>Related Schemes</h3>
+                    <div class="related-grid" id="relatedSchemes">
+                        <!-- Related schemes will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHATBOT (Entertainment only) -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-robot"></i>
+        <span class="chat-notification">💬</span>
+    </div>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <img src="wbseva.png" alt="WBseva AI" class="chatbot-avatar" />
+                <div>
+                    <h4>WBseva AI Assistant</h4>
+                    <p>Online • Chat with me! 😊</p>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="chat-message bot">
+                <div class="message-avatar">
+                    <img src="wbseva.png" alt="WBseva" />
+                </div>
+                <div class="message-content">
+                    <p>👋 Hello! I'm WBseva AI Assistant. I'm here to have a friendly chat with you! 😊</p>
+                    <span class="message-time">Just now</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chatbot-suggestions" id="chatSuggestions">
+            <button class="suggestion-btn" data-msg="Tell me a joke">😂 Tell me a joke</button>
+            <button class="suggestion-btn" data-msg="How are you">😊 How are you</button>
+            <button class="suggestion-btn" data-msg="What can you do">🤔 What can you do</button>
+            <button class="suggestion-btn" data-msg="Tell me about West Bengal">🏛️ About WB</button>
+        </div>
+
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message..." id="chatInput" />
+            <button id="chatSendBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="wbseva.png" alt="WBseva" class="footer-logo" />
+                    <span>WBseva<span class="brand-highlight">AI</span></span>
+                    <p>Making government schemes accessible to every citizen of West Bengal.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Quick Links</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                    <div>
+                        <h4>Schemes</h4>
+                        <a href="#">Education</a>
+                        <a href="#">Health</a>
+                        <a href="#">Housing</a>
+                        <a href="#">Financial</a>
+                    </div>
+                    <div>
+                        <h4>Connect</h4>
+                        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WBseva AI. All rights reserved. | Made with ❤️ for West Bengal</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="schemes-data.js"></script>
+    <script src="scheme-details.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

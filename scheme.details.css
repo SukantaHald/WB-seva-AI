@@ -1,0 +1,361 @@
+/* ============================================
+   SCHEME DETAILS PAGE STYLES
+   ============================================ */
+
+.scheme-details-section {
+    padding: 120px 0 60px;
+    min-height: 100vh;
+}
+
+.scheme-details-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Breadcrumb */
+.scheme-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.scheme-breadcrumb a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.scheme-breadcrumb a:hover {
+    color: var(--text-white);
+}
+
+.scheme-breadcrumb span {
+    color: var(--text-gray);
+}
+
+/* Scheme Card */
+.scheme-details-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.scheme-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.scheme-badge {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.badge-state {
+    background: rgba(108, 60, 225, 0.15);
+    color: var(--primary-light);
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-level {
+    background: rgba(6, 214, 160, 0.15);
+    color: #06D6A0;
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.scheme-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.scheme-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.scheme-tags span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    color: var(--text-gray);
+    border: 1px solid var(--border-color);
+}
+
+/* Tabs */
+.scheme-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+    font-family: inherit;
+}
+
+.tab-btn:hover {
+    color: var(--text-white);
+}
+
+.tab-btn.active {
+    color: var(--primary-light);
+    border-bottom-color: var(--primary);
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-pane h3 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: var(--text-white);
+}
+
+.tab-pane p {
+    color: var(--text-gray);
+    line-height: 1.8;
+}
+
+.tab-pane ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tab-pane ul li {
+    padding: 10px 0;
+    color: var(--text-gray);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tab-pane ul li::before {
+    content: '✓';
+    color: #06D6A0;
+    font-weight: 700;
+}
+
+.subsidy-box {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(6, 214, 160, 0.1);
+    border: 1px solid rgba(6, 214, 160, 0.2);
+    border-radius: 12px;
+    color: var(--text-white);
+}
+
+.subsidy-box strong {
+    color: #06D6A0;
+}
+
+.apply-section {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.apply-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.apply-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(108, 60, 225, 0.4);
+}
+
+/* FAQ */
+.faq-list {
+    margin-top: 10px;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-color);
+    padding: 14px 0;
+}
+
+.faq-question {
+    font-weight: 600;
+    color: var(--text-white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--text-gray);
+}
+
+.faq-item.active .faq-question::after {
+    content: '-';
+}
+
+.faq-answer {
+    color: var(--text-gray);
+    padding-top: 10px;
+    display: none;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* Scheme Actions */
+.scheme-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    color: var(--text-gray);
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+}
+
+.action-btn.save-btn:hover {
+    border-color: #6C3CE1;
+    color: #6C3CE1;
+}
+
+.action-btn.pdf-btn:hover {
+    border-color: #EF4444;
+    color: #EF4444;
+}
+
+.action-btn.share-btn:hover {
+    border-color: #3B82F6;
+    color: #3B82F6;
+}
+
+/* Related Schemes */
+.related-schemes {
+    margin-top: 40px;
+}
+
+.related-schemes h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.related-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.related-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.related-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.related-card p {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scheme-details-card {
+        padding: 20px;
+    }
+    
+    .scheme-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .scheme-tabs {
+        gap: 2px;
+    }
+    
+    .tab-btn {
+        padding: 8px 14px;
+        font-size: 0.75rem;
+    }
+    
+    .scheme-actions {
+        justify-content: center;
+    }
+}
