@@ -362,7 +362,7 @@
 /* Scheme Grid */
 .schemes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
     padding: 20px 0;
 }
@@ -382,10 +382,28 @@
     box-shadow: 0 20px 60px rgba(108, 60, 225, 0.15);
 }
 
-.scheme-card h3 {
-    font-size: 1rem;
+.scheme-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 10px;
+}
+
+.scheme-card-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--text-white);
+    flex: 1;
+    margin-right: 10px;
+}
+
+.scheme-card-badge {
+    font-size: 0.65rem;
+    background: rgba(108, 60, 225, 0.15);
+    color: var(--primary-light);
+    padding: 2px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
 }
 
 .scheme-card p {
@@ -395,13 +413,32 @@
     margin-bottom: 12px;
 }
 
-.scheme-card .scheme-subsidy {
-    display: inline-block;
-    background: rgba(6, 214, 160, 0.15);
-    color: #06D6A0;
-    padding: 4px 12px;
+.scheme-card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.scheme-card-tags span {
+    font-size: 0.65rem;
+    color: var(--text-gray);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 10px;
     border-radius: 50px;
-    font-size: 0.75rem;
+}
+
+.scheme-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.scheme-subsidy {
+    font-size: 0.8rem;
+    color: #06D6A0;
     font-weight: 600;
 }
 
@@ -414,11 +451,16 @@
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
-    margin-top: 10px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .view-details-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 30px rgba(6, 214, 160, 0.4);
+}
+
+/* Error Container */
+.error-container {
+    text-align: center;
+    padding: 60px 20px;
 }
