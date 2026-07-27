@@ -1,0 +1,106 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.png",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.jpg",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/scheme-details.html",
+      "dest": "/scheme-details.html"
+    },
+    {
+      "src": "/schemes-education.html",
+      "dest": "/schemes-education.html"
+    },
+    {
+      "src": "/schemes-health.html",
+      "dest": "/schemes-health.html"
+    },
+    {
+      "src": "/schemes-housing.html",
+      "dest": "/schemes-housing.html"
+    },
+    {
+      "src": "/schemes-financial.html",
+      "dest": "/schemes-financial.html"
+    },
+    {
+      "src": "/schemes-employment.html",
+      "dest": "/schemes-employment.html"
+    },
+    {
+      "src": "/schemes-agriculture.html",
+      "dest": "/schemes-agriculture.html"
+    },
+    {
+      "src": "/schemes-legal.html",
+      "dest": "/schemes-legal.html"
+    },
+    {
+      "src": "/schemes-food.html",
+      "dest": "/schemes-food.html"
+    },
+    {
+      "src": "/schemes-skill.html",
+      "dest": "/schemes-skill.html"
+    },
+    {
+      "src": "/schemes-rural.html",
+      "dest": "/schemes-rural.html"
+    },
+    {
+      "src": "/schemes-digital.html",
+      "dest": "/schemes-digital.html"
+    },
+    {
+      "src": "/schemes-energy.html",
+      "dest": "/schemes-energy.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
