@@ -264,98 +264,175 @@ body {
 }
 
 /* ============================================
-   THEME SWITCHER
+   THEME SWITCHER - IMPROVED
    ============================================ */
+
 .nav-theme-toggle {
     position: relative;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .theme-btn {
-    background: none;
-    border: none;
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 0;
-    transition: var(--transition);
-    font-family: inherit;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: var(--text-white) !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 16px !important;
+    border-radius: 50px !important;
+    transition: all 0.3s ease !important;
+    font-family: inherit !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    position: relative !important;
+    z-index: 100 !important;
 }
 
 .theme-btn:hover {
-    color: var(--text-white);
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
 }
 
+.theme-btn:active {
+    transform: scale(0.95) !important;
+}
+
+.theme-btn i {
+    font-size: 1rem !important;
+    color: #FBBF24 !important;
+}
+
+.theme-btn .fa-chevron-down {
+    font-size: 0.6rem !important;
+    color: var(--text-gray) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.theme-btn.active .fa-chevron-down {
+    transform: rotate(180deg) !important;
+}
+
+/* Theme Dropdown - White Background */
 .theme-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: rgba(20, 20, 40, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 8px;
-    min-width: 180px;
-    display: none;
-    z-index: 1000;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: absolute !important;
+    top: calc(100% + 12px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(10px) !important;
+    background: #FFFFFF !important;
+    border-radius: 16px !important;
+    padding: 10px !important;
+    min-width: 200px !important;
+    display: none !important;
+    z-index: 9999 !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    animation: themeDropDown 0.3s ease !important;
+}
+
+@keyframes themeDropDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(10px) scale(1);
+    }
 }
 
 .theme-dropdown.active {
-    display: block;
-    animation: fadeInDown 0.3s ease;
+    display: block !important;
 }
 
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(10px); }
-}
-
+/* Theme Dropdown Items */
 .theme-dropdown li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    color: var(--text-gray);
-    transition: var(--transition);
-    list-style: none;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    font-size: 0.85rem !important;
+    color: #1A1A2E !important;
+    transition: all 0.2s ease !important;
+    list-style: none !important;
+    font-weight: 500 !important;
 }
 
 .theme-dropdown li:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-white);
+    background: #F3F4F6 !important;
+    transform: translateX(4px) !important;
 }
 
 .theme-dropdown li.active {
-    background: rgba(108, 60, 225, 0.2);
-    color: var(--text-white);
+    background: #E5E7EB !important;
+    color: #6C3CE1 !important;
+    font-weight: 600 !important;
 }
 
+.theme-dropdown li.active .theme-color {
+    border-color: #6C3CE1 !important;
+    box-shadow: 0 0 0 2px rgba(108, 60, 225, 0.3) !important;
+}
+
+/* Theme Color Swatches */
 .theme-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid var(--border-color);
-    flex-shrink: 0;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    border: 2px solid #E5E7EB !important;
+    flex-shrink: 0 !important;
+    transition: all 0.3s ease !important;
 }
 
-.theme-color.default { background: linear-gradient(135deg, #6C3CE1, #06D6A0); }
-.theme-color.blue { background: linear-gradient(135deg, #3B82F6, #06D6A0); }
-.theme-color.green { background: linear-gradient(135deg, #10B981, #34D399); }
-.theme-color.purple { background: linear-gradient(135deg, #8B5CF6, #6C3CE1); }
-.theme-color.orange { background: linear-gradient(135deg, #F59E0B, #F97316); }
-.theme-color.pink { background: linear-gradient(135deg, #EC4899, #F472B6); }
-.theme-color.red { background: linear-gradient(135deg, #EF4444, #F87171); }
-.theme-color.teal { background: linear-gradient(135deg, #14B8A6, #06D6A0); }
+.theme-dropdown li:hover .theme-color {
+    transform: scale(1.1) !important;
+}
 
+.theme-color.default {
+    background: linear-gradient(135deg, #6C3CE1, #06D6A0) !important;
+}
+.theme-color.blue {
+    background: linear-gradient(135deg, #779cd8, #96b1aa) !important;
+}
+.theme-color.green {
+    background: linear-gradient(135deg, #10B981, #34D399) !important;
+}
+.theme-color.purple {
+    background: linear-gradient(135deg, #8B5CF6, #6C3CE1) !important;
+}
+.theme-color.orange {
+    background: linear-gradient(135deg, #F59E0B, #F97316) !important;
+}
+.theme-color.pink {
+    background: linear-gradient(135deg, #EC4899, #F472B6) !important;
+}
+.theme-color.red {
+    background: linear-gradient(135deg, #EF4444, #F87171) !important;
+}
+.theme-color.teal {
+    background: linear-gradient(135deg, #14B8A6, #06D6A0) !important;
+}
+
+/* Dropdown Arrow Indicator */
+.theme-dropdown::before {
+    content: '';
+    position: absolute !important;
+    top: -8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-left: 8px solid transparent !important;
+    border-right: 8px solid transparent !important;
+    border-bottom: 8px solid #FFFFFF !important;
+}
 /* ============================================
    HERO SECTION
    ============================================ */
@@ -1826,5 +1903,62 @@ body {
 
     .btn-login span {
         display: none;
+    }
+}
+/* ============================================
+   THEME BUTTON - RESPONSIVE FIXES
+   ============================================ */
+
+/* Navbar Theme Button Position Fix */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .nav-theme-toggle {
+        margin: 0;
+    }
+    
+    .theme-btn {
+        padding: 6px 14px !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .theme-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px !important;
+    }
+    
+    .theme-dropdown {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90% !important;
+        max-width: 320px !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+    }
+    
+    .theme-dropdown::before {
+        display: none !important;
     }
 }
