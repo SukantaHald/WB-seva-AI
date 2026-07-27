@@ -13,17 +13,18 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <i class="fas fa-brain"></i>
+                <img src="wbseva.png" alt="WBseva" class="nav-logo" />
                 <span>WBseva<span class="brand-highlight">AI</span></span>
             </div>
             <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Schemes</a></li>
-                <li><a href="#">Certificates</a></li>
-                <li><a href="#">Jobs</a></li>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#schemes">Schemes</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#jobs">Jobs</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="btn-login"><i class="fas fa-user"></i> Login</button>
+                <button class="btn-login"><i class="fas fa-user"></i> <span>Login</span></button>
                 <button class="nav-toggle" id="navToggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -32,9 +33,9 @@
     </nav>
 
     <!-- ==================== HERO SECTION ==================== -->
-    <section class="hero">
+    <section class="hero" id="home">
         <!-- Animated Background -->
-        <div class="hero-bg-animation">
+        <div class="hero-bg">
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
             <div class="orb orb-3"></div>
@@ -46,7 +47,7 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="badge-dot"></span>
-                    <span>Powered by AI • 100% Free</span>
+                    <span>Powered by AI • 100% Free • Govt Verified</span>
                 </div>
 
                 <h1 class="hero-title">
@@ -63,10 +64,16 @@
                 <div class="hero-search">
                     <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" placeholder="Search for schemes..." class="search-input" />
-                        <button class="search-btn">
+                        <input type="text" placeholder="Search for schemes..." class="search-input" id="searchInput" />
+                        <button class="search-btn" id="searchBtn">
                             <i class="fas fa-arrow-right"></i>
                         </button>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions">
+                        <span>Education</span>
+                        <span>Health</span>
+                        <span>Housing</span>
+                        <span>Financial</span>
                     </div>
                 </div>
 
@@ -93,10 +100,11 @@
                     <span><i class="fas fa-shield-check"></i> Verified</span>
                     <span><i class="fas fa-bolt"></i> Fast</span>
                     <span><i class="fas fa-lock"></i> Secure</span>
+                    <span><i class="fas fa-award"></i> Trusted</span>
                 </div>
             </div>
 
-            <!-- RIGHT AVATAR -->
+            <!-- RIGHT AVATAR WITH LOGO -->
             <div class="hero-illustration">
                 <div class="avatar-container">
                     <!-- Glow Rings -->
@@ -107,8 +115,9 @@
                     <!-- Avatar -->
                     <div class="avatar-wrapper">
                         <div class="avatar-glow"></div>
-                        <img src="wbmap.png" alt="WBseva AI" class="avatar-img" />
+                        <img src="wbseva.png" alt="WBseva AI" class="avatar-img" id="avatarImg" />
                         <div class="avatar-pulse"></div>
+                        <div class="avatar-label">WBseva AI</div>
                     </div>
 
                     <!-- Floating Elements -->
@@ -118,7 +127,7 @@
                     </div>
                     <div class="float-element elem-2">
                         <i class="fas fa-brain"></i>
-                        <span>ML</span>
+                        <span>Smart</span>
                     </div>
                     <div class="float-element elem-3">
                         <i class="fas fa-database"></i>
@@ -134,13 +143,13 @@
 
         <!-- Scroll Indicator -->
         <div class="scroll-indicator">
-            <span>Scroll</span>
+            <span>Scroll to explore</span>
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <!-- ==================== CATEGORIES SECTION ==================== -->
-    <section class="categories">
+    <section class="categories" id="schemes">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Browse by Category</span>
@@ -149,15 +158,131 @@
             </div>
 
             <div class="categories-grid" id="categoriesGrid">
-                <!-- Category cards will be loaded dynamically -->
+                <!-- Categories will be loaded dynamically -->
             </div>
         </div>
     </section>
 
+    <!-- ==================== FEATURES SECTION ==================== -->
+    <section class="features" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why WBseva AI</span>
+                <h2>Smart Features for <span class="gradient-text">Every Citizen</span></h2>
+                <p>Making government schemes accessible to everyone</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-magic"></i></div>
+                    <h3>AI Powered</h3>
+                    <p>Smart recommendations based on your profile</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Real-time Updates</h3>
+                    <p>Get instant notifications about new schemes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-language"></i></div>
+                    <h3>Multi-Language</h3>
+                    <p>Available in Bengali, Hindi & English</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>24/7 Support</h3>
+                    <p>AI chatbot available anytime for assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== AI CHATBOT ==================== -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-robot"></i>
+        <span class="chat-notification">1</span>
+    </div>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <img src="wbseva.png" alt="WBseva AI" class="chatbot-avatar" />
+                <div>
+                    <h4>WBseva AI Assistant</h4>
+                    <p>Online • Ready to help</p>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="chat-message bot">
+                <div class="message-avatar">
+                    <img src="wbseva.png" alt="WBseva" />
+                </div>
+                <div class="message-content">
+                    <p>👋 Hello! I'm WBseva AI Assistant. How can I help you today?</p>
+                    <span class="message-time">Just now</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chatbot-suggestions" id="chatSuggestions">
+            <button class="suggestion-btn" data-msg="Show me education schemes">🎓 Education Schemes</button>
+            <button class="suggestion-btn" data-msg="Health benefits for senior citizens">🏥 Health Benefits</button>
+            <button class="suggestion-btn" data-msg="Housing schemes in West Bengal">🏠 Housing Schemes</button>
+            <button class="suggestion-btn" data-msg="Financial assistance for farmers">💰 Farmer Schemes</button>
+        </div>
+
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message..." id="chatInput" />
+            <button id="chatSendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            <button id="chatVoiceBtn">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 WBseva AI. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="wbseva.png" alt="WBseva" class="footer-logo" />
+                    <span>WBseva<span class="brand-highlight">AI</span></span>
+                    <p>Making government schemes accessible to every citizen of West Bengal.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Quick Links</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                    <div>
+                        <h4>Schemes</h4>
+                        <a href="#">Education</a>
+                        <a href="#">Health</a>
+                        <a href="#">Housing</a>
+                        <a href="#">Financial</a>
+                    </div>
+                    <div>
+                        <h4>Connect</h4>
+                        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WBseva AI. All rights reserved. | Made with ❤️ for West Bengal</p>
+            </div>
         </div>
     </footer>
 

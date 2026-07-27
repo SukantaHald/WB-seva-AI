@@ -1,5 +1,5 @@
 // ============================================
-// COMPLETE SCRIPT.JS - WBseva AI
+// COMPLETE SCRIPT.JS - WBseva AI with Chatbot
 // ============================================
 
 // ============================================
@@ -24,7 +24,6 @@ const navLinks = document.querySelector('.nav-links');
 if (navToggle) {
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        // Toggle icon
         const icon = navToggle.querySelector('i');
         if (icon) {
             icon.classList.toggle('fa-bars');
@@ -33,13 +32,9 @@ if (navToggle) {
     });
 }
 
-// Close nav on link click (mobile)
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        if (navLinks) {
-            navLinks.classList.remove('active');
-        }
-        // Reset toggle icon
+        navLinks.classList.remove('active');
         if (navToggle) {
             const icon = navToggle.querySelector('i');
             if (icon) {
@@ -76,7 +71,6 @@ const animateCounter = (counter) => {
     updateCounter();
 };
 
-// Intersection Observer for counters
 const observerOptions = {
     threshold: 0.5,
     rootMargin: '0px 0px -50px 0px'
@@ -123,16 +117,17 @@ if (categoriesGrid) {
             <p>${cat.count}</p>
             <div class="category-hover-line" style="background: ${cat.color}"></div>
         `;
-        
-        // Add click event
         card.addEventListener('click', () => {
             card.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 card.style.transform = '';
             }, 200);
-            console.log(`Category clicked: ${cat.name}`);
+            // Open chatbot with category query
+            openChatbot();
+            setTimeout(() => {
+                sendMessage(`Show me ${cat.name} schemes`);
+            }, 500);
         });
-        
         categoriesGrid.appendChild(card);
     });
 }
@@ -140,20 +135,21 @@ if (categoriesGrid) {
 // ============================================
 // 5. SEARCH FUNCTIONALITY
 // ============================================
-const searchInput = document.querySelector('.search-input');
-const searchBtn = document.querySelector('.search-btn');
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
 
 if (searchBtn && searchInput) {
     const performSearch = () => {
         const query = searchInput.value.trim();
         if (query) {
-            console.log(`Searching for: ${query}`);
             searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            // Simulate search
             setTimeout(() => {
                 searchBtn.innerHTML = '<i class="fas fa-arrow-right"></i>';
-                alert(`Searching for "${query}"...\nThis feature will show matching schemes.`);
-            }, 1000);
+                openChatbot();
+                setTimeout(() => {
+                    sendMessage(`Searching for "${query}"`);
+                }, 500);
+            }, 800);
         } else {
             searchInput.style.borderColor = '#FF6B6B';
             searchInput.placeholder = 'Please enter a search term!';
@@ -172,8 +168,161 @@ if (searchBtn && searchInput) {
     });
 }
 
+// Search suggestions
+document.querySelectorAll('.search-suggestions span').forEach(suggestion => {
+    suggestion.addEventListener('click', () => {
+        searchInput.value = suggestion.textContent;
+        searchBtn.click();
+    });
+});
+
 // ============================================
-// 6. PARALLAX EFFECT ON ORBS
+// 6. CHATBOT FUNCTIONALITY
+// ============================================
+const chatbotToggle = document.getElementById('chatbotToggle');
+const chatbotContainer = document.getElementById('chatbotContainer');
+const chatbotClose = document.getElementById('chatbotClose');
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSendBtn');
+const chatMessages = document.getElementById('chatbotMessages');
+
+// Chatbot responses
+const botResponses = {
+    'hello': 'Hello! 👋 How can I help you with government schemes today?',
+    'hi': 'Hi there! 😊 I\'m here to help you find the right government schemes.',
+    'education': '🎓 I can help you find education schemes! Here are some:\n1. West Bengal Student Scholarship\n2. Kanyashree Scheme\n3. Sikshashree Scheme\n\nWould you like details on any specific scheme?',
+    'health': '🏥 Here are some health schemes in West Bengal:\n1. Swasthya Sathi Scheme\n2. National Health Mission\n3. Arogya Sanjeevani\n\nWhich one interests you?',
+    'housing': '🏠 Housing schemes available:\n1. Jai Jawahar Awas Yojana\n2. Pradhan Mantri Awas Yojana\n3. State Housing Scheme\n\nTell me which one you want to know about!',
+    'financial': '💰 Financial assistance schemes:\n1. Credit Link Capital Subsidy\n2. Mudra Yojana\n3. Stand-Up India Scheme\n\nWould you like more details?',
+    'farmer': '🌾 For farmers, we have:\n1. PM Kisan Samman Nidhi\n2. Soil Health Card Scheme\n3. Crop Insurance Scheme\n\nWhich one would you like to explore?',
+    'help': '🤖 I\'m your WBseva AI Assistant! I can help you:\n- Find government schemes\n- Check eligibility\n- Apply for schemes\n- Get real-time updates\n\nJust tell me what you need!',
+    'default': 'I understand you\'re looking for help! 🤔 Could you please tell me more specifically what you need? You can ask about:\n- Education schemes\n- Health benefits\n- Housing schemes\n- Financial assistance\n- Farmer schemes\n\nOr just type "help" for more options!'
+};
+
+// Predefined responses for better UX
+const getBotResponse = (message) => {
+    const msg = message.toLowerCase().trim();
+    
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+        return botResponses.hello;
+    } else if (msg.includes('education') || msg.includes('school') || msg.includes('student')) {
+        return botResponses.education;
+    } else if (msg.includes('health') || msg.includes('medical') || msg.includes('hospital')) {
+        return botResponses.health;
+    } else if (msg.includes('housing') || msg.includes('house') || msg.includes('home')) {
+        return botResponses.housing;
+    } else if (msg.includes('financial') || msg.includes('money') || msg.includes('loan')) {
+        return botResponses.financial;
+    } else if (msg.includes('farmer') || msg.includes('agriculture') || msg.includes('crop')) {
+        return botResponses.farmer;
+    } else if (msg.includes('help') || msg.includes('support')) {
+        return botResponses.help;
+    } else {
+        return botResponses.default;
+    }
+};
+
+// Send message function
+const sendMessage = (message) => {
+    // Add user message
+    const userMsgDiv = document.createElement('div');
+    userMsgDiv.className = 'chat-message user';
+    userMsgDiv.innerHTML = `
+        <div class="message-content">
+            <p>${message}</p>
+            <span class="message-time">Just now</span>
+        </div>
+    `;
+    chatMessages.appendChild(userMsgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Show typing indicator
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'chat-message bot';
+    typingDiv.id = 'typingIndicator';
+    typingDiv.innerHTML = `
+        <div class="message-avatar">
+            <img src="wbseva.png" alt="WBseva" />
+        </div>
+        <div class="message-content">
+            <p style="color: var(--text-gray);">Typing<span class="typing-dots">...</span></p>
+        </div>
+    `;
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Get bot response
+    setTimeout(() => {
+        const typingIndicator = document.getElementById('typingIndicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+
+        const response = getBotResponse(message);
+        const botMsgDiv = document.createElement('div');
+        botMsgDiv.className = 'chat-message bot';
+        botMsgDiv.innerHTML = `
+            <div class="message-avatar">
+                <img src="wbseva.png" alt="WBseva" />
+            </div>
+            <div class="message-content">
+                <p>${response.replace(/\n/g, '<br>')}</p>
+                <span class="message-time">Just now</span>
+            </div>
+        `;
+        chatMessages.appendChild(botMsgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 1000);
+};
+
+// Open chatbot
+const openChatbot = () => {
+    chatbotContainer.classList.add('active');
+    chatbotToggle.style.display = 'none';
+};
+
+// Close chatbot
+const closeChatbot = () => {
+    chatbotContainer.classList.remove('active');
+    chatbotToggle.style.display = 'flex';
+};
+
+// Toggle chatbot
+chatbotToggle.addEventListener('click', openChatbot);
+chatbotClose.addEventListener('click', closeChatbot);
+
+// Send message on button click
+chatSendBtn.addEventListener('click', () => {
+    const message = chatInput.value.trim();
+    if (message) {
+        sendMessage(message);
+        chatInput.value = '';
+    }
+});
+
+// Send message on Enter key
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const message = chatInput.value.trim();
+        if (message) {
+            sendMessage(message);
+            chatInput.value = '';
+        }
+    }
+});
+
+// Suggestion buttons
+document.querySelectorAll('.suggestion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const message = btn.dataset.msg;
+        if (message) {
+            sendMessage(message);
+        }
+    });
+});
+
+// ============================================
+// 7. PARALLAX EFFECT
 // ============================================
 document.addEventListener('mousemove', (e) => {
     const orbs = document.querySelectorAll('.orb');
@@ -187,174 +336,80 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // ============================================
-// 7. RANDOM PARTICLE GENERATOR
+// 8. SCROLL TOP BUTTON
 // ============================================
-const heroParticles = document.querySelector('.hero-bg-animation');
+const scrollTopBtn = document.createElement('button');
+scrollTopBtn.className = 'scroll-top-btn';
+scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+document.body.appendChild(scrollTopBtn);
 
-if (heroParticles) {
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        const size = Math.random() * 6 + 2;
-        particle.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            background: rgba(108, 60, 225, ${Math.random() * 0.3 + 0.1});
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: floatParticle ${Math.random() * 5 + 3}s ease-in-out infinite;
-            animation-delay: ${Math.random() * 2}s;
-            pointer-events: none;
-        `;
-        heroParticles.appendChild(particle);
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
     }
-}
+});
 
-// ============================================
-// 8. SMOOTH SCROLL FOR ANCHOR LINKS
-// ============================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                const navHeight = navbar ? navbar.offsetHeight : 80;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    });
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // ============================================
 // 9. AVATAR INTERACTIVE EFFECTS
 // ============================================
-const avatarWrapper = document.querySelector('.avatar-wrapper');
-const avatarImg = document.querySelector('.avatar-img');
+const avatarImg = document.getElementById('avatarImg');
 
-if (avatarWrapper) {
-    // Hover effect
-    avatarWrapper.addEventListener('mouseenter', () => {
-        const rings = document.querySelectorAll('.glow-ring');
-        rings.forEach(ring => {
+if (avatarImg) {
+    avatarImg.addEventListener('mouseenter', () => {
+        document.querySelectorAll('.glow-ring').forEach(ring => {
             ring.style.animationDuration = '5s';
         });
     });
 
-    avatarWrapper.addEventListener('mouseleave', () => {
-        const rings = document.querySelectorAll('.glow-ring');
-        rings.forEach(ring => {
+    avatarImg.addEventListener('mouseleave', () => {
+        document.querySelectorAll('.glow-ring').forEach(ring => {
             ring.style.animationDuration = '';
         });
     });
 
-    // Click effect
-    avatarWrapper.addEventListener('click', () => {
-        avatarWrapper.style.transform = 'scale(0.9)';
+    avatarImg.addEventListener('click', () => {
+        openChatbot();
         setTimeout(() => {
-            avatarWrapper.style.transform = '';
-        }, 300);
-        console.log('👋 Hello from WBseva AI!');
+            sendMessage('Hello! I need help with government schemes.');
+        }, 500);
     });
 }
 
 // ============================================
-// 10. STATS HOVER ANIMATION
-// ============================================
-const statItems = document.querySelectorAll('.stat-item');
-
-statItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        item.style.transform = 'translateY(-5px)';
-        item.style.transition = 'transform 0.3s ease';
-    });
-    item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translateY(0)';
-    });
-});
-
-// ============================================
-// 11. AUTO TYPING EFFECT FOR SEARCH (Optional)
-// ============================================
-const searchPlaceholders = [
-    'Search for schemes...',
-    'Try: Education schemes...',
-    'Try: Health benefits...',
-    'Try: Housing schemes...',
-    'Search for schemes...'
-];
-
-let placeholderIndex = 0;
-if (searchInput) {
-    setInterval(() => {
-        placeholderIndex = (placeholderIndex + 1) % searchPlaceholders.length;
-        searchInput.placeholder = searchPlaceholders[placeholderIndex];
-    }, 3000);
-}
-
-// ============================================
-// 12. DYNAMIC YEAR IN FOOTER
-// ============================================
-const footer = document.querySelector('.footer p');
-if (footer) {
-    const year = new Date().getFullYear();
-    footer.innerHTML = footer.innerHTML.replace('2026', year);
-}
-
-// ============================================
-// 13. KEYBOARD SHORTCUTS
+// 10. KEYBOARD SHORTCUTS
 // ============================================
 document.addEventListener('keydown', (e) => {
-    // Ctrl + K to focus search
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        if (searchInput) {
-            searchInput.focus();
-            searchInput.select();
-        }
+        searchInput.focus();
+        searchInput.select();
     }
-    // Escape to blur search
     if (e.key === 'Escape' && document.activeElement === searchInput) {
         searchInput.blur();
     }
+    if (e.key === 'Escape' && chatbotContainer.classList.contains('active')) {
+        closeChatbot();
+    }
 });
 
 // ============================================
-// 14. CONSOLE WELCOME MESSAGE
+// 11. CONSOLE WELCOME
 // ============================================
 console.log('%c🚀 WBseva AI - Your Smart Assistant', 'font-size: 24px; font-weight: bold; color: #6C3CE1;');
-console.log('%c💡 Tip: Press Ctrl+K to search!', 'font-size: 14px; color: #06D6A0;');
-console.log('%c📋 Version: 2.0 | Made with ❤️', 'font-size: 14px; color: #A0A0B8;');
+console.log('%c💡 Tips:', 'font-size: 16px; color: #06D6A0;');
+console.log('%c   • Click the avatar to chat with AI', 'font-size: 14px; color: #A0A0B8;');
+console.log('%c   • Press Ctrl+K to search', 'font-size: 14px; color: #A0A0B8;');
+console.log('%c   • Click category cards for AI recommendations', 'font-size: 14px; color: #A0A0B8;');
+console.log('%c📋 Version: 3.0 | Made with ❤️ for West Bengal', 'font-size: 14px; color: #A0A0B8;');
 
 // ============================================
-// 15. RESPONSIVE CATEGORIES GRID ADJUSTMENT
-// ============================================
-function adjustCategoriesGrid() {
-    const grid = document.querySelector('.categories-grid');
-    if (grid) {
-        const screenWidth = window.innerWidth;
-        if (screenWidth < 480) {
-            grid.style.gridTemplateColumns = '1fr 1fr';
-        } else if (screenWidth < 768) {
-            grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        } else {
-            grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
-        }
-    }
-}
-
-window.addEventListener('resize', adjustCategoriesGrid);
-adjustCategoriesGrid();
-
-// ============================================
-// 16. CATEGORY CARD ANIMATION ON SCROLL
+// 12. CATEGORY CARD SCROLL ANIMATION
 // ============================================
 const categoryCards = document.querySelectorAll('.category-card');
 
@@ -378,7 +433,7 @@ categoryCards.forEach(card => {
 });
 
 // ============================================
-// 17. NAVBAR ACTIVE LINK HIGHLIGHT
+// 13. ACTIVE NAV LINK
 // ============================================
 const sections = document.querySelectorAll('section[id]');
 const navLinkItems = document.querySelectorAll('.nav-links a');
@@ -392,7 +447,6 @@ if (sections.length > 0 && navLinkItems.length > 0) {
                 current = section.getAttribute('id');
             }
         });
-
         navLinkItems.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${current}`) {
@@ -400,89 +454,16 @@ if (sections.length > 0 && navLinkItems.length > 0) {
             }
         });
     };
-
     window.addEventListener('scroll', highlightNav);
 }
 
 // ============================================
-// 18. PREVENT DEFAULT CONTEXT MENU (Optional)
+// 14. DYNAMIC YEAR IN FOOTER
 // ============================================
-document.addEventListener('contextmenu', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-        console.log('🛡️ Image right-click disabled');
-    }
-});
+const footerYear = document.querySelector('.footer-bottom p');
+if (footerYear) {
+    const year = new Date().getFullYear();
+    footerYear.innerHTML = footerYear.innerHTML.replace('2026', year);
+}
 
-// ============================================
-// 19. CUSTOM CURSOR EFFECT (Optional)
-// ============================================
-// Uncomment to add custom cursor
-/*
-const cursor = document.createElement('div');
-cursor.className = 'custom-cursor';
-document.body.appendChild(cursor);
-
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-// Add this CSS for custom cursor:
-// .custom-cursor { position: fixed; width: 20px; height: 20px; border: 2px solid #6C3CE1; border-radius: 50%; pointer-events: none; z-index: 9999; transition: all 0.1s ease; }
-*/
-
-// ============================================
-// 20. SCROLL TO TOP BUTTON
-// ============================================
-const scrollTopBtn = document.createElement('button');
-scrollTopBtn.className = 'scroll-top-btn';
-scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-scrollTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #6C3CE1, #06D6A0);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-    z-index: 999;
-    box-shadow: 0 8px 30px rgba(108, 60, 225, 0.4);
-`;
-
-document.body.appendChild(scrollTopBtn);
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        scrollTopBtn.style.opacity = '1';
-        scrollTopBtn.style.transform = 'translateY(0)';
-    } else {
-        scrollTopBtn.style.opacity = '0';
-        scrollTopBtn.style.transform = 'translateY(20px)';
-    }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// Hover effect
-scrollTopBtn.addEventListener('mouseenter', () => {
-    scrollTopBtn.style.transform = 'scale(1.1)';
-});
-
-scrollTopBtn.addEventListener('mouseleave', () => {
-    scrollTopBtn.style.transform = 'scale(1)';
-});
-
-console.log('✅ WBseva AI script loaded successfully!');
+console.log('✅ WBseva AI loaded successfully!');
