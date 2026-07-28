@@ -566,6 +566,249 @@ function showSchemeDetail(schemeId) {
         `;
     }
 }
+const agricultureSchemes = [
+    {
+        id: 'agri-1',
+        title: 'Assistance for Installation of Sprinkler / Drip Micro Irrigation Systems',
+        category: 'Agriculture',
+        amount: '50% Subsidy',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Must be a farmer with cultivable land, land ownership documents required, should have bank account, should have Kisan Credit Card',
+        description: 'This scheme provides financial assistance to farmers for installing modern irrigation systems to improve water efficiency and crop yield.',
+        applyLink: 'https://www.wb.gov.in/irrigation-scheme',
+        tags: ['Agriculture', 'Crop', 'Farmer', 'Irrigation'],
+        benefits: [
+            '50% subsidy on irrigation equipment',
+            'Technical support and training',
+            'Water conservation benefits',
+            'Increased crop productivity'
+        ],
+        documents: [
+            'Land Ownership Documents',
+            'Aadhaar Card',
+            'Bank Account Details',
+            'Kisan Credit Card',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-tractor',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-2',
+        title: 'Amar Fasal Amar Gola (AFAG)',
+        category: 'Agriculture',
+        amount: '₹5,000 - ₹25,000',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Must be a marginal farmer in West Bengal, should own Kisan Credit Card, land holding less than 2 hectares, active farmer with valid records',
+        description: 'The West Bengal Government announced this pilot project to provide financial assistance to marginal farmers for storehouses and vending carts.',
+        applyLink: 'https://www.wb.gov.in/amar-fasal-amar-gola',
+        tags: ['Farmer', 'Storage', 'Warehouse', 'Vending'],
+        benefits: [
+            '₹5,000 to ₹25,000 for warehouses',
+            '₹10,000 flat for vending carts',
+            'Direct bank transfer',
+            'Support for direct selling'
+        ],
+        documents: [
+            'Land Records',
+            'Aadhaar Card',
+            'Kisan Credit Card',
+            'Bank Account Details',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-warehouse',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-3',
+        title: 'Advanced Animal Breeding Scheme (Supply of Breedable Pedigree Murrah Bulls)',
+        category: 'Agriculture',
+        amount: 'Subsidy Provided',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Farmers engaged in animal husbandry, should have proper animal housing, registered with animal husbandry department',
+        description: 'Supply of breedable pedigree Murrah bulls on subsidy to improve livestock quality and milk production.',
+        applyLink: 'https://www.wb.gov.in/animal-breeding',
+        tags: ['Animal', 'Breed', 'Cow', 'Subsidy'],
+        benefits: [
+            'Breedable Murrah bulls at subsidized rates',
+            'Improved milk production',
+            'Better livestock quality',
+            'Income generation'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Animal Husbandry Registration',
+            'Bank Account Details',
+            'Land Documents',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-horse',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-4',
+        title: 'AGR 2 (Farm Mechanization) Scheme For Farmers Other Than SC/ST',
+        category: 'Agriculture',
+        amount: 'Financial Assistance',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Farmers other than SC/ST, should have cultivable land, should be registered farmer',
+        description: 'Farm mechanization scheme providing financial assistance for purchasing agricultural equipment and machinery.',
+        applyLink: 'https://www.wb.gov.in/farm-mechanization',
+        tags: ['Agriculture', 'Equipment', 'Farmer', 'Mechanization'],
+        benefits: [
+            'Financial assistance for farm equipment',
+            'Subsidy on machinery purchase',
+            'Improved farming efficiency',
+            'Reduced labor costs'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-tractor',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-5',
+        title: 'Agroforestry Component under RKVV',
+        category: 'Agriculture',
+        amount: 'Financial Support',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Farmers with cultivable land, interested in agroforestry, should be registered farmer',
+        description: 'Agroforestry component under Rashtriya Krishi Vikas Yojana (RKVV) for integrating trees with crops.',
+        applyLink: 'https://www.wb.gov.in/agroforestry',
+        tags: ['Agriculture', 'Forestry', 'Tree', 'Crop'],
+        benefits: [
+            'Financial support for agroforestry',
+            'Sustainable farming practices',
+            'Additional income from trees',
+            'Environmental benefits'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-tree',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-6',
+        title: 'AGR 3 (Farm Mechanization) Scheme For ST Farmers',
+        category: 'Agriculture',
+        amount: 'Financial Assistance',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Scheduled Tribe farmers, should have cultivable land, should be registered farmer',
+        description: 'Farm mechanization scheme specifically for Scheduled Tribe farmers to help them modernize farming operations.',
+        applyLink: 'https://www.wb.gov.in/farm-mechanization-st',
+        tags: ['Adivasi', 'Agriculture', 'Equipment', 'Farmer'],
+        benefits: [
+            'Financial assistance for farm equipment',
+            'Special subsidy for ST farmers',
+            'Improved farming efficiency',
+            'Modernization of agriculture'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'ST Certificate',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration'
+        ],
+        icon: 'fa-tractor',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-7',
+        title: 'PM Kisan Samman Nidhi',
+        category: 'Agriculture',
+        amount: '₹6,000/year',
+        state: 'All India',
+        level: 'Central',
+        eligibility: 'Small and marginal farmers, should have cultivable land, should be registered farmer',
+        description: 'Direct income support of ₹6,000 per year to small and marginal farmers in three installments.',
+        applyLink: 'https://pmkisan.gov.in',
+        tags: ['Farmer', 'Income Support', 'Central'],
+        benefits: [
+            '₹6,000 per year direct benefit',
+            'Three installments per year',
+            'Direct bank transfer',
+            'Support for small farmers'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-hand-holding-usd',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-8',
+        title: 'Soil Health Card Scheme',
+        category: 'Agriculture',
+        amount: 'Free Service',
+        state: 'All India',
+        level: 'Central',
+        eligibility: 'All farmers with cultivable land',
+        description: 'Provides soil health cards to farmers with recommendations on fertilizer usage based on soil analysis.',
+        applyLink: 'https://soilhealth.dac.gov.in',
+        tags: ['Soil', 'Health', 'Farmer', 'Testing'],
+        benefits: [
+            'Free soil testing',
+            'Soil health card',
+            'Fertilizer recommendations',
+            'Improved crop yield'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Farmer Registration'
+        ],
+        icon: 'fa-seedling',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-9',
+        title: 'Crop Insurance Scheme (PMFBY)',
+        category: 'Agriculture',
+        amount: 'Insurance Coverage',
+        state: 'All India',
+        level: 'Central',
+        eligibility: 'Farmers with cultivable land, should be registered farmer',
+        description: 'Pradhan Mantri Fasal Bima Yojana provides insurance coverage for crop loss due to natural calamities.',
+        applyLink: 'https://pmfby.gov.in',
+        tags: ['Insurance', 'Crop', 'Farmer', 'Protection'],
+        benefits: [
+            'Insurance for crop loss',
+            'Low premium rates',
+            'Protection against natural calamities',
+            'Financial security'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration',
+            'Crop Details'
+        ],
+        icon: 'fa-shield-halved',
+        color: '#10B981'
+    }
+];
 
 // Close scheme detail
 function closeSchemeDetail() {
