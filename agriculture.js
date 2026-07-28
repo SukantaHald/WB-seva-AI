@@ -5,7 +5,7 @@
 // ============================================
 // 1. EDUCATION SCHEMES DATA
 // ============================================
-const educationSchemes = [
+const agricultureSchemes = [
     {
         id: 'edu-1',
         title: 'Swami Vivekananda Merit-cum-Means (SVMCM) Scholarship',
@@ -308,7 +308,7 @@ function renderSchemes() {
     const grid = document.getElementById('schemesGrid');
     if (!grid) return;
 
-    grid.innerHTML = educationSchemes.map((scheme, index) => `
+    grid.innerHTML = agricultureSchemes.map((scheme, index) => `
         <div class="scheme-card" style="animation-delay: ${index * 0.05}s">
             <div class="scheme-card-header">
                 <h3>${scheme.title}</h3>
@@ -332,7 +332,7 @@ function renderSchemes() {
 // 3. OPEN MODAL
 // ============================================
 function openModal(schemeId) {
-    const scheme = educationSchemes.find(s => s.id === schemeId);
+    const scheme = agricultureSchemes.find(s => s.id === schemeId);
     if (!scheme) return;
 
     const modal = document.getElementById('schemeModal');
@@ -414,7 +414,7 @@ document.addEventListener('keydown', function(e) {
 // 5. SAVE SCHEME
 // ============================================
 function saveScheme(schemeId) {
-    const scheme = educationSchemes.find(s => s.id === schemeId);
+    const scheme = agricultureSchemes.find(s => s.id === schemeId);
     if (!scheme) return;
 
     const saved = JSON.parse(localStorage.getItem('savedSchemes') || '[]');
@@ -431,7 +431,7 @@ function saveScheme(schemeId) {
 // 6. SHARE SCHEME
 // ============================================
 function shareScheme(schemeId) {
-    const scheme = educationSchemes.find(s => s.id === schemeId);
+    const scheme = agricultureSchemes.find(s => s.id === schemeId);
     if (!scheme) return;
 
     const shareText = `📚 ${scheme.title}\n💰 ${scheme.amount}\n✅ ${scheme.eligibility}\n🔗 ${scheme.applyLink}`;
@@ -505,6 +505,6 @@ themeOptions.forEach(option => {
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
     renderSchemes();
-    console.log('🎓 Education schemes loaded successfully!');
-    console.log(`📚 Total schemes: ${educationSchemes.length}`);
+    console.log('✅ Agriculture schemes loaded successfully!');
+    console.log(`📚 Total schemes: $(agr).length}`);
 });
