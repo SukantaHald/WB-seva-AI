@@ -28,61 +28,82 @@
       "dest": "/index.html"
     },
     {
+      "src": "/index.html",
+      "dest": "/index.html"
+    },
+    {
       "src": "/scheme-details.html",
       "dest": "/scheme-details.html"
     },
     {
-      "src": "/schemes-education.html",
-      "dest": "/schemes-education.html"
+      "src": "/education-schemes.html",
+      "dest": "/education-schemes.html"
     },
     {
-      "src": "/schemes-health.html",
-      "dest": "/schemes-health.html"
+      "src": "/health-schemes.html",
+      "dest": "/health-schemes.html"
     },
     {
-      "src": "/schemes-housing.html",
-      "dest": "/schemes-housing.html"
+      "src": "/housing-schemes.html",
+      "dest": "/housing-schemes.html"
     },
     {
-      "src": "/schemes-financial.html",
-      "dest": "/schemes-financial.html"
+      "src": "/financial-schemes.html",
+      "dest": "/financial-schemes.html"
     },
     {
-      "src": "/schemes-employment.html",
-      "dest": "/schemes-employment.html"
+      "src": "/employment-schemes.html",
+      "dest": "/employment-schemes.html"
     },
     {
-      "src": "/schemes-agriculture.html",
-      "dest": "/schemes-agriculture.html"
+      "src": "/agriculture-schemes.html",
+      "dest": "/agriculture-schemes.html"
     },
     {
-      "src": "/schemes-legal.html",
-      "dest": "/schemes-legal.html"
+      "src": "/skill-schemes.html",
+      "dest": "/skill-schemes.html"
     },
     {
-      "src": "/schemes-food.html",
-      "dest": "/schemes-food.html"
+      "src": "/rural-schemes.html",
+      "dest": "/rural-schemes.html"
     },
     {
-      "src": "/schemes-skill.html",
-      "dest": "/schemes-skill.html"
+      "src": "/digital-schemes.html",
+      "dest": "/digital-schemes.html"
     },
     {
-      "src": "/schemes-rural.html",
-      "dest": "/schemes-rural.html"
+      "src": "/energy-schemes.html",
+      "dest": "/energy-schemes.html"
     },
     {
-      "src": "/schemes-digital.html",
-      "dest": "/schemes-digital.html"
+      "src": "/women-schemes.html",
+      "dest": "/women-schemes.html"
     },
     {
-      "src": "/schemes-energy.html",
-      "dest": "/schemes-energy.html"
+      "src": "/legal-schemes.html",
+      "dest": "/legal-schemes.html"
+    },
+    {
+      "src": "/(.*).css",
+      "dest": "/$1.css"
+    },
+    {
+      "src": "/(.*).js",
+      "dest": "/$1.js"
+    },
+    {
+      "src": "/(.*).png",
+      "dest": "/$1.png"
+    },
+    {
+      "src": "/(.*).jpg",
+      "dest": "/$1.jpg"
     },
     {
       "src": "/(.*)",
       "dest": "/$1"
     }
+    
   ],
   "headers": [
     {
