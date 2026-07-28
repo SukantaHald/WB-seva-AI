@@ -1,869 +1,749 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agriculture Schemes - WBseva AI</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-        /* ===== PAGE STYLES ===== */
-        .category-hero {
-            padding: 120px 0 60px;
-            background: var(--bg-section);
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .category-badge {
-            display: inline-block;
-            background: rgba(16, 185, 129, 0.15);
-            color: #10B981;
-            padding: 6px 20px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-        .category-hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-        .category-hero p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-        .category-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .category-stats span {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .category-stats i {
-            color: #10B981;
-        }
-        .schemes-grid-section {
-            padding: 60px 0;
-        }
-        .schemes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 24px;
-        }
-        .scheme-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 24px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .scheme-card:hover {
-            transform: translateY(-5px);
-            border-color: #10B981;
-            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
-        }
-        .scheme-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-        .scheme-card-header h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-white);
-            flex: 1;
-            margin-right: 10px;
-        }
-        .scheme-card-amount {
-            font-size: 0.75rem;
-            background: rgba(16, 185, 129, 0.15);
-            color: #10B981;
-            padding: 4px 12px;
-            border-radius: 50px;
-            white-space: nowrap;
-        }
-        .scheme-card p {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-        .scheme-card-tags {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-        .scheme-card-tags span {
-            font-size: 0.65rem;
-            color: var(--text-gray);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2px 10px;
-            border-radius: 50px;
-        }
-        .scheme-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .scheme-card-eligibility {
-            font-size: 0.7rem;
-            color: var(--text-gray);
-        }
-        .view-detail-btn {
-            background: linear-gradient(135deg, #10B981, #34D399);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.8rem;
-        }
-        .view-detail-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
-        }
-        .scheme-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .scheme-modal-content {
-            background: var(--bg-dark);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            max-width: 700px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px;
-            position: relative;
-            animation: slideUp 0.3s ease;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            color: var(--text-gray);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-white);
-        }
-        .modal-scheme-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-white);
-            margin-bottom: 8px;
-            padding-right: 40px;
-        }
-        .modal-scheme-meta {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .modal-scheme-meta span {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-        }
-        .modal-scheme-meta .modal-amount {
-            color: #10B981;
-            font-weight: 600;
-        }
-        .modal-section {
-            margin-bottom: 20px;
-        }
-        .modal-section h4 {
-            font-size: 1rem;
-            color: var(--text-white);
-            margin-bottom: 6px;
-        }
-        .modal-section p {
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-        .modal-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .modal-section ul li {
-            padding: 6px 0;
-            color: var(--text-gray);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .modal-section ul li::before {
-            content: '✓';
-            color: #10B981;
-            font-weight: 700;
-        }
-        .modal-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .modal-apply-btn {
-            background: linear-gradient(135deg, #10B981, #34D399);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .modal-apply-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
-        }
-        .modal-save-btn,
-        .modal-share-btn {
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: inherit;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .modal-save-btn:hover {
-            border-color: #10B981;
-            color: #10B981;
-        }
-        .modal-share-btn:hover {
-            border-color: #3B82F6;
-            color: #3B82F6;
-        }
-        .back-to-categories {
-            margin-top: 40px;
-            text-align: center;
-        }
-        .back-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-color);
-            color: var(--text-white);
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: inherit;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-        .no-schemes {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-gray);
-        }
-        .no-schemes i {
-            font-size: 3rem;
-            color: #FF6B6B;
-            display: block;
-            margin-bottom: 16px;
-        }
-        @media (max-width: 768px) {
-            .category-hero h1 { font-size: 2rem; }
-            .schemes-grid { grid-template-columns: 1fr; }
-            .scheme-modal-content { padding: 24px; }
-            .modal-scheme-title { font-size: 1.2rem; }
-            .modal-actions { flex-direction: column; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agriculture Schemes - WBseva AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ----- Hero Section ----- */
+    .category-hero {
+      padding: 120px 0 50px;
+      text-align: center;
+      background: var(--bg-section);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .category-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .category-hero h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+    }
+    .category-hero p {
+      color: var(--text-gray);
+      max-width: 600px;
+      margin: 10px auto 20px;
+    }
+    .category-stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      color: var(--text-gray);
+    }
+    .category-stats i {
+      color: #10b981;
+    }
+
+    /* ----- Schemes Grid ----- */
+    .schemes-grid-section {
+      padding: 50px 0;
+    }
+    .schemes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* ----- Scheme Card ----- */
+    .scheme-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+    .scheme-card:hover {
+      transform: translateY(-6px);
+      border-color: #10b981;
+      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+    }
+    .scheme-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .scheme-card-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      flex: 1;
+    }
+    .scheme-card-amount {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+    .scheme-card p {
+      color: var(--text-gray);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 10px 0 12px;
+    }
+    .scheme-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .scheme-card-tags span {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-gray);
+      padding: 2px 12px;
+      border-radius: 50px;
+      font-size: 0.65rem;
+    }
+    .scheme-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .scheme-eligibility {
+      font-size: 0.7rem;
+      color: var(--text-gray);
+    }
+    .view-detail-btn {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      border: none;
+      color: #fff;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .view-detail-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+
+    /* ----- Modal ----- */
+    .scheme-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .scheme-modal-content {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      animation: fadeUp 0.3s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-gray);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    .modal-close:hover {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+    .modal-scheme-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-white);
+      padding-right: 40px;
+      margin-bottom: 10px;
+    }
+    .modal-scheme-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+    .modal-amount {
+      color: #10b981;
+      font-weight: 700;
+    }
+    .modal-section {
+      margin-bottom: 20px;
+    }
+    .modal-section h4 {
+      color: var(--text-white);
+      margin-bottom: 6px;
+    }
+    .modal-section p {
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+    .modal-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .modal-section ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-gray);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-section ul li::before {
+      content: "✓";
+      color: #10b981;
+      font-weight: 700;
+    }
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .modal-apply-btn {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .modal-apply-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+    }
+    .modal-save-btn,
+    .modal-share-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-gray);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .modal-save-btn:hover {
+      border-color: #10b981;
+      color: #10b981;
+    }
+    .modal-share-btn:hover {
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    .back-to-categories {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border-color);
+      color: var(--text-white);
+      padding: 12px 32px;
+      border-radius: 50px;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background: rgba(255,255,255,0.12);
+    }
+    .no-schemes {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-gray);
+      grid-column: 1 / -1;
+    }
+    .no-schemes i {
+      font-size: 3rem;
+      color: #ef4444;
+      display: block;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 600px) {
+      .category-hero h1 { font-size: 1.8rem; }
+      .schemes-grid { grid-template-columns: 1fr; }
+      .scheme-modal-content { padding: 24px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <img src="wbmap.png" alt="WBseva" class="nav-logo" />
-                <span>WBseva<span class="brand-highlight">AI</span></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#schemes" class="active">Schemes</a></li>
-                <li><a href="index.html#how-to-apply">How to Apply</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#faq">FAQ</a></li>
-                <li class="theme-nav-item">
-                    <button class="theme-btn" id="themeToggleBtn">
-                        <i class="fas fa-palette"></i>
-                        <span>Themes</span>
-                        <i class="fas fa-chevron-down theme-arrow-icon"></i>
-                    </button>
-                    <ul class="theme-dropdown" id="themeDropdown">
-                        <li data-theme="default" class="active"><span class="theme-color default"></span> Default</li>
-                        <li data-theme="blue"><span class="theme-color blue"></span> Blue</li>
-                        <li data-theme="green"><span class="theme-color green"></span> Green</li>
-                        <li data-theme="purple"><span class="theme-color purple"></span> Purple</li>
-                        <li data-theme="orange"><span class="theme-color orange"></span> Orange</li>
-                        <li data-theme="pink"><span class="theme-color pink"></span> Pink</li>
-                        <li data-theme="red"><span class="theme-color red"></span> Red</li>
-                        <li data-theme="teal"><span class="theme-color teal"></span> Teal</li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="nav-actions">
-                <button class="btn-login"><i class="fas fa-user"></i> <span>Login</span></button>
-                <button class="nav-toggle" id="navToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ===== CATEGORY HERO ===== -->
-    <section class="category-hero">
-        <div class="container">
-            <div class="category-hero-content">
-                <span class="category-badge">🌾 Agriculture</span>
-                <h1>Agriculture Schemes in <span class="gradient-text">West Bengal</span></h1>
-                <p>Schemes for farmers, irrigation, animal breeding, and farm mechanization</p>
-                <div class="category-stats">
-                    <span><i class="fas fa-tractor"></i> <span id="totalSchemes">0</span> Schemes</span>
-                    <span><i class="fas fa-building-columns"></i> State Schemes</span>
-                    <span><i class="fas fa-star"></i> Central Schemes</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SCHEMES GRID ===== -->
-    <section class="schemes-grid-section">
-        <div class="container">
-            <div class="schemes-grid" id="schemesGrid">
-                <!-- Schemes will be loaded here -->
-            </div>
-            <div class="back-to-categories">
-                <a href="index.html#schemes" class="back-btn">
-                    <i class="fas fa-arrow-left"></i> Back to Categories
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SCHEME MODAL ===== -->
-    <div class="scheme-modal" id="schemeModal">
-        <div class="scheme-modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div id="modalBody"></div>
-        </div>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <img src="wbmap.png" alt="WBseva" class="nav-logo" />
+      <span>WBseva<span class="brand-highlight">AI</span></span>
     </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#schemes" class="active">Schemes</a></li>
+      <li><a href="index.html#how-to-apply">How to Apply</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-login"><i class="fas fa-user"></i> Login</button>
+      <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="wbmap.png" alt="WBseva" class="footer-logo" />
-                    <span>WBseva<span class="brand-highlight">AI</span></span>
-                    <p>Making government schemes accessible to every citizen of West Bengal.</p>
-                </div>
-                <div class="footer-links">
-                    <div>
-                        <h4>Quick Links</h4>
-                        <a href="index.html">Home</a>
-                        <a href="index.html#schemes">Schemes</a>
-                        <a href="index.html#how-to-apply">How to Apply</a>
-                        <a href="index.html#about">About</a>
-                    </div>
-                    <div>
-                        <h4>Schemes</h4>
-                        <a href="education-schemes.html">Education</a>
-                        <a href="health-schemes.html">Health</a>
-                        <a href="agriculture-schemes.html">Agriculture</a>
-                        <a href="financial-schemes.html">Financial</a>
-                    </div>
-                    <div>
-                        <h4>Connect</h4>
-                        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 WBseva AI. All rights reserved. | Made with ❤️ for West Bengal</p>
-            </div>
+<!-- ===== HERO ===== -->
+<section class="category-hero">
+  <div class="container">
+    <span class="category-badge">🌾 Agriculture</span>
+    <h1>Agriculture Schemes in <span class="gradient-text">West Bengal</span></h1>
+    <p>Schemes for irrigation, farming, animal breeding, mechanisation & more</p>
+    <div class="category-stats">
+      <span><i class="fas fa-tractor"></i> <span id="schemeCount">0</span> Schemes</span>
+      <span><i class="fas fa-building-columns"></i> State &amp; Central</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCHEMES GRID ===== -->
+<section class="schemes-grid-section">
+  <div class="container">
+    <div class="schemes-grid" id="schemesGrid">
+      <!-- schemes injected via JS -->
+    </div>
+    <div class="back-to-categories">
+      <a href="index.html#schemes" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Categories</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MODAL ===== -->
+<div class="scheme-modal" id="schemeModal">
+  <div class="scheme-modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; 2026 WBseva AI. Made with ❤️ for West Bengal</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- ===== JAVASCRIPT (ALL DATA + RENDER + MODAL) ===== -->
+<!-- ============================================================ -->
+<script>
+  // ==========================================
+  // 1. AGRICULTURE SCHEMES DATA (9 SCHEMES)
+  // ==========================================
+  const agricultureData = [
+    {
+      id: "agri1",
+      title: "Assistance for Installation of Sprinkler / Drip Micro Irrigation Systems",
+      category: "Agriculture",
+      amount: "50% Subsidy",
+      state: "West Bengal",
+      level: "State",
+      eligibility: "Farmer with cultivable land, Kisan Credit Card, bank account",
+      description: "Provides financial assistance to farmers for installing modern irrigation systems to improve water efficiency and crop yield.",
+      applyLink: "https://www.wb.gov.in/irrigation-scheme",
+      tags: ["Irrigation", "Farmer", "Crop", "Water"],
+      benefits: [
+        "50% subsidy on irrigation equipment",
+        "Technical support & training",
+        "Water conservation",
+        "Increased productivity"
+      ],
+      documents: [
+        "Land Ownership Papers",
+        "Aadhaar Card",
+        "Bank Account",
+        "Kisan Credit Card",
+        "Passport Photo"
+      ]
+    },
+    {
+      id: "agri2",
+      title: "Amar Fasal Amar Gola (AFAG)",
+      category: "Agriculture",
+      amount: "₹5,000 – ₹25,000",
+      state: "West Bengal",
+      level: "State",
+      eligibility: "Marginal farmer in WB, Kisan Credit Card, <2 hectares land",
+      description: "Pilot project to provide financial assistance for storehouses and vending carts to marginal farmers.",
+      applyLink: "https://www.wb.gov.in/amar-fasal-amar-gola",
+      tags: ["Storage", "Vending", "Farmer", "Warehouse"],
+      benefits: [
+        "₹5,000–₹25,000 for warehouses",
+        "₹10,000 flat for vending carts",
+        "Direct bank transfer",
+        "Supports direct selling"
+      ],
+      documents: [
+        "Land Records",
+        "Aadhaar Card",
+        "Kisan Credit Card",
+        "Bank Account",
+        "Passport Photo"
+      ]
+    },
+    {
+      id: "agri3",
+      title: "Advanced Animal Breeding Scheme (Pedigree Murrah Bulls)",
+      category: "Agriculture",
+      amount: "Subsidy Provided",
+      state: "West Bengal",
+      level: "State",
+      eligibility: "Animal husbandry farmers with proper housing & registration",
+      description: "Supply of breedable pedigree Murrah bulls on subsidy to improve livestock quality and milk production.",
+      applyLink: "https://www.wb.gov.in/animal-breeding",
+      tags: ["Animal", "Breed", "Cow", "Subsidy"],
+      benefits: [
+        "Breedable Murrah bulls at subsidised rates",
+        "Better milk production",
+        "Improved livestock quality",
+        "Income generation"
+      ],
+      documents: [
+        "Aadhaar Card",
+        "Animal Husbandry Registration",
+        "Bank Account",
+        "Land Documents",
+        "Passport Photo"
+      ]
+    },
+    {
+      id: "agri4",
+      title: "AGR 2 – Farm Mechanisation (Non-SC/ST)",
+      category: "Agriculture",
+      amount: "Financial Assistance",
+      state: "West Bengal",
+      level: "State",
+      eligibility: "Farmers (other than SC/ST) with cultivable land",
+      description: "Farm mechanisation scheme providing financial assistance for purchasing agricultural equipment and machinery.",
+      applyLink: "https://www.wb.gov.in/farm-mechanization",
+      tags: ["Mechanisation", "Equipment", "Farmer", "Tractor"],
+      benefits: [
+        "Financial aid for farm equipment",
+        "Subsidy on machinery",
+        "Improved farming efficiency",
+        "Reduced labour costs"
+      ],
+      documents: [
+        "Aadhaar Card",
+        "Land Ownership Papers",
+        "Bank Account",
+        "Farmer Registration",
+        "Passport Photo"
+      ]
+    },
+    {
+      id: "agri5",
+      title: "Agroforestry under RKVV",
+      category: "Agriculture",
+      amount: "Financial Support",
+      state: "West Bengal",
+      level: "State",
+      eligibility: "Farmers with cultivable land interested in agroforestry",
+      description: "Agroforestry component under Rashtriya Krishi Vikas Yojana (RKVV) for integrating trees with crops.",
+      applyLink: "https://www.wb.gov.in/agroforestry",
+      tags: ["Tree", "Forestry", "Crop", "Sustainability"],
+      benefits: [
+        "Financial support for agroforestry",
+        "Sustainable farming",
+        "Additional income from trees",
+        "Environmental benefits"
+      ],
+      documents: [
+        "Aadhaar Card",
+        "Land Ownership",
+        "Bank Account",
+        "Farmer Registration",
+        "Passport Photo"
+      ]
+    },
+    {
+      id: "agri6",
+      title: "AGR 3 – Farm Mechanisation (ST Farmers)",
+      category: "Agriculture",
+      amount: "Financial Assistance",
+      state: "West Bengal",
+      level: "State",
+      eligibility: "Scheduled Tribe farmers with cultivable land",
+      description: "Farm mechanisation scheme specifically for Scheduled Tribe farmers to modernise farming operations.",
+      applyLink: "https://www.wb.gov.in/farm-mechanization-st",
+      tags: ["Adivasi", "Mechanisation", "Farmer", "Equipment"],
+      benefits: [
+        "Financial aid for farm equipment",
+        "Special subsidy for ST farmers",
+        "Improved efficiency",
+        "Farm modernisation"
+      ],
+      documents: [
+        "Aadhaar Card",
+        "ST Certificate",
+        "Land Papers",
+        "Bank Account",
+        "Farmer Registration"
+      ]
+    },
+    {
+      id: "agri7",
+      title: "PM Kisan Samman Nidhi",
+      category: "Agriculture",
+      amount: "₹6,000/year",
+      state: "All India",
+      level: "Central",
+      eligibility: "Small & marginal farmers with cultivable land",
+      description: "Direct income support of ₹6,000 per year to small and marginal farmers in three instalments.",
+      applyLink: "https://pmkisan.gov.in",
+      tags: ["Income", "Farmer", "Central", "Support"],
+      benefits: [
+        "₹6,000/year direct benefit",
+        "3 instalments/year",
+        "Direct bank transfer",
+        "Support for small farmers"
+      ],
+      documents: [
+        "Aadhaar Card",
+        "Land Ownership",
+        "Bank Account",
+        "Farmer Registration",
+        "Passport Photo"
+      ]
+    },
+    {
+      id: "agri8",
+      title: "Soil Health Card Scheme",
+      category: "Agriculture",
+      amount: "Free Service",
+      state: "All India",
+      level: "Central",
+      eligibility: "All farmers with cultivable land",
+      description: "Provides soil health cards with fertiliser recommendations based on soil analysis.",
+      applyLink: "https://soilhealth.dac.gov.in",
+      tags: ["Soil", "Health", "Testing", "Fertiliser"],
+      benefits: [
+        "Free soil testing",
+        "Soil health card",
+        "Fertiliser recommendations",
+        "Better crop yield"
+      ],
+      documents: [
+        "Aadhaar Card",
+        "Land Ownership",
+        "Farmer Registration"
+      ]
+    },
+    {
+      id: "agri9",
+      title: "Crop Insurance (PMFBY)",
+      category: "Agriculture",
+      amount: "Insurance Coverage",
+      state: "All India",
+      level: "Central",
+      eligibility: "Farmers with cultivable land",
+      description: "Pradhan Mantri Fasal Bima Yojana provides insurance coverage for crop loss due to natural calamities.",
+      applyLink: "https://pmfby.gov.in",
+      tags: ["Insurance", "Crop", "Protection", "Risk"],
+      benefits: [
+        "Crop loss insurance",
+        "Low premium",
+        "Protection against natural calamities",
+        "Financial security"
+      ],
+      documents: [
+        "Aadhaar Card",
+        "Land Ownership",
+        "Bank Account",
+        "Farmer Registration",
+        "Crop Details"
+      ]
+    }
+  ];
+
+  // ==========================================
+  // 2. RENDER SCHEMES
+  // ==========================================
+  function renderSchemes() {
+    const grid = document.getElementById("schemesGrid");
+    if (!grid) return;
+
+    // Update scheme count
+    document.getElementById("schemeCount").innerText = agricultureData.length;
+
+    if (agricultureData.length === 0) {
+      grid.innerHTML = `
+        <div class="no-schemes">
+          <i class="fas fa-tractor"></i>
+          <h3>No Agriculture Schemes Found</h3>
+          <p>Please check back later.</p>
         </div>
-    </footer>
+      `;
+      return;
+    }
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        // ============================================
-        // AGRICULTURE SCHEMES DATA
-        // ============================================
-        var agricultureSchemes = [
-            {
-                id: 'agri-1',
-                title: 'Assistance for Installation of Sprinkler / Drip Micro Irrigation Systems',
-                category: 'Agriculture',
-                amount: '50% Subsidy',
-                state: 'West Bengal',
-                level: 'State',
-                eligibility: 'Must be a farmer with cultivable land, land ownership documents required, should have bank account, should have Kisan Credit Card',
-                description: 'This scheme provides financial assistance to farmers for installing modern irrigation systems to improve water efficiency and crop yield.',
-                applyLink: 'https://www.wb.gov.in/irrigation-scheme',
-                tags: ['Agriculture', 'Crop', 'Farmer', 'Irrigation'],
-                benefits: [
-                    '50% subsidy on irrigation equipment',
-                    'Technical support and training',
-                    'Water conservation benefits',
-                    'Increased crop productivity'
-                ],
-                documents: [
-                    'Land Ownership Documents',
-                    'Aadhaar Card',
-                    'Bank Account Details',
-                    'Kisan Credit Card',
-                    'Passport Size Photo'
-                ]
-            },
-            {
-                id: 'agri-2',
-                title: 'Amar Fasal Amar Gola (AFAG)',
-                category: 'Agriculture',
-                amount: '₹5,000 - ₹25,000',
-                state: 'West Bengal',
-                level: 'State',
-                eligibility: 'Must be a marginal farmer in West Bengal, should own Kisan Credit Card, land holding less than 2 hectares',
-                description: 'The West Bengal Government announced this pilot project to provide financial assistance to marginal farmers for storehouses and vending carts.',
-                applyLink: 'https://www.wb.gov.in/amar-fasal-amar-gola',
-                tags: ['Farmer', 'Storage', 'Warehouse', 'Vending'],
-                benefits: [
-                    '₹5,000 to ₹25,000 for warehouses',
-                    '₹10,000 flat for vending carts',
-                    'Direct bank transfer',
-                    'Support for direct selling'
-                ],
-                documents: [
-                    'Land Records',
-                    'Aadhaar Card',
-                    'Kisan Credit Card',
-                    'Bank Account Details',
-                    'Passport Size Photo'
-                ]
-            },
-            {
-                id: 'agri-3',
-                title: 'Advanced Animal Breeding Scheme (Supply of Breedable Pedigree Murrah Bulls)',
-                category: 'Agriculture',
-                amount: 'Subsidy Provided',
-                state: 'West Bengal',
-                level: 'State',
-                eligibility: 'Farmers engaged in animal husbandry, should have proper animal housing, registered with animal husbandry department',
-                description: 'Supply of breedable pedigree Murrah bulls on subsidy to improve livestock quality and milk production.',
-                applyLink: 'https://www.wb.gov.in/animal-breeding',
-                tags: ['Animal', 'Breed', 'Cow', 'Subsidy'],
-                benefits: [
-                    'Breedable Murrah bulls at subsidized rates',
-                    'Improved milk production',
-                    'Better livestock quality',
-                    'Income generation'
-                ],
-                documents: [
-                    'Aadhaar Card',
-                    'Animal Husbandry Registration',
-                    'Bank Account Details',
-                    'Land Documents',
-                    'Passport Size Photo'
-                ]
-            },
-            {
-                id: 'agri-4',
-                title: 'AGR 2 (Farm Mechanization) Scheme For Farmers Other Than SC/ST',
-                category: 'Agriculture',
-                amount: 'Financial Assistance',
-                state: 'West Bengal',
-                level: 'State',
-                eligibility: 'Farmers other than SC/ST, should have cultivable land, should be registered farmer',
-                description: 'Farm mechanization scheme providing financial assistance for purchasing agricultural equipment and machinery.',
-                applyLink: 'https://www.wb.gov.in/farm-mechanization',
-                tags: ['Agriculture', 'Equipment', 'Farmer', 'Mechanization'],
-                benefits: [
-                    'Financial assistance for farm equipment',
-                    'Subsidy on machinery purchase',
-                    'Improved farming efficiency',
-                    'Reduced labor costs'
-                ],
-                documents: [
-                    'Aadhaar Card',
-                    'Land Ownership Documents',
-                    'Bank Account Details',
-                    'Farmer Registration',
-                    'Passport Size Photo'
-                ]
-            },
-            {
-                id: 'agri-5',
-                title: 'Agroforestry Component under RKVV',
-                category: 'Agriculture',
-                amount: 'Financial Support',
-                state: 'West Bengal',
-                level: 'State',
-                eligibility: 'Farmers with cultivable land, interested in agroforestry, should be registered farmer',
-                description: 'Agroforestry component under Rashtriya Krishi Vikas Yojana (RKVV) for integrating trees with crops.',
-                applyLink: 'https://www.wb.gov.in/agroforestry',
-                tags: ['Agriculture', 'Forestry', 'Tree', 'Crop'],
-                benefits: [
-                    'Financial support for agroforestry',
-                    'Sustainable farming practices',
-                    'Additional income from trees',
-                    'Environmental benefits'
-                ],
-                documents: [
-                    'Aadhaar Card',
-                    'Land Ownership Documents',
-                    'Bank Account Details',
-                    'Farmer Registration',
-                    'Passport Size Photo'
-                ]
-            },
-            {
-                id: 'agri-6',
-                title: 'AGR 3 (Farm Mechanization) Scheme For ST Farmers',
-                category: 'Agriculture',
-                amount: 'Financial Assistance',
-                state: 'West Bengal',
-                level: 'State',
-                eligibility: 'Scheduled Tribe farmers, should have cultivable land, should be registered farmer',
-                description: 'Farm mechanization scheme specifically for Scheduled Tribe farmers to help them modernize farming operations.',
-                applyLink: 'https://www.wb.gov.in/farm-mechanization-st',
-                tags: ['Adivasi', 'Agriculture', 'Equipment', 'Farmer'],
-                benefits: [
-                    'Financial assistance for farm equipment',
-                    'Special subsidy for ST farmers',
-                    'Improved farming efficiency',
-                    'Modernization of agriculture'
-                ],
-                documents: [
-                    'Aadhaar Card',
-                    'ST Certificate',
-                    'Land Ownership Documents',
-                    'Bank Account Details',
-                    'Farmer Registration'
-                ]
-            },
-            {
-                id: 'agri-7',
-                title: 'PM Kisan Samman Nidhi',
-                category: 'Agriculture',
-                amount: '₹6,000/year',
-                state: 'All India',
-                level: 'Central',
-                eligibility: 'Small and marginal farmers, should have cultivable land, should be registered farmer',
-                description: 'Direct income support of ₹6,000 per year to small and marginal farmers in three installments.',
-                applyLink: 'https://pmkisan.gov.in',
-                tags: ['Farmer', 'Income Support', 'Central'],
-                benefits: [
-                    '₹6,000 per year direct benefit',
-                    'Three installments per year',
-                    'Direct bank transfer',
-                    'Support for small farmers'
-                ],
-                documents: [
-                    'Aadhaar Card',
-                    'Land Ownership Documents',
-                    'Bank Account Details',
-                    'Farmer Registration',
-                    'Passport Size Photo'
-                ]
-            },
-            {
-                id: 'agri-8',
-                title: 'Soil Health Card Scheme',
-                category: 'Agriculture',
-                amount: 'Free Service',
-                state: 'All India',
-                level: 'Central',
-                eligibility: 'All farmers with cultivable land',
-                description: 'Provides soil health cards to farmers with recommendations on fertilizer usage based on soil analysis.',
-                applyLink: 'https://soilhealth.dac.gov.in',
-                tags: ['Soil', 'Health', 'Farmer', 'Testing'],
-                benefits: [
-                    'Free soil testing',
-                    'Soil health card',
-                    'Fertilizer recommendations',
-                    'Improved crop yield'
-                ],
-                documents: [
-                    'Aadhaar Card',
-                    'Land Ownership Documents',
-                    'Farmer Registration'
-                ]
-            },
-            {
-                id: 'agri-9',
-                title: 'Crop Insurance Scheme (PMFBY)',
-                category: 'Agriculture',
-                amount: 'Insurance Coverage',
-                state: 'All India',
-                level: 'Central',
-                eligibility: 'Farmers with cultivable land, should be registered farmer',
-                description: 'Pradhan Mantri Fasal Bima Yojana provides insurance coverage for crop loss due to natural calamities.',
-                applyLink: 'https://pmfby.gov.in',
-                tags: ['Insurance', 'Crop', 'Farmer', 'Protection'],
-                benefits: [
-                    'Insurance for crop loss',
-                    'Low premium rates',
-                    'Protection against natural calamities',
-                    'Financial security'
-                ],
-                documents: [
-                    'Aadhaar Card',
-                    'Land Ownership Documents',
-                    'Bank Account Details',
-                    'Farmer Registration',
-                    'Crop Details'
-                ]
-            }
-        ];
+    grid.innerHTML = agricultureData.map((s, i) => `
+      <div class="scheme-card">
+        <div class="scheme-card-header">
+          <h3>${s.title}</h3>
+          <span class="scheme-card-amount">${s.amount}</span>
+        </div>
+        <p>${s.description.substring(0, 120)}${s.description.length > 120 ? '...' : ''}</p>
+        <div class="scheme-card-tags">
+          ${s.tags.slice(0, 3).map(t => `<span>#${t}</span>`).join('')}
+        </div>
+        <div class="scheme-card-footer">
+          <span class="scheme-eligibility">👤 ${s.eligibility.substring(0, 50)}${s.eligibility.length > 50 ? '...' : ''}</span>
+          <button class="view-detail-btn" onclick="openModal('${s.id}')">View Details →</button>
+        </div>
+      </div>
+    `).join('');
+  }
 
-        console.log('🌾 Agriculture schemes loaded:', agricultureSchemes.length);
+  // ==========================================
+  // 3. OPEN / CLOSE MODAL
+  // ==========================================
+  function openModal(id) {
+    const scheme = agricultureData.find(s => s.id === id);
+    if (!scheme) return;
 
-        // ============================================
-        // RENDER SCHEMES
-        // ============================================
-        function renderSchemes() {
-            var grid = document.getElementById('schemesGrid');
-            if (!grid) return;
+    const modal = document.getElementById("schemeModal");
+    const body = document.getElementById("modalBody");
 
-            if (agricultureSchemes.length === 0) {
-                grid.innerHTML = `
-                    <div class="no-schemes" style="grid-column: 1/-1;">
-                        <i class="fas fa-tractor"></i>
-                        <h3>No Agriculture Schemes Found</h3>
-                        <p>Please check back later for updated schemes.</p>
-                    </div>
-                `;
-                return;
-            }
+    body.innerHTML = `
+      <h2 class="modal-scheme-title">${scheme.title}</h2>
+      <div class="modal-scheme-meta">
+        <span>📂 ${scheme.category}</span>
+        <span class="modal-amount">💰 ${scheme.amount}</span>
+        <span>📍 ${scheme.state}</span>
+        <span>🏷️ ${scheme.level}</span>
+      </div>
 
-            grid.innerHTML = agricultureSchemes.map(function(scheme, index) {
-                return `
-                    <div class="scheme-card">
-                        <div class="scheme-card-header">
-                            <h3>${scheme.title}</h3>
-                            <span class="scheme-card-amount">${scheme.amount}</span>
-                        </div>
-                        <p>${scheme.description.substring(0, 120)}${scheme.description.length > 120 ? '...' : ''}</p>
-                        <div class="scheme-card-tags">
-                            ${scheme.tags.slice(0, 3).map(function(tag) { return `<span>#${tag}</span>`; }).join('')}
-                        </div>
-                        <div class="scheme-card-footer">
-                            <span class="scheme-card-eligibility">👤 ${scheme.eligibility.substring(0, 50)}${scheme.eligibility.length > 50 ? '...' : ''}</span>
-                            <button class="view-detail-btn" onclick="openModal('${scheme.id}')">
-                                View Details →
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
+      <div class="modal-section">
+        <h4>📋 Description</h4>
+        <p>${scheme.description}</p>
+      </div>
 
-            // Update total count
-            var totalEl = document.getElementById('totalSchemes');
-            if (totalEl) totalEl.textContent = agricultureSchemes.length;
-        }
+      <div class="modal-section">
+        <h4>✅ Eligibility</h4>
+        <p>${scheme.eligibility}</p>
+      </div>
 
-        // ============================================
-        // MODAL FUNCTIONS
-        // ============================================
-        function openModal(schemeId) {
-            var scheme = agricultureSchemes.find(function(s) { return s.id === schemeId; });
-            if (!scheme) return;
+      <div class="modal-section">
+        <h4>🎯 Benefits</h4>
+        <ul>${scheme.benefits.map(b => `<li>${b}</li>`).join('')}</ul>
+      </div>
 
-            var modal = document.getElementById('schemeModal');
-            var modalBody = document.getElementById('modalBody');
+      <div class="modal-section">
+        <h4>📄 Documents Required</h4>
+        <ul>${scheme.documents.map(d => `<li>${d}</li>`).join('')}</ul>
+      </div>
 
-            modalBody.innerHTML = `
-                <h2 class="modal-scheme-title">${scheme.title}</h2>
-                <div class="modal-scheme-meta">
-                    <span>📂 ${scheme.category}</span>
-                    <span class="modal-amount">💰 ${scheme.amount}</span>
-                    <span>📍 ${scheme.state}</span>
-                    <span>🏷️ ${scheme.level}</span>
-                </div>
-                <div class="modal-section">
-                    <h4>📋 Description</h4>
-                    <p>${scheme.description}</p>
-                </div>
-                <div class="modal-section">
-                    <h4>✅ Eligibility</h4>
-                    <p>${scheme.eligibility}</p>
-                </div>
-                <div class="modal-section">
-                    <h4>🎯 Benefits</h4>
-                    <ul>${scheme.benefits.map(function(b) { return `<li>${b}</li>`; }).join('')}</ul>
-                </div>
-                <div class="modal-section">
-                    <h4>📄 Required Documents</h4>
-                    <ul>${scheme.documents.map(function(d) { return `<li>${d}</li>`; }).join('')}</ul>
-                </div>
-                <div class="modal-actions">
-                    <a href="${scheme.applyLink}" target="_blank" class="modal-apply-btn">
-                        <i class="fas fa-external-link-alt"></i> Apply Now
-                    </a>
-                    <button class="modal-save-btn" onclick="saveScheme('${scheme.id}')">
-                        <i class="fas fa-bookmark"></i> Save
-                    </button>
-                    <button class="modal-share-btn" onclick="shareScheme('${scheme.id}')">
-                        <i class="fas fa-share-alt"></i> Share
-                    </button>
-                </div>
-            `;
+      <div class="modal-actions">
+        <a href="${scheme.applyLink}" target="_blank" class="modal-apply-btn">
+          <i class="fas fa-external-link-alt"></i> Apply Now
+        </a>
+        <button class="modal-save-btn" onclick="saveScheme('${scheme.id}')">
+          <i class="fas fa-bookmark"></i> Save
+        </button>
+        <button class="modal-share-btn" onclick="shareScheme('${scheme.id}')">
+          <i class="fas fa-share-alt"></i> Share
+        </button>
+      </div>
+    `;
 
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
 
-        function closeModal() {
-            document.getElementById('schemeModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+  function closeModal() {
+    document.getElementById("schemeModal").style.display = "none";
+    document.body.style.overflow = "auto";
+  }
 
-        document.getElementById('schemeModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
+  // Click outside modal to close
+  document.getElementById("schemeModal").addEventListener("click", function (e) {
+    if (e.target === this) closeModal();
+  });
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
+  // ESC key to close
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
 
-        // ============================================
-        // SAVE & SHARE
-        // ============================================
-        function saveScheme(schemeId) {
-            var scheme = agricultureSchemes.find(function(s) { return s.id === schemeId; });
-            if (!scheme) return;
-            var saved = JSON.parse(localStorage.getItem('savedSchemes') || '[]');
-            if (!saved.includes(schemeId)) {
-                saved.push(schemeId);
-                localStorage.setItem('savedSchemes', JSON.stringify(saved));
-                alert('✅ "' + scheme.title + '" saved successfully!');
-            } else {
-                alert('⚠️ "' + scheme.title + '" is already saved.');
-            }
-        }
+  // ==========================================
+  // 4. SAVE & SHARE
+  // ==========================================
+  function saveScheme(id) {
+    const scheme = agricultureData.find(s => s.id === id);
+    if (!scheme) return;
+    const saved = JSON.parse(localStorage.getItem("savedSchemes") || "[]");
+    if (!saved.includes(id)) {
+      saved.push(id);
+      localStorage.setItem("savedSchemes", JSON.stringify(saved));
+      alert(`✅ "${scheme.title}" saved!`);
+    } else {
+      alert(`⚠️ "${scheme.title}" already saved.`);
+    }
+  }
 
-        function shareScheme(schemeId) {
-            var scheme = agricultureSchemes.find(function(s) { return s.id === schemeId; });
-            if (!scheme) return;
-            var shareText = '🌾 ' + scheme.title + '\n💰 ' + scheme.amount + '\n✅ ' + scheme.eligibility + '\n🔗 ' + scheme.applyLink;
-            if (navigator.share) {
-                navigator.share({ title: scheme.title, text: shareText, url: scheme.applyLink }).catch(function() {});
-            } else {
-                navigator.clipboard.writeText(shareText).then(function() {
-                    alert('✅ Scheme details copied to clipboard!');
-                }).catch(function() {
-                    prompt('Copy this:', shareText);
-                });
-            }
-        }
+  function shareScheme(id) {
+    const scheme = agricultureData.find(s => s.id === id);
+    if (!scheme) return;
+    const text = `🌾 ${scheme.title}\n💰 ${scheme.amount}\n✅ ${scheme.eligibility}\n🔗 ${scheme.applyLink}`;
+    if (navigator.share) {
+      navigator.share({ title: scheme.title, text, url: scheme.applyLink }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(text).then(() => alert("✅ Copied to clipboard!"));
+    }
+  }
 
-        // ============================================
-        // THEME SWITCHER
-        // ============================================
-        var themeBtn = document.getElementById('themeToggleBtn');
-        var themeDropdown = document.getElementById('themeDropdown');
-        var themeOptions = document.querySelectorAll('.theme-dropdown li');
+  // ==========================================
+  // 5. RUN ON PAGE LOAD
+  // ==========================================
+  document.addEventListener("DOMContentLoaded", function () {
+    renderSchemes();
+    console.log("✅ Agriculture page loaded with", agricultureData.length, "schemes");
+  });
+</script>
 
-        if (themeBtn) {
-            themeBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                themeDropdown.classList.toggle('active');
-                this.classList.toggle('active');
-            });
-        }
-
-        document.addEventListener('click', function(e) {
-            if (!themeDropdown.contains(e.target) && !themeBtn.contains(e.target)) {
-                themeDropdown.classList.remove('active');
-                themeBtn.classList.remove('active');
-            }
-        });
-
-        function applyTheme(theme) {
-            var root = document.documentElement;
-            root.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-pink', 'theme-red', 'theme-teal');
-            if (theme !== 'default') root.classList.add('theme-' + theme);
-            themeOptions.forEach(function(opt) {
-                opt.classList.remove('active');
-                if (opt.dataset.theme === theme) opt.classList.add('active');
-            });
-            localStorage.setItem('wbseva-theme', theme);
-        }
-
-        var savedTheme = localStorage.getItem('wbseva-theme') || 'default';
-        applyTheme(savedTheme);
-
-        themeOptions.forEach(function(option) {
-            option.addEventListener('click', function() {
-                applyTheme(this.dataset.theme);
-                themeDropdown.classList.remove('active');
-                themeBtn.classList.remove('active');
-            });
-        });
-
-        // ============================================
-        // INITIALIZE
-        // ============================================
-        document.addEventListener('DOMContentLoaded', function() {
-            renderSchemes();
-            console.log('✅ Agriculture page loaded successfully!');
-        });
-    </script>
 </body>
 </html>
