@@ -1,308 +1,253 @@
 // ============================================
-// EDUCATION SCHEMES - Complete JavaScript
+// AGRICULTURE SCHEMES - West Bengal
 // ============================================
 
-// ============================================
-// 1. EDUCATION SCHEMES DATA
-// ============================================
 const agricultureSchemes = [
     {
-        id: 'edu-1',
-        title: 'Swami Vivekananda Merit-cum-Means (SVMCM) Scholarship',
-        category: 'Education',
-        amount: '₹1,000 - ₹8,000/month',
+        id: 'agri-1',
+        title: 'Assistance for Installation of Sprinkler / Drip Micro Irrigation Systems',
+        category: 'Agriculture',
+        amount: '50% Subsidy',
         state: 'West Bengal',
         level: 'State',
-        eligibility: 'Permanent WB resident, 60% marks, income ≤ ₹2.5 Lakh/year',
-        description: 'Flagship scholarship for meritorious students from economically weaker families. Covers HS, Diploma, UG, PG, M.Phil., Ph.D.',
-        applyLink: 'https://svmcm.wbhed.gov.in',
-        tags: ['Scholarship', 'Merit', 'Financial Aid'],
+        eligibility: 'Must be a farmer with cultivable land, land ownership documents required, should have bank account, should have Kisan Credit Card',
+        description: 'This scheme provides financial assistance to farmers for installing modern irrigation systems to improve water efficiency and crop yield.',
+        applyLink: 'https://www.wb.gov.in/irrigation-scheme',
+        tags: ['Agriculture', 'Crop', 'Farmer', 'Irrigation'],
         benefits: [
-            'Monthly stipend up to ₹8,000',
-            'Covers all levels of education',
-            'Renewable based on performance'
+            '50% subsidy on irrigation equipment',
+            'Technical support and training',
+            'Water conservation benefits',
+            'Increased crop productivity'
         ],
         documents: [
+            'Land Ownership Documents',
             'Aadhaar Card',
-            'Income Certificate',
-            'Previous Year Marksheet',
             'Bank Account Details',
-            'Residence Certificate'
+            'Kisan Credit Card',
+            'Passport Size Photo'
         ],
-        icon: 'fa-graduation-cap',
-        color: '#6C3CE1'
-    },
-    {
-        id: 'edu-2',
-        title: 'Kanyashree Prakalpa Scheme (K1 & K2)',
-        category: 'Education',
-        amount: '₹1,000/year + ₹25,000 one-time',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'Unmarried girls, Class 8-12, income ≤ ₹1.2 Lakh/year',
-        description: 'Flagship social welfare initiative to empower girl students and prevent child marriage. K1 provides annual scholarship, K2 gives one-time grant.',
-        applyLink: 'https://wbkanyashree.gov.in',
-        tags: ['Girl Child', 'Empowerment', 'Scholarship'],
-        benefits: [
-            '₹1,000 annual scholarship (K1)',
-            '₹25,000 one-time grant (K2)',
-            'Prevents child marriage'
-        ],
-        documents: [
-            'Birth Certificate',
-            'Aadhaar Card',
-            'School/College ID',
-            'Bank Account Details',
-            'Income Certificate'
-        ],
-        icon: 'fa-venus',
-        color: '#EC4899'
-    },
-    {
-        id: 'edu-3',
-        title: 'Student Credit Card Scheme',
-        category: 'Education',
-        amount: 'Up to ₹10 Lakh',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'Higher secondary to professional courses',
-        description: 'Education loans up to ₹10 lakh at 4% simple interest with entire interest subsidy borne by the state government.',
-        applyLink: 'https://www.wb.gov.in',
-        tags: ['Loan', 'Education', 'Financial'],
-        benefits: [
-            '4% simple interest rate',
-            'Full interest subsidy by state',
-            'Repayment up to 15 years'
-        ],
-        documents: [
-            'Aadhaar Card',
-            'Admission Letter',
-            'Fee Structure',
-            'Bank Account Details',
-            'Income Certificate'
-        ],
-        icon: 'fa-credit-card',
-        color: '#F59E0B'
-    },
-    {
-        id: 'edu-4',
-        title: 'Aikyashree Scholarship (WBMDFC)',
-        category: 'Education',
-        amount: 'Up to ₹60,000/year',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'Minority students, 50% marks, income ≤ ₹2 Lakh/year',
-        description: 'Pre-matric, post-matric, and merit-cum-means scholarships for minority students in West Bengal.',
-        applyLink: 'https://www.wbmdfcscholarship.gov.in',
-        tags: ['Minority', 'Scholarship', 'Financial Aid'],
-        benefits: [
-            'Pre-matric up to ₹11,000/year',
-            'Post-matric up to ₹16,500/year',
-            'Merit-cum-Means up to ₹33,000/year'
-        ],
-        documents: [
-            'Aadhaar Card',
-            'Minority Certificate',
-            'Income Certificate',
-            'Bank Account Details',
-            'Previous Marksheet'
-        ],
-        icon: 'fa-hand-holding-heart',
+        icon: 'fa-tractor',
         color: '#10B981'
     },
     {
-        id: 'edu-5',
-        title: 'Nabanna Scholarship (CM Relief Fund)',
-        category: 'Education',
-        amount: '₹10,000',
+        id: 'agri-2',
+        title: 'Amar Fasal Amar Gola (AFAG)',
+        category: 'Agriculture',
+        amount: '₹5,000 - ₹25,000',
         state: 'West Bengal',
         level: 'State',
-        eligibility: 'Students in need of financial assistance',
-        description: 'One-time financial assistance of ₹10,000 from Chief Minister\'s Relief Fund for students.',
-        applyLink: 'https://cmrf.wb.gov.in',
-        tags: ['Financial Aid', 'Emergency', 'Support'],
+        eligibility: 'Must be a marginal farmer in West Bengal, should own Kisan Credit Card, land holding less than 2 hectares, active farmer with valid records',
+        description: 'The West Bengal Government announced this pilot project to provide financial assistance to marginal farmers for storehouses and vending carts.',
+        applyLink: 'https://www.wb.gov.in/amar-fasal-amar-gola',
+        tags: ['Farmer', 'Storage', 'Warehouse', 'Vending'],
         benefits: [
-            '₹10,000 one-time assistance',
-            'Direct bank transfer'
+            '₹5,000 to ₹25,000 for warehouses',
+            '₹10,000 flat for vending carts',
+            'Direct bank transfer',
+            'Support for direct selling'
+        ],
+        documents: [
+            'Land Records',
+            'Aadhaar Card',
+            'Kisan Credit Card',
+            'Bank Account Details',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-warehouse',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-3',
+        title: 'Advanced Animal Breeding Scheme (Supply of Breedable Pedigree Murrah Bulls)',
+        category: 'Agriculture',
+        amount: 'Subsidy Provided',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Farmers engaged in animal husbandry, should have proper animal housing, registered with animal husbandry department',
+        description: 'Supply of breedable pedigree Murrah bulls on subsidy to improve livestock quality and milk production.',
+        applyLink: 'https://www.wb.gov.in/animal-breeding',
+        tags: ['Animal', 'Breed', 'Cow', 'Subsidy'],
+        benefits: [
+            'Breedable Murrah bulls at subsidized rates',
+            'Improved milk production',
+            'Better livestock quality',
+            'Income generation'
         ],
         documents: [
             'Aadhaar Card',
-            'Income Certificate',
+            'Animal Husbandry Registration',
             'Bank Account Details',
-            'Application Form'
+            'Land Documents',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-horse',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-4',
+        title: 'AGR 2 (Farm Mechanization) Scheme For Farmers Other Than SC/ST',
+        category: 'Agriculture',
+        amount: 'Financial Assistance',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Farmers other than SC/ST, should have cultivable land, should be registered farmer',
+        description: 'Farm mechanization scheme providing financial assistance for purchasing agricultural equipment and machinery.',
+        applyLink: 'https://www.wb.gov.in/farm-mechanization',
+        tags: ['Agriculture', 'Equipment', 'Farmer', 'Mechanization'],
+        benefits: [
+            'Financial assistance for farm equipment',
+            'Subsidy on machinery purchase',
+            'Improved farming efficiency',
+            'Reduced labor costs'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-tractor',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-5',
+        title: 'Agroforestry Component under RKVV',
+        category: 'Agriculture',
+        amount: 'Financial Support',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Farmers with cultivable land, interested in agroforestry, should be registered farmer',
+        description: 'Agroforestry component under Rashtriya Krishi Vikas Yojana (RKVV) for integrating trees with crops.',
+        applyLink: 'https://www.wb.gov.in/agroforestry',
+        tags: ['Agriculture', 'Forestry', 'Tree', 'Crop'],
+        benefits: [
+            'Financial support for agroforestry',
+            'Sustainable farming practices',
+            'Additional income from trees',
+            'Environmental benefits'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration',
+            'Passport Size Photo'
+        ],
+        icon: 'fa-tree',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-6',
+        title: 'AGR 3 (Farm Mechanization) Scheme For ST Farmers',
+        category: 'Agriculture',
+        amount: 'Financial Assistance',
+        state: 'West Bengal',
+        level: 'State',
+        eligibility: 'Scheduled Tribe farmers, should have cultivable land, should be registered farmer',
+        description: 'Farm mechanization scheme specifically for Scheduled Tribe farmers to help them modernize farming operations.',
+        applyLink: 'https://www.wb.gov.in/farm-mechanization-st',
+        tags: ['Adivasi', 'Agriculture', 'Equipment', 'Farmer'],
+        benefits: [
+            'Financial assistance for farm equipment',
+            'Special subsidy for ST farmers',
+            'Improved farming efficiency',
+            'Modernization of agriculture'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'ST Certificate',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration'
+        ],
+        icon: 'fa-tractor',
+        color: '#10B981'
+    },
+    {
+        id: 'agri-7',
+        title: 'PM Kisan Samman Nidhi',
+        category: 'Agriculture',
+        amount: '₹6,000/year',
+        state: 'All India',
+        level: 'Central',
+        eligibility: 'Small and marginal farmers, should have cultivable land, should be registered farmer',
+        description: 'Direct income support of ₹6,000 per year to small and marginal farmers in three installments.',
+        applyLink: 'https://pmkisan.gov.in',
+        tags: ['Farmer', 'Income Support', 'Central'],
+        benefits: [
+            '₹6,000 per year direct benefit',
+            'Three installments per year',
+            'Direct bank transfer',
+            'Support for small farmers'
+        ],
+        documents: [
+            'Aadhaar Card',
+            'Land Ownership Documents',
+            'Bank Account Details',
+            'Farmer Registration',
+            'Passport Size Photo'
         ],
         icon: 'fa-hand-holding-usd',
-        color: '#F472B6'
+        color: '#10B981'
     },
     {
-        id: 'edu-6',
-        title: 'PM-SHRI Scheme',
-        category: 'Education',
-        amount: 'Infrastructure Upgrades',
-        state: 'West Bengal',
+        id: 'agri-8',
+        title: 'Soil Health Card Scheme',
+        category: 'Agriculture',
+        amount: 'Free Service',
+        state: 'All India',
         level: 'Central',
-        eligibility: 'Government schools in West Bengal',
-        description: 'Upgrades school infrastructure, provides gas-based mid-day meals, solar panels, sanitary napkin vending machines in girls\' schools.',
-        applyLink: 'https://www.pmshri.gov.in',
-        tags: ['Infrastructure', 'School', 'Development'],
+        eligibility: 'All farmers with cultivable land',
+        description: 'Provides soil health cards to farmers with recommendations on fertilizer usage based on soil analysis.',
+        applyLink: 'https://soilhealth.dac.gov.in',
+        tags: ['Soil', 'Health', 'Farmer', 'Testing'],
         benefits: [
-            'Infrastructure upgrades',
-            'Gas-based mid-day meals',
-            'Solar panels installation'
+            'Free soil testing',
+            'Soil health card',
+            'Fertilizer recommendations',
+            'Improved crop yield'
         ],
         documents: [
-            'School Registration',
             'Aadhaar Card',
-            'School ID'
+            'Land Ownership Documents',
+            'Farmer Registration'
         ],
-        icon: 'fa-school',
-        color: '#3B82F6'
+        icon: 'fa-seedling',
+        color: '#10B981'
     },
     {
-        id: 'edu-7',
-        title: 'Annapurna Scheme - Female Student Support',
-        category: 'Education',
-        amount: '₹50,000',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'Unmarried female students in higher education',
-        description: 'One-time financial assistance of ₹50,000 to unmarried female students to reduce dropout rates in higher education.',
-        applyLink: 'https://www.wb.gov.in',
-        tags: ['Women', 'Empowerment', 'Financial Aid'],
+        id: 'agri-9',
+        title: 'Crop Insurance Scheme (PMFBY)',
+        category: 'Agriculture',
+        amount: 'Insurance Coverage',
+        state: 'All India',
+        level: 'Central',
+        eligibility: 'Farmers with cultivable land, should be registered farmer',
+        description: 'Pradhan Mantri Fasal Bima Yojana provides insurance coverage for crop loss due to natural calamities.',
+        applyLink: 'https://pmfby.gov.in',
+        tags: ['Insurance', 'Crop', 'Farmer', 'Protection'],
         benefits: [
-            '₹50,000 one-time assistance',
-            'Reduces dropout rates'
+            'Insurance for crop loss',
+            'Low premium rates',
+            'Protection against natural calamities',
+            'Financial security'
         ],
         documents: [
             'Aadhaar Card',
-            'Income Certificate',
+            'Land Ownership Documents',
             'Bank Account Details',
-            'College ID'
+            'Farmer Registration',
+            'Crop Details'
         ],
-        icon: 'fa-female',
-        color: '#EC4899'
-    },
-    {
-        id: 'edu-8',
-        title: 'JBNSTS Senior Scholarship Program',
-        category: 'Education',
-        amount: 'Tuition Support',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'UG students in Basic Sciences, Engineering, Medicine',
-        description: 'Since 1960, supports undergraduate students in Basic Sciences, Engineering, and Medicine from West Bengal.',
-        applyLink: 'https://www.jbnsts.ac.in',
-        tags: ['Science', 'Technology', 'Scholarship'],
-        benefits: [
-            'Tuition support',
-            'Multi-phased test selection'
-        ],
-        documents: [
-            'Aadhaar Card',
-            'Previous Marksheet',
-            'College ID',
-            'Bank Account Details'
-        ],
-        icon: 'fa-flask',
-        color: '#8B5CF6'
-    },
-    {
-        id: 'edu-9',
-        title: 'JBNSTS Junior Scholarship (Bigyani Kanya Medha Britti)',
-        category: 'Education',
-        amount: 'Tuition Support',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'Higher secondary science students',
-        description: 'New initiative to identify and nurture science talent at the higher secondary level in West Bengal.',
-        applyLink: 'https://www.jbnsts.ac.in',
-        tags: ['Science', 'Talent', 'Scholarship'],
-        benefits: [
-            'Identify science talent',
-            'Nurture at HS level'
-        ],
-        documents: [
-            'Aadhaar Card',
-            'Previous Marksheet',
-            'School ID',
-            'Bank Account Details'
-        ],
-        icon: 'fa-microscope',
-        color: '#8B5CF6'
-    },
-    {
-        id: 'edu-10',
-        title: 'Post-Matric Stipend (Talent Support Programme)',
-        category: 'Education',
-        amount: '₹2,550 - ₹4,900/year',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'Students with <50% marks, income ≤ ₹2 Lakh/year',
-        description: 'For students with less than 50% marks but from economically weaker backgrounds.',
-        applyLink: 'https://www.wb.gov.in',
-        tags: ['Stipend', 'Support', 'Financial Aid'],
-        benefits: [
-            '₹2,550 - ₹4,900/year',
-            'Supports weaker sections'
-        ],
-        documents: [
-            'Aadhaar Card',
-            'Income Certificate',
-            'Previous Marksheet',
-            'Bank Account Details'
-        ],
-        icon: 'fa-trophy',
-        color: '#06D6A0'
-    },
-    {
-        id: 'edu-11',
-        title: 'PM POSHAN (Mid-Day Meal) Enhancement',
-        category: 'Education',
-        amount: '₹10/student/day',
-        state: 'West Bengal',
-        level: 'Central',
-        eligibility: 'Primary school students',
-        description: 'Primary-level cooking cost increased from ₹6.78 to ₹10 per student per day effective August 1, 2026.',
-        applyLink: 'https://www.poshan.gov.in',
-        tags: ['Nutrition', 'School', 'Health'],
-        benefits: [
-            '₹10/student/day cooking cost',
-            'Enhanced nutritional support'
-        ],
-        documents: [
-            'School Registration',
-            'Student List'
-        ],
-        icon: 'fa-utensils',
-        color: '#F59E0B'
-    },
-    {
-        id: 'edu-12',
-        title: 'Infrastructure & Facility Upgrades',
-        category: 'Education',
-        amount: 'Facility Upgrades',
-        state: 'West Bengal',
-        level: 'State',
-        eligibility: 'All government schools',
-        description: 'Comprehensive school infrastructure improvements including ceiling fans, clean toilets, arsenic-free drinking water, solar panels.',
-        applyLink: 'https://www.wb.gov.in',
-        tags: ['Infrastructure', 'Development', 'School'],
-        benefits: [
-            'Ceiling fans installation',
-            'Clean toilets & arsenic-free water',
-            'Solar panels & water purifiers'
-        ],
-        documents: [
-            'School Registration',
-            'Aadhaar Card'
-        ],
-        icon: 'fa-building',
-        color: '#14B8A6'
+        icon: 'fa-shield-halved',
+        color: '#10B981'
     }
 ];
 
 // ============================================
-// 2. RENDER SCHEMES
+// RENDER SCHEMES
 // ============================================
 function renderSchemes() {
     const grid = document.getElementById('schemesGrid');
@@ -329,7 +274,7 @@ function renderSchemes() {
 }
 
 // ============================================
-// 3. OPEN MODAL
+// OPEN MODAL
 // ============================================
 function openModal(schemeId) {
     const scheme = agricultureSchemes.find(s => s.id === schemeId);
@@ -389,21 +334,19 @@ function openModal(schemeId) {
 }
 
 // ============================================
-// 4. CLOSE MODAL
+// CLOSE MODAL
 // ============================================
 function closeModal() {
     document.getElementById('schemeModal').style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
-// Close modal on outside click
 document.getElementById('schemeModal')?.addEventListener('click', function(e) {
     if (e.target === this) {
         closeModal();
     }
 });
 
-// Close modal on ESC key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeModal();
@@ -411,7 +354,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ============================================
-// 5. SAVE SCHEME
+// SAVE SCHEME
 // ============================================
 function saveScheme(schemeId) {
     const scheme = agricultureSchemes.find(s => s.id === schemeId);
@@ -428,13 +371,13 @@ function saveScheme(schemeId) {
 }
 
 // ============================================
-// 6. SHARE SCHEME
+// SHARE SCHEME
 // ============================================
 function shareScheme(schemeId) {
     const scheme = agricultureSchemes.find(s => s.id === schemeId);
     if (!scheme) return;
 
-    const shareText = `📚 ${scheme.title}\n💰 ${scheme.amount}\n✅ ${scheme.eligibility}\n🔗 ${scheme.applyLink}`;
+    const shareText = `🌾 ${scheme.title}\n💰 ${scheme.amount}\n✅ ${scheme.eligibility}\n🔗 ${scheme.applyLink}`;
 
     if (navigator.share) {
         navigator.share({
@@ -452,7 +395,7 @@ function shareScheme(schemeId) {
 }
 
 // ============================================
-// 7. THEME SWITCHER
+// THEME SWITCHER
 // ============================================
 const themeBtn = document.getElementById('themeToggleBtn');
 const themeDropdown = document.getElementById('themeDropdown');
@@ -501,10 +444,10 @@ themeOptions.forEach(option => {
 });
 
 // ============================================
-// 8. INITIALIZE
+// INITIALIZE
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
     renderSchemes();
-    console.log('✅ Agriculture schemes loaded successfully!');
-    console.log(`📚 Total schemes: $(agr).length}`);
+    console.log('🌾 Agriculture schemes loaded successfully!');
+    console.log(`📚 Total schemes: ${agricultureSchemes.length}`);
 });
