@@ -1,87 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.png",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.jpg",
-      "use": "@vercel/static"
-    }
-  ],
   "routes": [
     {
       "src": "/",
       "dest": "/index.html"
     },
     {
-      "src": "/index.html",
-      "dest": "/index.html"
-    },
-    {
       "src": "/scheme-details.html",
       "dest": "/scheme-details.html"
-    },
-    {
-      "src": "/education-schemes.html",
-      "dest": "/education-schemes.html"
-    },
-    {
-      "src": "/health-schemes.html",
-      "dest": "/health-schemes.html"
-    },
-    {
-      "src": "/housing-schemes.html",
-      "dest": "/housing-schemes.html"
-    },
-    {
-      "src": "/financial-schemes.html",
-      "dest": "/financial-schemes.html"
-    },
-    {
-      "src": "/employment-schemes.html",
-      "dest": "/employment-schemes.html"
-    },
-    {
-      "src": "/agriculture-schemes.html",
-      "dest": "/agriculture-schemes.html"
-    },
-    {
-      "src": "/skill-schemes.html",
-      "dest": "/skill-schemes.html"
-    },
-    {
-      "src": "/rural-schemes.html",
-      "dest": "/rural-schemes.html"
-    },
-    {
-      "src": "/digital-schemes.html",
-      "dest": "/digital-schemes.html"
-    },
-    {
-      "src": "/energy-schemes.html",
-      "dest": "/energy-schemes.html"
-    },
-    {
-      "src": "/women-schemes.html",
-      "dest": "/women-schemes.html"
-    },
-    {
-      "src": "/legal-schemes.html",
-      "dest": "/legal-schemes.html"
     },
     {
       "src": "/(.*).css",
@@ -96,14 +22,9 @@
       "dest": "/$1.png"
     },
     {
-      "src": "/(.*).jpg",
-      "dest": "/$1.jpg"
-    },
-    {
       "src": "/(.*)",
       "dest": "/$1"
     }
-    
   ],
   "headers": [
     {
