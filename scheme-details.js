@@ -884,7 +884,7 @@ function loadSchemeDetails(id) {
 // ============================================
 // LOAD SCHEMES BY CATEGORY
 // ============================================
-function loadSchemesByCategory(cat) {
+function loadSchemesByCategory(cat) {}
     console.log('📂 Loading schemes for category:', cat);
     
     const catLower = cat.toLowerCase();
@@ -918,35 +918,35 @@ function loadSchemesByCategory(cat) {
     document.querySelector('.scheme-actions').style.display = 'none';
     
     // Show scheme grid
-    const overviewEl = document.getElementById('schemeOverview');
-    if (overviewEl) {
-        overviewEl.innerHTML = `
-            <div style="margin-bottom:20px;color:var(--text-gray);">
-                <p>${schemes.length} schemes available in this category</p>
-            </div>
-            <div class="schemes-grid">
-                ${schemes.map(scheme => `
-                    <div class="scheme-card" onclick="window.location.href='scheme-details.html?id=${scheme.id}'">
-                        <div class="scheme-card-header">
-                            <h3>${scheme.title}</h3>
-                            <span class="scheme-card-badge">${scheme.state}</span>
-                        </div>
-                        <p>${scheme.overview.substring(0, 120)}${scheme.overview.length > 120 ? '...' : ''}</p>
-                        <div class="scheme-card-tags">
-                            ${scheme.tags.slice(0, 3).map(tag => `<span>#${tag}</span>`).join('')}
-                        </div>
-                        <div class="scheme-card-footer">
-                            <span class="scheme-subsidy">💰 ${scheme.subsidy}</span>
-                            <button class="view-details-btn" onclick="event.stopPropagation(); window.location.href='scheme-details.html?id=${scheme.id}'">
-                                View Details →
-                            </button>
-                        </div>
+   // In loadSchemesByCategory function, add this after finding schemes
+const overviewEl = document.getElementById('schemeOverview');
+if (overviewEl) {
+    overviewEl.innerHTML = `
+        <div style="margin-bottom:20px;color:var(--text-gray);font-size:1rem;">
+            <p><strong>${schemes.length}</strong> schemes available in this category</p>
+        </div>
+        <div class="schemes-grid">
+            ${schemes.map(scheme => `
+                <div class="scheme-card" onclick="window.location.href='scheme-details.html?id=${scheme.id}'">
+                    <div class="scheme-card-header">
+                        <h3>${scheme.title}</h3>
+                        <span class="scheme-card-badge">${scheme.state}</span>
                     </div>
-                `).join('')}
-            </div>
-        `;
-    }
-}
+                    <p>${scheme.overview.substring(0, 120)}${scheme.overview.length > 120 ? '...' : ''}</p>
+                    <div class="scheme-card-tags">
+                        ${scheme.tags.slice(0, 3).map(tag => `<span>#${tag}</span>`).join('')}
+                    </div>
+                    <div class="scheme-card-footer">
+                        <span class="scheme-subsidy">💰 ${scheme.subsidy}</span>
+                        <button class="view-details-btn" onclick="event.stopPropagation(); window.location.href='scheme-details.html?id=${scheme.id}'">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+} 
 
 // ============================================
 // SHOW ALL SCHEMES
