@@ -1,5 +1,5 @@
 // ============================================
-// COMPLETE SCRIPT.JS - ALL 14 CATEGORIES
+// COMPLETE SCRIPT.JS - CLEAN VERSION
 // ============================================
 
 // ============================================
@@ -93,20 +93,16 @@ categories.forEach((cat, index) => {
     `;
     
     card.addEventListener('click', function() {
-        const categoryKey = cat.key;
-        const categoryName = cat.name;
-        showSchemesByCategory(categoryKey, categoryName);
+        showSchemesByCategory(cat.key, cat.name);
     });
     
     categoriesGrid.appendChild(card);
 });
 
 // ============================================
-// SHOW SCHEMES BY CATEGORY - FIXED
+// SHOW SCHEMES BY CATEGORY
 // ============================================
 function showSchemesByCategory(key, name) {
-    console.log(`📂 Loading ${name} schemes...`);
-    
     const schemes = allSchemesData[key] || [];
     
     if (schemes.length === 0) {
@@ -114,70 +110,40 @@ function showSchemesByCategory(key, name) {
         return;
     }
     
-    console.log(`✅ Found ${schemes.length} schemes in ${name}`);
-    
-    // Hide categories
-    const categoriesSection = document.querySelector('.categories');
-    if (categoriesSection) categoriesSection.style.display = 'none';
-    
-    // Show schemes section
+    document.querySelector('.categories').style.display = 'none';
     const displaySection = document.getElementById('educationSchemes');
-    if (displaySection) {
-        displaySection.style.display = 'block';
-        setTimeout(() => {
-            displaySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 200);
-    }
+    displaySection.style.display = 'block';
+    displaySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     
-    // Update header
-    const header = displaySection?.querySelector('.section-header');
-    if (header) {
-        const tag = header.querySelector('.section-tag');
-        const h2 = header.querySelector('h2');
-        const p = header.querySelector('p');
-        if (tag) tag.textContent = `${name} Schemes`;
-        if (h2) h2.innerHTML = `West Bengal <span class="gradient-text">${name} Schemes</span>`;
-        if (p) p.textContent = `${schemes.length} schemes available`;
-    }
+    const header = displaySection.querySelector('.section-header');
+    header.querySelector('.section-tag').textContent = `${name} Schemes`;
+    header.querySelector('h2').innerHTML = `West Bengal <span class="gradient-text">${name} Schemes</span>`;
+    header.querySelector('p').textContent = `${schemes.length} schemes available`;
     
-    // Render schemes
     const grid = document.getElementById('educationSchemesGrid');
-    if (!grid) {
-        console.error('❌ Grid not found!');
-        return;
-    }
-    
-    // Clear and render
-    grid.innerHTML = '';
-    
-    // Use requestAnimationFrame for better performance
-    requestAnimationFrame(() => {
-        grid.innerHTML = schemes.map((scheme, index) => `
-            <div class="scheme-card-item" onclick="showSchemeDetail('${scheme.id}', '${key}')" style="animation-delay: ${index * 0.1}s">
-                <div class="scheme-card-icon" style="background: ${getCategoryColor(key)}20; color: ${getCategoryColor(key)}">
-                    <i class="fas fa-file-alt"></i>
+    grid.innerHTML = schemes.map((scheme, index) => `
+        <div class="scheme-card-item" onclick="showSchemeDetail('${scheme.id}', '${key}')" style="animation-delay: ${index * 0.1}s">
+            <div class="scheme-card-icon" style="background: ${getCategoryColor(key)}20; color: ${getCategoryColor(key)}">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="scheme-card-content">
+                <h3>${scheme.title}</h3>
+                <div class="scheme-card-meta">
+                    <span class="scheme-category">${scheme.category}</span>
+                    <span class="scheme-amount">${scheme.subsidy}</span>
                 </div>
-                <div class="scheme-card-content">
-                    <h3>${scheme.title}</h3>
-                    <div class="scheme-card-meta">
-                        <span class="scheme-category">${scheme.category}</span>
-                        <span class="scheme-amount">${scheme.subsidy}</span>
-                    </div>
-                    <p>${scheme.overview}</p>
-                    <div class="scheme-card-footer">
-                        <span class="scheme-eligibility">👤 ${scheme.eligibility.join(', ')}</span>
-                        <button class="view-detail-btn" onclick="event.stopPropagation(); showSchemeDetail('${scheme.id}', '${key}')">
-                            View Details →
-                        </button>
-                    </div>
+                <p>${scheme.overview}</p>
+                <div class="scheme-card-footer">
+                    <span class="scheme-eligibility">👤 ${scheme.eligibility.join(', ')}</span>
+                    <button class="view-detail-btn" onclick="event.stopPropagation(); showSchemeDetail('${scheme.id}', '${key}')">
+                        View Details →
+                    </button>
                 </div>
             </div>
-        `).join('');
-    });
+        </div>
+    `).join('');
     
-    // Hide detail view
-    const detailView = document.getElementById('schemeDetailView');
-    if (detailView) detailView.style.display = 'none';
+    document.getElementById('schemeDetailView').style.display = 'none';
 }
 
 // ============================================
@@ -560,40 +526,3 @@ if (footerYear) {
 
 console.log('✅ WBseva AI loaded successfully!');
 console.log('📚 All 14 categories working!');
-// ============================================
-// FORCE RENDER SCHEMES ON PAGE LOAD
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    // Force render categories
-    renderCategories(categories, categoriesGrid);
-    
-    // Force statistics counter
-    setTimeout(() => {
-        statsCounters.forEach(counter => {
-            if (counter.dataset.count) {
-                animateStatsCounter(counter);
-            }
-        });
-    }, 500);
-    
-    // Fix: Re-render when coming back to page
-    window.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            location.reload();
-        }
-    });
-});
-
-// Also fix: When clicking any category, force render
-const originalShowSchemes = showSchemesByCategory;
-showSchemesByCategory = function(key, name) {
-    // Clear any existing timeouts
-    if (window._schemeTimeout) {
-        clearTimeout(window._schemeTimeout);
-    }
-    
-    // Call original function with delay
-    window._schemeTimeout = setTimeout(() => {
-        originalShowSchemes(key, name);
-    }, 100);
-};
