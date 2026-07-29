@@ -264,9 +264,6 @@ const searchResultsList = document.getElementById('searchResultsList');
 const searchResultsClose = document.getElementById('searchResultsClose');
 
 // ============================================
-// EDUCATION SCHEMES DATA - WEST BENGAL
-
-// ============================================
 // EDUCATION SCHEMES DISPLAY FUNCTIONS
 // ============================================
 
