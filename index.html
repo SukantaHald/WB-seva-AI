@@ -210,31 +210,33 @@
             </div>
         </div>
     </section>
-    <!-- ==================== EDUCATION SCHEMES SECTION ==================== -->
-<section class="schemes-display-section" id="educationSchemes" style="display:none;">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Education Schemes</span>
-            <h2>West Bengal <span class="gradient-text">Education Schemes</span></h2>
-            <p>12+ scholarships and educational facilities for students</p>
-        </div>
 
-        <div class="schemes-grid-display" id="educationSchemesGrid">
-            <!-- Schemes will be loaded dynamically -->
+    <!-- ==================== SCHEMES DISPLAY SECTION (Hidden by default) ==================== -->
+    <section class="schemes-display-section" id="educationSchemes" style="display:none;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Schemes</span>
+                <h2>West Bengal <span class="gradient-text">Schemes</span></h2>
+                <p>Browse all available schemes</p>
+            </div>
+
+            <div class="schemes-grid-display" id="educationSchemesGrid">
+                <!-- Schemes will be loaded dynamically -->
+            </div>
+            
+            <div class="scheme-detail-view" id="schemeDetailView" style="display:none;">
+                <!-- Scheme details will be shown here -->
+            </div>
+            
+            <div class="back-to-categories">
+                <button class="back-btn" onclick="showCategories()">
+                    <i class="fas fa-arrow-left"></i> Back to Categories
+                </button>
+            </div>
         </div>
-        
-        <div class="scheme-detail-view" id="schemeDetailView" style="display:none;">
-            <!-- Scheme details will be shown here -->
-        </div>
-        
-        <div class="back-to-categories">
-            <button class="back-btn" onclick="showCategories()">
-                <i class="fas fa-arrow-left"></i> Back to Categories
-            </button>
-        </div>
-    </div>
-</section>
-  <!-- ==================== HOW TO APPLY SECTION ==================== -->
+    </section>
+
+    <!-- ==================== HOW TO APPLY SECTION ==================== -->
     <section class="how-to-apply" id="how-to-apply">
         <div class="container">
             <div class="section-header">
@@ -462,9 +464,7 @@
         </div>
     </footer>
 
+    <!-- ==================== SCRIPTS - FIXED ==================== -->
     <script src="script.js"></script>
-    <script src="schemes-data.js"></script>
-    <script src="script.js"></script>
-    <script src="chatbot.js"></script>
 </body>
 </html>
