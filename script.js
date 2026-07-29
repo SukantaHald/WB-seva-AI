@@ -45,8 +45,6 @@ const allSchemesData = {
         { id: 'agri3', title: 'PM Kisan Samman Nidhi', category: 'Agriculture', state: 'All India', level: 'Central', subsidy: '₹6,000/year', overview: 'Income support for small and marginal farmers.', applyLink: 'https://pmkisan.gov.in', tags: ['Income', 'Farmer'], eligibility: ['Small farmer', 'Cultivable land'], benefits: ['₹6,000/year', '3 instalments'], documents: ['Aadhaar', 'Land papers', 'Bank account'] }
     ],
     health: [
-        { id: 'health1', title: 'Swasthya Sathi', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Scheme', subsidy: 'Up to ₹5 Lakh Cashless Coverage', overview: 'Cashless health insurance scheme for eligible families.', applyLink: 'https://swasthyasathi.gov.in', tags: ['Insurance', 'Health Card'], eligibility: ['Eligible West Bengal Families'], benefits: ['Cashless Treatment', 'Smart Card'], documents: ['Swasthya Sathi Card', 'Identity Proof'] },
-
 { id: 'health2', title: 'Ayushman Bharat PM-JAY', category: 'Healthcare', state: 'India', level: 'Central', type: 'Scheme', subsidy: 'Up to ₹5 Lakh Cashless Coverage', overview: 'National health insurance scheme for eligible families.', applyLink: 'https://beneficiary.nha.gov.in', tags: ['Insurance', 'PM-JAY'], eligibility: ['Eligible Beneficiaries'], benefits: ['Cashless Treatment'], documents: ['Ayushman Card', 'Aadhaar'] },
 
 { id: 'health3', title: 'West Bengal Health Scheme (WBHS)', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Scheme', subsidy: 'Medical Reimbursement', overview: 'Healthcare benefits for state government employees and pensioners.', applyLink: 'https://healthscheme.wb.gov.in', tags: ['Government Employee'], eligibility: ['Government Employee', 'Pensioner'], benefits: ['Cashless Treatment', 'Medical Reimbursement'], documents: ['Employee ID', 'PPO'] },
@@ -125,7 +123,7 @@ const allSchemesData = {
 // ============================================
 const categories = [
     { icon: 'fa-graduation-cap', name: 'Education', count: '16 Schemes', color: '#6C3CE1', key: 'education' },
-    { icon: 'fa-heart-pulse', name: 'Healthcare', count: '20 Schemes', color: '#FF6B6B', key: 'health' },
+    { icon: 'fa-heart-pulse', name: 'Healthcare', count: '19 Schemes', color: '#FF6B6B', key: 'health' },
     { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '1 Schemes', color: '#EC4899', key: 'women' },
     { icon: 'fa-building', name: 'Housing', count: '1 Schemes', color: '#F59E0B', key: 'housing' },
     { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '1 Schemes', color: '#06D6A0', key: 'financial' },
