@@ -171,7 +171,7 @@ const allSchemesData = {
 const categories = [
     { icon: 'fa-graduation-cap', name: 'Education', count: '16 Schemes', color: '#6C3CE1', key: 'education' },
     { icon: 'fa-heart-pulse', name: 'Healthcare', count: '19 Schemes', color: '#FF6B6B', key: 'health' },
-    { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '1 Schemes', color: '#EC4899', key: 'women' },
+    { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '19 Schemes', color: '#EC4899', key: 'women' },
     { icon: 'fa-building', name: 'Housing', count: '1 Schemes', color: '#F59E0B', key: 'housing' },
     { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '1 Schemes', color: '#06D6A0', key: 'financial' },
     { icon: 'fa-briefcase', name: 'Employment', count: '1 Schemes', color: '#3B82F6', key: 'employment' },
