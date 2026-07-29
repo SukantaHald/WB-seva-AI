@@ -105,8 +105,55 @@ const allSchemesData = {
         { id: 'energy1', title: 'Ujjwala Yojana', category: 'Energy', state: 'All India', level: 'Central', subsidy: 'Free LPG', overview: 'LPG for BPL women.', applyLink: 'https://www.pmujjwala.gov.in', tags: ['LPG', 'Women'], eligibility: ['BPL', '18+ woman'], benefits: ['Free connection', 'Subsidized cylinders'], documents: ['BPL card', 'Aadhaar'] }
     ],
     women: [
-        { id: 'women1', title: 'Kanyashree', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: '₹1,000/yr + ₹25,000', overview: 'Girl child education support.', applyLink: 'https://wbkanyashree.gov.in', tags: ['Girl child', 'Scholarship'], eligibility: ['13–18 yrs', 'Class 8–12'], benefits: ['Annual scholarship', 'One-time grant'], documents: ['Birth cert', 'Income proof'] }
-    ],
+{ id: 'women1', title: 'Annapurna Yojana', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: '₹1,000–₹1,200/month', overview: 'Monthly financial assistance for eligible women of West Bengal.', applyLink: 'https://socialsecurity.wb.gov.in', tags: ['Women', 'Financial Assistance'], eligibility: ['Eligible Women', 'West Bengal Resident'], benefits: ['Monthly Financial Assistance'], documents: ['Aadhaar', 'Bank Account', 'Application Form'] },
+
+{ id: 'women2', title: 'Kanyashree Prakalpa', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: '₹1,000/year + ₹25,000 One-time', overview: 'Financial assistance to encourage girls to continue education.', applyLink: 'https://wbkanyashree.gov.in', tags: ['Girls', 'Education'], eligibility: ['Eligible Girl Student'], benefits: ['Annual Scholarship', 'One-time Grant'], documents: ['Birth Certificate', 'Aadhaar', 'School Certificate'] },
+
+{ id: 'women3', title: 'Kanyashree K3', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: '₹2,500/month', overview: 'Postgraduate scholarship for Kanyashree beneficiaries.', applyLink: 'https://wbkanyashree.gov.in', tags: ['Girls', 'Postgraduate'], eligibility: ['Eligible PG Student'], benefits: ['Monthly Scholarship'], documents: ['Admission Proof', 'Aadhaar'] },
+
+{ id: 'women4', title: 'Rupashree Prakalpa', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: '₹25,000 One-time', overview: 'Financial assistance for marriage of eligible women.', applyLink: 'https://wb.gov.in', tags: ['Marriage Assistance'], eligibility: ['Eligible Adult Woman'], benefits: ['One-time Assistance'], documents: ['Age Proof', 'Income Certificate', 'Aadhaar'] },
+
+{ id: 'women5', title: 'Anandadhara', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Financial & Livelihood Support', overview: 'Supports women Self Help Groups through livelihood programmes.', applyLink: 'https://anandadhara.wb.gov.in', tags: ['SHG', 'Livelihood'], eligibility: ['Women SHGs'], benefits: ['Training', 'Financial Linkage'], documents: ['SHG Registration', 'Identity Proof'] },
+
+{ id: 'women6', title: 'Muktir Alo', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Rehabilitation Support', overview: 'Support and rehabilitation for women in distress.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Rehabilitation'], eligibility: ['Eligible Women'], benefits: ['Counselling', 'Rehabilitation'], documents: ['Identity Proof'] },
+
+{ id: 'women7', title: 'Manabik', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Monthly Assistance', overview: 'Financial assistance for persons with disabilities including eligible women.', applyLink: 'https://socialsecurity.wb.gov.in', tags: ['Disability'], eligibility: ['Eligible Persons with Disabilities'], benefits: ['Monthly Assistance'], documents: ['Disability Certificate', 'Aadhaar'] },
+
+{ id: 'women8', title: 'Widow Pension (Jai Bangla)', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Monthly Pension', overview: 'Monthly pension for eligible widows.', applyLink: 'https://socialsecurity.wb.gov.in', tags: ['Widow Pension'], eligibility: ['Eligible Widow'], benefits: ['Monthly Pension'], documents: ['Death Certificate', 'Aadhaar', 'Bank Account'] },
+
+{ id: 'women9', title: 'Old Age Pension (Jai Bangla)', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Monthly Pension', overview: 'Social pension for eligible senior citizens including women.', applyLink: 'https://socialsecurity.wb.gov.in', tags: ['Senior Citizen'], eligibility: ['Eligible Senior Citizen'], benefits: ['Monthly Pension'], documents: ['Age Proof', 'Aadhaar'] },
+
+{ id: 'women10', title: 'One Stop Centre (Sakhi)', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Integrated support for women affected by violence.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Safety', 'Support'], eligibility: ['Women in Need'], benefits: ['Legal Aid', 'Medical Support', 'Counselling'], documents: [] },
+
+{ id: 'women11', title: 'Women Helpline 181', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: '24×7 emergency assistance for women.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Helpline'], eligibility: ['All Women'], benefits: ['Emergency Support'], documents: [] },
+
+{ id: 'women12', title: 'Domestic Violence Support Services', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Support services for women facing domestic violence.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Domestic Violence'], eligibility: ['Women in Need'], benefits: ['Counselling', 'Legal Assistance'], documents: [] },
+
+{ id: 'women13', title: 'Protection Officer Services', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Protection Officers assist women under the Domestic Violence Act.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Legal'], eligibility: ['Women in Need'], benefits: ['Protection', 'Legal Guidance'], documents: [] },
+
+{ id: 'women14', title: 'Legal Aid for Women', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Free legal assistance for eligible women.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Legal Aid'], eligibility: ['Eligible Women'], benefits: ['Free Legal Services'], documents: ['Identity Proof'] },
+
+{ id: 'women15', title: 'Ujjawala', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Support for prevention of trafficking and rehabilitation of victims.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Anti Trafficking'], eligibility: ['Eligible Women'], benefits: ['Rescue', 'Rehabilitation'], documents: [] },
+
+{ id: 'women16', title: 'Swadhar Greh', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Shelter and rehabilitation for women in difficult circumstances.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Shelter'], eligibility: ['Eligible Women'], benefits: ['Shelter', 'Food', 'Counselling'], documents: [] },
+
+{ id: 'women17', title: 'Working Women Hostel', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Subsidized Accommodation', overview: 'Safe accommodation for working women.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Hostel'], eligibility: ['Working Women'], benefits: ['Safe Hostel'], documents: ['Employment Proof'] },
+
+{ id: 'women18', title: 'Women SHG Registration', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Government Support', overview: 'Registration support for Women Self Help Groups.', applyLink: 'https://anandadhara.wb.gov.in', tags: ['SHG'], eligibility: ['Women Group'], benefits: ['Official Registration'], documents: ['Group Details'] },
+
+{ id: 'women19', title: 'SHG Bank Linkage Programme', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Bank Credit Support', overview: 'Facilitates bank linkage and credit support for SHGs.', applyLink: 'https://anandadhara.wb.gov.in', tags: ['SHG', 'Finance'], eligibility: ['Registered SHGs'], benefits: ['Credit Linkage'], documents: ['SHG Registration'] },
+
+{ id: 'women20', title: 'Skill Development for Women', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free Training', overview: 'Skill development and vocational training for women.', applyLink: 'https://pbssd.gov.in', tags: ['Skill Development'], eligibility: ['Eligible Women'], benefits: ['Training', 'Certification'], documents: ['Identity Proof'] },
+
+{ id: 'women21', title: 'Women Entrepreneurship Support', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Business Support', overview: 'Support for women entrepreneurs through government programmes.', applyLink: 'https://www.wb.gov.in', tags: ['Entrepreneurship'], eligibility: ['Eligible Women Entrepreneurs'], benefits: ['Business Guidance', 'Financial Linkages'], documents: ['Identity Proof'] },
+
+{ id: 'women22', title: 'Creche Services for Working Mothers', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Child Care Support', overview: 'Day-care support for children of working mothers.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Child Care'], eligibility: ['Working Mothers'], benefits: ['Creche Facility'], documents: ['Identity Proof'] },
+
+{ id: 'women23', title: 'Women Counselling Centres', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Counselling and guidance services for women.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Counselling'], eligibility: ['Women in Need'], benefits: ['Counselling'], documents: [] },
+
+{ id: 'women24', title: 'Family Counselling Centres', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Family counselling and dispute resolution support.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Family Support'], eligibility: ['Eligible Families'], benefits: ['Counselling'], documents: [] },
+
+{ id: 'women25', title: 'Mission Shakti', category: 'Women Empowerment', state: 'India', level: 'Central', subsidy: 'Women Safety & Empowerment Support', overview: 'Umbrella programme for women safety, protection and empowerment implemented through states.', applyLink: 'https://wcd.gov.in', tags: ['Women Safety', 'Empowerment'], eligibility: ['As per Programme Guidelines'], benefits: ['Integrated Support Services'], documents: ['As Required'] },    ],
     legal: [
         { id: 'legal1', title: 'Legal Aid', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free Services', overview: 'Free legal help for the needy.', applyLink: 'https://www.wb.gov.in/legal-aid', tags: ['Justice', 'Aid'], eligibility: ['EWS', 'Marginalized'], benefits: ['Free advice', 'Representation'], documents: ['Income proof', 'Case details'] }
     ],
