@@ -45,7 +45,45 @@ const allSchemesData = {
         { id: 'agri3', title: 'PM Kisan Samman Nidhi', category: 'Agriculture', state: 'All India', level: 'Central', subsidy: '₹6,000/year', overview: 'Income support for small and marginal farmers.', applyLink: 'https://pmkisan.gov.in', tags: ['Income', 'Farmer'], eligibility: ['Small farmer', 'Cultivable land'], benefits: ['₹6,000/year', '3 instalments'], documents: ['Aadhaar', 'Land papers', 'Bank account'] }
     ],
     health: [
-        { id: 'health1', title: 'Swasthya Sathi', category: 'Health', state: 'West Bengal', level: 'State', subsidy: '₹5 Lakh Cover', overview: 'Health insurance for all WB residents.', applyLink: 'https://www.wb.gov.in/swasthya-sathi', tags: ['Insurance', 'Family'], eligibility: ['WB resident'], benefits: ['₹5L cover', 'Cashless treatment'], documents: ['Aadhaar', 'Address proof'] }
+        { id: 'health1', title: 'Swasthya Sathi', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Scheme', subsidy: 'Up to ₹5 Lakh Cashless Coverage', overview: 'Cashless health insurance scheme for eligible families.', applyLink: 'https://swasthyasathi.gov.in', tags: ['Insurance', 'Health Card'], eligibility: ['Eligible West Bengal Families'], benefits: ['Cashless Treatment', 'Smart Card'], documents: ['Swasthya Sathi Card', 'Identity Proof'] },
+
+{ id: 'health2', title: 'Ayushman Bharat PM-JAY', category: 'Healthcare', state: 'India', level: 'Central', type: 'Scheme', subsidy: 'Up to ₹5 Lakh Cashless Coverage', overview: 'National health insurance scheme for eligible families.', applyLink: 'https://beneficiary.nha.gov.in', tags: ['Insurance', 'PM-JAY'], eligibility: ['Eligible Beneficiaries'], benefits: ['Cashless Treatment'], documents: ['Ayushman Card', 'Aadhaar'] },
+
+{ id: 'health3', title: 'West Bengal Health Scheme (WBHS)', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Scheme', subsidy: 'Medical Reimbursement', overview: 'Healthcare benefits for state government employees and pensioners.', applyLink: 'https://healthscheme.wb.gov.in', tags: ['Government Employee'], eligibility: ['Government Employee', 'Pensioner'], benefits: ['Cashless Treatment', 'Medical Reimbursement'], documents: ['Employee ID', 'PPO'] },
+
+{ id: 'health4', title: 'Nirmal Bangla', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Scheme', subsidy: 'Sanitation Assistance', overview: 'Improves sanitation and public health through rural sanitation initiatives.', applyLink: 'https://www.wb.gov.in', tags: ['Sanitation', 'Public Health'], eligibility: ['Eligible Households'], benefits: ['Improved Sanitation'], documents: ['Identity Proof'] },
+
+{ id: 'health5', title: 'Online OPD Ticket Booking', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free', overview: 'Book OPD tickets online for participating government hospitals.', applyLink: 'https://eswasthyawb.in', tags: ['OPD', 'Hospital'], eligibility: ['General Public'], benefits: ['Online Booking', 'Reduced Waiting Time'], documents: ['Mobile Number'] },
+
+{ id: 'health6', title: 'Doctor Appointment Booking', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free', overview: 'Book appointments with doctors at participating government hospitals.', applyLink: 'https://eswasthyawb.in', tags: ['Doctor', 'Appointment'], eligibility: ['General Public'], benefits: ['Online Appointment'], documents: ['Mobile Number'] },
+
+{ id: 'health7', title: 'Hospital Finder', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free', overview: 'Locate government hospitals and healthcare facilities across West Bengal.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Hospital', 'Locator'], eligibility: ['Everyone'], benefits: ['Nearest Hospital Search'], documents: [] },
+
+{ id: 'health8', title: 'Hospital Bed Availability', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free', overview: 'Check the availability of beds in government hospitals.', applyLink: 'https://eswasthyawb.in', tags: ['Hospital', 'Beds'], eligibility: ['Everyone'], benefits: ['Real-time Bed Status'], documents: [] },
+
+{ id: 'health9', title: 'Blood Bank Search', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free', overview: 'Search government blood banks and blood availability.', applyLink: 'https://eraktkosh.in', tags: ['Blood Bank'], eligibility: ['Everyone'], benefits: ['Blood Availability Search'], documents: [] },
+
+{ id: 'health10', title: 'Emergency Ambulance Service', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Emergency Service', subsidy: 'Free/As Applicable', overview: 'Emergency ambulance service for medical emergencies.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Ambulance', 'Emergency'], eligibility: ['Everyone'], benefits: ['Emergency Transport'], documents: [] },
+
+{ id: 'health11', title: 'Free Medicines Scheme', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free Medicines', overview: 'Free medicines provided through government hospitals.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Medicine'], eligibility: ['Government Hospital Patients'], benefits: ['Free Medicines'], documents: ['Prescription'] },
+
+{ id: 'health12', title: 'Fair Price Medicine Shops', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Discounted Medicines', overview: 'Affordable medicines through Fair Price Medicine Shops.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Medicine'], eligibility: ['Everyone'], benefits: ['Affordable Medicines'], documents: ['Prescription'] },
+
+{ id: 'health13', title: 'Free Diagnostic Services', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free Tests', overview: 'Free diagnostic tests at selected government hospitals.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Diagnostic'], eligibility: ['Government Hospital Patients'], benefits: ['Free Lab Tests'], documents: ['Doctor Prescription'] },
+
+{ id: 'health14', title: 'Health Card Services', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free', overview: 'Access and manage eligible government health cards and related services.', applyLink: 'https://swasthyasathi.gov.in', tags: ['Health Card'], eligibility: ['Eligible Beneficiaries'], benefits: ['Card Services'], documents: ['Identity Proof'] },
+
+{ id: 'health15', title: 'Vaccination Information', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Information', subsidy: 'Free', overview: 'Official information on immunization and vaccination programmes.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Vaccination'], eligibility: ['Everyone'], benefits: ['Vaccination Schedule'], documents: [] },
+
+{ id: 'health16', title: 'Emergency Contacts', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Emergency', subsidy: 'Free', overview: 'Emergency health helpline numbers and medical support contacts.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Emergency'], eligibility: ['Everyone'], benefits: ['Emergency Assistance'], documents: [] },
+
+{ id: 'health17', title: 'Thalassemia Control Programme', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Programme', subsidy: 'Free Screening & Support', overview: 'Programme for thalassemia screening, awareness and patient support.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Thalassemia'], eligibility: ['Eligible Citizens'], benefits: ['Screening', 'Counselling'], documents: ['Identity Proof'] },
+
+{ id: 'health18', title: 'Mission Niramaya', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Programme', subsidy: 'Healthcare Support', overview: 'State initiative focused on improving public healthcare services.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Public Health'], eligibility: ['Eligible Citizens'], benefits: ['Healthcare Support'], documents: [] },
+
+{ id: 'health19', title: 'Health Facility Locator', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Service', subsidy: 'Free', overview: 'Find nearby government health centres, PHCs, CHCs and hospitals.', applyLink: 'https://www.wbhealth.gov.in', tags: ['Hospital', 'PHC'], eligibility: ['Everyone'], benefits: ['Facility Search'], documents: [] },
+
+{ id: 'health20', title: 'e-RaktKosh Blood Availability', category: 'Healthcare', state: 'India', level: 'Central', type: 'Service', subsidy: 'Free', overview: 'National portal to search blood availability and registered blood banks.', applyLink: 'https://eraktkosh.mohfw.gov.in', tags: ['Blood', 'e-RaktKosh'], eligibility: ['Everyone'], benefits: ['Blood Availability Search'], documents: [] },
     ],
     housing: [
         { id: 'housing1', title: 'Jai Jawahar Awas Yojana', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Financial Aid', overview: 'Housing for EWS and LIG groups.', applyLink: 'https://www.wb.gov.in/housing', tags: ['Housing', 'Subsidy'], eligibility: ['EWS/LIG', 'No pucca house'], benefits: ['Financial aid', 'Affordable housing'], documents: ['Income proof', 'Land papers'] }
@@ -87,7 +125,7 @@ const allSchemesData = {
 // ============================================
 const categories = [
     { icon: 'fa-graduation-cap', name: 'Education', count: '16 Schemes', color: '#6C3CE1', key: 'education' },
-    { icon: 'fa-heart-pulse', name: 'Healthcare', count: '1 Schemes', color: '#FF6B6B', key: 'health' },
+    { icon: 'fa-heart-pulse', name: 'Healthcare', count: '20 Schemes', color: '#FF6B6B', key: 'health' },
     { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '1 Schemes', color: '#EC4899', key: 'women' },
     { icon: 'fa-building', name: 'Housing', count: '1 Schemes', color: '#F59E0B', key: 'housing' },
     { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '1 Schemes', color: '#06D6A0', key: 'financial' },
