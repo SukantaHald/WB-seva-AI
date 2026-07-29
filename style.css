@@ -2271,3 +2271,42 @@ body {
         padding: 20px;
     }
 }
+/* ============================================
+   FIX: Prevent layout shifts
+   ============================================ */
+.schemes-grid-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+    min-height: 200px;
+}
+
+.scheme-card-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 24px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    gap: 16px;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.scheme-card-item.hidden {
+    display: none;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
