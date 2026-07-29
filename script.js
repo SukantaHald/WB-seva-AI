@@ -84,10 +84,44 @@ const allSchemesData = {
 { id: 'health20', title: 'e-RaktKosh Blood Availability', category: 'Healthcare', state: 'India', level: 'Central', type: 'Service', subsidy: 'Free', overview: 'National portal to search blood availability and registered blood banks.', applyLink: 'https://eraktkosh.mohfw.gov.in', tags: ['Blood', 'e-RaktKosh'], eligibility: ['Everyone'], benefits: ['Blood Availability Search'], documents: [] },
     ],
     housing: [
-        { id: 'housing1', title: 'Jai Jawahar Awas Yojana', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Financial Aid', overview: 'Housing for EWS and LIG groups.', applyLink: 'https://www.wb.gov.in/housing', tags: ['Housing', 'Subsidy'], eligibility: ['EWS/LIG', 'No pucca house'], benefits: ['Financial aid', 'Affordable housing'], documents: ['Income proof', 'Land papers'] }
-    ],
+{ id: 'house19', title: 'Pradhan Mantri Awaas Yojana (PMAY)', category: 'Housing', state: 'India', level: 'Central', subsidy: 'Housing Assistance', overview: 'Central Government housing scheme for eligible urban and rural households.', applyLink: 'https://pmaymis.gov.in', tags: ['PMAY', 'Housing'], eligibility: ['Eligible Households'], benefits: ['Financial Assistance for House Construction'], documents: ['Aadhaar', 'Income Certificate', 'Land Documents'] },
+{ id: 'house1', title: 'Nijashree Housing Scheme', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Affordable Housing', overview: 'Provides affordable residential flats to Low and Middle Income Group families.', applyLink: 'https://housing.wb.gov.in', tags: ['Housing', 'LIG', 'MIG'], eligibility: ['Eligible West Bengal Residents'], benefits: ['Affordable Flats', 'Government Housing'], documents: ['Aadhaar', 'Income Certificate', 'Address Proof'] },
+
+{ id: 'house2', title: 'Akanksha Housing Scheme', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Government Residential Accommodation', overview: 'Residential housing scheme for eligible State Government employees.', applyLink: 'https://housing.wb.gov.in', tags: ['Government Employee', 'Housing'], eligibility: ['State Government Employees'], benefits: ['Government Accommodation'], documents: ['Employee ID', 'Service Certificate'] },
+
+{ id: 'house3', title: 'Chaa Sundari Housing Scheme', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Housing Assistance', overview: 'Housing support for tea garden workers and their families.', applyLink: 'https://housing.wb.gov.in', tags: ['Tea Garden', 'Housing'], eligibility: ['Eligible Tea Garden Workers'], benefits: ['Housing Assistance'], documents: ['Identity Proof', 'Employment Certificate'] },
+
+{ id: 'house4', title: 'Chaa Sundari Extension Scheme', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Housing Support', overview: 'Extension of housing benefits for eligible tea garden worker families.', applyLink: 'https://housing.wb.gov.in', tags: ['Tea Garden', 'Housing'], eligibility: ['Eligible Beneficiaries'], benefits: ['Housing Assistance'], documents: ['Identity Proof'] },
+
+{ id: 'house5', title: 'Rental Housing Estate (RHE)', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Affordable Rental Housing', overview: 'Government rental housing for eligible applicants.', applyLink: 'https://housing.wb.gov.in', tags: ['Rental Housing'], eligibility: ['Eligible Applicants'], benefits: ['Affordable Rent'], documents: ['Identity Proof', 'Income Certificate'] },
+
+{ id: 'house6', title: 'Night Shelter Scheme', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Shelter', overview: 'Temporary night shelter for homeless persons.', applyLink: 'https://housing.wb.gov.in', tags: ['Shelter'], eligibility: ['Homeless Persons'], benefits: ['Safe Night Shelter'], documents: [] },
+
+{ id: 'house7', title: 'Karmanjali Housing Scheme', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Affordable Housing', overview: 'Housing support under State Housing Department projects.', applyLink: 'https://housing.wb.gov.in', tags: ['Housing'], eligibility: ['Eligible Applicants'], benefits: ['Housing Support'], documents: ['Identity Proof'] },
+
+{ id: 'house8', title: 'West Bengal RERA Services', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Online Service', overview: 'Online services related to real estate project and agent registration.', applyLink: 'https://rera.wb.gov.in', tags: ['RERA', 'Real Estate'], eligibility: ['Citizens', 'Builders'], benefits: ['Project Information', 'Complaint Facility'], documents: [] },
+
+{ id: 'house9', title: 'RCFA Housing Scheme', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Affordable Housing', overview: 'Housing assistance under Residential Complex Financial Assistance projects.', applyLink: 'https://housing.wb.gov.in', tags: ['Housing'], eligibility: ['Eligible Applicants'], benefits: ['Housing Support'], documents: ['Identity Proof'] },
+
+{ id: 'house10', title: 'Online Housing Application', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Apply online for various State Housing Department schemes.', applyLink: 'https://housing.wb.gov.in', tags: ['Online Service'], eligibility: ['Eligible Citizens'], benefits: ['Online Application'], documents: ['As Required'] },
+
+{ id: 'house11', title: 'Housing Beneficiary Status Check', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Track the application and beneficiary status of housing schemes.', applyLink: 'https://housing.wb.gov.in', tags: ['Status'], eligibility: ['Applicants'], benefits: ['Real-time Status'], documents: ['Application Number'] },
+
+{ id: 'house12', title: 'Online Housing Allotment', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'View housing allotment results through the online portal.', applyLink: 'https://housing.wb.gov.in', tags: ['Allotment'], eligibility: ['Applicants'], benefits: ['Online Allotment'], documents: ['Application Number'] },
+
+{ id: 'house13', title: 'Housing Complaint & Grievance Portal', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Register complaints and grievances related to housing schemes.', applyLink: 'https://housing.wb.gov.in', tags: ['Complaint'], eligibility: ['Citizens'], benefits: ['Online Complaint'], documents: [] },
+
+{ id: 'house14', title: 'Affordable Housing Project Information', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Information Service', overview: 'Provides details of affordable housing projects across West Bengal.', applyLink: 'https://housing.wb.gov.in', tags: ['Housing Projects'], eligibility: ['Everyone'], benefits: ['Project Information'], documents: [] },
+
+{ id: 'house15', title: 'Housing Department Citizen Services', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Citizen-centric online services provided by the Housing Department.', applyLink: 'https://housing.wb.gov.in', tags: ['Citizen Service'], eligibility: ['Everyone'], benefits: ['Online Services'], documents: [] },
+
+{ id: 'house16', title: 'Slum Rehabilitation & Development Services', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Housing Development Support', overview: 'Supports rehabilitation and development of notified slum areas.', applyLink: 'https://housing.wb.gov.in', tags: ['Slum Development'], eligibility: ['Eligible Residents'], benefits: ['Housing Improvement'], documents: ['Identity Proof'] },
+
+{ id: 'house17', title: 'Government Housing Project Locator', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Locate government housing projects throughout West Bengal.', applyLink: 'https://housing.wb.gov.in', tags: ['Project Locator'], eligibility: ['Everyone'], benefits: ['Project Search'], documents: [] },
+
+{ id: 'house18', title: 'Housing Loan Guidance Services', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Information Service', overview: 'Provides guidance regarding housing loans and government housing support.', applyLink: 'https://housing.wb.gov.in', tags: ['Housing Loan'], eligibility: ['Home Buyers'], benefits: ['Loan Guidance'], documents: [] },
+    ],    
     financial: [
-        { id: 'fin1', title: 'Credit Link Capital Subsidy', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Subsidy', overview: 'Capital subsidy for small businesses.', applyLink: 'https://www.wb.gov.in/clcss', tags: ['Business', 'Subsidy'], eligibility: ['Small entrepreneur', 'MSME'], benefits: ['Capital support', 'Business aid'], documents: ['Business plan', 'Aadhaar'] }
     ],
     employment: [
         { id: 'emp1', title: 'Employment Exchange', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Job Support', overview: 'Connects job seekers with employers.', applyLink: 'https://www.wb.gov.in/employment', tags: ['Job', 'Career'], eligibility: ['Unemployed youth', 'Qualified'], benefits: ['Job registration', 'Placement'], documents: ['Educational certs', 'Aadhaar'] }
