@@ -157,8 +157,9 @@ health: [
 
 { id: 'house18', title: 'Housing Loan Guidance Services', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Information Service', overview: 'Provides guidance regarding housing loans and government housing support.', applyLink: 'https://housing.wb.gov.in', tags: ['Housing Loan'], eligibility: ['Home Buyers'], benefits: ['Loan Guidance'], documents: [] },
     ],    
+   
     financial: [
-        { id: 'finance1', title: 'Annapurna Yojana', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Food Security Assistance', overview: 'Provides food assistance to eligible beneficiaries under the State welfare programme.', applyLink: 'https://food.wb.gov.in', tags: ['Food Security', 'Women'], eligibility: ['Eligible Beneficiaries'], benefits: ['Food Assistance'], documents: ['Aadhaar', 'Ration Card'] },
+{ id: 'finance1', title: 'Annapurna Yojana', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Food Security Assistance', overview: 'Provides food assistance to eligible beneficiaries under the State welfare programme.', applyLink: 'https://food.wb.gov.in', tags: ['Food Security', 'Women'], eligibility: ['Eligible Beneficiaries'], benefits: ['Food Assistance'], documents: ['Aadhaar', 'Ration Card'] },
 
 { id: 'finance2', title: 'Bina Mulya Samajik Suraksha Yojana', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Free Social Security Benefits', overview: 'Social security scheme for unorganized workers without premium contribution.', applyLink: 'https://wblabour.gov.in', tags: ['Social Security', 'Workers'], eligibility: ['Registered Unorganized Workers'], benefits: ['Insurance', 'Pension', 'Financial Assistance'], documents: ['Aadhaar', 'Labour Registration'] },
 
@@ -238,19 +239,172 @@ health: [
 { id: 'employment19', title: 'Apprenticeship India (NAPS)', category: 'Employment', state: 'India', level: 'Central', subsidy: 'Government Supported Apprenticeship', overview: 'National Apprenticeship Promotion Scheme portal.', applyLink: 'https://www.apprenticeshipindia.gov.in', tags: ['Apprenticeship'], eligibility: ['Eligible Candidates'], benefits: ['Training', 'Stipend'], documents: ['Educational Certificate'] },
 
 { id: 'employment20', title: 'e-Shram Registration', category: 'Employment', state: 'India', level: 'Central', subsidy: 'Social Security Registration', overview: 'Registration portal for unorganized workers.', applyLink: 'https://eshram.gov.in', tags: ['Workers'], eligibility: ['Unorganized Workers'], benefits: ['National Worker ID'], documents: ['Aadhaar', 'Bank Account'] },    ],
-    skill: [
-        { id: 'skill1', title: 'PMKVY', category: 'Skill Development', state: 'All India', level: 'Central', subsidy: 'Free Training', overview: 'Skill training for youth.', applyLink: 'https://pmkvyofficial.org', tags: ['Training', 'Certification'], eligibility: ['15–45 years', '5th pass'], benefits: ['Free training', 'Placement'], documents: ['Aadhaar', 'Education cert'] }
-    ],
-    rural: [
-        { id: 'rural1', title: 'MGNREGA', category: 'Rural Development', state: 'All India', level: 'Central', subsidy: '100 Days Work', overview: 'Guaranteed rural employment.', applyLink: 'https://nrega.nic.in', tags: ['Employment', 'Rural'], eligibility: ['Rural resident', 'Adult'], benefits: ['100 days work', 'Wage'], documents: ['Job card', 'Aadhaar'] }
-    ],
-    digital: [
-        { id: 'digital1', title: 'Digital India', category: 'Digital India', state: 'All India', level: 'Central', subsidy: 'Free Services', overview: 'Digital empowerment for citizens.', applyLink: 'https://digitalindia.gov.in', tags: ['Technology', 'Aadhaar'], eligibility: ['All citizens', 'Aadhaar'], benefits: ['Digital identity', 'Online services'], documents: ['Aadhaar', 'Mobile'] }
-    ],
-    energy: [
-        { id: 'energy1', title: 'Ujjwala Yojana', category: 'Energy', state: 'All India', level: 'Central', subsidy: 'Free LPG', overview: 'LPG for BPL women.', applyLink: 'https://www.pmujjwala.gov.in', tags: ['LPG', 'Women'], eligibility: ['BPL', '18+ woman'], benefits: ['Free connection', 'Subsidized cylinders'], documents: ['BPL card', 'Aadhaar'] }
-    ],
-    women: [
+  
+skill: [
+{ id: 'skill1', title: 'Utkarsh Bangla', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Skill Training', overview: 'State flagship skill development programme providing free vocational training and placement support.', applyLink: 'https://utkarshbangla.gov.in', tags: ['Training', 'Placement'], eligibility: ['Eligible Youth'], benefits: ['Free Training', 'Placement Assistance'], documents: ['Aadhaar', 'Educational Certificate'] },
+
+{ id: 'skill2', title: 'Paschim Banga Society for Skill Development (PBSSD)', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Training', overview: 'State agency offering industry-oriented skill development programmes.', applyLink: 'https://pbssd.gov.in', tags: ['PBSSD', 'Training'], eligibility: ['Eligible Candidates'], benefits: ['Skill Certification', 'Placement Support'], documents: ['Aadhaar', 'Educational Certificate'] },
+
+{ id: 'skill3', title: 'Skill Training Registration', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Registration', overview: 'Online registration for government-approved skill development courses.', applyLink: 'https://pbssd.gov.in', tags: ['Registration'], eligibility: ['Eligible Candidates'], benefits: ['Course Enrollment'], documents: ['Aadhaar'] },
+
+{ id: 'skill4', title: 'Placement Assistance Programme', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Employment Support', overview: 'Placement support for candidates completing government skill training.', applyLink: 'https://pbssd.gov.in', tags: ['Placement'], eligibility: ['Certified Candidates'], benefits: ['Job Placement'], documents: ['Training Certificate'] },
+
+{ id: 'skill5', title: 'Recognition of Prior Learning (RPL)', category: 'Skill Development', state: 'India', level: 'Central', subsidy: 'Free Skill Certification', overview: 'Certifies existing skills of experienced workers.', applyLink: 'https://www.skillindia.gov.in', tags: ['RPL', 'Certification'], eligibility: ['Experienced Workers'], benefits: ['Skill Certificate'], documents: ['Identity Proof'] },
+
+{ id: 'skill6', title: 'Pradhan Mantri Kaushal Vikas Yojana (PMKVY)', category: 'Skill Development', state: 'India', level: 'Central', subsidy: 'Free Skill Training', overview: 'National flagship skill development programme.', applyLink: 'https://www.skillindia.gov.in', tags: ['PMKVY'], eligibility: ['Indian Citizens'], benefits: ['Training', 'Certification'], documents: ['Aadhaar'] },
+
+{ id: 'skill7', title: 'Skill India Digital Hub', category: 'Skill Development', state: 'India', level: 'Central', subsidy: 'Free Digital Learning', overview: 'Digital platform for skill development courses and certifications.', applyLink: 'https://www.skillindiadigital.gov.in', tags: ['Digital Learning'], eligibility: ['Everyone'], benefits: ['Online Courses'], documents: ['Aadhaar'] },
+
+{ id: 'skill8', title: 'Jan Shikshan Sansthan (JSS)', category: 'Skill Development', state: 'India', level: 'Central', subsidy: 'Free Vocational Training', overview: 'Vocational skill development for non-literate, neo-literate and school dropouts.', applyLink: 'https://jss.gov.in', tags: ['Vocational Training'], eligibility: ['Eligible Candidates'], benefits: ['Free Training'], documents: ['Identity Proof'] },
+
+{ id: 'skill9', title: 'National Apprenticeship Promotion Scheme (NAPS)', category: 'Skill Development', state: 'India', level: 'Central', subsidy: 'Government Supported Apprenticeship', overview: 'Promotes apprenticeship training with industry.', applyLink: 'https://www.apprenticeshipindia.gov.in', tags: ['Apprenticeship'], eligibility: ['Eligible Candidates'], benefits: ['Training', 'Stipend'], documents: ['Educational Certificate'] },
+
+{ id: 'skill10', title: 'National Apprenticeship Training Scheme (NATS)', category: 'Skill Development', state: 'India', level: 'Central', subsidy: 'Paid Apprenticeship', overview: 'Apprenticeship programme for graduates and diploma holders.', applyLink: 'https://nats.education.gov.in', tags: ['Graduate Apprenticeship'], eligibility: ['Graduate', 'Diploma Holder'], benefits: ['Industry Training', 'Stipend'], documents: ['Degree Certificate'] },
+
+{ id: 'skill11', title: 'Industrial Training Institute (ITI) Admission', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Affordable Technical Education', overview: 'Admission to government Industrial Training Institutes.', applyLink: 'https://scvtwb.in', tags: ['ITI'], eligibility: ['Eligible Students'], benefits: ['Technical Training'], documents: ['Marksheet', 'Aadhaar'] },
+
+{ id: 'skill12', title: 'Polytechnic Skill Development', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Technical Education', overview: 'Technical diploma programmes through government polytechnics.', applyLink: 'https://webscte.co.in', tags: ['Polytechnic'], eligibility: ['Eligible Students'], benefits: ['Technical Skills'], documents: ['Educational Certificate'] },
+
+{ id: 'skill13', title: 'MSME Skill Development Programme', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Entrepreneur Training', overview: 'Skill development and entrepreneurship training through MSME Department.', applyLink: 'https://wbmsme.gov.in', tags: ['MSME'], eligibility: ['Entrepreneurs'], benefits: ['Business Skills'], documents: ['Identity Proof'] },
+
+{ id: 'skill14', title: 'Women Skill Development Programme', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Training', overview: 'Vocational skill training programmes exclusively for women.', applyLink: 'https://pbssd.gov.in', tags: ['Women'], eligibility: ['Eligible Women'], benefits: ['Skill Training'], documents: ['Aadhaar'] },
+
+{ id: 'skill15', title: 'Youth Skill Development Programme', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Training', overview: 'Employment-oriented skill training for unemployed youth.', applyLink: 'https://pbssd.gov.in', tags: ['Youth'], eligibility: ['Eligible Youth'], benefits: ['Training', 'Placement'], documents: ['Aadhaar'] },
+
+{ id: 'skill16', title: 'Digital Skill Training Programme', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Digital Skills', overview: 'Government-supported digital literacy and computer training.', applyLink: 'https://pbssd.gov.in', tags: ['Digital Skills'], eligibility: ['Eligible Candidates'], benefits: ['Computer Skills'], documents: ['Identity Proof'] },
+
+{ id: 'skill17', title: 'Entrepreneurship Development Programme', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Business Development Support', overview: 'Training programme for aspiring entrepreneurs.', applyLink: 'https://wbmsme.gov.in', tags: ['Entrepreneurship'], eligibility: ['Aspiring Entrepreneurs'], benefits: ['Business Training'], documents: ['Identity Proof'] },
+
+{ id: 'skill18', title: 'Skill Certification Service', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Certification', overview: 'Assessment and certification of vocational skills.', applyLink: 'https://pbssd.gov.in', tags: ['Certification'], eligibility: ['Eligible Candidates'], benefits: ['Government Skill Certificate'], documents: ['Training Details'] },
+
+{ id: 'skill19', title: 'Career Counselling & Guidance', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Career counselling and guidance for students and job seekers.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Career'], eligibility: ['Students', 'Job Seekers'], benefits: ['Career Guidance'], documents: [] },
+
+{ id: 'skill20', title: 'Skill Development Course Finder', category: 'Skill Development', state: 'West Bengal', level: 'State', subsidy: 'Free Information Service', overview: 'Search government-approved skill development courses and training centres.', applyLink: 'https://pbssd.gov.in', tags: ['Courses'], eligibility: ['Everyone'], benefits: ['Course Search'], documents: [] },    ],
+   
+rural: [
+{ id: 'rural1', title: 'Anandadhara', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Financial & Livelihood Support', overview: 'State rural livelihood mission promoting Self Help Groups (SHGs).', applyLink: 'https://anandadhara.wb.gov.in', tags: ['SHG', 'Livelihood'], eligibility: ['Rural Women'], benefits: ['Financial Assistance', 'Skill Training'], documents: ['Aadhaar', 'SHG Registration'] },
+
+{ id: 'rural2', title: 'MGNREGA Job Card Services', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: '100 Days Wage Employment', overview: 'Employment guarantee scheme providing wage employment in rural areas.', applyLink: 'https://nrega.nic.in', tags: ['Employment', 'MGNREGA'], eligibility: ['Rural Households'], benefits: ['100 Days Employment'], documents: ['Aadhaar', 'Job Card'] },
+
+{ id: 'rural3', title: 'MGNREGA Job Card Application', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Apply for a new MGNREGA Job Card.', applyLink: 'https://nrega.nic.in', tags: ['Job Card'], eligibility: ['Rural Residents'], benefits: ['Employment Registration'], documents: ['Aadhaar', 'Residence Proof'] },
+
+{ id: 'rural4', title: 'MGNREGA Muster Roll & Payment Status', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Check attendance, work details and payment status online.', applyLink: 'https://nrega.nic.in', tags: ['Payment'], eligibility: ['Job Card Holders'], benefits: ['Payment Tracking'], documents: ['Job Card Number'] },
+
+{ id: 'rural5', title: 'Gram Panchayat Citizen Services', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Government Services', overview: 'Access Gram Panchayat related public services online.', applyLink: 'https://prd.wb.gov.in', tags: ['Panchayat'], eligibility: ['Citizens'], benefits: ['Online Services'], documents: ['As Required'] },
+
+{ id: 'rural6', title: 'e-Panchayat Services', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Digital Governance', overview: 'Online Panchayat administration and citizen services.', applyLink: 'https://prd.wb.gov.in', tags: ['e-Governance'], eligibility: ['Citizens'], benefits: ['Digital Services'], documents: [] },
+
+{ id: 'rural7', title: 'Bangla Gram Panchayat Portal', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Online information and services of Gram Panchayats.', applyLink: 'https://prd.wb.gov.in', tags: ['Gram Panchayat'], eligibility: ['Citizens'], benefits: ['Village Information'], documents: [] },
+
+{ id: 'rural8', title: 'Rural Housing Beneficiary Services', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Housing Services', overview: 'Track rural housing applications and beneficiary details.', applyLink: 'https://prd.wb.gov.in', tags: ['Housing'], eligibility: ['Eligible Families'], benefits: ['Housing Status'], documents: ['Application ID'] },
+
+{ id: 'rural9', title: 'Self Help Group (SHG) Registration', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Free Registration', overview: 'Registration support for rural Self Help Groups.', applyLink: 'https://anandadhara.wb.gov.in', tags: ['SHG'], eligibility: ['Rural Women'], benefits: ['SHG Benefits'], documents: ['Identity Proof'] },
+
+{ id: 'rural10', title: 'Village Livelihood Mission Services', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Livelihood Support', overview: 'Supports livelihood generation activities in rural areas.', applyLink: 'https://anandadhara.wb.gov.in', tags: ['Livelihood'], eligibility: ['SHG Members'], benefits: ['Income Generation'], documents: ['SHG Membership'] },
+
+{ id: 'rural11', title: 'Rural Sanitation Programme', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Sanitation Support', overview: 'Improves sanitation facilities in rural households.', applyLink: 'https://prd.wb.gov.in', tags: ['Sanitation'], eligibility: ['Rural Families'], benefits: ['Sanitation Facilities'], documents: ['Identity Proof'] },
+
+{ id: 'rural12', title: 'Village Infrastructure Development', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Infrastructure Development', overview: 'Development of roads, drainage and community assets.', applyLink: 'https://prd.wb.gov.in', tags: ['Infrastructure'], eligibility: ['Villages'], benefits: ['Improved Infrastructure'], documents: [] },
+
+{ id: 'rural13', title: 'Social Audit Portal (MGNREGA)', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Transparency Service', overview: 'View social audit reports for rural development works.', applyLink: 'https://nrega.nic.in', tags: ['Audit'], eligibility: ['Everyone'], benefits: ['Transparency'], documents: [] },
+
+{ id: 'rural14', title: 'Gram Sansad Information', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Information Service', overview: 'Information regarding Gram Sansad meetings and activities.', applyLink: 'https://prd.wb.gov.in', tags: ['Gram Sansad'], eligibility: ['Citizens'], benefits: ['Local Governance Information'], documents: [] },
+
+{ id: 'rural15', title: 'Rural Development Project Monitoring', category: 'Rural Development', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Track implementation of rural development projects.', applyLink: 'https://prd.wb.gov.in', tags: ['Project Monitoring'], eligibility: ['Citizens'], benefits: ['Project Status'], documents: [] },
+
+{ id: 'rural16', title: 'Deendayal Antyodaya Yojana – National Rural Livelihood Mission (DAY-NRLM)', category: 'Rural Development', state: 'India', level: 'Central', subsidy: 'Livelihood Support', overview: 'National mission for poverty reduction through SHGs.', applyLink: 'https://aajeevika.gov.in', tags: ['NRLM'], eligibility: ['Rural Poor'], benefits: ['Livelihood Assistance'], documents: ['Identity Proof'] },
+
+{ id: 'rural17', title: 'PM Gram Sadak Yojana (PMGSY)', category: 'Rural Development', state: 'India', level: 'Central', subsidy: 'Rural Road Development', overview: 'Provides all-weather road connectivity to rural areas.', applyLink: 'https://pmgsy.nic.in', tags: ['Road'], eligibility: ['Rural Areas'], benefits: ['Road Connectivity'], documents: [] },
+
+{ id: 'rural18', title: 'Mission Antyodaya', category: 'Rural Development', state: 'India', level: 'Central', subsidy: 'Village Development', overview: 'Measures and improves socio-economic development of villages.', applyLink: 'https://missionantyodaya.nic.in', tags: ['Village Development'], eligibility: ['Rural Areas'], benefits: ['Development Planning'], documents: [] },
+
+{ id: 'rural19', title: 'SVAMITVA Scheme', category: 'Rural Development', state: 'India', level: 'Central', subsidy: 'Property Rights', overview: 'Provides property cards to rural household owners using drone surveys.', applyLink: 'https://svamitva.nic.in', tags: ['Property'], eligibility: ['Rural Property Owners'], benefits: ['Property Card'], documents: ['Identity Proof'] },
+
+{ id: 'rural20', title: 'e-Gram Swaraj', category: 'Rural Development', state: 'India', level: 'Central', subsidy: 'Digital Panchayat', overview: 'Online planning, accounting and monitoring system for Panchayats.', applyLink: 'https://egramswaraj.gov.in', tags: ['Panchayat'], eligibility: ['Gram Panchayats'], benefits: ['Digital Governance'], documents: [] },    ],
+  
+digital: [
+{ id: 'digital1', title: 'Digital India Programme', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Digital Governance', overview: 'Flagship programme to transform India into a digitally empowered society and knowledge economy.', applyLink: 'https://digitalindia.gov.in', tags: ['Digital India'], eligibility: ['All Citizens'], benefits: ['Access to Digital Government Services'], documents: [] },
+
+{ id: 'digital2', title: 'DigiLocker', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Digital Locker', overview: 'Secure cloud-based platform for storing and sharing official documents.', applyLink: 'https://digilocker.gov.in', tags: ['Documents'], eligibility: ['Aadhaar Holders'], benefits: ['Digital Documents'], documents: ['Aadhaar'] },
+
+{ id: 'digital3', title: 'UMANG', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Government Services', overview: 'Single mobile platform providing access to hundreds of government services.', applyLink: 'https://web.umang.gov.in', tags: ['UMANG'], eligibility: ['Citizens'], benefits: ['One-stop Government Services'], documents: [] },
+
+{ id: 'digital4', title: 'myScheme Portal', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Service', overview: 'Portal to discover and apply for eligible government schemes.', applyLink: 'https://www.myscheme.gov.in', tags: ['Government Schemes'], eligibility: ['Citizens'], benefits: ['Scheme Discovery'], documents: [] },
+
+{ id: 'digital5', title: 'Common Service Centres (CSC)', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Citizen Service Centre', overview: 'Provides digital government services through village-level centres.', applyLink: 'https://csc.gov.in', tags: ['CSC'], eligibility: ['Citizens'], benefits: ['Access to e-Governance Services'], documents: [] },
+
+{ id: 'digital6', title: 'Meri Pehchaan (National SSO)', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Login Service', overview: 'Single Sign-On platform for multiple government portals.', applyLink: 'https://meripehchaan.gov.in', tags: ['SSO'], eligibility: ['Citizens'], benefits: ['Single Login'], documents: ['Aadhaar (Optional)'] },
+
+{ id: 'digital7', title: 'API Setu', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Digital Infrastructure', overview: 'API platform enabling secure exchange of government data and services.', applyLink: 'https://www.apisetu.gov.in', tags: ['API'], eligibility: ['Developers', 'Departments'], benefits: ['Digital Integration'], documents: [] },
+
+{ id: 'digital8', title: 'Open Government Data (OGD) Platform', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Open Data', overview: 'Provides public access to datasets published by government departments.', applyLink: 'https://data.gov.in', tags: ['Open Data'], eligibility: ['Everyone'], benefits: ['Government Datasets'], documents: [] },
+
+{ id: 'digital9', title: 'e-Hospital', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Digital Health Service', overview: 'Online hospital management including OPD appointment booking.', applyLink: 'https://ors.gov.in', tags: ['Hospital'], eligibility: ['Patients'], benefits: ['Online Appointments'], documents: ['Aadhaar (Optional)'] },
+
+{ id: 'digital10', title: 'Online Registration System (ORS)', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Service', overview: 'Book appointments in government hospitals online.', applyLink: 'https://ors.gov.in', tags: ['Appointment'], eligibility: ['Citizens'], benefits: ['Hospital Booking'], documents: ['Mobile Number'] },
+
+{ id: 'digital11', title: 'e-District Services', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Online Citizen Services', overview: 'Digital delivery of district-level certificates and services.', applyLink: 'https://edistrict.gov.in', tags: ['Certificates'], eligibility: ['Citizens'], benefits: ['Online Certificates'], documents: ['As Required'] },
+
+{ id: 'digital12', title: 'National Scholarship Portal (NSP)', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Scholarship Portal', overview: 'Unified portal for Central and State scholarship applications.', applyLink: 'https://scholarships.gov.in', tags: ['Scholarship'], eligibility: ['Eligible Students'], benefits: ['Single Scholarship Portal'], documents: ['Aadhaar', 'Educational Documents'] },
+
+{ id: 'digital13', title: 'BHIM UPI', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Digital Payment', overview: 'Government-backed Unified Payments Interface application.', applyLink: 'https://www.npci.org.in', tags: ['UPI'], eligibility: ['Bank Customers'], benefits: ['Cashless Payments'], documents: ['Bank Account'] },
+
+{ id: 'digital14', title: 'eNAM', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Digital Agriculture Market', overview: 'Online agricultural marketing platform for farmers.', applyLink: 'https://enam.gov.in', tags: ['Agriculture'], eligibility: ['Farmers', 'Traders'], benefits: ['Online Trading'], documents: ['Farmer Registration'] },
+
+{ id: 'digital15', title: 'GeM (Government e-Marketplace)', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Government Procurement Portal', overview: 'Online procurement portal for government buyers and sellers.', applyLink: 'https://gem.gov.in', tags: ['Procurement'], eligibility: ['Businesses'], benefits: ['Government Marketplace'], documents: ['Business Registration'] },
+
+{ id: 'digital16', title: 'National Career Service (NCS)', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Employment Services', overview: 'Online employment and career guidance portal.', applyLink: 'https://www.ncs.gov.in', tags: ['Employment'], eligibility: ['Job Seekers'], benefits: ['Job Search'], documents: [] },
+
+{ id: 'digital17', title: 'e-Sanjeevani', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Free Telemedicine', overview: 'Government telemedicine platform for online doctor consultation.', applyLink: 'https://esanjeevani.mohfw.gov.in', tags: ['Health'], eligibility: ['Citizens'], benefits: ['Online Consultation'], documents: [] },
+
+{ id: 'digital18', title: 'National Digital Education Architecture (NDEAR)', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Digital Education', overview: 'Framework supporting digital education services in India.', applyLink: 'https://ndear.gov.in', tags: ['Education'], eligibility: ['Students', 'Teachers'], benefits: ['Digital Learning'], documents: [] },
+
+{ id: 'digital19', title: 'PM-WANI', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Public Wi-Fi', overview: 'Public Wi-Fi initiative to improve internet accessibility.', applyLink: 'https://pmwani.gov.in', tags: ['Wi-Fi'], eligibility: ['Everyone'], benefits: ['Affordable Internet'], documents: [] },
+
+{ id: 'digital20', title: 'BharatNet', category: 'Digital India', state: 'India', level: 'Central', subsidy: 'Broadband Infrastructure', overview: 'Provides high-speed broadband connectivity to Gram Panchayats across India.', applyLink: 'https://bharatnet.gov.in', tags: ['Broadband'], eligibility: ['Citizens', 'Institutions'], benefits: ['High-Speed Internet'], documents: [] },    ],
+   
+energy: [
+{ id: 'energy1', title: 'Duare Sarkar – Electricity Services', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Government Service', overview: 'Electricity-related citizen services delivered through Duare Sarkar camps.', applyLink: 'https://ds.wb.gov.in', tags: ['Electricity', 'Duare Sarkar'], eligibility: ['West Bengal Residents'], benefits: ['Easy Access to Services'], documents: ['Aadhaar', 'Electricity Consumer Number'] },
+
+{ id: 'energy2', title: 'WBSEDCL New Electricity Connection', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Apply online for a new domestic or commercial electricity connection.', applyLink: 'https://www.wbsedcl.in', tags: ['Electricity'], eligibility: ['Residents', 'Businesses'], benefits: ['New Electricity Connection'], documents: ['Identity Proof', 'Address Proof'] },
+
+{ id: 'energy3', title: 'WBSEDCL Online Bill Payment', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Pay electricity bills securely through the official portal.', applyLink: 'https://www.wbsedcl.in', tags: ['Bill Payment'], eligibility: ['WBSEDCL Consumers'], benefits: ['Online Bill Payment'], documents: ['Consumer ID'] },
+
+{ id: 'energy4', title: 'WBSEDCL Bill Download', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Download electricity bills online.', applyLink: 'https://www.wbsedcl.in', tags: ['Electricity Bill'], eligibility: ['Consumers'], benefits: ['Bill Download'], documents: ['Consumer ID'] },
+
+{ id: 'energy5', title: 'WBSEDCL Bill History', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'View electricity bill payment history.', applyLink: 'https://www.wbsedcl.in', tags: ['Bill History'], eligibility: ['Consumers'], benefits: ['Payment Records'], documents: ['Consumer ID'] },
+
+{ id: 'energy6', title: 'WBSEDCL Complaint Registration', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Register complaints regarding electricity supply and billing.', applyLink: 'https://www.wbsedcl.in', tags: ['Complaint'], eligibility: ['Consumers'], benefits: ['Online Complaint'], documents: ['Consumer ID'] },
+
+{ id: 'energy7', title: 'Power Outage Information', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Check scheduled and unscheduled power outages.', applyLink: 'https://www.wbsedcl.in', tags: ['Power Supply'], eligibility: ['Everyone'], benefits: ['Outage Updates'], documents: [] },
+
+{ id: 'energy8', title: 'WBSEDCL Rooftop Solar Net Metering', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Solar Net Metering', overview: 'Apply for rooftop solar net metering under WBSEDCL.', applyLink: 'https://www.wbsedcl.in', tags: ['Solar', 'Net Metering'], eligibility: ['Electricity Consumers'], benefits: ['Solar Energy Integration'], documents: ['Consumer ID', 'Property Documents'] },
+
+{ id: 'energy9', title: 'WBREDA Solar Rooftop Programme', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Renewable Energy Support', overview: 'Promotion of rooftop solar installations through WBREDA.', applyLink: 'https://www.wbreda.org', tags: ['Solar Energy'], eligibility: ['Residents', 'Institutions'], benefits: ['Renewable Energy Support'], documents: ['Identity Proof'] },
+
+{ id: 'energy10', title: 'Solar Water Pump Programme', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Solar Pump Assistance', overview: 'Promotion of solar-powered irrigation pumps for farmers.', applyLink: 'https://www.wbreda.org', tags: ['Solar Pump'], eligibility: ['Farmers'], benefits: ['Renewable Irrigation'], documents: ['Land Record', 'Aadhaar'] },
+
+{ id: 'energy11', title: 'Energy Conservation Awareness Programme', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Awareness programme promoting efficient energy usage.', applyLink: 'https://www.wbreda.org', tags: ['Energy Saving'], eligibility: ['Everyone'], benefits: ['Energy Awareness'], documents: [] },
+
+{ id: 'energy12', title: 'Electric Vehicle Charging Station Information', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Information Service', overview: 'Locate government-supported EV charging stations.', applyLink: 'https://www.wbreda.org', tags: ['EV'], eligibility: ['EV Owners'], benefits: ['Charging Station Locator'], documents: [] },
+
+{ id: 'energy13', title: 'PM Surya Ghar: Muft Bijli Yojana', category: 'Energy', state: 'India', level: 'Central', subsidy: 'Subsidy for Rooftop Solar', overview: 'Financial assistance for residential rooftop solar systems.', applyLink: 'https://pmsuryaghar.gov.in', tags: ['Solar', 'Subsidy'], eligibility: ['Residential Consumers'], benefits: ['Solar Subsidy', 'Reduced Electricity Bills'], documents: ['Aadhaar', 'Electricity Bill'] },
+
+{ id: 'energy14', title: 'National Rooftop Solar Portal', category: 'Energy', state: 'India', level: 'Central', subsidy: 'Solar Services', overview: 'Official portal for rooftop solar applications and subsidy.', applyLink: 'https://solarrooftop.gov.in', tags: ['Solar'], eligibility: ['Residential Consumers'], benefits: ['Online Solar Application'], documents: ['Electricity Consumer Number'] },
+
+{ id: 'energy15', title: 'UJALA LED Programme', category: 'Energy', state: 'India', level: 'Central', subsidy: 'Affordable LED Bulbs', overview: 'Promotes energy-efficient LED lighting.', applyLink: 'https://www.eeslindia.org', tags: ['LED'], eligibility: ['Citizens'], benefits: ['Energy Saving'], documents: [] },
+
+{ id: 'energy16', title: 'Street Lighting National Programme', category: 'Energy', state: 'India', level: 'Central', subsidy: 'Energy Efficient Street Lights', overview: 'Deployment of LED street lights for energy conservation.', applyLink: 'https://www.eeslindia.org', tags: ['Street Light'], eligibility: ['Urban Local Bodies'], benefits: ['Reduced Energy Consumption'], documents: [] },
+
+{ id: 'energy17', title: 'National Energy Conservation Campaign', category: 'Energy', state: 'India', level: 'Central', subsidy: 'Awareness Programme', overview: 'Promotes efficient use of energy across sectors.', applyLink: 'https://beeindia.gov.in', tags: ['Energy Efficiency'], eligibility: ['Everyone'], benefits: ['Energy Saving Awareness'], documents: [] },
+
+{ id: 'energy18', title: 'Energy Efficiency Services', category: 'Energy', state: 'India', level: 'Central', subsidy: 'Energy Efficient Solutions', overview: 'Government initiatives for improving energy efficiency.', applyLink: 'https://www.eeslindia.org', tags: ['Efficiency'], eligibility: ['Citizens', 'Institutions'], benefits: ['Energy Efficient Products'], documents: [] },
+
+{ id: 'energy19', title: 'Electricity Consumer Grievance Portal', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Submit and track electricity-related grievances online.', applyLink: 'https://www.wbsedcl.in', tags: ['Grievance'], eligibility: ['Consumers'], benefits: ['Complaint Tracking'], documents: ['Consumer Number'] },
+
+{ id: 'energy20', title: 'Electricity Connection Status', category: 'Energy', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Track the status of electricity connection applications.', applyLink: 'https://www.wbsedcl.in', tags: ['Status'], eligibility: ['Applicants'], benefits: ['Application Tracking'], documents: ['Application Number'] },    ],
+    
+women: [
 { id: 'women1', title: 'Annapurna Yojana', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: '₹1,000–₹1,200/month', overview: 'Monthly financial assistance for eligible women of West Bengal.', applyLink: 'https://socialsecurity.wb.gov.in', tags: ['Women', 'Financial Assistance'], eligibility: ['Eligible Women', 'West Bengal Resident'], benefits: ['Monthly Financial Assistance'], documents: ['Aadhaar', 'Bank Account', 'Application Form'] },
 
 { id: 'women2', title: 'Kanyashree Prakalpa', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: '₹1,000/year + ₹25,000 One-time', overview: 'Financial assistance to encourage girls to continue education.', applyLink: 'https://wbkanyashree.gov.in', tags: ['Girls', 'Education'], eligibility: ['Eligible Girl Student'], benefits: ['Annual Scholarship', 'One-time Grant'], documents: ['Birth Certificate', 'Aadhaar', 'School Certificate'] },
@@ -300,16 +454,132 @@ health: [
 { id: 'women24', title: 'Family Counselling Centres', category: 'Women Empowerment', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Family counselling and dispute resolution support.', applyLink: 'https://wcdsw.wb.gov.in', tags: ['Family Support'], eligibility: ['Eligible Families'], benefits: ['Counselling'], documents: [] },
 
 { id: 'women25', title: 'Mission Shakti', category: 'Women Empowerment', state: 'India', level: 'Central', subsidy: 'Women Safety & Empowerment Support', overview: 'Umbrella programme for women safety, protection and empowerment implemented through states.', applyLink: 'https://wcd.gov.in', tags: ['Women Safety', 'Empowerment'], eligibility: ['As per Programme Guidelines'], benefits: ['Integrated Support Services'], documents: ['As Required'] },    ],
-    legal: [
-        { id: 'legal1', title: 'Legal Aid', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free Services', overview: 'Free legal help for the needy.', applyLink: 'https://www.wb.gov.in/legal-aid', tags: ['Justice', 'Aid'], eligibility: ['EWS', 'Marginalized'], benefits: ['Free advice', 'Representation'], documents: ['Income proof', 'Case details'] }
-    ],
-    food: [
-        { id: 'food1', title: 'Mid-Day Meal', category: 'Food & Nutrition', state: 'All India', level: 'Central', subsidy: 'Free Meals', overview: 'Nutritional meals for school children.', applyLink: 'https://mdm.gov.in', tags: ['Nutrition', 'School'], eligibility: ['Primary students'], benefits: ['Free meals', 'Better attendance'], documents: ['School ID', 'Aadhaar'] }
-    ],
-    transport: [
-        { id: 'transport1', title: 'Public Transport Subsidy', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Subsidized Fares', overview: 'Discounted travel for seniors/students.', applyLink: 'https://www.wb.gov.in/transport', tags: ['Travel', 'Subsidy'], eligibility: ['Senior/Student/Disabled'], benefits: ['Discount on fares'], documents: ['ID card', 'Aadhaar'] }
-    ]
+   
+legal: [
+{ id: 'legal1', title: 'West Bengal State Legal Services Authority (WBSLSA)', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free Legal Aid', overview: 'Provides free legal services to eligible citizens.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Legal Aid'], eligibility: ['Eligible Citizens'], benefits: ['Free Legal Assistance'], documents: ['Identity Proof'] },
+
+{ id: 'legal2', title: 'District Legal Services Authority (DLSA)', category: 'Legal', state: 'West Bengal', level: 'District', subsidy: 'Free Legal Aid', overview: 'District-level legal aid and assistance services.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Legal Aid'], eligibility: ['Eligible Citizens'], benefits: ['Free Legal Services'], documents: ['Identity Proof'] },
+
+{ id: 'legal3', title: 'Taluk Legal Services Committee', category: 'Legal', state: 'West Bengal', level: 'Sub-District', subsidy: 'Free Legal Aid', overview: 'Provides legal services at the taluk level.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Legal Aid'], eligibility: ['Eligible Citizens'], benefits: ['Legal Guidance'], documents: ['Identity Proof'] },
+
+{ id: 'legal4', title: 'National Lok Adalat', category: 'Legal', state: 'West Bengal', level: 'National', subsidy: 'Free', overview: 'Alternative dispute resolution through Lok Adalat.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Lok Adalat'], eligibility: ['Litigants'], benefits: ['Quick Settlement'], documents: ['Case Details'] },
+
+{ id: 'legal5', title: 'Permanent Lok Adalat', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Permanent forum for settlement of public utility disputes.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Dispute Resolution'], eligibility: ['Eligible Citizens'], benefits: ['Fast Resolution'], documents: ['Case Documents'] },
+
+{ id: 'legal6', title: 'Legal Aid Clinic', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Provides legal consultation and awareness services.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Legal Clinic'], eligibility: ['Everyone'], benefits: ['Legal Advice'], documents: [] },
+
+{ id: 'legal7', title: 'Legal Awareness Programme', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Promotes legal awareness among citizens.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Awareness'], eligibility: ['Everyone'], benefits: ['Legal Education'], documents: [] },
+
+{ id: 'legal8', title: 'Mediation Centre', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Settlement of disputes through mediation.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Mediation'], eligibility: ['Disputing Parties'], benefits: ['Peaceful Settlement'], documents: ['Case Details'] },
+
+{ id: 'legal9', title: 'Victim Compensation Scheme', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Financial Compensation', overview: 'Compensation for eligible victims of crime.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Victim Support'], eligibility: ['Eligible Victims'], benefits: ['Financial Compensation'], documents: ['FIR', 'Identity Proof'] },
+
+{ id: 'legal10', title: 'Free Legal Aid for Women', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Legal assistance for eligible women.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Women'], eligibility: ['Eligible Women'], benefits: ['Free Lawyer'], documents: ['Identity Proof'] },
+
+{ id: 'legal11', title: 'Free Legal Aid for Senior Citizens', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Legal assistance for senior citizens.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Senior Citizen'], eligibility: ['Senior Citizens'], benefits: ['Legal Support'], documents: ['Age Proof'] },
+
+{ id: 'legal12', title: 'Free Legal Aid for SC/ST', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Legal services for Scheduled Castes and Scheduled Tribes.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['SC', 'ST'], eligibility: ['SC/ST Citizens'], benefits: ['Legal Assistance'], documents: ['Caste Certificate'] },
+
+{ id: 'legal13', title: 'Free Legal Aid for Persons with Disabilities', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Legal assistance for persons with disabilities.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Disability'], eligibility: ['PwD'], benefits: ['Free Legal Services'], documents: ['Disability Certificate'] },
+
+{ id: 'legal14', title: 'Child Legal Protection Services', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Legal protection and support for children.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Child Rights'], eligibility: ['Children'], benefits: ['Legal Protection'], documents: [] },
+
+{ id: 'legal15', title: 'Prison Legal Aid Services', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Legal assistance for prisoners and undertrial persons.', applyLink: 'https://wbslsa.bangla.gov.in', tags: ['Prison'], eligibility: ['Prisoners'], benefits: ['Legal Representation'], documents: [] },
+
+{ id: 'legal16', title: 'Consumer Dispute Redressal Commission', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Consumer Protection', overview: 'Forum for resolving consumer disputes.', applyLink: 'https://scdrcwb.in', tags: ['Consumer'], eligibility: ['Consumers'], benefits: ['Consumer Justice'], documents: ['Purchase Proof'] },
+
+{ id: 'legal17', title: 'Online Case Status Service', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Check the status of court cases online.', applyLink: 'https://services.ecourts.gov.in', tags: ['Court'], eligibility: ['Everyone'], benefits: ['Case Tracking'], documents: ['Case Number'] },
+
+{ id: 'legal18', title: 'e-Courts Services', category: 'Legal', state: 'India', level: 'Central', subsidy: 'Free', overview: 'Online judicial services including cause list and orders.', applyLink: 'https://ecourts.gov.in', tags: ['Judiciary'], eligibility: ['Everyone'], benefits: ['Court Information'], documents: [] },
+
+{ id: 'legal19', title: 'Online FIR & Citizen Police Services', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Citizen police services including complaint and verification services.', applyLink: 'https://wbpolice.gov.in', tags: ['Police'], eligibility: ['Citizens'], benefits: ['Online Police Services'], documents: ['Identity Proof'] },
+
+{ id: 'legal20', title: 'Human Rights Commission Services', category: 'Legal', state: 'West Bengal', level: 'State', subsidy: 'Free', overview: 'Submit complaints related to human rights violations.', applyLink: 'https://wbhrc.nic.in', tags: ['Human Rights'], eligibility: ['Citizens'], benefits: ['Complaint Redressal'], documents: ['Supporting Documents'] },    ],
+    
+food: [
+{ id: 'food1', title: 'Public Distribution System (PDS)', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Subsidized Food Grains', overview: 'Provides essential food grains to eligible ration card holders.', applyLink: 'https://food.wb.gov.in', tags: ['Ration', 'Food Security'], eligibility: ['Eligible Ration Card Holders'], benefits: ['Rice', 'Wheat', 'Sugar'], documents: ['Ration Card', 'Aadhaar'] },
+
+{ id: 'food2', title: 'Digital Ration Card Services', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Online Service', overview: 'Apply, update, download and manage digital ration cards.', applyLink: 'https://food.wb.gov.in', tags: ['Ration Card'], eligibility: ['West Bengal Residents'], benefits: ['Online Ration Services'], documents: ['Aadhaar', 'Address Proof'] },
+
+{ id: 'food3', title: 'Khadya Sathi', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Highly Subsidized Food Grains', overview: 'Food security scheme providing subsidized food grains.', applyLink: 'https://food.wb.gov.in', tags: ['Food Security'], eligibility: ['Eligible Families'], benefits: ['Rice', 'Wheat'], documents: ['Ration Card'] },
+
+{ id: 'food4', title: 'Anna Purna Yojana', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Food Grains', overview: 'Provides free food grains to eligible senior citizens.', applyLink: 'https://food.wb.gov.in', tags: ['Senior Citizen'], eligibility: ['Eligible Senior Citizens'], benefits: ['Free Food Grains'], documents: ['Age Proof', 'Ration Card'] },
+
+{ id: 'food5', title: 'Mid-Day Meal Scheme', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Nutritious Meal', overview: 'Nutritious meals for students in government and aided schools.', applyLink: 'https://middaymeal.wb.gov.in', tags: ['School Meal'], eligibility: ['School Students'], benefits: ['Free Cooked Meals'], documents: ['School Enrollment'] },
+
+{ id: 'food6', title: 'Integrated Child Development Services (ICDS)', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Nutrition Support', overview: 'Nutrition and health services for children and mothers.', applyLink: 'https://wbcdwdsw.gov.in', tags: ['Child Nutrition'], eligibility: ['Children', 'Pregnant Women'], benefits: ['Supplementary Nutrition'], documents: ['Identity Proof'] },
+
+{ id: 'food7', title: 'Anganwadi Services', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Nutrition', overview: 'Nutrition, preschool education and healthcare through Anganwadi Centres.', applyLink: 'https://wbcdwdsw.gov.in', tags: ['Anganwadi'], eligibility: ['Children', 'Women'], benefits: ['Nutrition', 'Health Services'], documents: [] },
+
+{ id: 'food8', title: 'Supplementary Nutrition Programme', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Nutrition', overview: 'Supplementary nutrition for children, pregnant and lactating women.', applyLink: 'https://wbcdwdsw.gov.in', tags: ['Nutrition'], eligibility: ['Eligible Beneficiaries'], benefits: ['Nutritious Food'], documents: [] },
+
+{ id: 'food9', title: 'POSHAN Abhiyaan', category: 'Food & Nutrition', state: 'India', level: 'Central', subsidy: 'Nutrition Support', overview: 'National mission to improve nutritional outcomes.', applyLink: 'https://poshanabhiyaan.gov.in', tags: ['Nutrition'], eligibility: ['Children', 'Women'], benefits: ['Nutrition Support'], documents: [] },
+
+{ id: 'food10', title: 'POSHAN Tracker', category: 'Food & Nutrition', state: 'India', level: 'Central', subsidy: 'Free Digital Service', overview: 'Digital platform for monitoring nutrition services.', applyLink: 'https://poshantracker.in', tags: ['Nutrition'], eligibility: ['Beneficiaries'], benefits: ['Service Tracking'], documents: [] },
+
+{ id: 'food11', title: 'Ration Card Application', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Apply online for a new ration card.', applyLink: 'https://food.wb.gov.in', tags: ['Ration'], eligibility: ['Residents'], benefits: ['Online Application'], documents: ['Aadhaar', 'Address Proof'] },
+
+{ id: 'food12', title: 'Ration Card Correction Service', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Update or correct ration card details.', applyLink: 'https://food.wb.gov.in', tags: ['Correction'], eligibility: ['Ration Card Holders'], benefits: ['Online Correction'], documents: ['Supporting Documents'] },
+
+{ id: 'food13', title: 'Ration Card Status Check', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Track ration card application status online.', applyLink: 'https://food.wb.gov.in', tags: ['Status'], eligibility: ['Applicants'], benefits: ['Application Tracking'], documents: ['Application Number'] },
+
+{ id: 'food14', title: 'Fair Price Shop Locator', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Locate nearby fair price ration shops.', applyLink: 'https://food.wb.gov.in', tags: ['Ration Shop'], eligibility: ['Everyone'], benefits: ['Shop Locator'], documents: [] },
+
+{ id: 'food15', title: 'Food Grievance Redressal', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Submit complaints regarding ration and food distribution.', applyLink: 'https://food.wb.gov.in', tags: ['Complaint'], eligibility: ['Citizens'], benefits: ['Complaint Resolution'], documents: [] },
+
+{ id: 'food16', title: 'Mother & Child Nutrition Services', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Nutrition', overview: 'Nutrition support for pregnant women and young children.', applyLink: 'https://wbcdwdsw.gov.in', tags: ['Mother', 'Child'], eligibility: ['Eligible Women', 'Children'], benefits: ['Nutrition Support'], documents: [] },
+
+{ id: 'food17', title: 'Nutrition Awareness Programme', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Awareness programmes promoting healthy nutrition.', applyLink: 'https://wbcdwdsw.gov.in', tags: ['Awareness'], eligibility: ['Everyone'], benefits: ['Nutrition Education'], documents: [] },
+
+{ id: 'food18', title: 'Anemia Control Programme', category: 'Food & Nutrition', state: 'West Bengal', level: 'State', subsidy: 'Free Health Support', overview: 'Programme for prevention and control of anemia.', applyLink: 'https://wbhealth.gov.in', tags: ['Health', 'Nutrition'], eligibility: ['Women', 'Children'], benefits: ['Iron Supplementation'], documents: [] },
+
+{ id: 'food19', title: 'PM POSHAN Scheme', category: 'Food & Nutrition', state: 'India', level: 'Central', subsidy: 'Free School Meals', overview: 'School nutrition programme providing cooked meals to students.', applyLink: 'https://pmposhan.education.gov.in', tags: ['School Nutrition'], eligibility: ['School Students'], benefits: ['Nutritious Meals'], documents: ['School Enrollment'] },
+
+{ id: 'food20', title: 'One Nation One Ration Card (ONORC)', category: 'Food & Nutrition', state: 'India', level: 'Central', subsidy: 'Portable Ration Facility', overview: 'Enables ration card portability across India.', applyLink: 'https://nfsa.gov.in', tags: ['Ration'], eligibility: ['NFSA Beneficiaries'], benefits: ['Nationwide Ration Access'], documents: ['Aadhaar', 'Ration Card'] },    ],
+   
+transport: [
+        { id: 'transport1', title: 'Student Smart Card', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Concessional Travel', overview: 'Provides concessional bus fares for eligible students.', applyLink: 'https://transport.wb.gov.in', tags: ['Student', 'Bus'], eligibility: ['School & College Students'], benefits: ['Discounted Bus Fare'], documents: ['Student ID', 'Aadhaar'] },
+
+{ id: 'transport2', title: 'Online Driving Licence Services', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Apply, renew and manage driving licence services online.', applyLink: 'https://parivahan.gov.in', tags: ['Driving Licence'], eligibility: ['Eligible Citizens'], benefits: ['Online DL Services'], documents: ['Aadhaar', 'Address Proof'] },
+
+{ id: 'transport3', title: 'Learner Licence Application', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Apply online for a learner driving licence.', applyLink: 'https://parivahan.gov.in', tags: ['Learner Licence'], eligibility: ['18+ Years'], benefits: ['Online Application'], documents: ['Aadhaar', 'Age Proof'] },
+
+{ id: 'transport4', title: 'Vehicle Registration Services', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Registration and ownership services for motor vehicles.', applyLink: 'https://parivahan.gov.in', tags: ['Vehicle'], eligibility: ['Vehicle Owners'], benefits: ['Vehicle Registration'], documents: ['Invoice', 'Insurance', 'Aadhaar'] },
+
+{ id: 'transport5', title: 'Vehicle Ownership Transfer', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Transfer ownership of registered vehicles online.', applyLink: 'https://parivahan.gov.in', tags: ['RC Transfer'], eligibility: ['Vehicle Owners'], benefits: ['Ownership Transfer'], documents: ['RC', 'Insurance', 'Aadhaar'] },
+
+{ id: 'transport6', title: 'Vehicle Fitness Certificate', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Apply for vehicle fitness certificate.', applyLink: 'https://parivahan.gov.in', tags: ['Fitness'], eligibility: ['Vehicle Owners'], benefits: ['Fitness Certificate'], documents: ['RC', 'Insurance'] },
+
+{ id: 'transport7', title: 'Permit Application Services', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Apply for commercial vehicle permits.', applyLink: 'https://parivahan.gov.in', tags: ['Permit'], eligibility: ['Commercial Vehicle Owners'], benefits: ['Online Permit'], documents: ['RC', 'Insurance'] },
+
+{ id: 'transport8', title: 'Road Tax Payment', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Payment', overview: 'Pay motor vehicle road tax online.', applyLink: 'https://parivahan.gov.in', tags: ['Road Tax'], eligibility: ['Vehicle Owners'], benefits: ['Online Tax Payment'], documents: ['Vehicle Number'] },
+
+{ id: 'transport9', title: 'e-Challan Payment', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Check and pay pending traffic challans.', applyLink: 'https://echallan.parivahan.gov.in', tags: ['Traffic'], eligibility: ['Vehicle Owners'], benefits: ['Online Challan Payment'], documents: ['Vehicle Number'] },
+
+{ id: 'transport10', title: 'Vehicle Information Search', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Search vehicle registration details online.', applyLink: 'https://parivahan.gov.in', tags: ['Vehicle Info'], eligibility: ['Everyone'], benefits: ['Vehicle Details'], documents: ['Vehicle Number'] },
+
+{ id: 'transport11', title: 'Driving Licence Status', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Track driving licence application status.', applyLink: 'https://parivahan.gov.in', tags: ['DL Status'], eligibility: ['Applicants'], benefits: ['Application Tracking'], documents: ['Application Number'] },
+
+{ id: 'transport12', title: 'Vehicle RC Status', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Track vehicle registration certificate status.', applyLink: 'https://parivahan.gov.in', tags: ['RC Status'], eligibility: ['Applicants'], benefits: ['Status Tracking'], documents: ['Application Number'] },
+
+{ id: 'transport13', title: 'Online Bus Ticket Booking (SBSTC)', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Book South Bengal State Transport Corporation bus tickets online.', applyLink: 'https://sbstc.co.in', tags: ['Bus Ticket'], eligibility: ['Everyone'], benefits: ['Online Booking'], documents: [] },
+
+{ id: 'transport14', title: 'Online Bus Ticket Booking (NBSTC)', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Book North Bengal State Transport Corporation bus tickets online.', applyLink: 'https://nbstc.in', tags: ['Bus Ticket'], eligibility: ['Everyone'], benefits: ['Online Booking'], documents: [] },
+
+{ id: 'transport15', title: 'Online Bus Ticket Booking (WBTC)', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Online Service', overview: 'Book West Bengal Transport Corporation bus tickets online.', applyLink: 'https://wbtc.co.in', tags: ['Bus Ticket'], eligibility: ['Everyone'], benefits: ['Online Booking'], documents: [] },
+
+{ id: 'transport16', title: 'Water Transport Services', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Passenger Transport', overview: 'Government-operated inland water transport services.', applyLink: 'https://transport.wb.gov.in', tags: ['Ferry'], eligibility: ['Everyone'], benefits: ['Water Transport'], documents: [] },
+
+{ id: 'transport17', title: 'Road Safety Awareness Programme', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Promotes road safety and responsible driving.', applyLink: 'https://transport.wb.gov.in', tags: ['Road Safety'], eligibility: ['Everyone'], benefits: ['Safety Awareness'], documents: [] },
+
+{ id: 'transport18', title: 'Commercial Driving Training', category: 'Transportation', state: 'West Bengal', level: 'State', subsidy: 'Training Support', overview: 'Government-supported training for commercial drivers.', applyLink: 'https://transport.wb.gov.in', tags: ['Driver Training'], eligibility: ['Eligible Candidates'], benefits: ['Professional Driver Training'], documents: ['Aadhaar'] },
+
+{ id: 'transport19', title: 'Vahan & Sarathi Services', category: 'Transportation', state: 'India', level: 'Central', subsidy: 'Online Transport Services', overview: 'Integrated online services for vehicle and driving licence management.', applyLink: 'https://parivahan.gov.in', tags: ['Vahan', 'Sarathi'], eligibility: ['Citizens'], benefits: ['Complete Transport Services'], documents: ['As Required'] },
+
+{ id: 'transport20', title: 'National Common Mobility Card (NCMC)', category: 'Transportation', state: 'India', level: 'Central', subsidy: 'Integrated Transit Card', overview: 'One card for multiple public transport services where supported.', applyLink: 'https://www.npci.org.in', tags: ['NCMC', 'Transit Card'], eligibility: ['Citizens'], benefits: ['Cashless Public Transport'], documents: ['Identity Proof'] }, ],
 };
+    
+
 
 // ============================================
 // CATEGORIES DISPLAY
@@ -317,18 +587,18 @@ health: [
 const categories = [
     { icon: 'fa-graduation-cap', name: 'Education', count: '16 Schemes', color: '#6C3CE1', key: 'education' },
     { icon: 'fa-heart-pulse', name: 'Healthcare', count: '19 Schemes', color: '#FF6B6B', key: 'health' },
-    { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '19 Schemes', color: '#EC4899', key: 'women' },
+    { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '25 Schemes', color: '#EC4899', key: 'women' },
     { icon: 'fa-building', name: 'Housing', count: '19 Schemes', color: '#F59E0B', key: 'housing' },
     { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '20 Schemes', color: '#06D6A0', key: 'financial' },
     { icon: 'fa-briefcase', name: 'Employment', count: '20 Schemes', color: '#3B82F6', key: 'employment' },
     { icon: 'fa-tractor', name: 'Agriculture', count: '20 Schemes', color: '#10B981', key: 'agriculture' },
-    { icon: 'fa-scale-balanced', name: 'Legal', count: '1 Schemes', color: '#8B5CF6', key: 'legal' },
-    { icon: 'fa-utensils', name: 'Food & Nutrition', count: '1 Schemes', color: '#F472B6', key: 'food' },
-    { icon: 'fa-people-arrows', name: 'Skill Development', count: '1 Schemes', color: '#6366F1', key: 'skill' },
-    { icon: 'fa-truck', name: 'Transportation', count: '1 Schemes', color: '#14B8A6', key: 'transport' },
-    { icon: 'fa-bolt', name: 'Energy', count: '1 Schemes', color: '#F59E0B', key: 'energy' },
-    { icon: 'fa-wifi', name: 'Digital India', count: '1 Schemes', color: '#8B5CF6', key: 'digital' },
-    { icon: 'fa-tree', name: 'Rural Development', count: '1 Schemes', color: '#10B981', key: 'rural' }
+    { icon: 'fa-scale-balanced', name: 'Legal', count: '20 Schemes', color: '#8B5CF6', key: 'legal' },
+    { icon: 'fa-utensils', name: 'Food & Nutrition', count: '20 Schemes', color: '#F472B6', key: 'food' },
+    { icon: 'fa-people-arrows', name: 'Skill Development', count: '20 Schemes', color: '#6366F1', key: 'skill' },
+    { icon: 'fa-truck', name: 'Transportation', count: '20 Schemes', color: '#14B8A6', key: 'transport' },
+    { icon: 'fa-bolt', name: 'Energy', count: '20 Schemes', color: '#F59E0B', key: 'energy' },
+    { icon: 'fa-wifi', name: 'Digital India', count: '20 Schemes', color: '#8B5CF6', key: 'digital' },
+    { icon: 'fa-tree', name: 'Rural Development', count: '20 Schemes', color: '#10B981', key: 'rural' }
 ];
 
 // ============================================
