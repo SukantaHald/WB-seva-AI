@@ -40,11 +40,47 @@ const allSchemesData = {
 { id: 'edu16', title: 'OASIS Post-Matric Scholarship (OBC)', category: 'Education', state: 'West Bengal', level: 'State', subsidy: 'Varies', overview: 'Post-Matric scholarship for Other Backward Classes students.', applyLink: 'https://oasis.gov.in', tags: ['OBC', 'Post-Matric'], eligibility: ['OBC Student', 'Post-Matric Course'], benefits: ['Maintenance Allowance', 'Course Fee'], documents: ['OBC Certificate', 'Income Certificate', 'Admission Proof'] },
     ],
     agriculture: [
-        { id: 'agri1', title: 'Sprinkler / Drip Irrigation', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: '50% Subsidy', overview: 'Financial aid for modern irrigation systems.', applyLink: 'https://www.wb.gov.in/irrigation', tags: ['Irrigation', 'Farmer'], eligibility: ['Farmer with land', 'Kisan Card'], benefits: ['50% subsidy', 'Technical support'], documents: ['Land papers', 'Aadhaar', 'Kisan Card'] },
-        { id: 'agri2', title: 'Amar Fasal Amar Gola', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: '₹5,000–25,000', overview: 'Storage and vending support for marginal farmers.', applyLink: 'https://www.wb.gov.in/afag', tags: ['Storage', 'Farmer'], eligibility: ['Marginal farmer', 'Kisan Card'], benefits: ['Warehouse support', 'Vending cart'], documents: ['Land records', 'Aadhaar', 'Kisan Card'] },
-        { id: 'agri3', title: 'PM Kisan Samman Nidhi', category: 'Agriculture', state: 'All India', level: 'Central', subsidy: '₹6,000/year', overview: 'Income support for small and marginal farmers.', applyLink: 'https://pmkisan.gov.in', tags: ['Income', 'Farmer'], eligibility: ['Small farmer', 'Cultivable land'], benefits: ['₹6,000/year', '3 instalments'], documents: ['Aadhaar', 'Land papers', 'Bank account'] }
-    ],
-    health: [
+{ id: 'agri1', title: 'Krishak Bandhu', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Financial Assistance & Life Insurance', overview: 'Provides financial assistance and life insurance support to farmers.', applyLink: 'https://krishakbandhu.net', tags: ['Farmers', 'Financial Assistance'], eligibility: ['Eligible Farmers', 'Land Owners'], benefits: ['Financial Assistance', 'Life Insurance'], documents: ['Aadhaar', 'Land Records', 'Bank Account'] },
+
+{ id: 'agri2', title: 'Bangla Shasya Bima', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Crop Insurance', overview: 'Crop insurance scheme protecting farmers against crop loss.', applyLink: 'https://banglashasyabima.net', tags: ['Crop Insurance'], eligibility: ['Eligible Farmers'], benefits: ['Crop Loss Compensation'], documents: ['Aadhaar', 'Land Record'] },
+
+{ id: 'agri3', title: 'Mati Sathi', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Free Soil Testing', overview: 'Provides soil health testing and advisory services to farmers.', applyLink: 'https://matisathi.net', tags: ['Soil Health'], eligibility: ['Farmers'], benefits: ['Soil Health Report'], documents: ['Aadhaar'] },
+
+{ id: 'agri4', title: 'Agricultural Farm Mechanization Scheme', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Subsidy on Farm Machinery', overview: 'Financial assistance for purchasing agricultural machinery.', applyLink: 'https://matirkatha.net', tags: ['Farm Equipment'], eligibility: ['Eligible Farmers'], benefits: ['Machinery Subsidy'], documents: ['Aadhaar', 'Land Record'] },
+
+{ id: 'agri5', title: 'Seed Distribution Programme', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Subsidized Seeds', overview: 'Distribution of certified seeds to farmers at subsidized rates.', applyLink: 'https://matirkatha.net', tags: ['Seeds'], eligibility: ['Registered Farmers'], benefits: ['Quality Seeds'], documents: ['Farmer Registration'] },
+
+{ id: 'agri6', title: 'Soil Health Card Services', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Provides Soil Health Cards based on scientific soil testing.', applyLink: 'https://matisathi.net', tags: ['Soil'], eligibility: ['Farmers'], benefits: ['Soil Health Card'], documents: ['Aadhaar'] },
+
+{ id: 'agri7', title: 'Farmer Registration Services', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Free Registration', overview: 'Online registration for farmers to access government agricultural schemes.', applyLink: 'https://matirkatha.net', tags: ['Registration'], eligibility: ['Farmers'], benefits: ['Scheme Eligibility'], documents: ['Aadhaar', 'Land Record'] },
+
+{ id: 'agri8', title: 'Agricultural Equipment Hiring Centre', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Subsidized Equipment Rental', overview: 'Provides farm machinery through Custom Hiring Centres.', applyLink: 'https://matirkatha.net', tags: ['Farm Machinery'], eligibility: ['Farmers'], benefits: ['Affordable Equipment Rental'], documents: ['Farmer ID'] },
+
+{ id: 'agri9', title: 'Fertilizer Distribution Services', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Subsidized Fertilizer', overview: 'Distribution of fertilizers through authorized government channels.', applyLink: 'https://matirkatha.net', tags: ['Fertilizer'], eligibility: ['Registered Farmers'], benefits: ['Subsidized Fertilizer'], documents: ['Farmer Registration'] },
+
+{ id: 'agri10', title: 'Agricultural Irrigation Assistance', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Irrigation Support', overview: 'Financial assistance for minor irrigation and water conservation.', applyLink: 'https://matirkatha.net', tags: ['Irrigation'], eligibility: ['Eligible Farmers'], benefits: ['Irrigation Assistance'], documents: ['Land Record'] },
+
+{ id: 'agri11', title: 'Organic Farming Promotion Scheme', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Organic Farming Support', overview: 'Promotes organic farming through training and incentives.', applyLink: 'https://matirkatha.net', tags: ['Organic Farming'], eligibility: ['Farmers'], benefits: ['Training', 'Financial Support'], documents: ['Farmer Registration'] },
+
+{ id: 'agri12', title: 'Horticulture Development Programme', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Financial Assistance', overview: 'Supports cultivation of fruits, vegetables and flowers.', applyLink: 'https://matirkatha.net', tags: ['Horticulture'], eligibility: ['Eligible Farmers'], benefits: ['Financial Assistance'], documents: ['Land Record'] },
+
+{ id: 'agri13', title: 'Agricultural Marketing Information Service', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Free Information Service', overview: 'Provides agricultural market prices and marketing information.', applyLink: 'https://matirkatha.net', tags: ['Market Prices'], eligibility: ['Farmers'], benefits: ['Market Information'], documents: [] },
+
+{ id: 'agri14', title: 'Crop Advisory Services', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Free Advisory', overview: 'Provides expert crop management and cultivation advice.', applyLink: 'https://matirkatha.net', tags: ['Advisory'], eligibility: ['Farmers'], benefits: ['Expert Guidance'], documents: [] },
+
+{ id: 'agri15', title: 'Agricultural Training Programme', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Free Training', overview: 'Training programmes on modern agricultural practices.', applyLink: 'https://matirkatha.net', tags: ['Training'], eligibility: ['Farmers'], benefits: ['Skill Development'], documents: ['Identity Proof'] },
+
+{ id: 'agri16', title: 'e-Paddy Procurement', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'MSP Procurement Service', overview: 'Online paddy procurement registration for eligible farmers.', applyLink: 'https://procurement.wbfood.in', tags: ['Paddy', 'MSP'], eligibility: ['Registered Farmers'], benefits: ['MSP Procurement'], documents: ['Farmer Registration', 'Bank Account'] },
+
+{ id: 'agri17', title: 'Agricultural Subsidy Status Check', category: 'Agriculture', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Track the status of agriculture subsidy applications.', applyLink: 'https://matirkatha.net', tags: ['Status'], eligibility: ['Applicants'], benefits: ['Application Tracking'], documents: ['Application ID'] },
+
+{ id: 'agri18', title: 'PM-KISAN', category: 'Agriculture', state: 'India', level: 'Central', subsidy: '₹6,000/year', overview: 'Income support scheme for eligible farmer families.', applyLink: 'https://pmkisan.gov.in', tags: ['Income Support'], eligibility: ['Eligible Farmers'], benefits: ['₹6,000 Annual Assistance'], documents: ['Aadhaar', 'Land Record', 'Bank Account'] },
+
+{ id: 'agri19', title: 'Kisan Credit Card (KCC)', category: 'Agriculture', state: 'India', level: 'Central', subsidy: 'Crop Loan', overview: 'Provides timely and affordable agricultural credit to farmers.', applyLink: 'https://pmkisan.gov.in', tags: ['Credit', 'Loan'], eligibility: ['Eligible Farmers'], benefits: ['Low Interest Crop Loan'], documents: ['Aadhaar', 'Land Record', 'Bank Account'] },
+
+{ id: 'agri20', title: 'Pradhan Mantri Fasal Bima Yojana (PMFBY)', category: 'Agriculture', state: 'India', level: 'Central', subsidy: 'Crop Insurance', overview: 'Crop insurance scheme covering losses due to natural calamities.', applyLink: 'https://pmfby.gov.in', tags: ['Crop Insurance'], eligibility: ['Eligible Farmers'], benefits: ['Insurance Coverage'], documents: ['Aadhaar', 'Land Record', 'Bank Account'] },    ],
+  
+health: [
 { id: 'health2', title: 'Ayushman Bharat PM-JAY', category: 'Healthcare', state: 'India', level: 'Central', type: 'Scheme', subsidy: 'Up to ₹5 Lakh Cashless Coverage', overview: 'National health insurance scheme for eligible families.', applyLink: 'https://beneficiary.nha.gov.in', tags: ['Insurance', 'PM-JAY'], eligibility: ['Eligible Beneficiaries'], benefits: ['Cashless Treatment'], documents: ['Ayushman Card', 'Aadhaar'] },
 
 { id: 'health3', title: 'West Bengal Health Scheme (WBHS)', category: 'Healthcare', state: 'West Bengal', level: 'State', type: 'Scheme', subsidy: 'Medical Reimbursement', overview: 'Healthcare benefits for state government employees and pensioners.', applyLink: 'https://healthscheme.wb.gov.in', tags: ['Government Employee'], eligibility: ['Government Employee', 'Pensioner'], benefits: ['Cashless Treatment', 'Medical Reimbursement'], documents: ['Employee ID', 'PPO'] },
@@ -285,7 +321,7 @@ const categories = [
     { icon: 'fa-building', name: 'Housing', count: '19 Schemes', color: '#F59E0B', key: 'housing' },
     { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '20 Schemes', color: '#06D6A0', key: 'financial' },
     { icon: 'fa-briefcase', name: 'Employment', count: '20 Schemes', color: '#3B82F6', key: 'employment' },
-    { icon: 'fa-tractor', name: 'Agriculture', count: '3 Schemes', color: '#10B981', key: 'agriculture' },
+    { icon: 'fa-tractor', name: 'Agriculture', count: '20 Schemes', color: '#10B981', key: 'agriculture' },
     { icon: 'fa-scale-balanced', name: 'Legal', count: '1 Schemes', color: '#8B5CF6', key: 'legal' },
     { icon: 'fa-utensils', name: 'Food & Nutrition', count: '1 Schemes', color: '#F472B6', key: 'food' },
     { icon: 'fa-people-arrows', name: 'Skill Development', count: '1 Schemes', color: '#6366F1', key: 'skill' },
