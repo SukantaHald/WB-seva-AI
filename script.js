@@ -122,6 +122,45 @@ const allSchemesData = {
 { id: 'house18', title: 'Housing Loan Guidance Services', category: 'Housing', state: 'West Bengal', level: 'State', subsidy: 'Information Service', overview: 'Provides guidance regarding housing loans and government housing support.', applyLink: 'https://housing.wb.gov.in', tags: ['Housing Loan'], eligibility: ['Home Buyers'], benefits: ['Loan Guidance'], documents: [] },
     ],    
     financial: [
+        { id: 'finance1', title: 'Annapurna Yojana', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Food Security Assistance', overview: 'Provides food assistance to eligible beneficiaries under the State welfare programme.', applyLink: 'https://food.wb.gov.in', tags: ['Food Security', 'Women'], eligibility: ['Eligible Beneficiaries'], benefits: ['Food Assistance'], documents: ['Aadhaar', 'Ration Card'] },
+
+{ id: 'finance2', title: 'Bina Mulya Samajik Suraksha Yojana', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Free Social Security Benefits', overview: 'Social security scheme for unorganized workers without premium contribution.', applyLink: 'https://wblabour.gov.in', tags: ['Social Security', 'Workers'], eligibility: ['Registered Unorganized Workers'], benefits: ['Insurance', 'Pension', 'Financial Assistance'], documents: ['Aadhaar', 'Labour Registration'] },
+
+{ id: 'finance3', title: 'Jai Johar Pension Scheme', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Monthly Pension', overview: 'Monthly pension for eligible Scheduled Tribe senior citizens.', applyLink: 'https://socialsecurity.wb.gov.in', tags: ['Pension', 'ST'], eligibility: ['Eligible ST Beneficiary'], benefits: ['Monthly Pension'], documents: ['ST Certificate', 'Aadhaar', 'Bank Account'] },
+
+{ id: 'finance4', title: 'Taposili Bandhu Scheme', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Monthly Pension', overview: 'Social pension scheme for eligible Scheduled Caste beneficiaries.', applyLink: 'https://socialsecurity.wb.gov.in', tags: ['Pension', 'SC'], eligibility: ['Eligible SC Beneficiary'], benefits: ['Monthly Pension'], documents: ['SC Certificate', 'Aadhaar', 'Bank Account'] },
+
+{ id: 'finance5', title: 'e-Shram Card', category: 'Financial', state: 'India', level: 'Central', subsidy: 'Social Security Benefits', overview: 'National database and social security support for unorganized workers.', applyLink: 'https://eshram.gov.in', tags: ['Workers', 'Social Security'], eligibility: ['Unorganized Workers'], benefits: ['National Registration', 'Scheme Access'], documents: ['Aadhaar', 'Bank Account'] },
+
+{ id: 'finance6', title: 'Pradhan Mantri Jan Dhan Yojana', category: 'Financial', state: 'India', level: 'Central', subsidy: 'Zero Balance Bank Account', overview: 'Financial inclusion scheme providing basic banking facilities.', applyLink: 'https://pmjdy.gov.in', tags: ['Banking', 'Financial Inclusion'], eligibility: ['Indian Citizen'], benefits: ['Bank Account', 'RuPay Card', 'Insurance'], documents: ['Aadhaar', 'Identity Proof'] },
+
+{ id: 'finance7', title: 'Atal Pension Yojana', category: 'Financial', state: 'India', level: 'Central', subsidy: 'Guaranteed Monthly Pension', overview: 'Pension scheme for workers in the unorganized sector.', applyLink: 'https://www.npscra.nsdl.co.in', tags: ['Pension'], eligibility: ['18-40 Years'], benefits: ['Monthly Pension'], documents: ['Aadhaar', 'Bank Account'] },
+
+{ id: 'finance8', title: 'Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)', category: 'Financial', state: 'India', level: 'Central', subsidy: '₹2 Lakh Life Insurance', overview: 'Affordable life insurance scheme.', applyLink: 'https://jansuraksha.gov.in', tags: ['Life Insurance'], eligibility: ['18-50 Years'], benefits: ['₹2 Lakh Insurance'], documents: ['Bank Account', 'Aadhaar'] },
+
+{ id: 'finance9', title: 'Pradhan Mantri Suraksha Bima Yojana (PMSBY)', category: 'Financial', state: 'India', level: 'Central', subsidy: '₹2 Lakh Accident Insurance', overview: 'Affordable accidental insurance coverage.', applyLink: 'https://jansuraksha.gov.in', tags: ['Accident Insurance'], eligibility: ['18-70 Years'], benefits: ['₹2 Lakh Accident Cover'], documents: ['Bank Account', 'Aadhaar'] },
+
+{ id: 'finance10', title: 'Pradhan Mantri Mudra Yojana (PMMY)', category: 'Financial', state: 'India', level: 'Central', subsidy: 'Loan up to ₹20 Lakh', overview: 'Business loan for small entrepreneurs.', applyLink: 'https://www.mudra.org.in', tags: ['Business Loan'], eligibility: ['Small Business Owner'], benefits: ['Collateral Free Loan'], documents: ['Business Proof', 'Aadhaar'] },
+
+{ id: 'finance11', title: 'PM SVANidhi', category: 'Financial', state: 'India', level: 'Central', subsidy: 'Working Capital Loan', overview: 'Loan scheme for street vendors.', applyLink: 'https://pmsvanidhi.mohua.gov.in', tags: ['Street Vendors'], eligibility: ['Eligible Street Vendors'], benefits: ['Collateral Free Loan'], documents: ['Vendor Certificate', 'Aadhaar'] },
+
+{ id: 'finance12', title: 'PM Vishwakarma', category: 'Financial', state: 'India', level: 'Central', subsidy: 'Loan, Toolkit & Training', overview: 'Support for traditional artisans and craftspeople.', applyLink: 'https://pmvishwakarma.gov.in', tags: ['Artisan'], eligibility: ['Eligible Traditional Artisan'], benefits: ['Loan', 'Training', 'Toolkit'], documents: ['Aadhaar', 'Occupation Proof'] },
+
+{ id: 'finance13', title: 'Sukanya Samriddhi Yojana', category: 'Financial', state: 'India', level: 'Central', subsidy: 'High Interest Savings Scheme', overview: 'Savings scheme for the girl child.', applyLink: 'https://www.indiapost.gov.in', tags: ['Savings', 'Girl Child'], eligibility: ['Girl Child below 10 Years'], benefits: ['Tax Benefits', 'High Interest'], documents: ['Birth Certificate', 'Aadhaar'] },
+
+{ id: 'finance14', title: 'Kisan Credit Card (KCC)', category: 'Financial', state: 'India', level: 'Central', subsidy: 'Agricultural Credit', overview: 'Credit support for farmers.', applyLink: 'https://pmkisan.gov.in', tags: ['Farmer'], eligibility: ['Eligible Farmer'], benefits: ['Crop Loan'], documents: ['Land Record', 'Aadhaar'] },
+
+{ id: 'finance15', title: 'SHG Credit Linkage Programme', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Bank Credit Support', overview: 'Credit linkage support for registered Self Help Groups.', applyLink: 'https://anandadhara.wb.gov.in', tags: ['SHG'], eligibility: ['Registered SHGs'], benefits: ['Bank Loan'], documents: ['SHG Registration'] },
+
+{ id: 'finance16', title: 'Universal Membership Assistance for Cooperative Societies', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Financial Support', overview: 'Financial assistance for cooperative society members.', applyLink: 'https://coopwb.in', tags: ['Cooperative'], eligibility: ['Registered Members'], benefits: ['Financial Assistance'], documents: ['Membership Certificate'] },
+
+{ id: 'finance17', title: 'Cooperative Share Capital Assistance Scheme', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Share Capital Support', overview: 'Government assistance to cooperative institutions.', applyLink: 'https://coopwb.in', tags: ['Cooperative'], eligibility: ['Eligible Cooperative Society'], benefits: ['Share Capital Assistance'], documents: ['Registration Certificate'] },
+
+{ id: 'finance18', title: 'Pension Benefit Scheme for Registered Workers', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Monthly Pension', overview: 'Pension support for registered workers under Labour Welfare schemes.', applyLink: 'https://wblabour.gov.in', tags: ['Labour', 'Pension'], eligibility: ['Registered Workers'], benefits: ['Monthly Pension'], documents: ['Labour Registration', 'Aadhaar'] },
+
+{ id: 'finance19', title: 'Accidental Benefit Scheme', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Financial Compensation', overview: 'Financial assistance in case of accidental death or disability of registered workers.', applyLink: 'https://wblabour.gov.in', tags: ['Insurance', 'Workers'], eligibility: ['Registered Workers'], benefits: ['Accident Compensation'], documents: ['Labour Registration', 'Medical Report'] },
+
+{ id: 'finance20', title: 'Treatment for Major Ailments Assistance', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Medical Financial Assistance', overview: 'Financial assistance for treatment of major illnesses under Labour Welfare schemes.', applyLink: 'https://wblabour.gov.in', tags: ['Medical Assistance'], eligibility: ['Registered Workers'], benefits: ['Treatment Cost Assistance'], documents: ['Medical Certificate', 'Labour Registration'] },
     ],
     employment: [
         { id: 'emp1', title: 'Employment Exchange', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Job Support', overview: 'Connects job seekers with employers.', applyLink: 'https://www.wb.gov.in/employment', tags: ['Job', 'Career'], eligibility: ['Unemployed youth', 'Qualified'], benefits: ['Job registration', 'Placement'], documents: ['Educational certs', 'Aadhaar'] }
@@ -207,7 +246,7 @@ const categories = [
     { icon: 'fa-heart-pulse', name: 'Healthcare', count: '19 Schemes', color: '#FF6B6B', key: 'health' },
     { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '19 Schemes', color: '#EC4899', key: 'women' },
     { icon: 'fa-building', name: 'Housing', count: '19 Schemes', color: '#F59E0B', key: 'housing' },
-    { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '1 Schemes', color: '#06D6A0', key: 'financial' },
+    { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '20 Schemes', color: '#06D6A0', key: 'financial' },
     { icon: 'fa-briefcase', name: 'Employment', count: '1 Schemes', color: '#3B82F6', key: 'employment' },
     { icon: 'fa-tractor', name: 'Agriculture', count: '3 Schemes', color: '#10B981', key: 'agriculture' },
     { icon: 'fa-scale-balanced', name: 'Legal', count: '1 Schemes', color: '#8B5CF6', key: 'legal' },
