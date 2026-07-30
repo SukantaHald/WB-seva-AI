@@ -284,7 +284,7 @@ const categories = [
     { icon: 'fa-venus-mars', name: 'Women Empowerment', count: '19 Schemes', color: '#EC4899', key: 'women' },
     { icon: 'fa-building', name: 'Housing', count: '19 Schemes', color: '#F59E0B', key: 'housing' },
     { icon: 'fa-hand-holding-dollar', name: 'Financial', count: '20 Schemes', color: '#06D6A0', key: 'financial' },
-    { icon: 'fa-briefcase', name: 'Employment', count: '1 Schemes', color: '#3B82F6', key: 'employment' },
+    { icon: 'fa-briefcase', name: 'Employment', count: '20 Schemes', color: '#3B82F6', key: 'employment' },
     { icon: 'fa-tractor', name: 'Agriculture', count: '3 Schemes', color: '#10B981', key: 'agriculture' },
     { icon: 'fa-scale-balanced', name: 'Legal', count: '1 Schemes', color: '#8B5CF6', key: 'legal' },
     { icon: 'fa-utensils', name: 'Food & Nutrition', count: '1 Schemes', color: '#F472B6', key: 'food' },
