@@ -163,8 +163,45 @@ const allSchemesData = {
 { id: 'finance20', title: 'Treatment for Major Ailments Assistance', category: 'Financial', state: 'West Bengal', level: 'State', subsidy: 'Medical Financial Assistance', overview: 'Financial assistance for treatment of major illnesses under Labour Welfare schemes.', applyLink: 'https://wblabour.gov.in', tags: ['Medical Assistance'], eligibility: ['Registered Workers'], benefits: ['Treatment Cost Assistance'], documents: ['Medical Certificate', 'Labour Registration'] },
     ],
     employment: [
-        { id: 'emp1', title: 'Employment Exchange', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Job Support', overview: 'Connects job seekers with employers.', applyLink: 'https://www.wb.gov.in/employment', tags: ['Job', 'Career'], eligibility: ['Unemployed youth', 'Qualified'], benefits: ['Job registration', 'Placement'], documents: ['Educational certs', 'Aadhaar'] }
-    ],
+{ id: 'employment1', title: 'Employment Bank', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Registration', overview: 'Online employment assistance portal for job seekers in West Bengal.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Jobs', 'Employment'], eligibility: ['West Bengal Resident', 'Job Seeker'], benefits: ['Job Alerts', 'Employment Assistance', 'Career Support'], documents: ['Aadhaar', 'Educational Certificate'] },
+
+{ id: 'employment2', title: 'Karma Sathi Prakalpa', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Loan up to ₹2 Lakh', overview: 'Financial assistance to unemployed youth for self-employment.', applyLink: 'https://www.wb.gov.in', tags: ['Self Employment', 'Youth'], eligibility: ['Eligible Youth'], benefits: ['Business Loan', 'Self Employment'], documents: ['Aadhaar', 'Project Report', 'Bank Details'] },
+
+{ id: 'employment3', title: 'Yuvashree Prakalpa', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Monthly Allowance', overview: 'Financial assistance to registered unemployed youth.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Youth', 'Allowance'], eligibility: ['Registered Unemployed Youth'], benefits: ['Monthly Allowance'], documents: ['Employment Bank Registration', 'Aadhaar'] },
+
+{ id: 'employment4', title: 'Utkarsh Bangla', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Skill Training', overview: 'Skill development programme for employment and livelihood.', applyLink: 'https://utkarshbangla.gov.in', tags: ['Skill Development'], eligibility: ['Eligible Youth'], benefits: ['Free Training', 'Placement Assistance'], documents: ['Aadhaar', 'Educational Certificate'] },
+
+{ id: 'employment5', title: 'Bangla Sahayata Kendra Employment Services', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Employment-related government services through BSK.', applyLink: 'https://bsk.wb.gov.in', tags: ['BSK'], eligibility: ['Citizens'], benefits: ['Application Assistance'], documents: ['As Required'] },
+
+{ id: 'employment6', title: 'West Bengal Career Guidance Portal', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Career counselling and employment guidance for job seekers.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Career'], eligibility: ['Students', 'Job Seekers'], benefits: ['Career Guidance'], documents: [] },
+
+{ id: 'employment7', title: 'Employment Exchange Registration', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Registration', overview: 'Register with Employment Exchange for job opportunities.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Employment Exchange'], eligibility: ['Eligible Job Seekers'], benefits: ['Government Job Registration'], documents: ['Aadhaar', 'Educational Certificate'] },
+
+{ id: 'employment8', title: 'Employment Exchange Renewal', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Renew Employment Exchange registration online.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Renewal'], eligibility: ['Registered Candidates'], benefits: ['Registration Renewal'], documents: ['Employment Exchange ID'] },
+
+{ id: 'employment9', title: 'Employment Exchange Job Search', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Search available jobs through the Employment Bank.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Job Search'], eligibility: ['Registered Users'], benefits: ['Job Search'], documents: [] },
+
+{ id: 'employment10', title: 'Employment Exchange Vacancy Notification', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Service', overview: 'Receive notifications of government and private vacancies.', applyLink: 'https://employmentbankwb.gov.in', tags: ['Vacancy'], eligibility: ['Registered Users'], benefits: ['Vacancy Alerts'], documents: [] },
+
+{ id: 'employment11', title: 'Apprentice Registration', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Stipend as Applicable', overview: 'Registration for apprenticeship opportunities.', applyLink: 'https://www.apprenticeshipindia.gov.in', tags: ['Apprenticeship'], eligibility: ['Eligible Students'], benefits: ['Industry Training'], documents: ['Educational Certificate', 'Aadhaar'] },
+
+{ id: 'employment12', title: 'Skill Training & Placement Assistance', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Free Training', overview: 'Government-supported skill development with placement assistance.', applyLink: 'https://utkarshbangla.gov.in', tags: ['Training'], eligibility: ['Eligible Youth'], benefits: ['Training', 'Placement'], documents: ['Aadhaar'] },
+
+{ id: 'employment13', title: 'Self Help Group Employment Support', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Financial & Training Support', overview: 'Employment support through Self Help Groups.', applyLink: 'https://anandadhara.wb.gov.in', tags: ['SHG'], eligibility: ['Registered SHGs'], benefits: ['Training', 'Financial Support'], documents: ['SHG Registration'] },
+
+{ id: 'employment14', title: 'Self Employment Scheme for Registered Workers', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Financial Assistance', overview: 'Support for registered workers to start self-employment.', applyLink: 'https://wblabour.gov.in', tags: ['Self Employment'], eligibility: ['Registered Workers'], benefits: ['Financial Assistance'], documents: ['Labour Registration'] },
+
+{ id: 'employment15', title: 'MSME Entrepreneurship Support', category: 'Employment', state: 'West Bengal', level: 'State', subsidy: 'Business Support', overview: 'Support for micro, small and medium enterprises.', applyLink: 'https://wbmsme.gov.in', tags: ['MSME'], eligibility: ['Entrepreneurs'], benefits: ['Business Assistance'], documents: ['Business Registration'] },
+
+{ id: 'employment16', title: 'Prime Minister Employment Generation Programme (PMEGP)', category: 'Employment', state: 'India', level: 'Central', subsidy: 'Subsidized Business Loan', overview: 'Credit-linked subsidy scheme for self-employment.', applyLink: 'https://www.kviconline.gov.in', tags: ['PMEGP'], eligibility: ['Eligible Entrepreneurs'], benefits: ['Business Loan Subsidy'], documents: ['Project Report', 'Aadhaar'] },
+
+{ id: 'employment17', title: 'PM Internship Scheme', category: 'Employment', state: 'India', level: 'Central', subsidy: 'Monthly Stipend', overview: 'Internship opportunities for eligible youth.', applyLink: 'https://pminternship.mca.gov.in', tags: ['Internship'], eligibility: ['Eligible Students'], benefits: ['Industry Experience', 'Stipend'], documents: ['Educational Certificate'] },
+
+{ id: 'employment18', title: 'National Career Service (NCS)', category: 'Employment', state: 'India', level: 'Central', subsidy: 'Free Employment Service', overview: 'National employment and career services portal.', applyLink: 'https://www.ncs.gov.in', tags: ['Career'], eligibility: ['Job Seekers'], benefits: ['Job Search', 'Career Guidance'], documents: ['Aadhaar'] },
+
+{ id: 'employment19', title: 'Apprenticeship India (NAPS)', category: 'Employment', state: 'India', level: 'Central', subsidy: 'Government Supported Apprenticeship', overview: 'National Apprenticeship Promotion Scheme portal.', applyLink: 'https://www.apprenticeshipindia.gov.in', tags: ['Apprenticeship'], eligibility: ['Eligible Candidates'], benefits: ['Training', 'Stipend'], documents: ['Educational Certificate'] },
+
+{ id: 'employment20', title: 'e-Shram Registration', category: 'Employment', state: 'India', level: 'Central', subsidy: 'Social Security Registration', overview: 'Registration portal for unorganized workers.', applyLink: 'https://eshram.gov.in', tags: ['Workers'], eligibility: ['Unorganized Workers'], benefits: ['National Worker ID'], documents: ['Aadhaar', 'Bank Account'] },    ],
     skill: [
         { id: 'skill1', title: 'PMKVY', category: 'Skill Development', state: 'All India', level: 'Central', subsidy: 'Free Training', overview: 'Skill training for youth.', applyLink: 'https://pmkvyofficial.org', tags: ['Training', 'Certification'], eligibility: ['15–45 years', '5th pass'], benefits: ['Free training', 'Placement'], documents: ['Aadhaar', 'Education cert'] }
     ],
